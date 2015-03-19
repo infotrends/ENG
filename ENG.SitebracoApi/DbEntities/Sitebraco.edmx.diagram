@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d9dd8636a9584cd8a54a4dafb9c044c6" Name="Diagram1">
+        <EntityTypeShape EntityType="SitebracoModel.Action" Width="1.5" PointX="6.5" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsContent" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsContentType" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsContentTypeAllowedContentType" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsContentVersion" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsContentXml" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsDataType" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsDataTypePreValue" Width="1.5" PointX="2.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsDictionary" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsDocument" Width="1.5" PointX="5.25" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsDocumentType" Width="1.5" PointX="5.25" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.CMSImportCustomRelation" Width="1.5" PointX="13.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.CMSImportMediaRelation" Width="1.5" PointX="0.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.CMSImportRelation" Width="1.5" PointX="13.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.CMSImportScheduledItem" Width="1.5" PointX="7.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.CMSImportScheduledTask" Width="1.5" PointX="15.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.CMSImportState" Width="1.5" PointX="15.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsLanguageText" Width="1.5" PointX="15.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsMacro" Width="1.5" PointX="10.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsMacroProperty" Width="1.5" PointX="13" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsMember" Width="1.5" PointX="0.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsMemberType" Width="1.5" PointX="5.25" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsPreviewXml" Width="1.5" PointX="15.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsPropertyData" Width="1.5" PointX="8.25" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsPropertyType" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsPropertyTypeGroup" Width="1.5" PointX="3.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsStylesheet" Width="1.5" PointX="5.25" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsStylesheetProperty" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsTagRelationship" Width="1.5" PointX="14" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsTag" Width="1.5" PointX="8.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsTask" Width="1.5" PointX="8.25" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsTaskType" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.cmsTemplate" Width="1.5" PointX="5.25" PointY="42.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.Component" Width="1.5" PointX="8.75" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.ContentSelector" Width="1.5" PointX="16.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.DataSnapshot" Width="1.5" PointX="17.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.Domain" Width="1.5" PointX="17.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.new_MetaClassPrimaryLookup" Width="1.5" PointX="11" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.new_OfficeTemplate" Width="1.5" PointX="10.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.new_OfficeTemplateVersion" Width="1.5" PointX="13" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.ProfilingAttribute" Width="1.5" PointX="6.5" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.Report" Width="1.5" PointX="17.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.Segment" Width="1.5" PointX="8.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.Setting" Width="1.5" PointX="17.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.sysdiagram" Width="1.5" PointX="15.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.TriggerAction" Width="1.5" PointX="8.75" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.TriggerRule" Width="1.5" PointX="8.75" PointY="51.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.TriggerRuleType" Width="1.5" PointX="6.5" PointY="51.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.Trigger" Width="1.5" PointX="6.5" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoDomain" Width="1.5" PointX="5.25" PointY="45.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoLanguage" Width="1.5" PointX="17.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoLog" Width="1.5" PointX="18.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoNode" Width="1.5" PointX="3" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoRelation" Width="1.5" PointX="8.25" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoRelationType" Width="1.5" PointX="6" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoServer" Width="1.5" PointX="19.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoUser" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoUser2app" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoUser2NodeNotify" Width="1.5" PointX="11.25" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoUser2NodePermission" Width="1.5" PointX="11.25" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoUserLogin" Width="1.5" PointX="19.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.umbracoUserType" Width="1.5" PointX="3.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.VisitorComponent" Width="1.5" PointX="11" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.Visitor" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.VisitorSegment" Width="1.5" PointX="11" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.VisitorTriggerRule" Width="1.5" PointX="11" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SitebracoModel.new_MetaClassPrimaryView" Width="1.5" PointX="19.75" PointY="12.125" IsExpanded="true" />
+        <AssociationConnector Association="SitebracoModel.FK_ActionTriggerAction" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsContent_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsContentType_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsDataType_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsDocument_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsDocumentType_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsMacroProperty_cmsMacro_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsMember_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsMemberType_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsPropertyData_cmsPropertyType_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsPropertyData_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsPropertyType_cmsPropertyTypeGroup_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsTagRelationship_cmsPropertyType" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsPropertyTypeGroup_cmsPropertyTypeGroup_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsStylesheet_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsTagRelationship_cmsTags_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsTags_cmsTags" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsTask_cmsTaskType_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsTask_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsTask_umbracoUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsTask_umbracoUser1" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsTemplate_cmsTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_cmsTemplate_umbracoNode" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_new_MetaClassPrimaryLookup_Components" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_ProfilingAttributeComponent" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_VisitorComponentComponent" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_new_OfficeTemplateVersion_new_OfficeTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_VisitorSegmentSegment" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_TriggerTriggerAction" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_TriggerRuleTriggerRuleType" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_TriggerTriggerRule" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_VisitorTriggerRuleTriggerRule" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoDomains_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoNode_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoRelation_umbracoNode" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoRelation_umbracoNode1" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoUser2NodeNotify_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoUser2NodePermission_umbracoNode_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoRelation_umbracoRelationType_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoUser_umbracoUserType_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoUser2app_umbracoUser_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoUser2NodeNotify_umbracoUser_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_umbracoUser2NodePermission_umbracoUser_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_VisitorVisitorComponent" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_VisitorVisitorSegment" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.FK_VisitorVisitorTriggerRule" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.cmsContentType2ContentType" ManuallyRouted="false" />
+        <AssociationConnector Association="SitebracoModel.cmsMember2MemberGroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

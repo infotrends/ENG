@@ -1,0 +1,781 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SitebracoModelStoreContainer" CdmEntityContainer="SitebracoEntities">
+    <EntitySetMapping Name="Actions">
+      <EntityTypeMapping TypeName="SitebracoModel.Action">
+        <MappingFragment StoreEntitySet="Actions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+          <ScalarProperty Name="PropertyBag" ColumnName="PropertyBag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsContents">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsContent">
+        <MappingFragment StoreEntitySet="cmsContent">
+          <ScalarProperty Name="pk" ColumnName="pk" />
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="contentType" ColumnName="contentType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsContentTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsContentType">
+        <MappingFragment StoreEntitySet="cmsContentType">
+          <ScalarProperty Name="pk" ColumnName="pk" />
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="isContainer" ColumnName="isContainer" />
+          <ScalarProperty Name="allowAtRoot" ColumnName="allowAtRoot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsContentTypeAllowedContentTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsContentTypeAllowedContentType">
+        <MappingFragment StoreEntitySet="cmsContentTypeAllowedContentType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AllowedId" ColumnName="AllowedId" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsContentVersions">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsContentVersion">
+        <MappingFragment StoreEntitySet="cmsContentVersion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ContentId" ColumnName="ContentId" />
+          <ScalarProperty Name="VersionId" ColumnName="VersionId" />
+          <ScalarProperty Name="VersionDate" ColumnName="VersionDate" />
+          <ScalarProperty Name="LanguageLocale" ColumnName="LanguageLocale" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsContentXmls">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsContentXml">
+        <MappingFragment StoreEntitySet="cmsContentXml">
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="xml" ColumnName="xml" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsDataTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsDataType">
+        <MappingFragment StoreEntitySet="cmsDataType">
+          <ScalarProperty Name="pk" ColumnName="pk" />
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="propertyEditorAlias" ColumnName="propertyEditorAlias" />
+          <ScalarProperty Name="dbType" ColumnName="dbType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsDataTypePreValues">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsDataTypePreValue">
+        <MappingFragment StoreEntitySet="cmsDataTypePreValues">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="datatypeNodeId" ColumnName="datatypeNodeId" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="sortorder" ColumnName="sortorder" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsDictionaries">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsDictionary">
+        <MappingFragment StoreEntitySet="cmsDictionary">
+          <ScalarProperty Name="pk" ColumnName="pk" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="parent" ColumnName="parent" />
+          <ScalarProperty Name="key" ColumnName="key" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsDocuments">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsDocument">
+        <MappingFragment StoreEntitySet="cmsDocument">
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="published" ColumnName="published" />
+          <ScalarProperty Name="documentUser" ColumnName="documentUser" />
+          <ScalarProperty Name="versionId" ColumnName="versionId" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="releaseDate" ColumnName="releaseDate" />
+          <ScalarProperty Name="expireDate" ColumnName="expireDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+          <ScalarProperty Name="templateId" ColumnName="templateId" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+          <ScalarProperty Name="newest" ColumnName="newest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsDocumentTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsDocumentType">
+        <MappingFragment StoreEntitySet="cmsDocumentType">
+          <ScalarProperty Name="contentTypeNodeId" ColumnName="contentTypeNodeId" />
+          <ScalarProperty Name="templateNodeId" ColumnName="templateNodeId" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMSImportCustomRelations">
+      <EntityTypeMapping TypeName="SitebracoModel.CMSImportCustomRelation">
+        <MappingFragment StoreEntitySet="CMSImportCustomRelation">
+          <ScalarProperty Name="CustomRelationId" ColumnName="CustomRelationId" />
+          <ScalarProperty Name="UmbracoId" ColumnName="UmbracoId" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="DataSourceKey" ColumnName="DataSourceKey" />
+          <ScalarProperty Name="RelatedId" ColumnName="RelatedId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMSImportMediaRelations">
+      <EntityTypeMapping TypeName="SitebracoModel.CMSImportMediaRelation">
+        <MappingFragment StoreEntitySet="CMSImportMediaRelation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UmbracoMediaId" ColumnName="UmbracoMediaId" />
+          <ScalarProperty Name="SourceUrl" ColumnName="SourceUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMSImportRelations">
+      <EntityTypeMapping TypeName="SitebracoModel.CMSImportRelation">
+        <MappingFragment StoreEntitySet="CMSImportRelation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UmbracoID" ColumnName="UmbracoID" />
+          <ScalarProperty Name="UmbracoParentId" ColumnName="UmbracoParentId" />
+          <ScalarProperty Name="DataSourceKey" ColumnName="DataSourceKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMSImportScheduledItems">
+      <EntityTypeMapping TypeName="SitebracoModel.CMSImportScheduledItem">
+        <MappingFragment StoreEntitySet="CMSImportScheduledItems">
+          <ScalarProperty Name="ScheduledItemId" ColumnName="ScheduledItemId" />
+          <ScalarProperty Name="ScheduleldTaskId" ColumnName="ScheduleldTaskId" />
+          <ScalarProperty Name="ScheduledOn" ColumnName="ScheduledOn" />
+          <ScalarProperty Name="ExecutedOn" ColumnName="ExecutedOn" />
+          <ScalarProperty Name="InProgress" ColumnName="InProgress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMSImportScheduledTasks">
+      <EntityTypeMapping TypeName="SitebracoModel.CMSImportScheduledTask">
+        <MappingFragment StoreEntitySet="CMSImportScheduledTask">
+          <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+          <ScalarProperty Name="ScheduleGUID" ColumnName="ScheduleGUID" />
+          <ScalarProperty Name="ImportStateGUID" ColumnName="ImportStateGUID" />
+          <ScalarProperty Name="ScheduledTaskName" ColumnName="ScheduledTaskName" />
+          <ScalarProperty Name="NotifyEmailAddress" ColumnName="NotifyEmailAddress" />
+          <ScalarProperty Name="ExecuteEvery" ColumnName="ExecuteEvery" />
+          <ScalarProperty Name="ExecuteDays" ColumnName="ExecuteDays" />
+          <ScalarProperty Name="ExecuteHour" ColumnName="ExecuteHour" />
+          <ScalarProperty Name="ExecuteMinute" ColumnName="ExecuteMinute" />
+          <ScalarProperty Name="ImportAsUser" ColumnName="ImportAsUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMSImportStates">
+      <EntityTypeMapping TypeName="SitebracoModel.CMSImportState">
+        <MappingFragment StoreEntitySet="CMSImportState">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UniqueIdentifier" ColumnName="UniqueIdentifier" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ImportType" ColumnName="ImportType" />
+          <ScalarProperty Name="ImportState" ColumnName="ImportState" />
+          <ScalarProperty Name="Recursive" ColumnName="Recursive" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsLanguageTexts">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsLanguageText">
+        <MappingFragment StoreEntitySet="cmsLanguageText">
+          <ScalarProperty Name="pk" ColumnName="pk" />
+          <ScalarProperty Name="languageId" ColumnName="languageId" />
+          <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+          <ScalarProperty Name="value" ColumnName="value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsMacroes">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsMacro">
+        <MappingFragment StoreEntitySet="cmsMacro">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="macroUseInEditor" ColumnName="macroUseInEditor" />
+          <ScalarProperty Name="macroRefreshRate" ColumnName="macroRefreshRate" />
+          <ScalarProperty Name="macroAlias" ColumnName="macroAlias" />
+          <ScalarProperty Name="macroName" ColumnName="macroName" />
+          <ScalarProperty Name="macroScriptType" ColumnName="macroScriptType" />
+          <ScalarProperty Name="macroScriptAssembly" ColumnName="macroScriptAssembly" />
+          <ScalarProperty Name="macroXSLT" ColumnName="macroXSLT" />
+          <ScalarProperty Name="macroCacheByPage" ColumnName="macroCacheByPage" />
+          <ScalarProperty Name="macroCachePersonalized" ColumnName="macroCachePersonalized" />
+          <ScalarProperty Name="macroDontRender" ColumnName="macroDontRender" />
+          <ScalarProperty Name="macroPython" ColumnName="macroPython" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsMacroProperties">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsMacroProperty">
+        <MappingFragment StoreEntitySet="cmsMacroProperty">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="editorAlias" ColumnName="editorAlias" />
+          <ScalarProperty Name="macro" ColumnName="macro" />
+          <ScalarProperty Name="macroPropertySortOrder" ColumnName="macroPropertySortOrder" />
+          <ScalarProperty Name="macroPropertyAlias" ColumnName="macroPropertyAlias" />
+          <ScalarProperty Name="macroPropertyName" ColumnName="macroPropertyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsMembers">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsMember">
+        <MappingFragment StoreEntitySet="cmsMember">
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsMemberTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsMemberType">
+        <MappingFragment StoreEntitySet="cmsMemberType">
+          <ScalarProperty Name="pk" ColumnName="pk" />
+          <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+          <ScalarProperty Name="propertytypeId" ColumnName="propertytypeId" />
+          <ScalarProperty Name="memberCanEdit" ColumnName="memberCanEdit" />
+          <ScalarProperty Name="viewOnProfile" ColumnName="viewOnProfile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsPreviewXmls">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsPreviewXml">
+        <MappingFragment StoreEntitySet="cmsPreviewXml">
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="versionId" ColumnName="versionId" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="xml" ColumnName="xml" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsPropertyDatas">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsPropertyData">
+        <MappingFragment StoreEntitySet="cmsPropertyData">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="contentNodeId" ColumnName="contentNodeId" />
+          <ScalarProperty Name="versionId" ColumnName="versionId" />
+          <ScalarProperty Name="propertytypeid" ColumnName="propertytypeid" />
+          <ScalarProperty Name="dataInt" ColumnName="dataInt" />
+          <ScalarProperty Name="dataDate" ColumnName="dataDate" />
+          <ScalarProperty Name="dataNvarchar" ColumnName="dataNvarchar" />
+          <ScalarProperty Name="dataNtext" ColumnName="dataNtext" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsPropertyTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsPropertyType">
+        <MappingFragment StoreEntitySet="cmsPropertyType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dataTypeId" ColumnName="dataTypeId" />
+          <ScalarProperty Name="contentTypeId" ColumnName="contentTypeId" />
+          <ScalarProperty Name="propertyTypeGroupId" ColumnName="propertyTypeGroupId" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="helpText" ColumnName="helpText" />
+          <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+          <ScalarProperty Name="mandatory" ColumnName="mandatory" />
+          <ScalarProperty Name="validationRegExp" ColumnName="validationRegExp" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsPropertyTypeGroups">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsPropertyTypeGroup">
+        <MappingFragment StoreEntitySet="cmsPropertyTypeGroup">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="parentGroupId" ColumnName="parentGroupId" />
+          <ScalarProperty Name="contenttypeNodeId" ColumnName="contenttypeNodeId" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="sortorder" ColumnName="sortorder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsStylesheets">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsStylesheet">
+        <MappingFragment StoreEntitySet="cmsStylesheet">
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="content" ColumnName="content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsStylesheetProperties">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsStylesheetProperty">
+        <MappingFragment StoreEntitySet="cmsStylesheetProperty">
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="stylesheetPropertyEditor" ColumnName="stylesheetPropertyEditor" />
+          <ScalarProperty Name="stylesheetPropertyAlias" ColumnName="stylesheetPropertyAlias" />
+          <ScalarProperty Name="stylesheetPropertyValue" ColumnName="stylesheetPropertyValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsTagRelationships">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsTagRelationship">
+        <MappingFragment StoreEntitySet="cmsTagRelationship">
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="tagId" ColumnName="tagId" />
+          <ScalarProperty Name="propertyTypeId" ColumnName="propertyTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsTags">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsTag">
+        <MappingFragment StoreEntitySet="cmsTags">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tag" ColumnName="tag" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="group" ColumnName="group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsTasks">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsTask">
+        <MappingFragment StoreEntitySet="cmsTask">
+          <ScalarProperty Name="closed" ColumnName="closed" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="taskTypeId" ColumnName="taskTypeId" />
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="parentUserId" ColumnName="parentUserId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsTaskTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsTaskType">
+        <MappingFragment StoreEntitySet="cmsTaskType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cmsTemplates">
+      <EntityTypeMapping TypeName="SitebracoModel.cmsTemplate">
+        <MappingFragment StoreEntitySet="cmsTemplate">
+          <ScalarProperty Name="pk" ColumnName="pk" />
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="master" ColumnName="master" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+          <ScalarProperty Name="design" ColumnName="design" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Components">
+      <EntityTypeMapping TypeName="SitebracoModel.Component">
+        <MappingFragment StoreEntitySet="Components">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ProfilingAttributeId" ColumnName="ProfilingAttributeId" />
+          <ScalarProperty Name="IsArchived" ColumnName="IsArchived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContentSelectors">
+      <EntityTypeMapping TypeName="SitebracoModel.ContentSelector">
+        <MappingFragment StoreEntitySet="ContentSelectors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+          <ScalarProperty Name="PropertyBag" ColumnName="PropertyBag" />
+          <ScalarProperty Name="IsArchived" ColumnName="IsArchived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataSnapshots">
+      <EntityTypeMapping TypeName="SitebracoModel.DataSnapshot">
+        <MappingFragment StoreEntitySet="DataSnapshots">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateStamp" ColumnName="DateStamp" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Domains">
+      <EntityTypeMapping TypeName="SitebracoModel.Domain">
+        <MappingFragment StoreEntitySet="Domains">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LicenseKey" ColumnName="LicenseKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="new_MetaClassPrimaryLookup">
+      <EntityTypeMapping TypeName="SitebracoModel.new_MetaClassPrimaryLookup">
+        <MappingFragment StoreEntitySet="new_MetaClassPrimaryLookup">
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="PrimaryId" ColumnName="PrimaryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="new_OfficeTemplate">
+      <EntityTypeMapping TypeName="SitebracoModel.new_OfficeTemplate">
+        <MappingFragment StoreEntitySet="new_OfficeTemplate">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="MarkDeleteOn" ColumnName="MarkDeleteOn" />
+          <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="new_OfficeTemplateVersion">
+      <EntityTypeMapping TypeName="SitebracoModel.new_OfficeTemplateVersion">
+        <MappingFragment StoreEntitySet="new_OfficeTemplateVersion">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OfficeTemplateId" ColumnName="OfficeTemplateId" />
+          <ScalarProperty Name="TemplateBase64String" ColumnName="TemplateBase64String" />
+          <ScalarProperty Name="MarkDeleteOn" ColumnName="MarkDeleteOn" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfilingAttributes">
+      <EntityTypeMapping TypeName="SitebracoModel.ProfilingAttribute">
+        <MappingFragment StoreEntitySet="ProfilingAttributes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsArchived" ColumnName="IsArchived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="SitebracoModel.Report">
+        <MappingFragment StoreEntitySet="Reports">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="PropertyBag" ColumnName="PropertyBag" />
+          <ScalarProperty Name="ReportClass" ColumnName="ReportClass" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Segments">
+      <EntityTypeMapping TypeName="SitebracoModel.Segment">
+        <MappingFragment StoreEntitySet="Segments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LifetimeSeconds" ColumnName="LifetimeSeconds" />
+          <ScalarProperty Name="IsArchived" ColumnName="IsArchived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="SitebracoModel.Setting">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TextValue" ColumnName="TextValue" />
+          <ScalarProperty Name="DecimalValue" ColumnName="DecimalValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SitebracoModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TriggerActions">
+      <EntityTypeMapping TypeName="SitebracoModel.TriggerAction">
+        <MappingFragment StoreEntitySet="TriggerActions">
+          <ScalarProperty Name="TriggerId" ColumnName="TriggerId" />
+          <ScalarProperty Name="ActionId" ColumnName="ActionId" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TriggerRules">
+      <EntityTypeMapping TypeName="SitebracoModel.TriggerRule">
+        <MappingFragment StoreEntitySet="TriggerRules">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TriggerId" ColumnName="TriggerId" />
+          <ScalarProperty Name="TriggerRuleTypeId" ColumnName="TriggerRuleTypeId" />
+          <ScalarProperty Name="PropertyBag" ColumnName="PropertyBag" />
+          <ScalarProperty Name="MinimumHits" ColumnName="MinimumHits" />
+          <ScalarProperty Name="LogicalOperatorFlags" ColumnName="LogicalOperatorFlags" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TriggerRuleTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.TriggerRuleType">
+        <MappingFragment StoreEntitySet="TriggerRuleTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EvaluatorClass" ColumnName="EvaluatorClass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Triggers">
+      <EntityTypeMapping TypeName="SitebracoModel.Trigger">
+        <MappingFragment StoreEntitySet="Triggers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoDomains">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoDomain">
+        <MappingFragment StoreEntitySet="umbracoDomains">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="domainDefaultLanguage" ColumnName="domainDefaultLanguage" />
+          <ScalarProperty Name="domainRootStructureID" ColumnName="domainRootStructureID" />
+          <ScalarProperty Name="domainName" ColumnName="domainName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoLanguages">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoLanguage">
+        <MappingFragment StoreEntitySet="umbracoLanguage">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="languageISOCode" ColumnName="languageISOCode" />
+          <ScalarProperty Name="languageCultureName" ColumnName="languageCultureName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoLogs">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoLog">
+        <MappingFragment StoreEntitySet="umbracoLog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+          <ScalarProperty Name="Datestamp" ColumnName="Datestamp" />
+          <ScalarProperty Name="logHeader" ColumnName="logHeader" />
+          <ScalarProperty Name="logComment" ColumnName="logComment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoNodes">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoNode">
+        <MappingFragment StoreEntitySet="umbracoNode">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="trashed" ColumnName="trashed" />
+          <ScalarProperty Name="parentID" ColumnName="parentID" />
+          <ScalarProperty Name="nodeUser" ColumnName="nodeUser" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+          <ScalarProperty Name="uniqueID" ColumnName="uniqueID" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="nodeObjectType" ColumnName="nodeObjectType" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoRelations">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoRelation">
+        <MappingFragment StoreEntitySet="umbracoRelation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="parentId" ColumnName="parentId" />
+          <ScalarProperty Name="childId" ColumnName="childId" />
+          <ScalarProperty Name="relType" ColumnName="relType" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoRelationTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoRelationType">
+        <MappingFragment StoreEntitySet="umbracoRelationType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dual" ColumnName="dual" />
+          <ScalarProperty Name="parentObjectType" ColumnName="parentObjectType" />
+          <ScalarProperty Name="childObjectType" ColumnName="childObjectType" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoServers">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoServer">
+        <MappingFragment StoreEntitySet="umbracoServer">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="computerName" ColumnName="computerName" />
+          <ScalarProperty Name="registeredDate" ColumnName="registeredDate" />
+          <ScalarProperty Name="lastNotifiedDate" ColumnName="lastNotifiedDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoUsers">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoUser">
+        <MappingFragment StoreEntitySet="umbracoUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userDisabled" ColumnName="userDisabled" />
+          <ScalarProperty Name="userNoConsole" ColumnName="userNoConsole" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="startStructureID" ColumnName="startStructureID" />
+          <ScalarProperty Name="startMediaID" ColumnName="startMediaID" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+          <ScalarProperty Name="userLanguage" ColumnName="userLanguage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoUser2app">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoUser2app">
+        <MappingFragment StoreEntitySet="umbracoUser2app">
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="app" ColumnName="app" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoUser2NodeNotify">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoUser2NodeNotify">
+        <MappingFragment StoreEntitySet="umbracoUser2NodeNotify">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="action" ColumnName="action" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoUser2NodePermission">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoUser2NodePermission">
+        <MappingFragment StoreEntitySet="umbracoUser2NodePermission">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+          <ScalarProperty Name="permission" ColumnName="permission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoUserLogins">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoUserLogin">
+        <MappingFragment StoreEntitySet="umbracoUserLogins">
+          <ScalarProperty Name="contextID" ColumnName="contextID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="timeout" ColumnName="timeout" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umbracoUserTypes">
+      <EntityTypeMapping TypeName="SitebracoModel.umbracoUserType">
+        <MappingFragment StoreEntitySet="umbracoUserType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userTypeAlias" ColumnName="userTypeAlias" />
+          <ScalarProperty Name="userTypeName" ColumnName="userTypeName" />
+          <ScalarProperty Name="userTypeDefaultPermissions" ColumnName="userTypeDefaultPermissions" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorComponents">
+      <EntityTypeMapping TypeName="SitebracoModel.VisitorComponent">
+        <MappingFragment StoreEntitySet="VisitorComponents">
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
+          <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visitors">
+      <EntityTypeMapping TypeName="SitebracoModel.Visitor">
+        <MappingFragment StoreEntitySet="Visitors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstVisit" ColumnName="FirstVisit" />
+          <ScalarProperty Name="LastVisit" ColumnName="LastVisit" />
+          <ScalarProperty Name="TrackingStatusCode" ColumnName="TrackingStatusCode" />
+          <ScalarProperty Name="UserHostAddress" ColumnName="UserHostAddress" />
+          <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+          <ScalarProperty Name="FacebookId" ColumnName="FacebookId" />
+          <ScalarProperty Name="FacebookToken" ColumnName="FacebookToken" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorSegments">
+      <EntityTypeMapping TypeName="SitebracoModel.VisitorSegment">
+        <MappingFragment StoreEntitySet="VisitorSegments">
+          <ScalarProperty Name="SegmentId" ColumnName="SegmentId" />
+          <ScalarProperty Name="LastIn" ColumnName="LastIn" />
+          <ScalarProperty Name="LastOut" ColumnName="LastOut" />
+          <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorTriggerRules">
+      <EntityTypeMapping TypeName="SitebracoModel.VisitorTriggerRule">
+        <MappingFragment StoreEntitySet="VisitorTriggerRules">
+          <ScalarProperty Name="TriggerRuleId" ColumnName="TriggerRuleId" />
+          <ScalarProperty Name="Hits" ColumnName="Hits" />
+          <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="new_MetaClassPrimaryView">
+      <EntityTypeMapping TypeName="SitebracoModel.new_MetaClassPrimaryView">
+        <MappingFragment StoreEntitySet="new_MetaClassPrimaryView">
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="ClassIsArchived" ColumnName="ClassIsArchived" />
+          <ScalarProperty Name="PrimaryId" ColumnName="PrimaryId" />
+          <ScalarProperty Name="PrimaryName" ColumnName="PrimaryName" />
+          <ScalarProperty Name="PrimaryIsArchived" ColumnName="PrimaryIsArchived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="cmsContentType2ContentType" TypeName="SitebracoModel.cmsContentType2ContentType" StoreEntitySet="cmsContentType2ContentType">
+      <EndProperty Name="umbracoNode">
+        <ScalarProperty Name="id" ColumnName="childContentTypeId" />
+      </EndProperty>
+      <EndProperty Name="umbracoNode1">
+        <ScalarProperty Name="id" ColumnName="parentContentTypeId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="cmsMember2MemberGroup" TypeName="SitebracoModel.cmsMember2MemberGroup" StoreEntitySet="cmsMember2MemberGroup">
+      <EndProperty Name="cmsMember">
+        <ScalarProperty Name="nodeId" ColumnName="Member" />
+      </EndProperty>
+      <EndProperty Name="umbracoNode">
+        <ScalarProperty Name="id" ColumnName="MemberGroup" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SitebracoModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SitebracoModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SitebracoModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SitebracoModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SitebracoModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SitebracoModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SitebracoModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SitebracoModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SitebracoModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

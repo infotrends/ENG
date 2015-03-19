@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D6DAA0CC-02B6-42CE-B2FB-0DC6B524F052}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SitebracoApi</RootNamespace>
+    <AssemblyName>SitebracoApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\sitebraco\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="businesslogic">
+      <HintPath>..\sitebraco\bin\businesslogic.dll</HintPath>
+    </Reference>
+    <Reference Include="cms">
+      <HintPath>..\sitebraco\bin\cms.dll</HintPath>
+    </Reference>
+    <Reference Include="CorrugatedIron">
+      <HintPath>..\sitebraco\bin\CorrugatedIron.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Examine, Version=0.1.55.2941, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\sitebraco\bin\Examine.dll</HintPath>
+    </Reference>
+    <Reference Include="interfaces">
+      <HintPath>..\sitebraco\bin\interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="MyRiak">
+      <HintPath>..\MyRiak-master\obj\Debug\MyRiak.dll</HintPath>
+    </Reference>
+    <Reference Include="MyUtils">
+      <HintPath>..\MyUtils\bin\Debug\MyUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Assemblies\Umbraco 7\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\sitebraco\bin\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\sitebraco\bin\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="umbraco">
+      <HintPath>..\sitebraco\bin\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Core, Version=1.0.5261.28127, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\sitebraco\bin\Umbraco.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco.editorControls">
+      <HintPath>..\sitebraco\bin\umbraco.editorControls.dll</HintPath>
+    </Reference>
+    <Reference Include="UmbracoExamine, Version=0.6.0.28130, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\sitebraco\bin\UmbracoExamine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constant.cs" />
+    <Compile Include="Controllers\Auth\ProfileController.cs" />
+    <Compile Include="Controllers\ContentEditor\ContentController.cs" />
+    <Compile Include="Controllers\ContentEditor\ContentMediaController.cs" />
+    <Compile Include="Controllers\ContentEditor\ContentTemplateController.cs" />
+    <Compile Include="Controllers\WidgetContent\WidgetContentControllers.cs" />
+    <Compile Include="Controllers\InternalCrm\ContentController.cs" />
+    <Compile Include="Controllers\Meta\ContentMetaController.cs" />
+    <Compile Include="Controllers\Sinh\Test.cs" />
+    <Compile Include="DbEntities\Action.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsContent.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsContentType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsContentTypeAllowedContentType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsContentVersion.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsContentXml.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsDataType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsDataTypePreValue.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsDictionary.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsDocument.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsDocumentType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\CMSImportCustomRelation.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\CMSImportMediaRelation.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\CMSImportRelation.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\CMSImportScheduledItem.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\CMSImportScheduledTask.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\CMSImportState.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsLanguageText.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsMacro.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsMacroProperty.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsMember.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsMemberType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsPreviewXml.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsPropertyData.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsPropertyType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsPropertyTypeGroup.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsStylesheet.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsStylesheetProperty.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsTag.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsTagRelationship.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsTask.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsTaskType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\cmsTemplate.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Component.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ContentSelector.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\DataSnapshot.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Domain.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\new_MetaClassPrimaryLookup.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\new_MetaClassPrimaryView.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\new_OfficeTemplate.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\new_OfficeTemplateVersion.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ProfilingAttribute.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Report.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Segment.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Setting.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Sitebraco.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sitebraco.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Sitebraco.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Sitebraco.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sitebraco.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\sysdiagram.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Trigger.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\TriggerAction.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\TriggerRule.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\TriggerRuleType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoDomain.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoLanguage.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoLog.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoNode.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoRelation.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoRelationType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoServer.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoUser.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoUser2app.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoUser2NodeNotify.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoUser2NodePermission.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoUserLogin.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\umbracoUserType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\Visitor.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\VisitorComponent.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\VisitorSegment.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\VisitorTriggerRule.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Auth\BaseProductModel.cs" />
+    <Compile Include="Models\Auth\FeatureModel.cs" />
+    <Compile Include="Models\Auth\MemberModel.cs" />
+    <Compile Include="Models\Auth\MemberProfileModel.cs" />
+    <Compile Include="Models\Auth\SmsProductModel.cs" />
+    <Compile Include="Models\Auth\UgProductModel.cs" />
+    <Compile Include="Models\ContentEditor\ContentMediaRetModel.cs" />
+    <Compile Include="Models\ContentEditor\ContentRetModel.cs" />
+    <Compile Include="Models\ContentEditor\ContentSpinDoctor.cs" />
+    <Compile Include="Models\ContentEditor\AuthorRetModel.cs" />
+    <Compile Include="Models\ContentEditor\KeywordRetModel.cs" />
+    <Compile Include="Models\ContentEditor\TemplateModel.cs" />
+    <Compile Include="Models\Meta\ContentMetaModel.cs" />
+    <Compile Include="Extlib.cs" />
+    <Compile Include="Models\PagingResult.cs" />
+    <Compile Include="RiakSolr\Models\ContentModel.cs" />
+    <Compile Include="RiakSolr\Models\RiakSolrBase.cs" />
+    <Compile Include="RiakSolr\RiakSolrUtil.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\Meta\ContentMetaService.cs" />
+    <Compile Include="Models\SimpleObjectModel.cs" />
+    <Compile Include="Types\ContentEditorTemplateType.cs" />
+    <Compile Include="Types\DownloadableFormatType.cs" />
+    <Compile Include="Types\InfoTrendsExamineSearcherType.cs" />
+    <Compile Include="Types\InfoTrendsProductType.cs" />
+    <Compile Include="NamespaceHttpControllerSelector.cs" />
+    <Compile Include="Services\Auth\AuthenticateService.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SitebracoWebContext.cs" />
+    <Compile Include="SitebracoApiSettings.cs" />
+    <Compile Include="Types\UploadedByType.cs" />
+    <Compile Include="UmbracoDoctypes\Base.cs" />
+    <Compile Include="UmbracoDoctypes\ContentBase.cs" />
+    <Compile Include="UmbracoDoctypes\Content.cs" />
+    <Compile Include="UmbracoDoctypes\ContainerBase.cs" />
+    <Compile Include="UmbracoDoctypes\ContentContainer.cs" />
+    <Compile Include="UmbracoDoctypes\Media.cs" />
+    <Compile Include="UmbracoDoctypes\MediaContainer.cs" />
+    <Compile Include="UmbracoDoctypes\Member.cs" />
+    <Compile Include="Types\UmbracoMemberType.cs" />
+    <Compile Include="UmbracoEventHandlers\ContentEventHandler.cs" />
+    <Compile Include="UmbracoEventHandlers\MemberEventHandler.cs" />
+    <Compile Include="UmbracoStartup\RegisterCustomRoute.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="_Attributes\RequiredNumberGreaterThanZeroAttribute.cs" />
+    <Compile Include="_Extension\IContentExtensions.cs" />
+    <Compile Include="_Extension\IMemberServiceExtensions.cs" />
+    <Compile Include="_Extension\IMemberExtensions.cs" />
+    <Compile Include="_Extension\IPublishedContentExtensions.cs" />
+    <Compile Include="_Extension\INodeExtensions.cs" />
+    <Compile Include="_Filters\AllowCrossDomainFilter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controllers\Boilerplate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="DbEntities\Sitebraco.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Sitebraco.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DbEntities\Sitebraco.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Sitebraco.edmx</DependentUpon>
+      <LastGenOutput>Sitebraco.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DbEntities\Sitebraco.edmx.diagram">
+      <DependentUpon>Sitebraco.edmx</DependentUpon>
+    </None>
+    <None Include="DbEntities\Sitebraco.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Sitebraco.edmx</DependentUpon>
+      <LastGenOutput>Sitebraco.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
