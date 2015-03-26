@@ -111,5 +111,12 @@ namespace SitebracoApi
         }
 
 
+        public class EngRiakConfig
+        {
+            public const string BUKET_TYPE = "InfoTrendsLog";
+
+            public const string SOLR_CONFIG = "riakSolrConfig";
+        }
+
     }
 }

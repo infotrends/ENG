@@ -44,6 +44,36 @@ namespace SitebracoApi.Controllers.Auth
             public string Password { get; set; }
 
             public bool? DoRemember { get; set; }
+
+            public string SessionKey { get; set; }
+        }
+
+        [HttpPost, HttpOptions]
+        public MemberProfileModel EngLogin(LoginParam p)
+        {
+            try
+            {
+                if (p != null && !string.IsNullOrWhiteSpace(p.SessionKey))
+                {
+                    //validate sessionKey and get username
+
+                    //return user profile
+                    var up = AuthenticateService.Current.GetMemberProfileByUsername("jennifer.jakubowicz@okidata.com");
+                    up.SessionKey = p.SessionKey;
+                    return up;
+                }
+
+                ValidateParams(p);
+                p.DoRemember = p.DoRemember == true ? true : false;
+                var userprofile= AuthenticateService.Current.Login(p.Username, p.Password, (bool)p.DoRemember);
+                userprofile.SessionKey = Guid.NewGuid().ToString();
+                return userprofile;
+            }
+            catch (Exception e)
+            {
+                var message = Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message);
+                throw new HttpResponseException(message);
+            }
         }
 
 

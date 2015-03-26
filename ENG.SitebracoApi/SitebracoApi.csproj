@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\sitebraco\bin\</OutputPath>
+    <OutputPath>..\..\IEP\InfoTrends.IEP\sitebraco\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -107,6 +107,8 @@
     <Compile Include="Controllers\ContentEditor\ContentController.cs" />
     <Compile Include="Controllers\ContentEditor\ContentMediaController.cs" />
     <Compile Include="Controllers\ContentEditor\ContentTemplateController.cs" />
+    <Compile Include="Controllers\Eng\EngQueryController.cs" />
+    <Compile Include="Controllers\Eng\EngTrackController.cs" />
     <Compile Include="Controllers\WidgetContent\WidgetContentControllers.cs" />
     <Compile Include="Controllers\InternalCrm\ContentController.cs" />
     <Compile Include="Controllers\Meta\ContentMetaController.cs" />
@@ -345,10 +347,13 @@
     <Compile Include="Models\ContentEditor\AuthorRetModel.cs" />
     <Compile Include="Models\ContentEditor\KeywordRetModel.cs" />
     <Compile Include="Models\ContentEditor\TemplateModel.cs" />
+    <Compile Include="Models\Eng\ClientInfoModel.cs" />
+    <Compile Include="Models\Eng\EngBase.cs" />
     <Compile Include="Models\Meta\ContentMetaModel.cs" />
     <Compile Include="Extlib.cs" />
     <Compile Include="Models\PagingResult.cs" />
     <Compile Include="RiakSolr\Models\ContentModel.cs" />
+    <Compile Include="Models\Eng\MouseTrackModel.cs" />
     <Compile Include="RiakSolr\Models\RiakSolrBase.cs" />
     <Compile Include="RiakSolr\RiakSolrUtil.cs" />
     <Compile Include="Services\BaseService.cs" />

@@ -12,6 +12,7 @@ namespace SitebracoApi.Models.Auth
 
         public List<BaseProductModel> Products { get; set; }
 
+        public string SessionKey { get; set; }
 
         /// <summary>
         /// Constructor
