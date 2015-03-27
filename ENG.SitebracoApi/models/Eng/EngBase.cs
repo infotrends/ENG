@@ -11,12 +11,12 @@ namespace SitebracoApi.Models.Eng
     {
         public override string GetBucketType()
         {
-            return Constant.EngRiakConfig.BUKET_TYPE;
+            return ObjectUtil.GetPropertyName<Constant.RiakSolr.BucketType>(x=>x.InfoTrendsLog);
         }
 
         public override IRiakClient GetRiakClient()
         {
-            var cluster = RiakCluster.FromConfig(Constant.EngRiakConfig.SOLR_CONFIG);
+            var cluster = RiakCluster.FromConfig(ObjectUtil.GetPropertyName < Constant.RiakSolr.ConfigSection>(x=>x.riakSolrConfig));
             return cluster.CreateClient();
         }
     }

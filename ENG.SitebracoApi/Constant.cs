@@ -81,6 +81,8 @@ namespace SitebracoApi
             public class BucketType
             {
                 public string Solr { get; set; }
+
+                public string InfoTrendsLog { get; set; }
             }
             public class ConfigSection
             {
@@ -109,14 +111,5 @@ namespace SitebracoApi
                 public string UmbracoContentFolerId { get; set; }
             }
         }
-
-
-        public class EngRiakConfig
-        {
-            public const string BUKET_TYPE = "InfoTrendsLog";
-
-            public const string SOLR_CONFIG = "riakSolrConfig";
-        }
-
     }
 }

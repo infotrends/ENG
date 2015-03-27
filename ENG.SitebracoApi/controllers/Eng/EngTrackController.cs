@@ -1,4 +1,5 @@
-﻿using SitebracoApi.Models;
+﻿using CorrugatedIron.Models;
+using SitebracoApi.Models;
 using SitebracoApi.Models.Eng;
 using System;
 using System.Collections.Generic;
@@ -71,11 +72,22 @@ namespace SitebracoApi.Controllers.Eng
         {
             if(data == null || data.Count() == 0)
                 return new { success = true };
+            
+            var bucketName = ObjectUtil.GetClassName<MouseTrackModel>();
+            var bucketType = ObjectUtil.GetPropertyName<Constant.RiakSolr.BucketType>(x => x.InfoTrendsLog);
+            var list = new List<RiakObject>();
             foreach (var item in data)
             {
                 item.PageUrl_tsd = HttpContext.Current.Request.Url.AbsolutePath;
-                item.Save();
+                
+                var riakObjId = new RiakObjectId(bucketType, bucketName, item.Id_s);
+                var riakObj = new RiakObject(riakObjId, item);
+                list.Add(riakObj);
             }
+
+            var client = MyRiak.RiakHelper.CreateClient( ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x=>x.riakSolrConfig));
+            var results = client.Put(list);
+            
             return new { success = true };
         }
 

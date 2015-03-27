@@ -16,7 +16,7 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object GetPageviewByDate(string clientId)
         {
-            var client = RiakHelper.CreateClient(Constant.EngRiakConfig.SOLR_CONFIG);
+            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x=>x.riakSolrConfig));
 
             uint totalCount = 0;
 
