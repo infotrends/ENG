@@ -99,32 +99,20 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public List<FeedbackModel> GetFeedback(string clientId)
+        public object GetFeedback(string clientId)
         {
-            return new List<FeedbackModel>
+            return new
             {
-                new FeedbackModel {
-                    name = "Angelia",
-                    email = "angelia@gmail.com",
-                    feedback = "It looks great !"
-                },
-                new FeedbackModel {
-                    name = "John",
-                    email = "john@hotmail.com",
-                    feedback = "Should we have a better design ?"
-                },
-                new FeedbackModel {
-                    name = "Savatage",
-                    email = "SavATage@gmail.com",
-                    feedback = "Awesome !"
-                },
-                new FeedbackModel {
-                    name = "Johny Cash",
-                    email = "cashj@gmail.com",
-                    feedback = "Where can I purchase more widgets !"
-                },
+                success = true,
+                ClientId = clientId,
+                data = new[] { 
+                    new { name = "Angelia", email = "angelia@gmail.com", feedback = "It looks great !" },
+                    new { name = "John", email = "john@hotmail.com", feedback = "Should we have a better design ?" },
+                    new { name = "Savatage", email = "SavATage@gmail.com", feedback = "Awesome !" },
+                    new { name = "Johny Cash", email = "cashj@gmail.com", feedback = "Where can I purchase more widgets !" }
+                }
             };
-        }
 
+        }
     }
 }
