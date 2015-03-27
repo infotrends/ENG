@@ -28,12 +28,12 @@ namespace SitebracoApi.Controllers.Eng
             //    And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.PageUrl_tsd), url).Build();
 
             var query = new RiakFluentSearch(buketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).Search(clientId).Build();
-            
+
             var searchRequest = new RiakSearchRequest
             {
                 Query = query
             };
-            
+
 
             var searchResult = RiakHelper.SearchRiak(client, searchRequest, out totalCount);
 
@@ -70,5 +70,61 @@ namespace SitebracoApi.Controllers.Eng
                 new { Browser = "Safari", PageViews = 187 }}
             };
         }
+
+        [HttpPost, HttpGet]
+        public object GetPageviewByCountryTest(string clientId)
+        {
+            return new
+            {
+                success = true,
+                ClientId = clientId,
+                data = new[] { 
+                    new { Country = "The United States", PageViews = 15 },
+                    new { Country = "The United Kingdom", PageViews = 10 },
+                    new { Country = "India", PageViews = 8 },
+                    new { Country = "Republic of Korea", PageViews = 7 },
+                    new { Country = "Spain", PageViews = 6 }, 
+                    new { Country = "France", PageViews = 6 },
+                    new { Country = "France", PageViews = 6 },
+                    new { Country = "Belgium", PageViews = 4 },
+                    new { Country = "Denmark", PageViews = 4 },
+                    new { Country = "Ukraine", PageViews = 4 },
+                    new { Country = "Slovenia", PageViews = 3 },
+                    new { Country = "Ireland", PageViews = 2 },
+                    new { Country = "Finland", PageViews = 1 },
+                    new { Country = "Vietnam", PageViews = 1 },
+                    new { Country = "Japan", PageViews = 1 },
+                }
+            };
+        }
+
+        [HttpPost, HttpGet]
+        public List<FeedbackModel> GetFeedback(string clientId)
+        {
+            return new List<FeedbackModel>
+            {
+                new FeedbackModel {
+                    name = "Angelia",
+                    email = "angelia@gmail.com",
+                    feedback = "It looks great !"
+                },
+                new FeedbackModel {
+                    name = "John",
+                    email = "john@hotmail.com",
+                    feedback = "Should we have a better design ?"
+                },
+                new FeedbackModel {
+                    name = "Savatage",
+                    email = "SavATage@gmail.com",
+                    feedback = "Awesome !"
+                },
+                new FeedbackModel {
+                    name = "Johny Cash",
+                    email = "cashj@gmail.com",
+                    feedback = "Where can I purchase more widgets !"
+                },
+            };
+        }
+
     }
 }
