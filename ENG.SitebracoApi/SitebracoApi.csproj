@@ -34,35 +34,36 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="businesslogic">
-      <HintPath>..\sitebraco\bin\businesslogic.dll</HintPath>
+      <HintPath>bin\Debug\businesslogic.dll</HintPath>
     </Reference>
     <Reference Include="cms">
-      <HintPath>..\sitebraco\bin\cms.dll</HintPath>
+      <HintPath>bin\Debug\cms.dll</HintPath>
     </Reference>
     <Reference Include="CorrugatedIron">
-      <HintPath>..\sitebraco\bin\CorrugatedIron.dll</HintPath>
+      <HintPath>bin\Debug\CorrugatedIron.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Examine, Version=0.1.55.2941, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\sitebraco\bin\Examine.dll</HintPath>
+      <HintPath>bin\Debug\Examine.dll</HintPath>
     </Reference>
     <Reference Include="interfaces">
-      <HintPath>..\sitebraco\bin\interfaces.dll</HintPath>
+      <HintPath>bin\Debug\interfaces.dll</HintPath>
     </Reference>
     <Reference Include="MyRiak">
-      <HintPath>..\MyRiak-master\obj\Debug\MyRiak.dll</HintPath>
+      <HintPath>bin\Debug\MyRiak.dll</HintPath>
     </Reference>
     <Reference Include="MyUtils">
-      <HintPath>..\MyUtils\bin\Debug\MyUtils.dll</HintPath>
+      <HintPath>bin\Debug\MyUtils.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Assemblies\Umbraco 7\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\sitebraco\bin\protobuf-net.dll</HintPath>
+      <HintPath>bin\Debug\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -87,18 +88,18 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="umbraco">
-      <HintPath>..\sitebraco\bin\umbraco.dll</HintPath>
+      <HintPath>bin\Debug\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core, Version=1.0.5261.28127, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\sitebraco\bin\Umbraco.Core.dll</HintPath>
+      <HintPath>bin\Debug\Umbraco.Core.dll</HintPath>
     </Reference>
     <Reference Include="umbraco.editorControls">
-      <HintPath>..\sitebraco\bin\umbraco.editorControls.dll</HintPath>
+      <HintPath>bin\Debug\umbraco.editorControls.dll</HintPath>
     </Reference>
     <Reference Include="UmbracoExamine, Version=0.6.0.28130, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\sitebraco\bin\UmbracoExamine.dll</HintPath>
+      <HintPath>bin\Debug\UmbracoExamine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +350,7 @@
     <Compile Include="Models\ContentEditor\TemplateModel.cs" />
     <Compile Include="Models\Eng\ClientInfoModel.cs" />
     <Compile Include="Models\Eng\EngBase.cs" />
+    <Compile Include="Models\Eng\FeedbackModel.cs" />
     <Compile Include="Models\Meta\ContentMetaModel.cs" />
     <Compile Include="Extlib.cs" />
     <Compile Include="Models\PagingResult.cs" />

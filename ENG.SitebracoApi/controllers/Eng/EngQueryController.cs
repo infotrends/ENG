@@ -70,5 +70,49 @@ namespace SitebracoApi.Controllers.Eng
                 new { Browser = "Safari", PageViews = 187 }}
             };
         }
+
+        [HttpPost, HttpGet]
+        public object GetPageviewByCountryTest(string clientId)
+        {
+            return new
+            {
+                success = true,
+                ClientId = clientId,
+                data = new[] { 
+                    new { Country = "The United States", PageViews = 15 },
+                    new { Country = "The United Kingdom", PageViews = 10 },
+                    new { Country = "India", PageViews = 8 },
+                    new { Country = "Republic of Korea", PageViews = 7 },
+                    new { Country = "Spain", PageViews = 6 }, 
+                    new { Country = "France", PageViews = 6 },
+                    new { Country = "France", PageViews = 6 },
+                    new { Country = "Belgium", PageViews = 4 },
+                    new { Country = "Denmark", PageViews = 4 },
+                    new { Country = "Ukraine", PageViews = 4 },
+                    new { Country = "Slovenia", PageViews = 3 },
+                    new { Country = "Ireland", PageViews = 2 },
+                    new { Country = "Finland", PageViews = 1 },
+                    new { Country = "Vietnam", PageViews = 1 },
+                    new { Country = "Japan", PageViews = 1 },
+                }
+            };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetFeedback(string clientId)
+        {
+            return new
+            {
+                success = true,
+                ClientId = clientId,
+                data = new[] { 
+                    new { name = "Angelia", email = "angelia@gmail.com", feedback = "It looks great !" },
+                    new { name = "John", email = "john@hotmail.com", feedback = "Should we have a better design ?" },
+                    new { name = "Savatage", email = "SavATage@gmail.com", feedback = "Awesome !" },
+                    new { name = "Johny Cash", email = "cashj@gmail.com", feedback = "Where can I purchase more widgets !" }
+                }
+            };
+
+        }
     }
 }
