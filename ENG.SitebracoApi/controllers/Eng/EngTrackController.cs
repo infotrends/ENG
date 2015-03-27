@@ -69,6 +69,8 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object CollectSetOfMouseActionInfo(IEnumerable<MouseTrackModel> data)
         {
+            if(data == null || data.Count() == 0)
+                return new { success = true };
             foreach (var item in data)
             {
                 item.PageUrl_tsd = HttpContext.Current.Request.Url.AbsolutePath;
