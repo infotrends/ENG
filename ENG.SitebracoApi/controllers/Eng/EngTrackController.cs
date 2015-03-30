@@ -15,7 +15,7 @@ namespace SitebracoApi.Controllers.Eng
     public class EngTrackController : BaseController
     {
         [HttpPost, HttpGet]
-        public object CollectClientInfo(string clientId)
+        public object CollectClientInfo(string clientId, int width, int height)
         {
 
             var osList = new List<OSModel>{
@@ -77,13 +77,14 @@ namespace SitebracoApi.Controllers.Eng
                 BrowserVersion_s = HttpContext.Current.Request.Browser.Version,
                 Platform_tsd = HttpContext.Current.Request.Browser.Platform,
                 UserAgent_tsd = userAgent,
-                OperatingSystem_tsd = operatingSystem
+                OperatingSystem_tsd = operatingSystem,
+                ScreenResolution_tsd = width + "x" + height
             };
             return new { success = data.Save() };
         }
 
         [HttpGet]
-        public object CollectClientInfoTest(string clientId)
+        public object CollectClientInfoTest(string clientId, int width, int height)
         {
             var osList = new List<OSModel>{
                 new OSModel{name="Windows 3.11", alias="Win16"},
@@ -144,7 +145,8 @@ namespace SitebracoApi.Controllers.Eng
                 BrowserVersion_s = HttpContext.Current.Request.Browser.Version,
                 Platform_tsd = HttpContext.Current.Request.Browser.Platform,
                 UserAgent_tsd = userAgent,
-                OperatingSystem_tsd = operatingSystem
+                OperatingSystem_tsd = operatingSystem,
+                ScreenResolution_tsd = width + "x" + height
             };
             return new { success = true, data = data };
         }
