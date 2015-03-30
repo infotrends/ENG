@@ -10,11 +10,12 @@ using System.Web;
 using System.Web.Http;
 
 namespace SitebracoApi.Controllers.Eng
-{
+{    
+
     public class EngQueryController : BaseController
     {
         [HttpPost, HttpGet]
-        public object GetPageviewByDate(string clientId)
+        public object GetPageviewByDate(string clientId, DateTime startDate, DateTime endDate)
         {
             var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x=>x.riakSolrConfig));
 
@@ -22,23 +23,45 @@ namespace SitebracoApi.Controllers.Eng
 
             var buketName = ObjectUtil.GetClassName<ClientInfoModel>();
 
+            List<PageView> result = new List<PageView>();
+
             //var query = new RiakFluentSearch(buketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x=>x.CreateOn_dt)).
             //    Between(startDate.ToString(), endDate.ToString()).
             //    And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s), clientId).
             //    And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.PageUrl_tsd), url).Build();
 
-            var query = new RiakFluentSearch(buketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).Search(clientId).Build();
-            
-            var searchRequest = new RiakSearchRequest
+            for (DateTime i = startDate; i <= endDate; i.AddDays(1))
             {
-                Query = query
-            };
+                var query = new RiakFluentSearch(buketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).
+                    Search(clientId).
+                    AndBetween(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.CreateOn_dt), i.ToString("s"), i.AddDays(1).ToString("s")).
+                    Build();
+
+                var searchRequest = new RiakSearchRequest
+                {
+                    Query = query
+                };
+
+                var searchResult = RiakHelper.SearchRiak(client, searchRequest, out totalCount);
+
+                var pageViewModel = new PageView
+                {
+                    Date = i,
+                    PageViews = totalCount,
+                    UniqueViews = totalCount
+                };
+                result.Add(pageViewModel);
+            }
+
             
-
-            var searchResult = RiakHelper.SearchRiak(client, searchRequest, out totalCount);
-
-
-            return new { success = true, data = new { ClientId = clientId, TotalView = totalCount, UniqueView = 15 } };
+            //var searchRequest = new RiakSearchRequest
+            //{
+            //    Query = new RiakFluentSearch(buketName).RawQuery(
+            //    string.Format("ClientId_s:{0}&facet=true&facet.date=CreateOn_dt&facet.date.start={1}Z&facet.date.end={2}Z&facet.date.gap=%2B1DAY", 
+            //    clientId, startDate.ToString("s"), endDate.ToString("s")))
+            //};
+          
+            return new { success = true, data = result};
         }
 
         [HttpPost, HttpGet]
