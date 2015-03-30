@@ -21,18 +21,18 @@ namespace SitebracoApi.Controllers.Eng
 
             uint totalCount = 0;
 
-            var buketName = ObjectUtil.GetClassName<ClientInfoModel>();
+            var bucketName = ObjectUtil.GetClassName<ClientInfoModel>();
 
             List<PageView> result = new List<PageView>();
 
-            //var query = new RiakFluentSearch(buketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x=>x.CreateOn_dt)).
+            //var query = new RiakFluentSearch(bucketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x=>x.CreateOn_dt)).
             //    Between(startDate.ToString(), endDate.ToString()).
             //    And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s), clientId).
             //    And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.PageUrl_tsd), url).Build();
 
             for (DateTime i = startDate; i <= endDate; i.AddDays(1))
             {
-                var query = new RiakFluentSearch(buketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).
+                var query = new RiakFluentSearch(bucketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).
                     Search(clientId).
                     AndBetween(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.CreateOn_dt), i.ToString("s"), i.AddDays(1).ToString("s")).
                     Build();
@@ -56,7 +56,7 @@ namespace SitebracoApi.Controllers.Eng
             
             //var searchRequest = new RiakSearchRequest
             //{
-            //    Query = new RiakFluentSearch(buketName).RawQuery(
+            //    Query = new RiakFluentSearch(bucketName).RawQuery(
             //    string.Format("ClientId_s:{0}&facet=true&facet.date=CreateOn_dt&facet.date.start={1}Z&facet.date.end={2}Z&facet.date.gap=%2B1DAY", 
             //    clientId, startDate.ToString("s"), endDate.ToString("s")))
             //};
@@ -79,6 +79,44 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
+        public object GetPageviewByBrowser(string clientId)
+        {
+            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+            uint totalCount = 0;
+
+            var bucketName = ObjectUtil.GetClassName<ClientInfoModel>();
+
+            List<PageView> result = new List<PageView>();
+
+            var browsers = new []{ "FireFox", "Chrome", "IE", "Opera", "Safari" };
+
+            foreach (var browser in browsers)
+            {
+                var query = new RiakFluentSearch(bucketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).
+                    Search(clientId).
+                    And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.Browser_tsd), browser).
+                    Build();
+
+                var searchRequest = new RiakSearchRequest
+                {
+                    Query = query
+                };
+
+                var searchResult = RiakHelper.SearchRiak(client, searchRequest, out totalCount);
+
+                var pageViewModel = new PageView
+                {
+                    Browser = browser,
+                    PageViews = totalCount
+                };
+                result.Add(pageViewModel);
+            }
+
+            return new { success = true, data = result };
+        }
+
+        [HttpPost, HttpGet]
         public object GetPageviewByBrowserTest(string clientId)
         {
             return new
@@ -92,6 +130,22 @@ namespace SitebracoApi.Controllers.Eng
                 new { Browser = "Opera", PageViews = 257 },
                 new { Browser = "Safari", PageViews = 187 }}
             };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetPageviewByCountry(string clientId)
+        {
+            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+            uint totalCount = 0;
+
+            var bucketName = ObjectUtil.GetClassName<ClientInfoModel>();
+
+            List<PageView> result = new List<PageView>();
+
+            //TODO
+
+            return new { success = true, data = result };
         }
 
         [HttpPost, HttpGet]
@@ -122,7 +176,7 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetFeedback(string clientId)
+        public object GetFeedbackTest(string clientId)
         {
             return new
             {

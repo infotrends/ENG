@@ -10,6 +10,10 @@ namespace SitebracoApi.Models.Eng
     {
         public DateTime Date { get; set; }
 
+        public string Browser { get; set; }
+
+        public string Country { get; set; }
+
         public uint PageViews { get; set; }
 
         public uint UniqueViews { get; set; }
