@@ -14,6 +14,8 @@ namespace SitebracoApi.Models.Eng
 
         public string Country { get; set; }
 
+        public string OperatingSystem { get; set; }
+
         public uint PageViews { get; set; }
 
         public uint UniqueViews { get; set; }

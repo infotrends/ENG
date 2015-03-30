@@ -113,6 +113,8 @@ namespace SitebracoApi.Controllers.Eng
                 result.Add(pageViewModel);
             }
 
+            result = result.OrderBy(x => x.PageViews).ToList();
+
             return new { success = true, data = result };
         }
 
@@ -171,6 +173,65 @@ namespace SitebracoApi.Controllers.Eng
                     new { Country = "Finland", PageViews = 1 },
                     new { Country = "Vietnam", PageViews = 1 },
                     new { Country = "Japan", PageViews = 1 },
+                }
+            };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetPageviewByOS(string clientId)
+        {
+            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+            uint totalCount = 0;
+
+            var bucketName = ObjectUtil.GetClassName<ClientInfoModel>();
+
+            List<PageView> result = new List<PageView>();
+
+            var osList = new[] {"Windows 3.11", "Windows 95", "Windows ME", "Windows 98",
+                    "Windows CE", "Windows 2000", "Windows XP", "Windows Server 2003", "Windows Vista", "Windows 7",
+                    "Windows 8.1", "Windows 8", "Windows NT 4.0", "Windows ME", "Android", "Open BSD",
+                    "Sun OS", "Linux", "iOS", "Mac OS X", "Mac OS", "QNX", "UNIX", "BeOS", "OS 2", "Search Bot" };
+
+            foreach (var os in osList)
+            {
+                var query = new RiakFluentSearch(bucketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).
+                    Search(clientId).
+                    And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.OperatingSystem_tsd), os).
+                    Build();
+
+                var searchRequest = new RiakSearchRequest
+                {
+                    Query = query
+                };
+
+                var searchResult = RiakHelper.SearchRiak(client, searchRequest, out totalCount);
+
+                var pageViewModel = new PageView
+                {
+                    OperatingSystem = os,
+                    PageViews = totalCount
+                };
+                result.Add(pageViewModel);
+            }
+
+            result = result.OrderBy(x => x.PageViews).ToList();
+
+            return new { success = true, data = result };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetPageviewByOSTest(string clientId)
+        {
+            return new
+            {
+                success = true,
+                ClientId = clientId,
+                data = new[] { 
+                    new { OperatingSystem = "Windows XP", PageViews = 15 },
+                    new { OperatingSystem = "Windows Vista", PageViews = 14 },
+                    new { OperatingSystem = "Windows 7", PageViews = 13 },
+                    new { OperatingSystem = "Windows 8", PageViews = 10 },
                 }
             };
         }
