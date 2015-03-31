@@ -34,5 +34,7 @@ namespace SitebracoApi.Models.Eng
 
         public double BrowserMinnorVersion_d { get; set; }
 
+        public string UrlReferrer_tsd { get; set; }
+
     }
 }

@@ -16,18 +16,20 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost,HttpGet]
         public object CollectClientInfo(string clientId)
         {
+            var referrer = HttpContext.Current.Request.UrlReferrer;
+            var UrlReferrer = referrer == null ? string.Empty : referrer.Scheme;
+
             var data = new ClientInfoModel
             {
                 ClientId_s = clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                PageUrl_tsd = HttpContext.Current.Request.Url.AbsoluteUri,
-                Host_tsd = HttpContext.Current.Request.Url.Host,
                 Browser_tsd = HttpContext.Current.Request.Browser.Browser,
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
                 BrowserVersion_s = HttpContext.Current.Request.Browser.Version,
                 Platform_tsd = HttpContext.Current.Request.Browser.Platform,
-                UserAgent_tsd = HttpContext.Current.Request.UserAgent
+                UserAgent_tsd = HttpContext.Current.Request.UserAgent,
+                UrlReferrer_tsd = UrlReferrer
             };            
             return new { success = data.Save() };
         }
@@ -39,8 +41,6 @@ namespace SitebracoApi.Controllers.Eng
             {
                 ClientId_s = clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                PageUrl_tsd = HttpContext.Current.Request.Url.AbsoluteUri,
-                Host_tsd = HttpContext.Current.Request.Url.Host,
                 Browser_tsd = HttpContext.Current.Request.Browser.Browser,
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
