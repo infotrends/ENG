@@ -191,13 +191,25 @@ namespace SitebracoApi.Controllers.Eng
 
         [HttpPost, HttpGet]
         public object CollectSetOfMouseActionInfoTest(IEnumerable<MouseTrackModel> data)
-        {
+        {            
             foreach (var item in data)
             {
                 item.PageUrl_tsd = HttpContext.Current.Request.Url.AbsolutePath;
                 item.Position_s = string.Format("{0},{1}", item.PageX_i, item.PageY_i);                
             }
             return new { success = true, data = data };
+        }
+
+        [HttpPost, HttpGet]
+        public object CollectFeedback(FeedbackModel data)
+        {
+            return new { success = data.Save() };
+        }
+
+        [HttpPost, HttpGet]
+        public object CollectFeedbackTest(FeedbackModel data)
+        {
+            return new { success = true, data = data};
         }
 
     }

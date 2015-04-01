@@ -21,7 +21,7 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object GetPageviewByDate(string clientId, DateTime startDate, DateTime endDate)
         {
-            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x=>x.riakSolrConfig));
+            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
@@ -34,14 +34,14 @@ namespace SitebracoApi.Controllers.Eng
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("ClientId_s:{0}",clientId));
+            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.date", "CreateOn_dt");
-            request.AddParameter("facet.date.start", startDate.ToString("s")+"Z");
+            request.AddParameter("facet.date.start", startDate.ToString("s") + "Z");
             request.AddParameter("facet.date.end", endDate.ToString("s") + "Z");
             request.AddParameter("facet.date.gap", "+1DAY");
             request.AddParameter("rows", 0);
-            request.AddParameter("omitHeader", "true");
+            request.AddParameter("omitHeader", "true");            
             //request.AddParameter("facet.mincount", 1);
             var response = restClient.Execute<object>(request);
 
@@ -66,44 +66,71 @@ namespace SitebracoApi.Controllers.Eng
             };
         }
 
+        //[HttpPost, HttpGet]
+        //public object GetPageviewByBrowser(string clientId)
+        //{
+        //    var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+        //    uint totalCount = 0;
+
+        //    var bucketName = ObjectUtil.GetClassName<ClientInfoModel>();
+
+        //    List<PageView> result = new List<PageView>();
+
+        //    var browsers = new []{ "FireFox", "Chrome", "IE", "Opera", "Safari" };
+
+        //    foreach (var browser in browsers)
+        //    {
+        //        var query = new RiakFluentSearch(bucketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).
+        //            Search(clientId).
+        //            And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.Browser_tsd), browser).
+        //            Build();
+
+        //        var searchRequest = new RiakSearchRequest
+        //        {
+        //            Query = query
+        //        };
+
+        //        var searchResult = RiakHelper.SearchRiak(client, searchRequest, out totalCount);
+
+        //        var pageViewModel = new PageView
+        //        {
+        //            Browser = browser,
+        //            PageViews = totalCount
+        //        };
+        //        result.Add(pageViewModel);
+        //    }
+
+        //    result = result.OrderBy(x => x.PageViews).ToList();
+
+        //    return new { success = true, data = result };
+        //}
+
         [HttpPost, HttpGet]
         public object GetPageviewByBrowser(string clientId)
-        {
+            {
             var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
-            uint totalCount = 0;
+            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
-            var bucketName = ObjectUtil.GetClassName<ClientInfoModel>();
+            var node = (RiakNode)cluster.SelectNode();
+            var NodeUrlList = node.GetRestRootUrl();
+            var availabelUrl = NodeUrlList[0];
 
-            List<PageView> result = new List<PageView>();
+            var restClient = new RestClient(availabelUrl);
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
+            request.AddParameter("facet", "true");
+            request.AddParameter("facet.field", "Browser_tsd");
 
-            var browsers = new []{ "FireFox", "Chrome", "IE", "Opera", "Safari" };
+            request.AddParameter("rows", "0");
+            request.AddParameter("omitHeader", "true");
+            var response = restClient.Execute<object>(request);
 
-            foreach (var browser in browsers)
-            {
-                var query = new RiakFluentSearch(bucketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).
-                    Search(clientId).
-                    And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.Browser_tsd), browser).
-                    Build();
-
-                var searchRequest = new RiakSearchRequest
-                {
-                    Query = query
-                };
-
-                var searchResult = RiakHelper.SearchRiak(client, searchRequest, out totalCount);
-
-                var pageViewModel = new PageView
-                {
-                    Browser = browser,
-                    PageViews = totalCount
-                };
-                result.Add(pageViewModel);
-            }
-
-            result = result.OrderBy(x => x.PageViews).ToList();
-
-            return new { success = true, data = result };
+            return new { success = true, data = response.Content };
         }
 
         [HttpPost, HttpGet]
@@ -165,49 +192,77 @@ namespace SitebracoApi.Controllers.Eng
             };
         }
 
+        //[HttpPost, HttpGet]
+        //public object GetPageviewByOS(string clientId)
+        //{
+        //    var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+        //    uint totalCount = 0;
+
+        //    var bucketName = ObjectUtil.GetClassName<ClientInfoModel>();
+
+        //    List<PageView> result = new List<PageView>();
+
+        //    var osList = new[] {"Windows 3.11", "Windows 95", "Windows ME", "Windows 98",
+        //            "Windows CE", "Windows 2000", "Windows XP", "Windows Server 2003", "Windows Vista", "Windows 7",
+        //            "Windows 8.1", "Windows 8", "Windows NT 4.0", "Windows ME", "Android", "Open BSD",
+        //            "Sun OS", "Linux", "iOS", "Mac OS X", "Mac OS", "QNX", "UNIX", "BeOS", "OS 2", "Search Bot" };
+
+        //    foreach (var os in osList)
+        //    {
+        //        var query = new RiakFluentSearch(bucketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).
+        //            Search(clientId).
+        //            And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.OperatingSystem_tsd), os).
+        //            Build();
+
+        //        var searchRequest = new RiakSearchRequest
+        //        {
+        //            Query = query
+        //        };
+
+        //        var searchResult = RiakHelper.SearchRiak(client, searchRequest, out totalCount);
+
+        //        var pageViewModel = new PageView
+        //        {
+        //            OperatingSystem = os,
+        //            PageViews = totalCount
+        //        };
+        //        result.Add(pageViewModel);
+        //    }
+
+        //    result = result.OrderBy(x => x.PageViews).ToList();
+
+        //    return new { success = true, data = result };
+        //}
+
         [HttpPost, HttpGet]
         public object GetPageviewByOS(string clientId)
-        {
+            {
             var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
-            uint totalCount = 0;
+            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
-            var bucketName = ObjectUtil.GetClassName<ClientInfoModel>();
+            var node = (RiakNode)cluster.SelectNode();
+            var NodeUrlList = node.GetRestRootUrl();
+            var availabelUrl = NodeUrlList[0];
 
-            List<PageView> result = new List<PageView>();
+            var restClient = new RestClient(availabelUrl);
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
+            request.AddParameter("facet", "true");
+            request.AddParameter("facet.field", "OperatingSystem_tsd");
 
-            var osList = new[] {"Windows 3.11", "Windows 95", "Windows ME", "Windows 98",
-                    "Windows CE", "Windows 2000", "Windows XP", "Windows Server 2003", "Windows Vista", "Windows 7",
-                    "Windows 8.1", "Windows 8", "Windows NT 4.0", "Windows ME", "Android", "Open BSD",
-                    "Sun OS", "Linux", "iOS", "Mac OS X", "Mac OS", "QNX", "UNIX", "BeOS", "OS 2", "Search Bot" };
+            request.AddParameter("rows", "0");
+            request.AddParameter("omitHeader", "true");
+            var response = restClient.Execute<object>(request);
 
-            foreach (var os in osList)
-            {
-                var query = new RiakFluentSearch(bucketName, ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.ClientId_s)).
-                    Search(clientId).
-                    And(ObjectUtil.GetPropertyName<ClientInfoModel>(x => x.OperatingSystem_tsd), os).
-                    Build();
-
-                var searchRequest = new RiakSearchRequest
-                {
-                    Query = query
-                };
-
-                var searchResult = RiakHelper.SearchRiak(client, searchRequest, out totalCount);
-
-                var pageViewModel = new PageView
-                {
-                    OperatingSystem = os,
-                    PageViews = totalCount
-                };
-                result.Add(pageViewModel);
-            }
-
-            result = result.OrderBy(x => x.PageViews).ToList();
-
-            return new { success = true, data = result };
+            return new { success = true, data = response.Content };
         }
 
+        
         [HttpPost, HttpGet]
         public object GetPageviewByOSTest(string clientId)
         {
@@ -225,6 +280,48 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
+        public object GetPageviewByScreenResolution(string clientId)
+        {
+            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+            var node = (RiakNode)cluster.SelectNode();
+            var NodeUrlList = node.GetRestRootUrl();
+            var availabelUrl = NodeUrlList[0];
+
+            var restClient = new RestClient(availabelUrl);
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
+            request.AddParameter("facet", "true");
+            request.AddParameter("facet.field", "ScreenResolution_tsd");
+
+            request.AddParameter("rows", "0");
+            request.AddParameter("omitHeader", "true");
+
+            var response = restClient.Execute<object>(request);
+
+            return new { success = true, data = response.Content };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetFeedback(string clientId)
+        {
+            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+            //uint totalCount = 0;
+
+            var bucketName = ObjectUtil.GetClassName<FeedbackModel>();
+            
+            var result = client.Get(bucketName, clientId);            
+
+            return new { success = true, data = result.Value };
+        }
+
+        [HttpPost, HttpGet]
         public object GetFeedbackTest(string clientId)
         {
             return new
@@ -238,7 +335,6 @@ namespace SitebracoApi.Controllers.Eng
                     new { name = "Johny Cash", email = "cashj@gmail.com", feedback = "Where can I purchase more widgets !" }
                 }
             };
-
         }
 
 
