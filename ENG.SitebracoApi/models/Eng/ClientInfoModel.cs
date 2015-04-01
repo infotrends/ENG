@@ -28,6 +28,12 @@ namespace SitebracoApi.Models.Eng
         [Required]
         public string Browser_tsd { get; set; }
 
+        [Required]
+        public string OperatingSystem_tsd { get; set; }
+
+        [Required]
+        public string ScreenResolution_tsd { get; set; }
+
         public string BrowserVersion_s { get; set; }
 
         public int BrowserMajorVersion_i { get; set; }

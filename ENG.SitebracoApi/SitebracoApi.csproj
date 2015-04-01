@@ -60,10 +60,14 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\sitebraco\sitebraco\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net">
       <HintPath>bin\Debug\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -351,6 +355,7 @@
     <Compile Include="Models\Eng\ClientInfoModel.cs" />
     <Compile Include="Models\Eng\EngBase.cs" />
     <Compile Include="Models\Eng\FeedbackModel.cs" />
+    <Compile Include="Models\Eng\PageView.cs" />
     <Compile Include="Models\Meta\ContentMetaModel.cs" />
     <Compile Include="Extlib.cs" />
     <Compile Include="Models\PagingResult.cs" />
