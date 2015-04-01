@@ -177,7 +177,7 @@ namespace SitebracoApi.Controllers.Eng
             foreach (var item in data)
             {
                 item.PageUrl_tsd = HttpContext.Current.Request.Url.AbsolutePath;
-                
+                item.Position_s = string.Format("{0},{1}", item.PageX_i, item.PageY_i);
                 var riakObjId = new RiakObjectId(bucketType, bucketName, item.Id_s);
                 var riakObj = new RiakObject(riakObjId, item);
                 list.Add(riakObj);
@@ -191,7 +191,12 @@ namespace SitebracoApi.Controllers.Eng
 
         [HttpPost, HttpGet]
         public object CollectSetOfMouseActionInfoTest(IEnumerable<MouseTrackModel> data)
-        {            
+        {
+            foreach (var item in data)
+            {
+                item.PageUrl_tsd = HttpContext.Current.Request.Url.AbsolutePath;
+                item.Position_s = string.Format("{0},{1}", item.PageX_i, item.PageY_i);                
+            }
             return new { success = true, data = data };
         }
 

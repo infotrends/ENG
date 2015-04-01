@@ -25,6 +25,8 @@ namespace SitebracoApi.Models.Eng
         [Required]
         public int Point_i { get; set; }
 
+        public string Position_s { get; set; }
+
         public string TargetName_tsd { get; set; }
 
         public string TargetClassName_tsd { get; set; }

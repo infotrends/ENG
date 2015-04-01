@@ -2,6 +2,7 @@
 using CorrugatedIron.Comms;
 using CorrugatedIron.Models.Search;
 using MyRiak;
+using Newtonsoft.Json;
 using RestSharp;
 using SitebracoApi.Models.Eng;
 using System;
@@ -39,11 +40,12 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("facet.date.start", startDate.ToString("s")+"Z");
             request.AddParameter("facet.date.end", endDate.ToString("s") + "Z");
             request.AddParameter("facet.date.gap", "+1DAY");
-            request.AddParameter("rows", "0");
-            request.AddParameter("omitHeader", "true");            
+            request.AddParameter("rows", 0);
+            request.AddParameter("omitHeader", "true");
+            //request.AddParameter("facet.mincount", 1);
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = response.Content };
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content)};
         }
 
         [HttpPost, HttpGet]
@@ -238,5 +240,7 @@ namespace SitebracoApi.Controllers.Eng
             };
 
         }
+
+
     }
 }
