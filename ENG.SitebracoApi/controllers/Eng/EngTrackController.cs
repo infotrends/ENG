@@ -79,7 +79,7 @@ namespace SitebracoApi.Controllers.Eng
                 UserAgent_tsd = userAgent,
                 OperatingSystem_tsd = operatingSystem,
                 ScreenResolution_tsd = width + "x" + height
-            };            
+            };
             return new { success = data.Save() };
         }
 
@@ -170,14 +170,14 @@ namespace SitebracoApi.Controllers.Eng
         {
             if (data == null || data.Count() == 0)
                 return new { success = true };
-            
+
             var bucketName = ObjectUtil.GetClassName<MouseTrackModel>();
             var bucketType = ObjectUtil.GetPropertyName<Constant.RiakSolr.BucketType>(x => x.InfoTrendsLog);
             var list = new List<RiakObject>();
             foreach (var item in data)
             {
                 item.PageUrl_tsd = HttpContext.Current.Request.Url.AbsolutePath;
-                
+
                 var riakObjId = new RiakObjectId(bucketType, bucketName, item.Id_s);
                 var riakObj = new RiakObject(riakObjId, item);
                 list.Add(riakObj);
@@ -185,14 +185,26 @@ namespace SitebracoApi.Controllers.Eng
 
             var client = MyRiak.RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
             var results = client.Put(list);
-            
+
             return new { success = true };
         }
 
         [HttpPost, HttpGet]
         public object CollectSetOfMouseActionInfoTest(IEnumerable<MouseTrackModel> data)
-        {            
+        {
             return new { success = true, data = data };
+        }
+
+        [HttpPost, HttpGet]
+        public object CollectFeedback(FeedbackModel data)
+        {
+            return new { success = data.Save() };
+        }
+
+        [HttpPost, HttpGet]
+        public object CollectFeedbackTest(FeedbackModel data)
+        {
+            return new { success = true, data = data};
         }
 
     }
