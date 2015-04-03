@@ -40,5 +40,13 @@ namespace SitebracoApi.Models.Eng
 
         public string UrlReferrer_tsd { get; set; }
 
+        public string CountryName_tsd { get; set; }
+
+        public string City_tsd { get; set; }
+
+        public float Latitude_f { get; set; }
+
+        public float Longitude_f { get; set; }
+
     }
 }
