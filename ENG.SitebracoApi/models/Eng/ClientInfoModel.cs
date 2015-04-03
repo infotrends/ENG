@@ -11,11 +11,9 @@ namespace SitebracoApi.Models.Eng
     {
         [Required]
         public string ClientId_s { get; set; }
-
-        [Required]
+        
         public string Host_tsd { get; set; }
         
-        [Required]
         public string PageUrl_tsd { get; set; }
         
         [Required]
