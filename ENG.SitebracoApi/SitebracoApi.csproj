@@ -363,6 +363,7 @@
     <Compile Include="Models\Eng\MouseTrackModel.cs" />
     <Compile Include="RiakSolr\Models\RiakSolrBase.cs" />
     <Compile Include="RiakSolr\RiakSolrUtil.cs" />
+    <Compile Include="Services\Auth\FakeAuthenticateService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\Meta\ContentMetaService.cs" />
     <Compile Include="Models\SimpleObjectModel.cs" />
