@@ -24,7 +24,7 @@ namespace SitebracoApi.Models.Eng
         public string UserAgent_tsd { get; set; }
 
         [Required]
-        public string Browser_tsd { get; set; }
+        public string Browser_s { get; set; }
 
         [Required]
         public string OperatingSystem_s { get; set; }

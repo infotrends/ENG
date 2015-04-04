@@ -81,7 +81,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
             request.AddParameter("facet", "true");
-            request.AddParameter("facet.field", "Browser_tsd");
+            request.AddParameter("facet.field", "Browser_s");
 
             request.AddParameter("rows", "0");
             request.AddParameter("omitHeader", "true");

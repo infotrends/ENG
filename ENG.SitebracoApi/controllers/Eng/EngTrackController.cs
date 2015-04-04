@@ -29,7 +29,7 @@ namespace SitebracoApi.Controllers.Eng
             {
                 ClientId_s = clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                Browser_tsd = HttpContext.Current.Request.Browser.Browser,
+                Browser_s = HttpContext.Current.Request.Browser.Browser,
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
                 BrowserVersion_s = HttpContext.Current.Request.Browser.Version,
@@ -50,13 +50,12 @@ namespace SitebracoApi.Controllers.Eng
         public object CollectClientInfoTest(string clientId, int width, int height)
         {
             var userLocation = GetUserLocation();
-
             
             var data = new ClientInfoModel
             {
                 ClientId_s = clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                Browser_tsd = HttpContext.Current.Request.Browser.Browser,
+                Browser_s = HttpContext.Current.Request.Browser.Browser,
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
                 BrowserVersion_s = HttpContext.Current.Request.Browser.Version,
