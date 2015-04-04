@@ -53,21 +53,19 @@ namespace SitebracoApi.Controllers.Auth
         {
             try
             {
-                if (p != null && !string.IsNullOrWhiteSpace(p.SessionKey))
-                {
-                    //validate sessionKey and get username
+                var fakeService = new FakeAuthenticateService();
 
-                    //return user profile
-                    var up = AuthenticateService.Current.GetMemberProfileByUsername("jennifer.jakubowicz@okidata.com");
-                    up.SessionKey = p.SessionKey;
-                    return up;
+                var userProfile = fakeService.Login(p.Username, p.Password);
+
+                if (userProfile == null)
+                {
+                    ValidateParams(p);
+                    p.DoRemember = p.DoRemember == true ? true : false;
+                    userProfile = AuthenticateService.Current.Login(p.Username, p.Password, (bool)p.DoRemember);
+                    // userProfile.SessionKey = Guid.NewGuid().ToString();
                 }
 
-                ValidateParams(p);
-                p.DoRemember = p.DoRemember == true ? true : false;
-                var userprofile= AuthenticateService.Current.Login(p.Username, p.Password, (bool)p.DoRemember);
-                userprofile.SessionKey = Guid.NewGuid().ToString();
-                return userprofile;
+                return userProfile;
             }
             catch (Exception e)
             {

@@ -15,17 +15,12 @@ using System.Web.Http;
 
 namespace SitebracoApi.Controllers.Eng
 {    
-
     public class EngQueryController : BaseController
     {
         [HttpPost, HttpGet]
         public object GetPageviewByDate(string clientId, DateTime startDate, DateTime endDate)
-        {            
-            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
-            var node = (RiakNode)cluster.SelectNode();
-            var NodeUrlList = node.GetRestRootUrl();
-            var availabelUrl = NodeUrlList[0];
+        {
+            var availabelUrl = GetAvailableUrl();
 
             var restClient = new RestClient(availabelUrl);
             var request = new RestRequest(Method.GET);
@@ -47,7 +42,7 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetPageviewByDateTest(string clientId)
+        public object GetPageviewByDateTest(string clientId, DateTime startDate, DateTime endDate)
         {
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
             var node = cluster.SelectNode();
@@ -67,28 +62,13 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object GetPageviewByBrowser(string clientId)
             {
-            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
-            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
-            var node = (RiakNode)cluster.SelectNode();
-            var NodeUrlList = node.GetRestRootUrl();
-            var availabelUrl = NodeUrlList[0];
-
+            var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
-            request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
-            request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
-            request.AddParameter("facet", "true");
-            request.AddParameter("facet.field", "Browser_tsd");
 
-            request.AddParameter("rows", "0");
-            request.AddParameter("omitHeader", "true");
+            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Browser_s");
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = response.Content };
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
         }
 
         [HttpPost, HttpGet]
@@ -110,17 +90,13 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object GetPageviewByCountry(string clientId)
         {
-            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+            var availabelUrl = GetAvailableUrl();
+            var restClient = new RestClient(availabelUrl);
 
-            uint totalCount = 0;
+            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "CountryName_s");
+            var response = restClient.Execute<object>(request);
 
-            var bucketName = ObjectUtil.GetClassName<ClientInfoModel>();
-
-            List<PageView> result = new List<PageView>();
-
-            //TODO
-
-            return new { success = true, data = result };
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
         }
 
         [HttpPost, HttpGet]
@@ -151,31 +127,56 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetPageviewByOS(string clientId)
-        {
-            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
-            var node = (RiakNode)cluster.SelectNode();
-            var NodeUrlList = node.GetRestRootUrl();
-            var availabelUrl = NodeUrlList[0];
-
+        public object GetPageviewByCity(string clientId)
+            {
+            var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
-            request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
-            request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
-            request.AddParameter("facet", "true");
-            request.AddParameter("facet.field", "OperatingSystem_tsd");
 
-            request.AddParameter("rows", "0");
-            request.AddParameter("omitHeader", "true");
+            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "City_s");
             var response = restClient.Execute<object>(request);
 
             return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
         }
 
-        
+        [HttpPost, HttpGet]
+        public object GetPageviewByCityTest(string clientId)
+        {
+            return new
+            {
+                success = true,
+                ClientId = clientId,
+                data = new[] { 
+                    new { City = "Alabama", PageViews = 15 },
+                    new { City = "Alaska", PageViews = 10 },
+                    new { City = "Arizona", PageViews = 8 },
+                    new { City = "Arkansas", PageViews = 7 },
+                    new { City = "California", PageViews = 6 }, 
+                    new { City = "Colorado", PageViews = 6 },
+                    new { City = "Connecticut", PageViews = 6 },
+                    new { City = "Delaware", PageViews = 4 },
+                    new { City = "District of Columbia", PageViews = 4 },
+                    new { City = "Georgia", PageViews = 4 },
+                    new { City = "Hawaii", PageViews = 3 },
+                    new { City = "Illinois", PageViews = 2 },
+                    new { City = "Indiana", PageViews = 1 },
+                    new { City = "Kansas", PageViews = 1 },
+                    new { City = "Iowa", PageViews = 1 },
+                }
+            };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetPageviewByOS(string clientId)
+        {
+            var availabelUrl = GetAvailableUrl();
+            var restClient = new RestClient(availabelUrl);
+
+            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "OperatingSystem_s");
+            var response = restClient.Execute<object>(request);
+
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+        }
+
         [HttpPost, HttpGet]
         public object GetPageviewByOSTest(string clientId)
         {
@@ -195,41 +196,56 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object GetPageviewByScreenResolution(string clientId)
         {
-            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
-            var node = (RiakNode)cluster.SelectNode();
-            var NodeUrlList = node.GetRestRootUrl();
-            var availabelUrl = NodeUrlList[0];
-
+            var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
-            request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
-            request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
-            request.AddParameter("facet", "true");
-            request.AddParameter("facet.field", "ScreenResolution_tsd");
 
-            request.AddParameter("rows", "0");
-            request.AddParameter("omitHeader", "true");
-
+            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "ScreenResolution_tsd");
             var response = restClient.Execute<object>(request);
 
             return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
         }
 
         [HttpPost, HttpGet]
+        public object GetPageviewByDevice(string clientId)
+        {
+            var availabelUrl = GetAvailableUrl();
+            var restClient = new RestClient(availabelUrl);
+
+            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Brand_s");
+            var response = restClient.Execute<object>(request);
+
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetPageviewByDeviceBrand(string clientId)
+        {
+            var availabelUrl = GetAvailableUrl();
+            var restClient = new RestClient(availabelUrl);
+
+            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "DeviceBrand_s");
+            var response = restClient.Execute<object>(request);
+
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+        }
+
+
+        [HttpPost, HttpGet]
         public object GetFeedback(string clientId)
         {
-            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+            var availabelUrl = GetAvailableUrl();
 
-            //uint totalCount = 0;
-
-            var bucketName = ObjectUtil.GetClassName<FeedbackModel>();
+            var restClient = new RestClient(availabelUrl);
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", ObjectUtil.GetClassName<FeedbackModel>(), RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("q", "*:*");
+            request.AddParameter("omitHeader", "true");
             
-            var result = client.Get(bucketName, clientId);            
+            var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = result.Value };
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
         }
 
         [HttpPost, HttpGet]
@@ -249,15 +265,11 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetMouseTrack(string clientId, int startX=0, int startY=0, int endX=1920, int endY=1080)
-        {            
-            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
-            var node = (RiakNode)cluster.SelectNode();
-            var NodeUrlList = node.GetRestRootUrl();
-            var availabelUrl = NodeUrlList[0];
-
+        public object GetMouseTrack(string clientId, int startX = 0, int startY = 0, int endX = 1920, int endY = 1080)
+        {
+            var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
+
             var request = new RestRequest(Method.GET);
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
@@ -276,14 +288,9 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object GetMouseClick(string clientId, int startX = 0, int startY = 0, int endX = 1920, int endY = 1080)
         {
-           
-            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
-            var node = (RiakNode)cluster.SelectNode();
-            var NodeUrlList = node.GetRestRootUrl();
-            var availabelUrl = NodeUrlList[0];
-
+            var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
+
             var request = new RestRequest(Method.GET);
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
@@ -299,5 +306,55 @@ namespace SitebracoApi.Controllers.Eng
             return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
         }
 
+        [HttpPost, HttpGet]
+        public object GetUniquePageviewByDate(string clientId, DateTime startDate)
+        {
+            var availabelUrl = GetAvailableUrl();
+            var restClient = new RestClient(availabelUrl);
+
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("q", string.Format("ClientId_s:{0} AND CreateOn_dt: [{1} TO {2}]",
+                clientId, startDate.ToString("s") + "Z", startDate.AddDays(1).ToString("s") + "Z"));
+
+            request.AddParameter("facet", "true");
+            request.AddParameter("facet.field", "IPAddress_s");
+            request.AddParameter("facet.mincount", "1");
+            request.AddParameter("rows", 0);
+            request.AddParameter("omitHeader", "true");
+            //request.AddParameter("facet.mincount", 1);
+            var response = restClient.Execute<object>(request);
+
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+        }
+
+        private RestRequest ConstructRequest(string bucketType, string clientId, string fieldName)
+        {
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", bucketType, RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
+            request.AddParameter("facet", "true");
+            request.AddParameter("facet.field", fieldName);
+
+            request.AddParameter("rows", "0");
+            request.AddParameter("omitHeader", "true");
+
+            return request;
+        }
+
+        private string GetAvailableUrl()
+        {
+            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+            var node = (RiakNode)cluster.SelectNode();
+            var NodeUrlList = node.GetRestRootUrl();
+            var availabelUrl = NodeUrlList[0];
+
+            return availabelUrl;
+        }
     }
 }

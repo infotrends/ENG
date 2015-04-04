@@ -356,6 +356,7 @@
     <Compile Include="Models\Eng\EngBase.cs" />
     <Compile Include="Models\Eng\FeedbackModel.cs" />
     <Compile Include="Models\Eng\PageView.cs" />
+    <Compile Include="Models\Eng\VisitorLogModel.cs" />
     <Compile Include="Models\Meta\ContentMetaModel.cs" />
     <Compile Include="Extlib.cs" />
     <Compile Include="Models\PagingResult.cs" />
@@ -363,6 +364,7 @@
     <Compile Include="Models\Eng\MouseTrackModel.cs" />
     <Compile Include="RiakSolr\Models\RiakSolrBase.cs" />
     <Compile Include="RiakSolr\RiakSolrUtil.cs" />
+    <Compile Include="Services\Auth\FakeAuthenticateService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\Meta\ContentMetaService.cs" />
     <Compile Include="Models\SimpleObjectModel.cs" />
