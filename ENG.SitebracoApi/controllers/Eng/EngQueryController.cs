@@ -20,9 +20,7 @@ namespace SitebracoApi.Controllers.Eng
     {
         [HttpPost, HttpGet]
         public object GetPageviewByDate(string clientId, DateTime startDate, DateTime endDate)
-        {
-            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
+        {            
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
@@ -154,9 +152,7 @@ namespace SitebracoApi.Controllers.Eng
 
         [HttpPost, HttpGet]
         public object GetPageviewByOS(string clientId)
-            {
-            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
+        {
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
@@ -199,8 +195,6 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object GetPageviewByScreenResolution(string clientId)
         {
-            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
@@ -256,9 +250,7 @@ namespace SitebracoApi.Controllers.Eng
 
         [HttpPost, HttpGet]
         public object GetMouseTrack(string clientId, int startX=0, int startY=0, int endX=1920, int endY=1080)
-        {
-            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
+        {            
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
@@ -270,7 +262,7 @@ namespace SitebracoApi.Controllers.Eng
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mousemove", 0, 1920, 0, 1080, 123456));
+            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mousemove", startX, endX, startY, endY, clientId));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", "Position_s");
             request.AddParameter("rows", 0);
@@ -282,10 +274,9 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetMouseClick()
+        public object GetMouseClick(string clientId, int startX = 0, int startY = 0, int endX = 1920, int endY = 1080)
         {
-            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-
+           
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
@@ -297,7 +288,7 @@ namespace SitebracoApi.Controllers.Eng
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mouseclick", 0, 1920, 0, 1080, 123456));
+            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mouseclick", startX, endX, startY, endY, clientId));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", "Position_s");
             request.AddParameter("rows", 0);
