@@ -278,6 +278,32 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
+        public object GetPageviewByDevice(string clientId)
+        {
+            var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+            var node = (RiakNode)cluster.SelectNode();
+            var NodeUrlList = node.GetRestRootUrl();
+            var availabelUrl = NodeUrlList[0];
+
+            var restClient = new RestClient(availabelUrl);
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
+            request.AddParameter("facet", "true");
+            request.AddParameter("facet.field", "Device_s");
+
+            request.AddParameter("rows", "0");
+            request.AddParameter("omitHeader", "true");
+
+            var response = restClient.Execute<object>(request);
+
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+        }
+
+        [HttpPost, HttpGet]
         public object GetFeedback(string clientId)
         {
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
