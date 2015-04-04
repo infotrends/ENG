@@ -21,7 +21,7 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object GetPageviewByDate(string clientId, DateTime startDate, DateTime endDate)
         {
-            
+
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
@@ -67,7 +67,7 @@ namespace SitebracoApi.Controllers.Eng
 
         [HttpPost, HttpGet]
         public object GetPageviewByBrowser(string clientId)
-        {            
+        {
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
@@ -108,7 +108,7 @@ namespace SitebracoApi.Controllers.Eng
 
         [HttpPost, HttpGet]
         public object GetPageviewByCountry(string clientId)
-        {           
+        {
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
@@ -122,7 +122,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
             request.AddParameter("facet", "true");
-            request.AddParameter("facet.field", "CountryName_tsd");
+            request.AddParameter("facet.field", "CountryName_s");
 
             request.AddParameter("rows", "0");
             request.AddParameter("omitHeader", "true");
@@ -160,7 +160,7 @@ namespace SitebracoApi.Controllers.Eng
 
         [HttpPost, HttpGet]
         public object GetPageviewByCity(string clientId)
-        {            
+        {
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
@@ -174,7 +174,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
             request.AddParameter("facet", "true");
-            request.AddParameter("facet.field", "City_tsd");
+            request.AddParameter("facet.field", "City_s");
 
             request.AddParameter("rows", "0");
             request.AddParameter("omitHeader", "true");
@@ -226,7 +226,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
             request.AddParameter("facet", "true");
-            request.AddParameter("facet.field", "OperatingSystem_tsd");
+            request.AddParameter("facet.field", "OperatingSystem_s");
 
             request.AddParameter("rows", "0");
             request.AddParameter("omitHeader", "true");
@@ -379,7 +379,7 @@ namespace SitebracoApi.Controllers.Eng
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("ClientId_s:{0} AND CreateOn_dt: [{1} TO {2}]", 
+            request.AddParameter("q", string.Format("ClientId_s:{0} AND CreateOn_dt: [{1} TO {2}]",
                 clientId, startDate.ToString("s") + "Z", startDate.AddDays(1).ToString("s") + "Z"));
 
             request.AddParameter("facet", "true");

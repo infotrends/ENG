@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace SitebracoApi.Models.Eng
 {
-    public class ClientInfoModel:EngBase
+    public class ClientInfoModel : EngBase
     {
         [Required]
         public string ClientId_s { get; set; }
-        
+
         public string Host_tsd { get; set; }
-        
+
         public string PageUrl_tsd { get; set; }
-        
+
         [Required]
         public string IPAddress_s { get; set; }
 
@@ -27,7 +27,7 @@ namespace SitebracoApi.Models.Eng
         public string Browser_tsd { get; set; }
 
         [Required]
-        public string OperatingSystem_tsd { get; set; }
+        public string OperatingSystem_s { get; set; }
 
         [Required]
         public string ScreenResolution_tsd { get; set; }
@@ -40,13 +40,14 @@ namespace SitebracoApi.Models.Eng
 
         public string UrlReferrer_tsd { get; set; }
 
-        public string CountryName_tsd { get; set; }
+        public string CountryName_s { get; set; }
 
-        public string City_tsd { get; set; }
+        public string City_s { get; set; }
 
         public float Latitude_f { get; set; }
 
         public float Longitude_f { get; set; }
 
+        public string Device_s { get; set; }
     }
 }
