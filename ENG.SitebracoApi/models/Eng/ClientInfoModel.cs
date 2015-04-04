@@ -49,5 +49,7 @@ namespace SitebracoApi.Models.Eng
         public float Longitude_f { get; set; }
 
         public string Device_s { get; set; }
+
+        public string DeviceBrand_s { get; set; }
     }
 }

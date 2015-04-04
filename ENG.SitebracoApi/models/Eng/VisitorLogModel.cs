@@ -13,5 +13,9 @@ namespace SitebracoApi.Models.Eng
         public string element_tsd { get; set; }
 
         public string parent_tsd { get; set; }
+
+        public string elementName_tsd { get; set; }
+
+        public string elementHtml_tsd { get; set; }
     }
 }
