@@ -42,6 +42,8 @@ namespace SitebracoApi.Models.Eng
 
         public string CountryName_s { get; set; }
 
+        public string CountryCode_s { get; set; }
+
         public string City_s { get; set; }
 
         public float Latitude_f { get; set; }

@@ -18,7 +18,7 @@ namespace SitebracoApi.Controllers.Eng
     public class EngTrackController : BaseController
     {
         [HttpPost, HttpGet]
-        public object CollectClientInfo(string clientId, int width, int height)
+        public object CollectClientInfo(string clientId, int width, int height, string pageUrl)
         {
             var referrer = HttpContext.Current.Request.UrlReferrer;
             var UrlReferrer = referrer == null ? string.Empty : referrer.Scheme;
@@ -29,6 +29,7 @@ namespace SitebracoApi.Controllers.Eng
             {
                 ClientId_s = clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
+                PageUrl_tsd = pageUrl,
                 Browser_s = HttpContext.Current.Request.Browser.Browser,
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
@@ -38,6 +39,7 @@ namespace SitebracoApi.Controllers.Eng
                 OperatingSystem_s = GetOperatingSystem(),
                 ScreenResolution_tsd = width + "x" + height,
                 CountryName_s = userLocation.Rows[0]["CountryName"].ToString(),
+                CountryCode_s = userLocation.Rows[0]["CountryCode"].ToString(),
                 City_s = userLocation.Rows[0]["City"].ToString(),
                 Latitude_f = float.Parse(userLocation.Rows[0]["Latitude"].ToString()),
                 Longitude_f = float.Parse(userLocation.Rows[0]["Longitude"].ToString()),
@@ -48,14 +50,18 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpGet]
-        public object CollectClientInfoTest(string clientId, int width, int height)
+        public object CollectClientInfoTest(string clientId, int width, int height, string pageUrl)
         {
+            var referrer = HttpContext.Current.Request.UrlReferrer;
+            var UrlReferrer = referrer == null ? string.Empty : referrer.ToString();
+
             var userLocation = GetUserLocation();
 
             var data = new ClientInfoModel
             {
                 ClientId_s = clientId,
-                IPAddress_s = HttpContext.Current.Request.UserHostAddress,
+                IPAddress_s = HttpContext.Current.Request.UserHostAddress,                
+                PageUrl_tsd = pageUrl,
                 Browser_s = GetBrowser(),
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
@@ -65,16 +71,18 @@ namespace SitebracoApi.Controllers.Eng
                 OperatingSystem_s = GetOperatingSystem(),
                 ScreenResolution_tsd = width + "x" + height,
                 CountryName_s = userLocation.Rows[0]["CountryName"].ToString(),
+                CountryCode_s = userLocation.Rows[0]["CountryCode"].ToString(),
                 City_s = userLocation.Rows[0]["City"].ToString(),
                 Latitude_f = float.Parse(userLocation.Rows[0]["Latitude"].ToString()),
                 Longitude_f = float.Parse(userLocation.Rows[0]["Longitude"].ToString()),
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
+                UrlReferrer_tsd = UrlReferrer,
             };
             return new
             {
                 success = true,
-                data = data,
+                data = data
             };
         }
 

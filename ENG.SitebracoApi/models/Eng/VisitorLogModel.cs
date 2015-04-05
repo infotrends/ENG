@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SitebracoApi.Models.Eng
 {
-    public class VisitorLogModel : EngBase
+    public class VisitorLogModel : MouseTrackModel
     {
         public string type_tsd { get; set; }
 
