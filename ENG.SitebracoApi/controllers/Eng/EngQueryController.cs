@@ -14,7 +14,7 @@ using System.Web;
 using System.Web.Http;
 
 namespace SitebracoApi.Controllers.Eng
-{
+{    
     public class EngQueryController : BaseController
     {
         [HttpPost, HttpGet]
@@ -34,7 +34,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("facet.date.end", endDate.ToString("s") + "Z");
             request.AddParameter("facet.date.gap", "+1DAY");
             request.AddParameter("rows", 0);
-            request.AddParameter("omitHeader", "true");
+            request.AddParameter("omitHeader", "true");            
             //request.AddParameter("facet.mincount", 1);
             var response = restClient.Execute<object>(request);
 
@@ -57,11 +57,11 @@ namespace SitebracoApi.Controllers.Eng
                 new { Date = "03/25/2015", PageViews = 557, UniqueViews = 258 },
                 new { Date = "03/26/2015", PageViews = 657, UniqueViews = 358 }}
             };
-        }
+        }        
 
         [HttpPost, HttpGet]
         public object GetPageviewByBrowser(string clientId)
-        {
+            {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
@@ -128,7 +128,7 @@ namespace SitebracoApi.Controllers.Eng
 
         [HttpPost, HttpGet]
         public object GetPageviewByCity(string clientId)
-        {
+            {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
@@ -242,7 +242,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("wt", "json");
             request.AddParameter("q", "*:*");
             request.AddParameter("omitHeader", "true");
-
+            
             var response = restClient.Execute<object>(request);
 
             return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
@@ -274,7 +274,7 @@ namespace SitebracoApi.Controllers.Eng
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mousemove", 0, 1920, 0, 1080, 123456));
+            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mousemove", startX, endX, startY, endY, clientId));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", "Position_s");
             request.AddParameter("rows", 0);
@@ -286,7 +286,7 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetMouseClick()
+        public object GetMouseClick(string clientId, int startX = 0, int startY = 0, int endX = 1920, int endY = 1080)
         {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
@@ -295,7 +295,7 @@ namespace SitebracoApi.Controllers.Eng
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mouseclick", 0, 1920, 0, 1080, 123456));
+            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mouseclick", startX, endX, startY, endY, clientId));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", "Position_s");
             request.AddParameter("rows", 0);
