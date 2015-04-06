@@ -19,7 +19,7 @@ namespace SitebracoApi.Controllers.Eng
     public class EngTrackController : BaseController
     {
         [HttpPost, HttpGet]
-        public object CollectClientInfo(string clientId, int width, int height, string pageUrl)
+        public object CollectClientInfo(ClientInfoParams param)
         {
             var referrer = HttpContext.Current.Request.UrlReferrer;
             var UrlReferrer = referrer == null ? string.Empty : referrer.Scheme;
@@ -28,9 +28,9 @@ namespace SitebracoApi.Controllers.Eng
 
             var data = new ClientInfoModel
             {
-                ClientId_s = clientId,
+                ClientId_s = param.clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                PageUrl_tsd = pageUrl,
+                PageUrl_tsd = param.pageUrl,
                 Browser_s = HttpContext.Current.Request.Browser.Browser,
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
@@ -38,7 +38,7 @@ namespace SitebracoApi.Controllers.Eng
                 Platform_tsd = HttpContext.Current.Request.Browser.Platform,
                 UserAgent_tsd = HttpContext.Current.Request.UserAgent,
                 OperatingSystem_s = GetOperatingSystem(),
-                ScreenResolution_tsd = width + "x" + height,
+                ScreenResolution_tsd = param.width + "x" + param.height,
                 CountryName_s = userLocation.country_name,
                 City_s = userLocation.city,
                 Latitude_f = userLocation.latitude,
@@ -50,7 +50,7 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpGet]
-        public object CollectClientInfoTest(string clientId, int width, int height, string pageUrl)
+        public object CollectClientInfoTest(ClientInfoParams param)
         {
             var referrer = HttpContext.Current.Request.UrlReferrer;
             var UrlReferrer = referrer == null ? string.Empty : referrer.ToString();
@@ -59,9 +59,9 @@ namespace SitebracoApi.Controllers.Eng
 
             var data = new ClientInfoModel
             {
-                ClientId_s = clientId,
+                ClientId_s = param.clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                PageUrl_tsd = pageUrl,
+                PageUrl_tsd = param.pageUrl,
                 Browser_s = GetBrowser(),
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
@@ -69,7 +69,7 @@ namespace SitebracoApi.Controllers.Eng
                 Platform_tsd = HttpContext.Current.Request.Browser.Platform,
                 UserAgent_tsd = HttpContext.Current.Request.UserAgent,
                 OperatingSystem_s = GetOperatingSystem(),
-                ScreenResolution_tsd = width + "x" + height,
+                ScreenResolution_tsd = param.width + "x" + param.height,
                 CountryName_s = userLocation.country_name,
                 City_s = userLocation.city,
                 Latitude_f = userLocation.latitude,
@@ -222,7 +222,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("Id", ipAddress, RestSharp.ParameterType.UrlSegment);
             var response = restClient.Execute<ClientIpInfo>(request);
             return response.Data;
-            }
+        }
 
         private string GetDevice()
         {
@@ -240,13 +240,13 @@ namespace SitebracoApi.Controllers.Eng
                 var deviceModel = HttpContext.Current.Request.Browser.MobileDeviceModel;
                 var userAgent = HttpContext.Current.Request.UserAgent;
 
-                if (deviceModel.ToLower().Equals("ipad") 
+                if (deviceModel.ToLower().Equals("ipad")
                     || deviceModel.ToLower().Equals("ipod")
                     || deviceModel.ToLower().Equals("iphone"))
                 {
                     if (userAgent.ToLower().Contains("chrome") || userAgent.ToLower().Contains("crios"))
                         return "Chrome";
-                    
+
                 }
             }
             return HttpContext.Current.Request.Browser.Browser;
@@ -262,25 +262,4 @@ namespace SitebracoApi.Controllers.Eng
         }
     }
 
-    class OSModel
-    {
-        public string name { get; set; }
-
-        public string alias { get; set; }
-    }
-
-    class ClientIpInfo
-    {
-        public string ip { get; set; }
-        public string country_code { get; set; }
-        public string country_name { get; set; }
-        public string region_code { get; set; }
-        public string region_name { get; set; }
-        public string city { get; set; }
-        public string zip_code { get; set; }
-        public string time_zone { get; set; }
-        public float latitude { get; set; }
-        public float longitude { get; set; }
-        public int metro_code { get; set; }
-    }
 }

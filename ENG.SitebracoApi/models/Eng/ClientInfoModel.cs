@@ -54,4 +54,38 @@ namespace SitebracoApi.Models.Eng
 
         public string DeviceBrand_s { get; set; }
     }
+
+    public class ClientIpInfo
+    {
+        public string ip { get; set; }
+        public string country_code { get; set; }
+        public string country_name { get; set; }
+        public string region_code { get; set; }
+        public string region_name { get; set; }
+        public string city { get; set; }
+        public string zip_code { get; set; }
+        public string time_zone { get; set; }
+        public float latitude { get; set; }
+        public float longitude { get; set; }
+        public int metro_code { get; set; }
+    }
+
+    public class OSModel
+    {
+        public string name { get; set; }
+
+        public string alias { get; set; }
+    }
+
+    public class ClientInfoParams
+    {
+        public string clientId { get; set; }
+
+        public int width { get; set; }
+
+        public int height { get; set; }
+
+        public string pageUrl { get; set; }
+    }
+
 }
