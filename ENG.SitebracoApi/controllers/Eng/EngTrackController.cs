@@ -19,7 +19,7 @@ namespace SitebracoApi.Controllers.Eng
     public class EngTrackController : BaseController
     {
         [HttpPost, HttpGet]
-        public object CollectClientInfo(string clientId, int width, int height)
+        public object CollectClientInfo(string clientId, int width, int height, string pageUrl)
         {
             var referrer = HttpContext.Current.Request.UrlReferrer;
             var UrlReferrer = referrer == null ? string.Empty : referrer.Scheme;
@@ -30,6 +30,7 @@ namespace SitebracoApi.Controllers.Eng
             {
                 ClientId_s = clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
+                PageUrl_tsd = pageUrl,
                 Browser_s = HttpContext.Current.Request.Browser.Browser,
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
@@ -49,15 +50,19 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpGet]
-        public object CollectClientInfoTest(string clientId, int width, int height)
+        public object CollectClientInfoTest(string clientId, int width, int height, string pageUrl)
         {
+            var referrer = HttpContext.Current.Request.UrlReferrer;
+            var UrlReferrer = referrer == null ? string.Empty : referrer.ToString();
+
             var userLocation = GetUserLocation(HttpContext.Current.Request.UserHostAddress);
 
             var data = new ClientInfoModel
             {
                 ClientId_s = clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                Browser_s = HttpContext.Current.Request.Browser.Browser,
+                PageUrl_tsd = pageUrl,
+                Browser_s = GetBrowser(),
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
                 BrowserVersion_s = HttpContext.Current.Request.Browser.Version,
@@ -71,11 +76,12 @@ namespace SitebracoApi.Controllers.Eng
                 Longitude_f = userLocation.longitude,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
+                UrlReferrer_tsd = UrlReferrer,
             };
             return new
             {
                 success = true,
-                data = data,
+                data = data
             };
         }
 
@@ -216,7 +222,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("Id", ipAddress, RestSharp.ParameterType.UrlSegment);
             var response = restClient.Execute<ClientIpInfo>(request);
             return response.Data;
-        } 
+            }
 
         private string GetDevice()
         {
