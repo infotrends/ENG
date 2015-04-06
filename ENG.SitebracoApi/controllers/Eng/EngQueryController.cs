@@ -14,7 +14,7 @@ using System.Web;
 using System.Web.Http;
 
 namespace SitebracoApi.Controllers.Eng
-{    
+{
     public class EngQueryController : BaseController
     {
         [HttpPost, HttpGet]
@@ -34,11 +34,16 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("facet.date.end", endDate.ToString("s") + "Z");
             request.AddParameter("facet.date.gap", "+1DAY");
             request.AddParameter("rows", 0);
-            request.AddParameter("omitHeader", "true");            
+            request.AddParameter("omitHeader", "true");
             //request.AddParameter("facet.mincount", 1);
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
         }
 
         [HttpPost, HttpGet]
@@ -57,18 +62,23 @@ namespace SitebracoApi.Controllers.Eng
                 new { Date = "03/25/2015", PageViews = 557, UniqueViews = 258 },
                 new { Date = "03/26/2015", PageViews = 657, UniqueViews = 358 }}
             };
-        }        
+        }
 
         [HttpPost, HttpGet]
         public object GetPageviewByBrowser(string clientId)
-            {
+        {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
             var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Browser_s");
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
         }
 
         [HttpPost, HttpGet]
@@ -96,7 +106,12 @@ namespace SitebracoApi.Controllers.Eng
             var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "CountryName_s");
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
         }
 
         [HttpPost, HttpGet]
@@ -128,14 +143,19 @@ namespace SitebracoApi.Controllers.Eng
 
         [HttpPost, HttpGet]
         public object GetPageviewByCity(string clientId)
-            {
+        {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
             var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "City_s");
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
         }
 
         [HttpPost, HttpGet]
@@ -174,7 +194,12 @@ namespace SitebracoApi.Controllers.Eng
             var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "OperatingSystem_s");
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
         }
 
         [HttpPost, HttpGet]
@@ -202,7 +227,12 @@ namespace SitebracoApi.Controllers.Eng
             var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "ScreenResolution_tsd");
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
         }
 
         [HttpPost, HttpGet]
@@ -214,7 +244,12 @@ namespace SitebracoApi.Controllers.Eng
             var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Brand_s");
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
         }
 
         [HttpPost, HttpGet]
@@ -226,9 +261,13 @@ namespace SitebracoApi.Controllers.Eng
             var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "DeviceBrand_s");
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
         }
-
 
         [HttpPost, HttpGet]
         public object GetFeedback(string clientId)
@@ -242,10 +281,38 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("wt", "json");
             request.AddParameter("q", "*:*");
             request.AddParameter("omitHeader", "true");
-            
+
             var response = restClient.Execute<object>(request);
 
-            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetVisitorLog(string clientId)
+        {
+            var availabelUrl = GetAvailableUrl();
+
+            var restClient = new RestClient(availabelUrl);
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", ObjectUtil.GetClassName<VisitorLogModel>(), RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
+            request.AddParameter("omitHeader", "true");
+
+            var response = restClient.Execute<object>(request);
+
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
         }
 
         [HttpPost, HttpGet]

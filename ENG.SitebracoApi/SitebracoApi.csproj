@@ -404,7 +404,9 @@
     <Content Include="Controllers\Boilerplate.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <EntityDeploy Include="DbEntities\Sitebraco.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Sitebraco.Designer.cs</LastGenOutput>

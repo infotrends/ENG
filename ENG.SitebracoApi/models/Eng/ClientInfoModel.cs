@@ -86,6 +86,8 @@ namespace SitebracoApi.Models.Eng
         public int height { get; set; }
 
         public string pageUrl { get; set; }
+
+        public string referer { get; set; }
     }
 
 }

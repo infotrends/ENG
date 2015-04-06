@@ -5,6 +5,7 @@ using SitebracoApi.Models.Eng;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -21,9 +22,6 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object CollectClientInfo(ClientInfoParams param)
         {
-            var referrer = HttpContext.Current.Request.UrlReferrer;
-            var UrlReferrer = referrer == null ? string.Empty : referrer.Scheme;
-
             var userLocation = GetUserLocation(HttpContext.Current.Request.UserHostAddress);
 
             var data = new ClientInfoModel
@@ -45,16 +43,14 @@ namespace SitebracoApi.Controllers.Eng
                 Longitude_f = userLocation.longitude,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
+                UrlReferrer_tsd = param.referer
             };
             return new { success = data.Save() };
         }
 
-        [HttpGet]
+        [HttpPost, HttpGet]
         public object CollectClientInfoTest(ClientInfoParams param)
         {
-            var referrer = HttpContext.Current.Request.UrlReferrer;
-            var UrlReferrer = referrer == null ? string.Empty : referrer.ToString();
-
             var userLocation = GetUserLocation(HttpContext.Current.Request.UserHostAddress);
 
             var data = new ClientInfoModel
@@ -76,7 +72,7 @@ namespace SitebracoApi.Controllers.Eng
                 Longitude_f = userLocation.longitude,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
-                UrlReferrer_tsd = UrlReferrer,
+                UrlReferrer_tsd = param.referer,
             };
             return new
             {
@@ -154,64 +150,72 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object CollectVisitorLogTest(VisitorLogModel data)
         {
+            var userLocation = GetUserLocation(HttpContext.Current.Request.UserHostAddress);
+
+            data.IPAddress_s = HttpContext.Current.Request.UserHostAddress;
+            data.CountryName_s = userLocation.country_name;
+            data.City_s = userLocation.city;
+            data.Latitude_f = userLocation.latitude;
+            data.Longitude_f = userLocation.longitude;            
+
             return new { success = true, data = data };
         }
 
         [HttpPost, HttpGet]
         public object CollectVisitorLog(VisitorLogModel data)
         {
+            var userLocation = GetUserLocation(HttpContext.Current.Request.UserHostAddress);
+
+            data.IPAddress_s = HttpContext.Current.Request.UserHostAddress;
+            data.CountryName_s = userLocation.country_name;
+            data.City_s = userLocation.city;
+            data.Latitude_f = userLocation.latitude;
+            data.Longitude_f = userLocation.longitude;            
+
             return new { success = data.Save() };
         }
 
         private string GetOperatingSystem()
         {
-            var osList = new List<OSModel>{
-                new OSModel{name="Windows 3.11", alias="Win16"},
-	            new OSModel{name="Windows 95", alias="Windows 95,Win95,Windows_95"},
-	            new OSModel{name="Windows ME", alias="Win 9x 4.90,Windows ME"},
-	            new OSModel{name="Windows 98", alias="Windows 98,Win98"},
-	            new OSModel{name="Windows CE", alias="Windows CE"},
-	            new OSModel{name="Windows 2000", alias="Windows NT 5.0,Windows 2000"},
-	            new OSModel{name="Windows XP", alias="Windows NT 5.1,Windows XP"},
-	            new OSModel{name="Windows Server 2003", alias="Windows NT 5.2"},
-	            new OSModel{name="Windows Vista", alias="Windows NT 6.0"},
-	            new OSModel{name="Windows 7", alias="Windows 7,Windows NT 6.1"},
-	            new OSModel{name="Windows 8.1", alias="Windows 8.1,Windows NT 6.3"},
-	            new OSModel{name="Windows 8", alias="Windows 8,Windows NT 6.2"},
-	            new OSModel{name="Windows NT 4.0", alias="Windows NT 4.0,WinNT4.0,WinNT,Windows NT"},
-	            new OSModel{name="Windows ME", alias="Windows ME"},
-	            new OSModel{name="Android", alias="Android"},
-	            new OSModel{name="Open BSD", alias="OpenBSD"},
-	            new OSModel{name="Sun OS", alias="SunOS"},
-	            new OSModel{name="Linux", alias="Linux,X11"},
-	            new OSModel{name="iOS", alias="iPhone,iPad,iPod"},
-	            new OSModel{name="Mac OS X", alias="Mac OS X"},
-	            new OSModel{name="Mac OS", alias="MacPPC,MacIntel,Mac_PowerPC,Macintosh"},
-	            new OSModel{name="QNX", alias="QNX"},
-	            new OSModel{name="UNIX", alias="UNIX"},
-	            new OSModel{name="BeOS", alias="BeOS"},
-	            new OSModel{name="OS 2", alias=@"OS/2"},
-	            new OSModel{name="Search Bot", alias="nuhk,Googlebot,Yammybot,Openbot,Slurp,MSNBot,Ask Jeeves\"Teoma,ia_archiver"}
-            };
-
-            var operatingSystem = "";
-            var userAgent = HttpContext.Current.Request.UserAgent;
-            foreach (var os in osList)
+            try
             {
-                var aliasList = Regex.Split(os.alias, @"\,");
-                var check = false;
-                foreach (var alias in aliasList)
+                var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["umbracoDbDSN"].ConnectionString;                
+                var connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                var sql = string.Format(@"SELECT Name, Alias FROM ENG_OS");
+                var command = new SqlCommand(sql, connection);
+                var reader = command.ExecuteReader();
+
+                var operatingSystem = "";
+                var userAgent = HttpContext.Current.Request.UserAgent;
+
+                while (reader.Read())
                 {
-                    if (userAgent.Contains(alias))
+                    var alias = Convert.ToString(reader["Alias"]);
+
+                    var aliasList = Regex.Split(alias, @"\,");
+                    var check = false;
+                    foreach (var item in aliasList)
                     {
-                        operatingSystem = os.name;
-                        check = true;
-                        break;
+                        if (userAgent.Contains(item))
+                        {
+                            operatingSystem = Convert.ToString(reader["Name"]);
+                            check = true;
+                            break;
+                        }
                     }
+                    if (check) break;
                 }
-                if (check) break;
+
+                connection.Close();
+                return operatingSystem;
             }
-            return operatingSystem;
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+
         }
 
         private ClientIpInfo GetUserLocation(string ipAddress)
