@@ -1,4 +1,5 @@
 ﻿using CorrugatedIron.Models;
+using RestSharp;
 using SitebracoApi.Models;
 using SitebracoApi.Models.Eng;
 using System;
@@ -23,7 +24,7 @@ namespace SitebracoApi.Controllers.Eng
             var referrer = HttpContext.Current.Request.UrlReferrer;
             var UrlReferrer = referrer == null ? string.Empty : referrer.Scheme;
 
-            var userLocation = GetUserLocation();
+            var userLocation = GetUserLocation(HttpContext.Current.Request.UserHostAddress);
 
             var data = new ClientInfoModel
             {
@@ -37,10 +38,10 @@ namespace SitebracoApi.Controllers.Eng
                 UserAgent_tsd = HttpContext.Current.Request.UserAgent,
                 OperatingSystem_s = GetOperatingSystem(),
                 ScreenResolution_tsd = width + "x" + height,
-                CountryName_s = userLocation.Rows[0]["CountryName"].ToString(),
-                City_s = userLocation.Rows[0]["City"].ToString(),
-                Latitude_f = float.Parse(userLocation.Rows[0]["Latitude"].ToString()),
-                Longitude_f = float.Parse(userLocation.Rows[0]["Longitude"].ToString()),
+                CountryName_s = userLocation.country_name,
+                City_s = userLocation.city,
+                Latitude_f = userLocation.latitude,
+                Longitude_f = userLocation.longitude,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
             };
@@ -50,13 +51,13 @@ namespace SitebracoApi.Controllers.Eng
         [HttpGet]
         public object CollectClientInfoTest(string clientId, int width, int height)
         {
-            var userLocation = GetUserLocation();
+            var userLocation = GetUserLocation(HttpContext.Current.Request.UserHostAddress);
 
             var data = new ClientInfoModel
             {
                 ClientId_s = clientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                Browser_s = GetBrowser(),
+                Browser_s = HttpContext.Current.Request.Browser.Browser,
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
                 BrowserVersion_s = HttpContext.Current.Request.Browser.Version,
@@ -64,10 +65,10 @@ namespace SitebracoApi.Controllers.Eng
                 UserAgent_tsd = HttpContext.Current.Request.UserAgent,
                 OperatingSystem_s = GetOperatingSystem(),
                 ScreenResolution_tsd = width + "x" + height,
-                CountryName_s = userLocation.Rows[0]["CountryName"].ToString(),
-                City_s = userLocation.Rows[0]["City"].ToString(),
-                Latitude_f = float.Parse(userLocation.Rows[0]["Latitude"].ToString()),
-                Longitude_f = float.Parse(userLocation.Rows[0]["Longitude"].ToString()),
+                CountryName_s = userLocation.country_name,
+                City_s = userLocation.city,
+                Latitude_f = userLocation.latitude,
+                Longitude_f = userLocation.longitude,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
             };
@@ -207,42 +208,15 @@ namespace SitebracoApi.Controllers.Eng
             return operatingSystem;
         }
 
-        private DataTable GetUserLocation()
+        private ClientIpInfo GetUserLocation(string ipAddress)
         {
-
-            //Create a WebRequest with the current Ip 
-            WebRequest _objWebRequest =
-                WebRequest.Create("http://freegeoip.net/xml/");
-            //Create a Web Proxy 
-            WebProxy _objWebProxy =
-               new WebProxy("http://freegeoip.net/xml/", true);
-
-            //Assign the proxy to the WebRequest 
-            _objWebRequest.Proxy = _objWebProxy;
-
-            //Set the timeout in Seconds for the WebRequest 
-            _objWebRequest.Timeout = 2000;
-
-            try
-            {
-                //Get the WebResponse  
-                WebResponse _objWebResponse = _objWebRequest.GetResponse();
-                //Read the Response in a XMLTextReader 
-                XmlTextReader _objXmlTextReader
-                    = new XmlTextReader(_objWebResponse.GetResponseStream());
-
-                //Create a new DataSet 
-                DataSet _objDataSet = new DataSet();
-                //Read the Response into the DataSet 
-                _objDataSet.ReadXml(_objXmlTextReader);
-
-                return _objDataSet.Tables[0];
-            }
-            catch
-            {
-                return null;
-            }
-        } // End of GetLocation   
+            var restClient = new RestClient("http://freegeoip.net");
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/json/{Id}";
+            request.AddParameter("Id", ipAddress, RestSharp.ParameterType.UrlSegment);
+            var response = restClient.Execute<ClientIpInfo>(request);
+            return response.Data;
+        } 
 
         private string GetDevice()
         {
@@ -287,5 +261,20 @@ namespace SitebracoApi.Controllers.Eng
         public string name { get; set; }
 
         public string alias { get; set; }
+    }
+
+    class ClientIpInfo
+    {
+        public string ip { get; set; }
+        public string country_code { get; set; }
+        public string country_name { get; set; }
+        public string region_code { get; set; }
+        public string region_name { get; set; }
+        public string city { get; set; }
+        public string zip_code { get; set; }
+        public string time_zone { get; set; }
+        public float latitude { get; set; }
+        public float longitude { get; set; }
+        public int metro_code { get; set; }
     }
 }
