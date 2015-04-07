@@ -55,6 +55,14 @@ namespace SitebracoApi.Controllers.Auth
             {
                 var fakeService = new FakeAuthenticateService();
 
+                if (p.SessionKey != null && !p.SessionKey.Equals(""))
+                {
+                    var user = fakeService.LoginUsingSessionKey(p.SessionKey);
+                    if (user != null) return user;
+
+                    return AuthenticateService.Current.GetMemberProfileFromCurrentSession();
+                }                
+
                 var userProfile = fakeService.Login(p.Username, p.Password);
 
                 if (userProfile == null)

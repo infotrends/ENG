@@ -61,5 +61,18 @@ namespace SitebracoApi.Services.Auth
 
             return null;
         }
+
+        public MemberProfileModel LoginUsingSessionKey(string sessionKey)
+        {
+            if (sessionKey.Equals("0a18aaf8-eb79-4823-98e8-08b8b56a13de"))
+                return users.ElementAt(0);
+
+            if (sessionKey.Equals("06a999a6-30z5-495d-a246-29d29af21169"))
+                return users.ElementAt(1);
+
+            if (sessionKey.Equals("71505F43-D870-E011-878E-000C29299294"))
+                return users.ElementAt(2);
+            return null;
+        }
     }
 }

@@ -65,12 +65,13 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetPageviewByBrowser(string clientId)
+        public object GetPageviewByBrowser(string clientId, DateTime startDate, DateTime endDate)
         {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
-            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Browser_s");
+            var request = ConstructRequestWithDate
+                (ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Browser_s", startDate, endDate);
             var response = restClient.Execute<object>(request);
 
             return new
@@ -98,12 +99,13 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetPageviewByCountry(string clientId)
+        public object GetPageviewByCountry(string clientId, DateTime startDate, DateTime endDate)
         {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
-            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "CountryName_s");
+            var request = ConstructRequestWithDate(
+                    ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "CountryName_s", startDate, endDate);
             var response = restClient.Execute<object>(request);
 
             return new
@@ -142,12 +144,13 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetPageviewByCity(string clientId)
+        public object GetPageviewByCity(string clientId, DateTime startDate, DateTime endDate)
         {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
-            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "City_s");
+            var request = ConstructRequestWithDate(
+                ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "City_s", startDate, endDate);
             var response = restClient.Execute<object>(request);
 
             return new
@@ -186,12 +189,13 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetPageviewByOS(string clientId)
+        public object GetPageviewByOS(string clientId, DateTime startDate, DateTime endDate)
         {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
-            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "OperatingSystem_s");
+            var request = ConstructRequestWithDate(
+                ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "OperatingSystem_s", startDate, endDate);
             var response = restClient.Execute<object>(request);
 
             return new
@@ -219,12 +223,13 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetPageviewByScreenResolution(string clientId)
+        public object GetPageviewByScreenResolution(string clientId, DateTime startDate, DateTime endDate)
         {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
-            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "ScreenResolution_tsd");
+            var request = ConstructRequestWithDate(
+                ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "ScreenResolution_tsd", startDate, endDate);
             var response = restClient.Execute<object>(request);
 
             return new
@@ -236,12 +241,13 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetPageviewByDevice(string clientId)
+        public object GetPageviewByDevice(string clientId, DateTime startDate, DateTime endDate)
         {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
-            var request = ConstructRequest(ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Brand_s");
+            var request = ConstructRequestWithDate(
+                ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Brand_s", startDate, endDate);
             var response = restClient.Execute<object>(request);
 
             return new
@@ -312,6 +318,27 @@ namespace SitebracoApi.Controllers.Eng
                 success = true,
                 data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
                     JsonConvert.DeserializeObject(response.Content) : null
+            };
+        }
+
+        [HttpPost, HttpGet]
+        public object DeleteUglyData()
+        {
+            var client = RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
+
+            var bucketType = ObjectUtil.GetPropertyName<Constant.RiakSolr.BucketType>(x => x.InfoTrendsLog);
+
+            List<string> id = new List<string>()
+            {
+                "201504070222314cc35893f3844f62a019c3ea408e2cc5",
+                 
+            };
+
+            RiakHelper.Delete<ClientInfoModel>(client, bucketType, id);
+
+            return new
+            {
+                success = true,
             };
         }
 
@@ -406,7 +433,26 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", fieldName);
+            request.AddParameter("facet.mincount", "1");
 
+            request.AddParameter("rows", "0");
+            request.AddParameter("omitHeader", "true");
+
+            return request;
+        }
+
+        private RestRequest ConstructRequestWithDate(string bucketType, string clientId, string fieldName, DateTime startDate, DateTime endDate)
+        {
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", bucketType, RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("q", string.Format("ClientId_s:{0} AND CreateOn_dt:[{1} TO {2}]",
+                clientId, startDate.ToString("s") + "Z", endDate.ToString("s") + "Z"));
+
+            request.AddParameter("facet", "true");
+            request.AddParameter("facet.field", fieldName);
+            request.AddParameter("facet.mincount", "1");
             request.AddParameter("rows", "0");
             request.AddParameter("omitHeader", "true");
 
