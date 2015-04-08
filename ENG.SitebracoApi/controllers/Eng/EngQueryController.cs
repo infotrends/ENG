@@ -311,6 +311,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
             request.AddParameter("start", pageNumber * itemsPerPage);
             request.AddParameter("rows", itemsPerPage);
+            request.AddParameter("sort", "CreateOn_dt desc");
             request.AddParameter("omitHeader", "true");
 
             var response = restClient.Execute<object>(request);
