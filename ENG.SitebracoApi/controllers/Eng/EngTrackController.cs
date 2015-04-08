@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -37,10 +38,10 @@ namespace SitebracoApi.Controllers.Eng
                 UserAgent_tsd = HttpContext.Current.Request.UserAgent,
                 OperatingSystem_s = GetOperatingSystem(),
                 ScreenResolution_tsd = param.width + "x" + param.height,
-                CountryName_s = userLocation.country_name,
-                City_s = userLocation.city,
-                Latitude_f = userLocation.latitude,
-                Longitude_f = userLocation.longitude,
+                CountryName_s = userLocation == null ? "Unknown" : userLocation.country_name,
+                City_s = userLocation == null ? "Unknown" : userLocation.city,
+                Latitude_f = userLocation == null ? 0 : userLocation.latitude,
+                Longitude_f = userLocation == null ? 0 : userLocation.longitude,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
                 UrlReferrer_tsd = param.referer
@@ -66,10 +67,10 @@ namespace SitebracoApi.Controllers.Eng
                 UserAgent_tsd = HttpContext.Current.Request.UserAgent,
                 OperatingSystem_s = GetOperatingSystem(),
                 ScreenResolution_tsd = param.width + "x" + param.height,
-                CountryName_s = userLocation.country_name,
-                City_s = userLocation.city,
-                Latitude_f = userLocation.latitude,
-                Longitude_f = userLocation.longitude,
+                CountryName_s = userLocation == null ? "Unknown" : userLocation.country_name,
+                City_s = userLocation == null ? "Unknown" : userLocation.city,
+                Latitude_f = userLocation == null ? 0 : userLocation.latitude,
+                Longitude_f = userLocation == null ? 0 : userLocation.longitude,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
                 UrlReferrer_tsd = param.referer,
@@ -77,7 +78,8 @@ namespace SitebracoApi.Controllers.Eng
             return new
             {
                 success = true,
-                data = data
+                data = data,
+                userlocation = userLocation
             };
         }
 
@@ -156,7 +158,7 @@ namespace SitebracoApi.Controllers.Eng
             data.CountryName_s = userLocation.country_name;
             data.City_s = userLocation.city;
             data.Latitude_f = userLocation.latitude;
-            data.Longitude_f = userLocation.longitude;            
+            data.Longitude_f = userLocation.longitude;
 
             return new { success = true, data = data };
         }
@@ -167,20 +169,21 @@ namespace SitebracoApi.Controllers.Eng
             var userLocation = GetUserLocation(HttpContext.Current.Request.UserHostAddress);
 
             data.IPAddress_s = HttpContext.Current.Request.UserHostAddress;
-            data.CountryName_s = userLocation.country_name;
-            data.City_s = userLocation.city;
-            data.Latitude_f = userLocation.latitude;
-            data.Longitude_f = userLocation.longitude;            
+            data.CountryName_s = userLocation == null ? "Unknown" : userLocation.country_name;
+            data.City_s = userLocation == null ? "Unknown" : userLocation.city;
+            data.Latitude_f = userLocation == null ? 0 : userLocation.latitude;
+            data.Longitude_f = userLocation == null ? 0 : userLocation.longitude;
 
             return new { success = data.Save() };
         }
 
         private string GetOperatingSystem()
         {
+            SqlConnection connection = null;
             try
             {
-                var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["umbracoDbDSN"].ConnectionString;                
-                var connection = new SqlConnection(connectionString);
+                var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["umbracoDbDSN"].ConnectionString;
+                connection = new SqlConnection(connectionString);
                 connection.Open();
 
                 var sql = string.Format(@"SELECT Name, Alias FROM ENG_OS");
@@ -208,24 +211,63 @@ namespace SitebracoApi.Controllers.Eng
                     if (check) break;
                 }
 
-                connection.Close();
                 return operatingSystem;
             }
             catch (Exception ex)
             {
                 return ex.ToString();
             }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
 
         }
 
         private ClientIpInfo GetUserLocation(string ipAddress)
         {
-            var restClient = new RestClient("http://freegeoip.net");
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/json/{Id}";
-            request.AddParameter("Id", ipAddress, RestSharp.ParameterType.UrlSegment);
-            var response = restClient.Execute<ClientIpInfo>(request);
-            return response.Data;
+            //var restClient = new RestClient("http://freegeoip.net");
+            //var request = new RestRequest(Method.GET);
+            //request.Resource = "/json/{Id}";
+            //request.AddParameter("Id", ipAddress, RestSharp.ParameterType.UrlSegment);
+            //var response = restClient.Execute<ClientIpInfo>(request);
+            //return response.Data;
+            ClientIpInfo result = new ClientIpInfo();
+
+            try
+            {
+                var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["umbracoDbDSN"].ConnectionString;
+                var connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                var sql = string.Format(@"SELECT * 
+	                    FROM ENG_dbiplookup
+                        WHERE dbo.ENG_fnBinaryIPv4({0}) BETWEEN ip_start AND ip_end", ipAddress);
+
+                var command = new SqlCommand(sql, connection);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    result.country_code = Convert.ToString(reader["country"]);
+                    result.city = Convert.ToString(reader["city"]);
+                }
+                RegionInfo info = new RegionInfo(result.country_code);
+                result.country_name = info.DisplayName;
+                //Currently set to default
+                result.latitude = 0;
+                result.longitude = 0;
+                connection.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         private string GetDevice()

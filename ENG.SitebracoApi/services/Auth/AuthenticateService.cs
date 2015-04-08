@@ -68,7 +68,6 @@ namespace SitebracoApi.Services.Auth
             var smsRoleCache = member.GetRoleCache<SmsProductModel>(ObjectUtil.GetPropertyName<UmbracoDoctypes.Member>(x => x.member_smsRolecacheJson));
             if (smsRoleCache != null) products.Add(smsRoleCache);
 
-
             // Construct
             var ret = new MemberProfileModel
             {

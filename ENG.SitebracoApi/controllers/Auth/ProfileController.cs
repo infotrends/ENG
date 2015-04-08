@@ -34,7 +34,7 @@ namespace SitebracoApi.Controllers.Auth
                 var message = Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message);
                 throw new HttpResponseException(message);
             }
-            
+
         }
         public class LoginParam
         {
@@ -59,9 +59,17 @@ namespace SitebracoApi.Controllers.Auth
                 {
                     var user = fakeService.LoginUsingSessionKey(p.SessionKey);
                     if (user != null) return user;
+                    user = AuthenticateService.Current.GetMemberProfileFromCurrentSession();
 
-                    return AuthenticateService.Current.GetMemberProfileFromCurrentSession();
-                }                
+                    //Get Current Action
+                    var currentAction = fakeService.GetCurrentAction(p.SessionKey);
+                    if (currentAction != "Error")
+                    {
+                        user.CurrentAction = currentAction;
+                    }
+                    user.SessionKey = p.SessionKey;
+                    return user;
+                }
 
                 var userProfile = fakeService.Login(p.Username, p.Password);
 
@@ -70,7 +78,10 @@ namespace SitebracoApi.Controllers.Auth
                     ValidateParams(p);
                     p.DoRemember = p.DoRemember == true ? true : false;
                     userProfile = AuthenticateService.Current.Login(p.Username, p.Password, (bool)p.DoRemember);
-                    // userProfile.SessionKey = Guid.NewGuid().ToString();
+
+                    //Add to Sesion
+                    userProfile.SessionKey = Guid.NewGuid().ToString();
+                    fakeService.AddToSession(userProfile.SessionKey, "Logged In");
                 }
 
                 return userProfile;

@@ -14,6 +14,8 @@ namespace SitebracoApi.Models.Auth
 
         public string SessionKey { get; set; }
 
+        public string CurrentAction { get; set; }
+
         /// <summary>
         /// Constructor
         /// </summary>

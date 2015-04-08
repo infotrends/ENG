@@ -299,7 +299,7 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetVisitorLog(string clientId)
+        public object GetVisitorLog(string clientId, int pageNumber, int itemsPerPage = 10)
         {
             var availabelUrl = GetAvailableUrl();
 
@@ -309,6 +309,8 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("BucketType", ObjectUtil.GetClassName<VisitorLogModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
+            request.AddParameter("start", pageNumber * itemsPerPage);
+            request.AddParameter("rows", itemsPerPage);
             request.AddParameter("omitHeader", "true");
 
             var response = restClient.Execute<object>(request);
@@ -368,12 +370,15 @@ namespace SitebracoApi.Controllers.Eng
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mousemove", startX, endX, startY, endY, clientId));
+            request.AddParameter("q", string.Format(@"PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mousemove AND (Position_s:*25,*25 OR Position_s:*25,*75 OR Position_s:*75,*25 OR Position_s:*75,*75)", 
+                startX, endX, startY, endY, clientId));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", "Position_s");
-            request.AddParameter("rows", 0);
-            request.AddParameter("omitHeader", "true");
             request.AddParameter("facet.mincount", 1);
+            request.AddParameter("facet.limit", -1);
+
+            request.AddParameter("rows", 0);
+            request.AddParameter("omitHeader", "true");            
             var response = restClient.Execute<object>(request);
 
             return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
@@ -392,9 +397,11 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mouseclick", startX, endX, startY, endY, clientId));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", "Position_s");
+            request.AddParameter("facet.mincount", 1);
+            request.AddParameter("facet.limit", -1);
             request.AddParameter("rows", 0);
             request.AddParameter("omitHeader", "true");
-            request.AddParameter("facet.mincount", 1);
+            
             var response = restClient.Execute<object>(request);
 
             return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
@@ -434,6 +441,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", fieldName);
             request.AddParameter("facet.mincount", "1");
+            request.AddParameter("facet.missing", "false");
 
             request.AddParameter("rows", "0");
             request.AddParameter("omitHeader", "true");
@@ -453,6 +461,8 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", fieldName);
             request.AddParameter("facet.mincount", "1");
+            request.AddParameter("facet.missing", "false");
+
             request.AddParameter("rows", "0");
             request.AddParameter("omitHeader", "true");
 
