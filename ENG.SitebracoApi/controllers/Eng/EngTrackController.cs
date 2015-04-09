@@ -102,14 +102,28 @@ namespace SitebracoApi.Controllers.Eng
         public object CollectSetOfMouseActionInfo(IEnumerable<MouseTrackModel> data)
         {
             if (data == null || data.Count() == 0)
-                return new { success = true };
+            {
+                //To Track if User is online
+                MouseTrackModel model = new MouseTrackModel();
+                model.ActionName_s = "Online";
+                model.IPAddress_s = HttpContext.Current.Request.UserHostAddress;
+                model.ClientId_s = "Infotrends";
+                model.PageUrl_tsd = "http://infotrends.com/public/home.html";
+                model.PageX_i = 0;
+                model.PageY_i = 0;
+                model.Point_i = 0;
+                return new
+                {
+                    success = model.Save()
+                };
+            }
 
             var bucketName = ObjectUtil.GetClassName<MouseTrackModel>();
             var bucketType = ObjectUtil.GetPropertyName<Constant.RiakSolr.BucketType>(x => x.InfoTrendsLog);
             var list = new List<RiakObject>();
             foreach (var item in data)
             {
-                item.PageUrl_tsd = HttpContext.Current.Request.Url.AbsolutePath;
+                item.IPAddress_s = HttpContext.Current.Request.UserHostAddress;                
                 item.Position_s = string.Format("{0},{1}", item.PageX_i, item.PageY_i);
                 var riakObjId = new RiakObjectId(bucketType, bucketName, item.Id_s);
                 var riakObj = new RiakObject(riakObjId, item);

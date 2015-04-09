@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SitebracoApi.Models.Eng
 {
-    public class MouseTrackModel:EngBase
+    public class MouseTrackModel : EngBase
     {
         [Required]
         public string ClientId_s { get; set; }
@@ -44,5 +44,6 @@ namespace SitebracoApi.Models.Eng
         [Required]
         public string ActionName_s { get; set; }
 
+        public string IPAddress_s { get; set; }
     }
 }

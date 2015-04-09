@@ -105,7 +105,7 @@ namespace SitebracoApi.Controllers.Eng
             var restClient = new RestClient(availabelUrl);
 
             var request = ConstructRequestWithDate(
-                    ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "CountryName_s", startDate, endDate);
+                    ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "CountryCode_s", startDate, endDate);
             var response = restClient.Execute<object>(request);
 
             return new
@@ -309,7 +309,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("BucketType", ObjectUtil.GetClassName<VisitorLogModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
-            request.AddParameter("start", pageNumber * itemsPerPage);
+            request.AddParameter("start", (pageNumber - 1) * itemsPerPage);
             request.AddParameter("rows", itemsPerPage);
             request.AddParameter("sort", "CreateOn_dt desc");
             request.AddParameter("omitHeader", "true");
@@ -362,17 +362,20 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetMouseTrack(string clientId, int startX = 0, int startY = 0, int endX = 1920, int endY = 1080)
+        public object GetMouseTrack(string clientId, string pageUrl, int startX = 0, int startY = 0, int endX = 1920, int endY = 1080)
         {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
+            //Revise pageUrl
+            pageUrl = ReviseUrl(pageUrl);
 
             var request = new RestRequest(Method.GET);
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format(@"PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mousemove AND (Position_s:*25,*25 OR Position_s:*25,*75 OR Position_s:*75,*25 OR Position_s:*75,*75)", 
-                startX, endX, startY, endY, clientId));
+            request.AddParameter("q",
+                string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mousemove AND (Position_s:*25,*25 OR Position_s:*25,*75 OR Position_s:*75,*25 OR Position_s:*75,*75) AND PageUrl_tsd:\"{5}\"", 
+                startX, endX, startY, endY, clientId, pageUrl));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", "Position_s");
             request.AddParameter("facet.mincount", 1);
@@ -386,16 +389,19 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetMouseClick(string clientId, int startX = 0, int startY = 0, int endX = 1920, int endY = 1080)
+        public object GetMouseClick(string clientId, string pageUrl, int startX = 0, int startY = 0, int endX = 1920, int endY = 1080)
         {
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
+            //Revise PageUrl
+            pageUrl = ReviseUrl(pageUrl);
 
             var request = new RestRequest(Method.GET);
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mouseclick", startX, endX, startY, endY, clientId));
+            request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mouseclick AND (Position_s:*25,*25 OR Position_s:*25,*75 OR Position_s:*75,*25 OR Position_s:*75,*75) AND PageUrl_tsd:\"{5}\"", 
+                startX, endX, startY, endY, clientId, pageUrl));
             request.AddParameter("facet", "true");
             request.AddParameter("facet.field", "Position_s");
             request.AddParameter("facet.mincount", 1);
@@ -427,6 +433,28 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("rows", 0);
             request.AddParameter("omitHeader", "true");
             //request.AddParameter("facet.mincount", 1);
+            var response = restClient.Execute<object>(request);
+
+            return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetUsersOnline(string clientId)
+        {
+            var availabelUrl = GetAvailableUrl();
+            var restClient = new RestClient(availabelUrl);
+
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("omitHeader", "true");
+            request.AddParameter("q", string.Format("ClientId_s:{0} AND CreateOn_dt:[{1} TO {2}]",
+                clientId, DateTime.UtcNow.AddMinutes(-1).ToString("s") + "Z", DateTime.UtcNow.ToString("s") + "Z"));
+            request.AddParameter("rows", "1000000");
+            request.AddParameter("group", "true");
+            request.AddParameter("group.field", "IPAddress_s");            
+            
             var response = restClient.Execute<object>(request);
 
             return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
@@ -479,6 +507,18 @@ namespace SitebracoApi.Controllers.Eng
             var availabelUrl = NodeUrlList[0];
 
             return availabelUrl;
+        }
+
+        private string ReviseUrl(string pageUrl)
+        {
+            var url = pageUrl;
+
+            if (url.ElementAt(url.Length - 1) == '#')
+                url = url.Substring(0, url.Length - 1);
+
+            //if (url.ElementAt(url.Length - 1) == '/')
+            //    url = url.Substring(0, url.Length - 1);
+            return url;
         }
     }
 }
