@@ -35,7 +35,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("facet.date.gap", "+1DAY");
             request.AddParameter("rows", 0);
             request.AddParameter("omitHeader", "true");
-            //request.AddParameter("facet.mincount", 1);
+            request.AddParameter("f.CreateOn_dt.facet.mincount", 1);
             var response = restClient.Execute<object>(request);
 
             return new
@@ -286,6 +286,8 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("BucketType", ObjectUtil.GetClassName<FeedbackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", "*:*");
+            request.AddParameter("sort", "CreateOn_dt desc");
+            request.AddParameter("rows", "100000000");
             request.AddParameter("omitHeader", "true");
 
             var response = restClient.Execute<object>(request);
