@@ -15,7 +15,6 @@ namespace SitebracoApi.Models.Auth
         [JsonIgnore]
         public IMember _UmbracoMember { get; set; }
 
-        [JsonIgnore]
         public string Email { get; set; }
 
 

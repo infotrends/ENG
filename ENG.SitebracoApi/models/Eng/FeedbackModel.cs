@@ -18,6 +18,9 @@ namespace SitebracoApi.Models.Eng
         [Required]
         public string feedback_tsd { get; set; }
 
+        [Required]
+        public string category_tsd { get; set; }
+
         public string ClientId_s { get; set; }
     }
 }

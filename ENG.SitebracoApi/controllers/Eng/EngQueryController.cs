@@ -3,11 +3,13 @@ using CorrugatedIron.Comms;
 using CorrugatedIron.Models.Search;
 using MyRiak;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using SitebracoApi.Models.Eng;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -35,7 +37,7 @@ namespace SitebracoApi.Controllers.Eng
             request.AddParameter("facet.date.gap", "+1DAY");
             request.AddParameter("rows", 0);
             request.AddParameter("omitHeader", "true");
-            request.AddParameter("f.CreateOn_dt.facet.mincount", 1);
+
             var response = restClient.Execute<object>(request);
 
             return new
@@ -247,7 +249,7 @@ namespace SitebracoApi.Controllers.Eng
             var restClient = new RestClient(availabelUrl);
 
             var request = ConstructRequestWithDate(
-                ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Brand_s", startDate, endDate);
+                ObjectUtil.GetClassName<ClientInfoModel>(), clientId, "Device_s", startDate, endDate);
             var response = restClient.Execute<object>(request);
 
             return new
@@ -301,7 +303,7 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public object GetVisitorLog(string clientId, int pageNumber, int itemsPerPage = 10)
+        public object GetVisitorLog(string clientId, DateTime startDate, DateTime endDate, int pageNumber, int itemsPerPage = 10)
         {
             var availabelUrl = GetAvailableUrl();
 
@@ -310,7 +312,8 @@ namespace SitebracoApi.Controllers.Eng
             request.Resource = "/search/query/{BucketType}";
             request.AddParameter("BucketType", ObjectUtil.GetClassName<VisitorLogModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
-            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
+            request.AddParameter("q", string.Format("ClientId_s:{0} AND CreateOn_dt:[{1} TO {2}]", 
+                clientId, startDate.ToString("s") + "Z", endDate.ToString("s") + "Z"));
             request.AddParameter("start", (pageNumber - 1) * itemsPerPage);
             request.AddParameter("rows", itemsPerPage);
             request.AddParameter("sort", "CreateOn_dt desc");
@@ -462,6 +465,62 @@ namespace SitebracoApi.Controllers.Eng
             return new { success = true, data = JsonConvert.DeserializeObject(response.Content) };
         }
 
+        [HttpPost, HttpGet]
+        public object GetNotification(string clientId)
+        {
+            var availabelUrl = GetAvailableUrl();
+            var restClient = new RestClient(availabelUrl);
+
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/search/query/{BucketType}";
+            request.AddParameter("BucketType", ObjectUtil.GetClassName<NotificationModel>(), RestSharp.ParameterType.UrlSegment);
+            request.AddParameter("wt", "json");
+            request.AddParameter("omitHeader", "true");
+
+            request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
+            request.AddParameter("sort", "Seen_b,CreateOn_dt desc");
+            request.AddParameter("rows", "1000000");
+
+            var response = restClient.Execute<object>(request);
+
+            return new
+            {
+                success = true,
+                data = (response.StatusCode == System.Net.HttpStatusCode.OK) ?
+                    JsonConvert.DeserializeObject(response.Content) : null
+            };
+        }
+
+        [HttpPost, HttpGet]
+        public object GetMostView(string clientId)
+        {
+            var retObj = GetPageviewByDate(clientId, new DateTime(2015, 01, 01), DateTime.UtcNow);
+
+            JObject obj = JObject.Parse(retObj.ToJsonString());
+
+            var data = obj["data"]["facet_counts"]["facet_dates"]["CreateOn_dt"] as JObject;
+            var maxDate = "";
+            var maxViews = 0;
+
+            foreach (var item in data.Properties())
+            {
+                int view;
+                if (int.TryParse(item.Value.ToString(), out view))
+                {
+                    if (view > maxViews)
+                    {
+                        maxDate = item.Name;
+                        maxViews = view;
+                    }
+                }
+            }
+            return new 
+            {
+                success = true,
+                data = string.Format(@"{0}: {1}", maxDate, maxViews)
+            };
+        }
+
         private RestRequest ConstructRequest(string bucketType, string clientId, string fieldName)
         {
             var request = new RestRequest(Method.GET);
@@ -522,5 +581,10 @@ namespace SitebracoApi.Controllers.Eng
             //    url = url.Substring(0, url.Length - 1);
             return url;
         }
+    }
+
+    public class ViewByDate
+    {
+
     }
 }

@@ -355,6 +355,7 @@
     <Compile Include="Models\Eng\ClientInfoModel.cs" />
     <Compile Include="Models\Eng\EngBase.cs" />
     <Compile Include="Models\Eng\FeedbackModel.cs" />
+    <Compile Include="Models\Eng\NotificationModel.cs" />
     <Compile Include="Models\Eng\PageView.cs" />
     <Compile Include="Models\Eng\VisitorLogModel.cs" />
     <Compile Include="Models\Meta\ContentMetaModel.cs" />

@@ -191,6 +191,12 @@ namespace SitebracoApi.Controllers.Eng
             return new { success = data.Save() };
         }
 
+        [HttpPost, HttpGet]
+        public object CollectNotification(NotificationModel data)
+        {
+            return new { success = data.Save() };
+        }
+
         private string GetOperatingSystem()
         {
             SqlConnection connection = null;
