@@ -582,9 +582,4 @@ namespace SitebracoApi.Controllers.Eng
             return url;
         }
     }
-
-    public class ViewByDate
-    {
-
-    }
 }

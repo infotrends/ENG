@@ -18,6 +18,8 @@ namespace SitebracoApi.Controllers.Eng
             using (var db = new SitebracoEntities())
             {
                 db.ENG_UserSetting.Add(data);
+
+                db.SaveChanges();
             }
         }
 
@@ -32,6 +34,40 @@ namespace SitebracoApi.Controllers.Eng
                 {
                     return tmp.First();
                 }
+            }
+            return null;
+        }
+
+        [HttpPost, HttpGet]
+        public ENG_UserSetting Update(ENG_UserSetting data)
+        {
+            using (var db = new SitebracoEntities())
+            {
+                if (data.ClientId != null && data.ClientId != "")
+                {
+                    var tmp = db.ENG_UserSetting.Where(x => x.ClientId.Equals(data.ClientId)).FirstOrDefault();
+                    //update data
+                    if (data.MouseClickTracking != 0)
+                        tmp.MouseClickTracking = data.MouseClickTracking;
+
+                    if (data.MouseMoveTracking != 0)
+                        tmp.MouseMoveTracking = data.MouseMoveTracking;
+
+                    if (data.PageViewsCounter != 0)
+                        tmp.PageViewsCounter = data.PageViewsCounter;
+
+                    if (data.PageViewsRankingHigh != 0)
+                        tmp.PageViewsRankingHigh = data.PageViewsRankingHigh;
+
+                    if (data.PageViewsRankingLow != 0)
+                        tmp.PageViewsRankingLow = data.PageViewsRankingLow;
+
+                    if (data.PageViewsRankingMedium != 0)
+                        tmp.PageViewsRankingMedium = data.PageViewsRankingMedium;
+
+                    db.SaveChanges();
+                }
+
             }
             return null;
         }

@@ -48,7 +48,7 @@ namespace SitebracoApi.Controllers.Auth
             public string SessionKey { get; set; }
         }
 
-        [HttpPost, HttpOptions]
+        [HttpPost, HttpGet]
         public MemberProfileModel EngLogin(LoginParam p)
         {
             try
@@ -63,7 +63,7 @@ namespace SitebracoApi.Controllers.Auth
 
                     //Get Current Action
                     var currentAction = fakeService.GetCurrentAction(p.SessionKey);
-                    if (currentAction != "Error")
+                    if (!currentAction.Equals(""))
                     {
                         user.CurrentAction = currentAction;
                     }

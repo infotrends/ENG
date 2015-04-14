@@ -1,5 +1,6 @@
 ﻿using CorrugatedIron.Models;
 using RestSharp;
+using SitebracoApi.DbEntities;
 using SitebracoApi.Models;
 using SitebracoApi.Models.Eng;
 using System;
@@ -123,7 +124,7 @@ namespace SitebracoApi.Controllers.Eng
             var list = new List<RiakObject>();
             foreach (var item in data)
             {
-                item.IPAddress_s = HttpContext.Current.Request.UserHostAddress;                
+                item.IPAddress_s = HttpContext.Current.Request.UserHostAddress;
                 item.Position_s = string.Format("{0},{1}", item.PageX_i, item.PageY_i);
                 var riakObjId = new RiakObjectId(bucketType, bucketName, item.Id_s);
                 var riakObj = new RiakObject(riakObjId, item);
@@ -200,57 +201,34 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object CollectNotificationTest(NotificationModel data)
         {
-            return new { success = true, data = data};
+            return new { success = true, data = data };
         }
 
         private string GetOperatingSystem()
         {
-            SqlConnection connection = null;
-            try
+            var operatingSystem = "";
+            var userAgent = HttpContext.Current.Request.UserAgent;
+
+            using (var db = new SitebracoEntities())
             {
-                var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["umbracoDbDSN"].ConnectionString;
-                connection = new SqlConnection(connectionString);
-                connection.Open();
-
-                var sql = string.Format(@"SELECT Name, Alias FROM ENG_OS");
-                var command = new SqlCommand(sql, connection);
-                var reader = command.ExecuteReader();
-
-                var operatingSystem = "";
-                var userAgent = HttpContext.Current.Request.UserAgent;
-
-                while (reader.Read())
+                var osList = db.ENG_OS.ToList();
+                foreach (var os in osList)
                 {
-                    var alias = Convert.ToString(reader["Alias"]);
-
-                    var aliasList = Regex.Split(alias, @"\,");
+                    var aliasList = Regex.Split(os.Alias, @"\,");
                     var check = false;
                     foreach (var item in aliasList)
                     {
                         if (userAgent.Contains(item))
                         {
-                            operatingSystem = Convert.ToString(reader["Name"]);
+                            operatingSystem = os.Name;
                             check = true;
                             break;
                         }
                     }
                     if (check) break;
                 }
-
-                return operatingSystem;
             }
-            catch (Exception ex)
-            {
-                return ex.ToString();
-            }
-            finally
-            {
-                if (connection != null)
-                {
-                    connection.Close();
-                }
-            }
-
+            return operatingSystem;
         }
 
         private ClientIpInfo GetUserLocation(string ipAddress)

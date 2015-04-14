@@ -1,4 +1,5 @@
-﻿using SitebracoApi.Models.Auth;
+﻿using SitebracoApi.DbEntities;
+using SitebracoApi.Models.Auth;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -123,78 +124,35 @@ namespace SitebracoApi.Services.Auth
 
         public void AddToSession(string sessionKey, string CurrentAction)
         {
-            SqlConnection connection = null;
+            var IPAddress = HttpContext.Current.Request.UserHostAddress;
 
-            try
+            using (var db = new SitebracoEntities())
             {
-                var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["umbracoDbDSN"].ConnectionString;
-                connection = new SqlConnection(connectionString);
-                connection.Open();
+                var model = new ENG_Session();
 
-                var IPAddress = HttpContext.Current.Request.UserHostAddress;
+                model.CurrentAction = CurrentAction;
+                model.IPAddress = IPAddress;
+                model.SessionKey = sessionKey;
+                model.CreateOn = DateTime.UtcNow;
 
-                var sql = string.Format(@"INSERT 
-	                                    INTO ENG_Session(SessionKey, IPAddress, CurrentAction)
-	                                    VALUES ({0}, {1}, {2})", sessionKey, IPAddress, CurrentAction);
+                db.ENG_Session.Add(model);
 
-                var command = new SqlCommand(sql, connection);
-                command.ExecuteNonQuery();
-
-            }
-            catch (Exception ex)
-            {
-                //TODO
-            }
-            finally
-            {
-                if (connection != null)
-                {
-                    connection.Close();
-                }
+                db.SaveChanges();
             }
         }
 
         public string GetCurrentAction(string sessionKey)
         {
-
-            SqlConnection connection = null;
-            try
+            var action = "";
+            using (var db = new SitebracoEntities())
             {
-                var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["umbracoDbDSN"].ConnectionString;
-                connection = new SqlConnection(connectionString);
-
-                connection.Open();
-
-                var IPAddress = HttpContext.Current.Request.UserHostAddress;
-
-                var sql = string.Format(@"SELECT 
-	                    TOP 1 CurrentAction
-	                    FROM ENG_Session
-	                    WHERE SessionKey = {0} AND IPAddress = {1}
-	                    ORDER BY CreateOn DESC", sessionKey, IPAddress);
-
-                var command = new SqlCommand(sql, connection);
-                var reader = command.ExecuteReader();
-                var currentAction = "";
-                while (reader.Read())
+                var tmp = db.ENG_Session.Where(x => x.SessionKey.Equals(sessionKey)).OrderByDescending(x => x.CreateOn).FirstOrDefault();
+                if (tmp != null)
                 {
-                    currentAction = Convert.ToString(reader["CurrentAction"]);
-                    break;
-                }
-
-                return currentAction;
-            }
-            catch (Exception ex)
-            {
-                return "Error";
-            }
-            finally
-            {
-                if (connection != null)
-                {
-                    connection.Close();
+                    action = tmp.CurrentAction;
                 }
             }
+            return action;
         }
     }
         #endregion
