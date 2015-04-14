@@ -15,18 +15,24 @@ namespace SitebracoApi.DbEntities
 using System;
     using System.Collections.Generic;
     
-public partial class sysdiagram
+public partial class ENG_UserSetting
 {
 
-    public string name { get; set; }
+    public int ID { get; set; }
 
-    public int principal_id { get; set; }
+    public string ClientId { get; set; }
 
-    public int diagram_id { get; set; }
+    public Nullable<int> MouseMoveTracking { get; set; }
 
-    public Nullable<int> version { get; set; }
+    public Nullable<int> MouseClickTracking { get; set; }
 
-    public byte[] definition { get; set; }
+    public Nullable<int> PageViewsCounter { get; set; }
+
+    public Nullable<int> PageViewsRankingLow { get; set; }
+
+    public Nullable<int> PageViewsRankingMedium { get; set; }
+
+    public Nullable<int> PageViewsRankingHigh { get; set; }
 
 }
 

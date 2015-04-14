@@ -114,6 +114,7 @@
     <Compile Include="Controllers\ContentEditor\ContentTemplateController.cs" />
     <Compile Include="Controllers\Eng\EngQueryController.cs" />
     <Compile Include="Controllers\Eng\EngTrackController.cs" />
+    <Compile Include="Controllers\Eng\EngUserSettingController.cs" />
     <Compile Include="Controllers\WidgetContent\WidgetContentControllers.cs" />
     <Compile Include="Controllers\InternalCrm\ContentController.cs" />
     <Compile Include="Controllers\Meta\ContentMetaController.cs" />
@@ -227,6 +228,18 @@
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\Domain.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_OS.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_Session.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_TrackingList.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_UserSetting.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\new_MetaClassPrimaryLookup.cs">

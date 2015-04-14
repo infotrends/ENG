@@ -4,299 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SitebracoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="SitebracoModelStoreContainer">
-          <EntitySet Name="Actions" EntityType="SitebracoModel.Store.Actions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsContent" EntityType="SitebracoModel.Store.cmsContent" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsContentType" EntityType="SitebracoModel.Store.cmsContentType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsContentType2ContentType" EntityType="SitebracoModel.Store.cmsContentType2ContentType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsContentTypeAllowedContentType" EntityType="SitebracoModel.Store.cmsContentTypeAllowedContentType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsContentVersion" EntityType="SitebracoModel.Store.cmsContentVersion" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsContentXml" EntityType="SitebracoModel.Store.cmsContentXml" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsDataType" EntityType="SitebracoModel.Store.cmsDataType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsDataTypePreValues" EntityType="SitebracoModel.Store.cmsDataTypePreValues" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsDictionary" EntityType="SitebracoModel.Store.cmsDictionary" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsDocument" EntityType="SitebracoModel.Store.cmsDocument" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsDocumentType" EntityType="SitebracoModel.Store.cmsDocumentType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CMSImportCustomRelation" EntityType="SitebracoModel.Store.CMSImportCustomRelation" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CMSImportMediaRelation" EntityType="SitebracoModel.Store.CMSImportMediaRelation" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CMSImportRelation" EntityType="SitebracoModel.Store.CMSImportRelation" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CMSImportScheduledItems" EntityType="SitebracoModel.Store.CMSImportScheduledItems" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CMSImportScheduledTask" EntityType="SitebracoModel.Store.CMSImportScheduledTask" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CMSImportState" EntityType="SitebracoModel.Store.CMSImportState" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsLanguageText" EntityType="SitebracoModel.Store.cmsLanguageText" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsMacro" EntityType="SitebracoModel.Store.cmsMacro" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsMacroProperty" EntityType="SitebracoModel.Store.cmsMacroProperty" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsMember" EntityType="SitebracoModel.Store.cmsMember" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsMember2MemberGroup" EntityType="SitebracoModel.Store.cmsMember2MemberGroup" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsMemberType" EntityType="SitebracoModel.Store.cmsMemberType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsPreviewXml" EntityType="SitebracoModel.Store.cmsPreviewXml" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsPropertyData" EntityType="SitebracoModel.Store.cmsPropertyData" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsPropertyType" EntityType="SitebracoModel.Store.cmsPropertyType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsPropertyTypeGroup" EntityType="SitebracoModel.Store.cmsPropertyTypeGroup" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsStylesheet" EntityType="SitebracoModel.Store.cmsStylesheet" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsStylesheetProperty" EntityType="SitebracoModel.Store.cmsStylesheetProperty" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsTagRelationship" EntityType="SitebracoModel.Store.cmsTagRelationship" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsTags" EntityType="SitebracoModel.Store.cmsTags" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsTask" EntityType="SitebracoModel.Store.cmsTask" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsTaskType" EntityType="SitebracoModel.Store.cmsTaskType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="cmsTemplate" EntityType="SitebracoModel.Store.cmsTemplate" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Components" EntityType="SitebracoModel.Store.Components" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ContentSelectors" EntityType="SitebracoModel.Store.ContentSelectors" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="DataSnapshots" EntityType="SitebracoModel.Store.DataSnapshots" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Domains" EntityType="SitebracoModel.Store.Domains" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="new_MetaClassPrimaryLookup" EntityType="SitebracoModel.Store.new_MetaClassPrimaryLookup" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="new_OfficeTemplate" EntityType="SitebracoModel.Store.new_OfficeTemplate" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="new_OfficeTemplateVersion" EntityType="SitebracoModel.Store.new_OfficeTemplateVersion" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ProfilingAttributes" EntityType="SitebracoModel.Store.ProfilingAttributes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Reports" EntityType="SitebracoModel.Store.Reports" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Segments" EntityType="SitebracoModel.Store.Segments" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Settings" EntityType="SitebracoModel.Store.Settings" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="SitebracoModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TriggerActions" EntityType="SitebracoModel.Store.TriggerActions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TriggerRules" EntityType="SitebracoModel.Store.TriggerRules" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TriggerRuleTypes" EntityType="SitebracoModel.Store.TriggerRuleTypes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Triggers" EntityType="SitebracoModel.Store.Triggers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoDomains" EntityType="SitebracoModel.Store.umbracoDomains" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoLanguage" EntityType="SitebracoModel.Store.umbracoLanguage" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoLog" EntityType="SitebracoModel.Store.umbracoLog" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoNode" EntityType="SitebracoModel.Store.umbracoNode" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoRelation" EntityType="SitebracoModel.Store.umbracoRelation" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoRelationType" EntityType="SitebracoModel.Store.umbracoRelationType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoServer" EntityType="SitebracoModel.Store.umbracoServer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoUser" EntityType="SitebracoModel.Store.umbracoUser" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoUser2app" EntityType="SitebracoModel.Store.umbracoUser2app" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoUser2NodeNotify" EntityType="SitebracoModel.Store.umbracoUser2NodeNotify" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoUser2NodePermission" EntityType="SitebracoModel.Store.umbracoUser2NodePermission" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="umbracoUserLogins" EntityType="SitebracoModel.Store.umbracoUserLogins" store:Type="Tables" store:Schema="dbo" store:Name="umbracoUserLogins">
-            <DefiningQuery>SELECT 
-      [umbracoUserLogins].[contextID] AS [contextID], 
-      [umbracoUserLogins].[userID] AS [userID], 
-      [umbracoUserLogins].[timeout] AS [timeout]
-      FROM [dbo].[umbracoUserLogins] AS [umbracoUserLogins]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="umbracoUserType" EntityType="SitebracoModel.Store.umbracoUserType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="VisitorComponents" EntityType="SitebracoModel.Store.VisitorComponents" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Visitors" EntityType="SitebracoModel.Store.Visitors" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="VisitorSegments" EntityType="SitebracoModel.Store.VisitorSegments" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="VisitorTriggerRules" EntityType="SitebracoModel.Store.VisitorTriggerRules" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="new_MetaClassPrimaryView" EntityType="SitebracoModel.Store.new_MetaClassPrimaryView" store:Type="Views" store:Schema="dbo" store:Name="new_MetaClassPrimaryView">
-            <DefiningQuery>SELECT 
-      [new_MetaClassPrimaryView].[ClassId] AS [ClassId], 
-      [new_MetaClassPrimaryView].[ClassName] AS [ClassName], 
-      [new_MetaClassPrimaryView].[ClassIsArchived] AS [ClassIsArchived], 
-      [new_MetaClassPrimaryView].[PrimaryId] AS [PrimaryId], 
-      [new_MetaClassPrimaryView].[PrimaryName] AS [PrimaryName], 
-      [new_MetaClassPrimaryView].[PrimaryIsArchived] AS [PrimaryIsArchived]
-      FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_ActionTriggerAction" Association="SitebracoModel.Store.FK_ActionTriggerAction">
-            <End Role="Actions" EntitySet="Actions" />
-            <End Role="TriggerActions" EntitySet="TriggerActions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsContent_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsContent_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsContent" EntitySet="cmsContent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsContentType_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsContentType_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsContentType" EntitySet="cmsContentType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsContentType2ContentType_umbracoNode_child" Association="SitebracoModel.Store.FK_cmsContentType2ContentType_umbracoNode_child">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsContentType2ContentType" EntitySet="cmsContentType2ContentType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsContentType2ContentType_umbracoNode_parent" Association="SitebracoModel.Store.FK_cmsContentType2ContentType_umbracoNode_parent">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsContentType2ContentType" EntitySet="cmsContentType2ContentType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsDataType_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsDataType_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsDataType" EntitySet="cmsDataType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsDocument_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsDocument_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsDocument" EntitySet="cmsDocument" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsDocumentType_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsDocumentType_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsDocumentType" EntitySet="cmsDocumentType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsMacroProperty_cmsMacro_id" Association="SitebracoModel.Store.FK_cmsMacroProperty_cmsMacro_id">
-            <End Role="cmsMacro" EntitySet="cmsMacro" />
-            <End Role="cmsMacroProperty" EntitySet="cmsMacroProperty" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsMember_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsMember_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsMember" EntitySet="cmsMember" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsMember2MemberGroup_cmsMember_nodeId" Association="SitebracoModel.Store.FK_cmsMember2MemberGroup_cmsMember_nodeId">
-            <End Role="cmsMember" EntitySet="cmsMember" />
-            <End Role="cmsMember2MemberGroup" EntitySet="cmsMember2MemberGroup" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsMember2MemberGroup_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsMember2MemberGroup_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsMember2MemberGroup" EntitySet="cmsMember2MemberGroup" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsMemberType_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsMemberType_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsMemberType" EntitySet="cmsMemberType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsPropertyData_cmsPropertyType_id" Association="SitebracoModel.Store.FK_cmsPropertyData_cmsPropertyType_id">
-            <End Role="cmsPropertyType" EntitySet="cmsPropertyType" />
-            <End Role="cmsPropertyData" EntitySet="cmsPropertyData" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsPropertyData_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsPropertyData_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsPropertyData" EntitySet="cmsPropertyData" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsPropertyType_cmsPropertyTypeGroup_id" Association="SitebracoModel.Store.FK_cmsPropertyType_cmsPropertyTypeGroup_id">
-            <End Role="cmsPropertyTypeGroup" EntitySet="cmsPropertyTypeGroup" />
-            <End Role="cmsPropertyType" EntitySet="cmsPropertyType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsPropertyTypeGroup_cmsPropertyTypeGroup_id" Association="SitebracoModel.Store.FK_cmsPropertyTypeGroup_cmsPropertyTypeGroup_id">
-            <End Role="cmsPropertyTypeGroup" EntitySet="cmsPropertyTypeGroup" />
-            <End Role="cmsPropertyTypeGroup1" EntitySet="cmsPropertyTypeGroup" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsStylesheet_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsStylesheet_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsStylesheet" EntitySet="cmsStylesheet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsTagRelationship_cmsPropertyType" Association="SitebracoModel.Store.FK_cmsTagRelationship_cmsPropertyType">
-            <End Role="cmsPropertyType" EntitySet="cmsPropertyType" />
-            <End Role="cmsTagRelationship" EntitySet="cmsTagRelationship" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsTagRelationship_cmsTags_id" Association="SitebracoModel.Store.FK_cmsTagRelationship_cmsTags_id">
-            <End Role="cmsTags" EntitySet="cmsTags" />
-            <End Role="cmsTagRelationship" EntitySet="cmsTagRelationship" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsTags_cmsTags" Association="SitebracoModel.Store.FK_cmsTags_cmsTags">
-            <End Role="cmsTags" EntitySet="cmsTags" />
-            <End Role="cmsTags1" EntitySet="cmsTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsTask_cmsTaskType_id" Association="SitebracoModel.Store.FK_cmsTask_cmsTaskType_id">
-            <End Role="cmsTaskType" EntitySet="cmsTaskType" />
-            <End Role="cmsTask" EntitySet="cmsTask" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsTask_umbracoNode_id" Association="SitebracoModel.Store.FK_cmsTask_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsTask" EntitySet="cmsTask" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsTask_umbracoUser" Association="SitebracoModel.Store.FK_cmsTask_umbracoUser">
-            <End Role="umbracoUser" EntitySet="umbracoUser" />
-            <End Role="cmsTask" EntitySet="cmsTask" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsTask_umbracoUser1" Association="SitebracoModel.Store.FK_cmsTask_umbracoUser1">
-            <End Role="umbracoUser" EntitySet="umbracoUser" />
-            <End Role="cmsTask" EntitySet="cmsTask" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsTemplate_cmsTemplate" Association="SitebracoModel.Store.FK_cmsTemplate_cmsTemplate">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsTemplate" EntitySet="cmsTemplate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cmsTemplate_umbracoNode" Association="SitebracoModel.Store.FK_cmsTemplate_umbracoNode">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="cmsTemplate" EntitySet="cmsTemplate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_new_MetaClassPrimaryLookup_Components" Association="SitebracoModel.Store.FK_new_MetaClassPrimaryLookup_Components">
-            <End Role="Components" EntitySet="Components" />
-            <End Role="new_MetaClassPrimaryLookup" EntitySet="new_MetaClassPrimaryLookup" />
-          </AssociationSet>
-          <AssociationSet Name="FK_new_OfficeTemplateVersion_new_OfficeTemplate" Association="SitebracoModel.Store.FK_new_OfficeTemplateVersion_new_OfficeTemplate">
-            <End Role="new_OfficeTemplate" EntitySet="new_OfficeTemplate" />
-            <End Role="new_OfficeTemplateVersion" EntitySet="new_OfficeTemplateVersion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProfilingAttributeComponent" Association="SitebracoModel.Store.FK_ProfilingAttributeComponent">
-            <End Role="ProfilingAttributes" EntitySet="ProfilingAttributes" />
-            <End Role="Components" EntitySet="Components" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TriggerRuleTriggerRuleType" Association="SitebracoModel.Store.FK_TriggerRuleTriggerRuleType">
-            <End Role="TriggerRuleTypes" EntitySet="TriggerRuleTypes" />
-            <End Role="TriggerRules" EntitySet="TriggerRules" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TriggerTriggerAction" Association="SitebracoModel.Store.FK_TriggerTriggerAction">
-            <End Role="Triggers" EntitySet="Triggers" />
-            <End Role="TriggerActions" EntitySet="TriggerActions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TriggerTriggerRule" Association="SitebracoModel.Store.FK_TriggerTriggerRule">
-            <End Role="Triggers" EntitySet="Triggers" />
-            <End Role="TriggerRules" EntitySet="TriggerRules" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoDomains_umbracoNode_id" Association="SitebracoModel.Store.FK_umbracoDomains_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="umbracoDomains" EntitySet="umbracoDomains" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoNode_umbracoNode_id" Association="SitebracoModel.Store.FK_umbracoNode_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="umbracoNode1" EntitySet="umbracoNode" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoRelation_umbracoNode" Association="SitebracoModel.Store.FK_umbracoRelation_umbracoNode">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="umbracoRelation" EntitySet="umbracoRelation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoRelation_umbracoNode1" Association="SitebracoModel.Store.FK_umbracoRelation_umbracoNode1">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="umbracoRelation" EntitySet="umbracoRelation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoRelation_umbracoRelationType_id" Association="SitebracoModel.Store.FK_umbracoRelation_umbracoRelationType_id">
-            <End Role="umbracoRelationType" EntitySet="umbracoRelationType" />
-            <End Role="umbracoRelation" EntitySet="umbracoRelation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoUser_umbracoUserType_id" Association="SitebracoModel.Store.FK_umbracoUser_umbracoUserType_id">
-            <End Role="umbracoUserType" EntitySet="umbracoUserType" />
-            <End Role="umbracoUser" EntitySet="umbracoUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoUser2app_umbracoUser_id" Association="SitebracoModel.Store.FK_umbracoUser2app_umbracoUser_id">
-            <End Role="umbracoUser" EntitySet="umbracoUser" />
-            <End Role="umbracoUser2app" EntitySet="umbracoUser2app" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoUser2NodeNotify_umbracoNode_id" Association="SitebracoModel.Store.FK_umbracoUser2NodeNotify_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="umbracoUser2NodeNotify" EntitySet="umbracoUser2NodeNotify" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoUser2NodeNotify_umbracoUser_id" Association="SitebracoModel.Store.FK_umbracoUser2NodeNotify_umbracoUser_id">
-            <End Role="umbracoUser" EntitySet="umbracoUser" />
-            <End Role="umbracoUser2NodeNotify" EntitySet="umbracoUser2NodeNotify" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoUser2NodePermission_umbracoNode_id" Association="SitebracoModel.Store.FK_umbracoUser2NodePermission_umbracoNode_id">
-            <End Role="umbracoNode" EntitySet="umbracoNode" />
-            <End Role="umbracoUser2NodePermission" EntitySet="umbracoUser2NodePermission" />
-          </AssociationSet>
-          <AssociationSet Name="FK_umbracoUser2NodePermission_umbracoUser_id" Association="SitebracoModel.Store.FK_umbracoUser2NodePermission_umbracoUser_id">
-            <End Role="umbracoUser" EntitySet="umbracoUser" />
-            <End Role="umbracoUser2NodePermission" EntitySet="umbracoUser2NodePermission" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VisitorComponentComponent" Association="SitebracoModel.Store.FK_VisitorComponentComponent">
-            <End Role="Components" EntitySet="Components" />
-            <End Role="VisitorComponents" EntitySet="VisitorComponents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VisitorSegmentSegment" Association="SitebracoModel.Store.FK_VisitorSegmentSegment">
-            <End Role="Segments" EntitySet="Segments" />
-            <End Role="VisitorSegments" EntitySet="VisitorSegments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VisitorTriggerRuleTriggerRule" Association="SitebracoModel.Store.FK_VisitorTriggerRuleTriggerRule">
-            <End Role="TriggerRules" EntitySet="TriggerRules" />
-            <End Role="VisitorTriggerRules" EntitySet="VisitorTriggerRules" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VisitorVisitorComponent" Association="SitebracoModel.Store.FK_VisitorVisitorComponent">
-            <End Role="Visitors" EntitySet="Visitors" />
-            <End Role="VisitorComponents" EntitySet="VisitorComponents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VisitorVisitorSegment" Association="SitebracoModel.Store.FK_VisitorVisitorSegment">
-            <End Role="Visitors" EntitySet="Visitors" />
-            <End Role="VisitorSegments" EntitySet="VisitorSegments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VisitorVisitorTriggerRule" Association="SitebracoModel.Store.FK_VisitorVisitorTriggerRule">
-            <End Role="Visitors" EntitySet="Visitors" />
-            <End Role="VisitorTriggerRules" EntitySet="VisitorTriggerRules" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="SitebracoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actions">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="TypeCode" Type="int" Nullable="false" />
           <Property Name="PropertyBag" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
@@ -304,7 +18,7 @@
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nodeId" Type="int" Nullable="false" />
           <Property Name="contentType" Type="int" Nullable="false" />
         </EntityType>
@@ -312,11 +26,11 @@
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nodeId" Type="int" Nullable="false" />
           <Property Name="alias" Type="nvarchar" MaxLength="255" />
           <Property Name="icon" Type="nvarchar" MaxLength="255" />
-          <Property Name="thumbnail" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="thumbnail" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="1500" />
           <Property Name="isContainer" Type="bit" Nullable="false" />
           <Property Name="allowAtRoot" Type="bit" Nullable="false" />
@@ -342,7 +56,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ContentId" Type="int" Nullable="false" />
           <Property Name="VersionId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="VersionDate" Type="datetime" Nullable="false" />
@@ -359,18 +73,18 @@
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nodeId" Type="int" Nullable="false" />
-          <Property Name="propertyEditorAlias" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="dbType" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="propertyEditorAlias" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="dbType" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="cmsDataTypePreValues">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="datatypeNodeId" Type="int" Nullable="false" />
-          <Property Name="value" Type="nvarchar" MaxLength="2500" />
+          <Property Name="value" Type="ntext" />
           <Property Name="sortorder" Type="int" Nullable="false" />
           <Property Name="alias" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -378,10 +92,10 @@
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="parent" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="key" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="key" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="cmsDocument">
           <Key>
@@ -391,12 +105,11 @@
           <Property Name="published" Type="bit" Nullable="false" />
           <Property Name="documentUser" Type="int" Nullable="false" />
           <Property Name="versionId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="text" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="text" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="releaseDate" Type="datetime" />
           <Property Name="expireDate" Type="datetime" />
           <Property Name="updateDate" Type="datetime" Nullable="false" />
           <Property Name="templateId" Type="int" />
-          <Property Name="alias" Type="nvarchar" MaxLength="255" />
           <Property Name="newest" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="cmsDocumentType">
@@ -412,34 +125,34 @@
           <Key>
             <PropertyRef Name="CustomRelationId" />
           </Key>
-          <Property Name="CustomRelationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomRelationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UmbracoId" Type="int" Nullable="false" />
-          <Property Name="Alias" Type="nvarchar" Nullable="false" MaxLength="250" />
-          <Property Name="DataSourceKey" Type="nvarchar" Nullable="false" MaxLength="250" />
-          <Property Name="RelatedId" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="DataSourceKey" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="RelatedId" Type="nvarchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="CMSImportMediaRelation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UmbracoMediaId" Type="int" Nullable="false" />
-          <Property Name="SourceUrl" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="SourceUrl" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="CMSImportRelation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UmbracoID" Type="int" Nullable="false" />
           <Property Name="UmbracoParentId" Type="int" Nullable="false" />
-          <Property Name="DataSourceKey" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DataSourceKey" Type="nvarchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="CMSImportScheduledItems">
           <Key>
             <PropertyRef Name="ScheduledItemId" />
           </Key>
-          <Property Name="ScheduledItemId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ScheduledItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ScheduleldTaskId" Type="int" Nullable="false" />
           <Property Name="ScheduledOn" Type="smalldatetime" Nullable="false" />
           <Property Name="ExecutedOn" Type="smalldatetime" />
@@ -449,13 +162,13 @@
           <Key>
             <PropertyRef Name="ScheduleId" />
           </Key>
-          <Property Name="ScheduleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ScheduleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ScheduleGUID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ImportStateGUID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ScheduledTaskName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="NotifyEmailAddress" Type="nvarchar" Nullable="false" MaxLength="250" />
-          <Property Name="ExecuteEvery" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ExecuteDays" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ScheduledTaskName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NotifyEmailAddress" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ExecuteEvery" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExecuteDays" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ExecuteHour" Type="int" Nullable="false" />
           <Property Name="ExecuteMinute" Type="int" Nullable="false" />
           <Property Name="ImportAsUser" Type="int" />
@@ -464,10 +177,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UniqueIdentifier" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
-          <Property Name="ImportType" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ImportType" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ImportState" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Recursive" Type="bit" />
           <Property Name="Parent" Type="uniqueidentifier" />
@@ -476,19 +189,19 @@
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="languageId" Type="int" Nullable="false" />
           <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="value" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="value" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="cmsMacro">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="macroUseInEditor" Type="bit" Nullable="false" />
           <Property Name="macroRefreshRate" Type="int" Nullable="false" />
-          <Property Name="macroAlias" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="macroAlias" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="macroName" Type="nvarchar" MaxLength="255" />
           <Property Name="macroScriptType" Type="nvarchar" MaxLength="255" />
           <Property Name="macroScriptAssembly" Type="nvarchar" MaxLength="255" />
@@ -502,21 +215,21 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="editorAlias" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="editorAlias" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="macro" Type="int" Nullable="false" />
           <Property Name="macroPropertySortOrder" Type="int" Nullable="false" />
-          <Property Name="macroPropertyAlias" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="macroPropertyName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="macroPropertyAlias" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="macroPropertyName" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="cmsMember">
           <Key>
             <PropertyRef Name="nodeId" />
           </Key>
           <Property Name="nodeId" Type="int" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="1000" />
-          <Property Name="LoginName" Type="nvarchar" Nullable="false" MaxLength="1000" />
-          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="Email" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="cmsMember2MemberGroup">
           <Key>
@@ -530,7 +243,7 @@
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NodeId" Type="int" Nullable="false" />
           <Property Name="propertytypeId" Type="int" Nullable="false" />
           <Property Name="memberCanEdit" Type="bit" Nullable="false" />
@@ -550,7 +263,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="contentNodeId" Type="int" Nullable="false" />
           <Property Name="versionId" Type="uniqueidentifier" />
           <Property Name="propertytypeid" Type="int" Nullable="false" />
@@ -563,11 +276,11 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dataTypeId" Type="int" Nullable="false" />
           <Property Name="contentTypeId" Type="int" Nullable="false" />
           <Property Name="propertyTypeGroupId" Type="int" />
-          <Property Name="Alias" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
           <Property Name="helpText" Type="nvarchar" MaxLength="1000" />
           <Property Name="sortOrder" Type="int" Nullable="false" />
@@ -579,10 +292,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="parentGroupId" Type="int" />
           <Property Name="contenttypeNodeId" Type="int" Nullable="false" />
-          <Property Name="text" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="text" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="sortorder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="cmsStylesheet">
@@ -590,7 +303,7 @@
             <PropertyRef Name="nodeId" />
           </Key>
           <Property Name="nodeId" Type="int" Nullable="false" />
-          <Property Name="filename" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="filename" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="content" Type="ntext" />
         </EntityType>
         <EntityType Name="cmsStylesheetProperty">
@@ -616,7 +329,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tag" Type="nvarchar" MaxLength="200" />
           <Property Name="ParentId" Type="int" />
           <Property Name="group" Type="nvarchar" MaxLength="100" />
@@ -626,7 +339,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="closed" Type="bit" Nullable="false" />
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="taskTypeId" Type="int" Nullable="false" />
           <Property Name="nodeId" Type="int" Nullable="false" />
           <Property Name="parentUserId" Type="int" Nullable="false" />
@@ -638,14 +351,14 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="alias" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alias" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="cmsTemplate">
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nodeId" Type="int" Nullable="false" />
           <Property Name="master" Type="int" />
           <Property Name="alias" Type="nvarchar" MaxLength="100" />
@@ -655,8 +368,8 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="ProfilingAttributeId" Type="int" Nullable="false" />
           <Property Name="IsArchived" Type="bit" Nullable="false" />
         </EntityType>
@@ -664,9 +377,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="DisplayName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="Alias" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="TypeCode" Type="int" Nullable="false" />
           <Property Name="PropertyBag" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsArchived" Type="bit" Nullable="false" />
@@ -675,7 +388,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DateStamp" Type="int" Nullable="false" />
           <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
@@ -683,9 +396,47 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="LicenseKey" Type="nvarchar" Nullable="false" MaxLength="1024" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LicenseKey" Type="nvarchar" MaxLength="1024" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ENG_OS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ENG_Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionKey" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+          <Property Name="CurrentAction" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ENG_TrackingList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ENG_UserSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar(max)" />
+          <Property Name="MouseMoveTracking" Type="int" />
+          <Property Name="MouseClickTracking" Type="int" />
+          <Property Name="PageViewsCounter" Type="int" />
+          <Property Name="PageViewsRankingLow" Type="int" />
+          <Property Name="PageViewsRankingMedium" Type="int" />
+          <Property Name="PageViewsRankingHigh" Type="int" />
         </EntityType>
         <EntityType Name="new_MetaClassPrimaryLookup">
           <Key>
@@ -723,27 +474,27 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsArchived" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="DisplayName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="Alias" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Alias" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="PropertyBag" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ReportClass" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="ReportClass" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Segments">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="LifetimeSeconds" Type="int" Nullable="false" />
           <Property Name="IsArchived" Type="bit" Nullable="false" />
         </EntityType>
@@ -751,18 +502,18 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="TextValue" Type="nvarchar(max)" />
-          <Property Name="DecimalValue" Type="decimal" />
+          <Property Name="DecimalValue" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
@@ -779,7 +530,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TriggerId" Type="int" Nullable="false" />
           <Property Name="TriggerRuleTypeId" Type="int" Nullable="false" />
           <Property Name="PropertyBag" Type="nvarchar(max)" Nullable="false" />
@@ -791,30 +542,30 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="EvaluatorClass" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EvaluatorClass" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="Triggers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="umbracoDomains">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="domainDefaultLanguage" Type="int" />
           <Property Name="domainRootStructureID" Type="int" />
-          <Property Name="domainName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="domainName" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="umbracoLanguage">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="languageISOCode" Type="nvarchar" MaxLength="10" />
           <Property Name="languageCultureName" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -822,23 +573,23 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userId" Type="int" Nullable="false" />
           <Property Name="NodeId" Type="int" Nullable="false" />
           <Property Name="Datestamp" Type="datetime" Nullable="false" />
-          <Property Name="logHeader" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="logComment" Type="nvarchar" />
+          <Property Name="logHeader" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="logComment" Type="nvarchar" MaxLength="4000" />
         </EntityType>
         <EntityType Name="umbracoNode">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="trashed" Type="bit" Nullable="false" />
           <Property Name="parentID" Type="int" Nullable="false" />
           <Property Name="nodeUser" Type="int" />
           <Property Name="level" Type="int" Nullable="false" />
-          <Property Name="path" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="path" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="sortOrder" Type="int" Nullable="false" />
           <Property Name="uniqueID" Type="uniqueidentifier" />
           <Property Name="text" Type="nvarchar" MaxLength="255" />
@@ -849,31 +600,31 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="parentId" Type="int" Nullable="false" />
           <Property Name="childId" Type="int" Nullable="false" />
           <Property Name="relType" Type="int" Nullable="false" />
           <Property Name="datetime" Type="datetime" Nullable="false" />
-          <Property Name="comment" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="comment" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="umbracoRelationType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dual" Type="bit" Nullable="false" />
           <Property Name="parentObjectType" Type="uniqueidentifier" Nullable="false" />
           <Property Name="childObjectType" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="alias" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="umbracoServer">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="address" Type="nvarchar" Nullable="false" MaxLength="500" />
-          <Property Name="computerName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="computerName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="registeredDate" Type="datetime" Nullable="false" />
           <Property Name="lastNotifiedDate" Type="datetime" Nullable="false" />
           <Property Name="isActive" Type="bit" Nullable="false" />
@@ -882,16 +633,16 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userDisabled" Type="bit" Nullable="false" />
           <Property Name="userNoConsole" Type="bit" Nullable="false" />
           <Property Name="userType" Type="int" Nullable="false" />
           <Property Name="startStructureID" Type="int" Nullable="false" />
           <Property Name="startMediaID" Type="int" />
-          <Property Name="userName" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="userLogin" Type="nvarchar" Nullable="false" MaxLength="125" />
-          <Property Name="userPassword" Type="nvarchar" Nullable="false" MaxLength="500" />
-          <Property Name="userEmail" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="userName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="userLogin" Type="nvarchar" MaxLength="125" Nullable="false" />
+          <Property Name="userPassword" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="userEmail" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="userLanguage" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="umbracoUser2app">
@@ -900,7 +651,7 @@
             <PropertyRef Name="app" />
           </Key>
           <Property Name="user" Type="int" Nullable="false" />
-          <Property Name="app" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="app" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="umbracoUser2NodeNotify">
           <Key>
@@ -910,7 +661,7 @@
           </Key>
           <Property Name="userId" Type="int" Nullable="false" />
           <Property Name="nodeId" Type="int" Nullable="false" />
-          <Property Name="action" Type="nchar" Nullable="false" MaxLength="1" />
+          <Property Name="action" Type="nchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="umbracoUser2NodePermission">
           <Key>
@@ -920,11 +671,10 @@
           </Key>
           <Property Name="userId" Type="int" Nullable="false" />
           <Property Name="nodeId" Type="int" Nullable="false" />
-          <Property Name="permission" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="permission" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'Umbraco.dbo.umbracoUserLogins' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'Sitebraco.dbo.umbracoUserLogins' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="umbracoUserLogins">
           <Key>
             <PropertyRef Name="contextID" />
@@ -939,9 +689,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userTypeAlias" Type="nvarchar" MaxLength="50" />
-          <Property Name="userTypeName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="userTypeName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="userTypeDefaultPermissions" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="VisitorComponents">
@@ -957,12 +707,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstVisit" Type="datetime" Nullable="false" />
           <Property Name="LastVisit" Type="datetime" Nullable="false" />
           <Property Name="TrackingStatusCode" Type="int" Nullable="false" />
-          <Property Name="UserHostAddress" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="UserAgent" Type="nvarchar" Nullable="false" MaxLength="1024" />
+          <Property Name="UserHostAddress" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserAgent" Type="nvarchar" MaxLength="1024" Nullable="false" />
           <Property Name="FacebookId" Type="bigint" />
           <Property Name="FacebookToken" Type="nvarchar" MaxLength="1024" />
         </EntityType>
@@ -986,8 +736,7 @@
           <Property Name="VisitorId" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'Umbraco.dbo.new_MetaClassPrimaryView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="new_MetaClassPrimaryView">
           <Key>
             <PropertyRef Name="ClassId" />
@@ -998,15 +747,15 @@
             <PropertyRef Name="PrimaryIsArchived" />
           </Key>
           <Property Name="ClassId" Type="int" Nullable="false" />
-          <Property Name="ClassName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="ClassIsArchived" Type="bit" Nullable="false" />
           <Property Name="PrimaryId" Type="int" Nullable="false" />
-          <Property Name="PrimaryName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="PrimaryName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="PrimaryIsArchived" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ActionTriggerAction">
-          <End Role="Actions" Type="SitebracoModel.Store.Actions" Multiplicity="1" />
-          <End Role="TriggerActions" Type="SitebracoModel.Store.TriggerActions" Multiplicity="*" />
+          <End Role="Actions" Type="Self.Actions" Multiplicity="1" />
+          <End Role="TriggerActions" Type="Self.TriggerActions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Actions">
               <PropertyRef Name="Id" />
@@ -1017,8 +766,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsContent_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsContent" Type="SitebracoModel.Store.cmsContent" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsContent" Type="Self.cmsContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1029,8 +778,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsContentType_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsContentType" Type="SitebracoModel.Store.cmsContentType" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsContentType" Type="Self.cmsContentType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1041,8 +790,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsContentType2ContentType_umbracoNode_child">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsContentType2ContentType" Type="SitebracoModel.Store.cmsContentType2ContentType" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsContentType2ContentType" Type="Self.cmsContentType2ContentType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1053,8 +802,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsContentType2ContentType_umbracoNode_parent">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsContentType2ContentType" Type="SitebracoModel.Store.cmsContentType2ContentType" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsContentType2ContentType" Type="Self.cmsContentType2ContentType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1065,8 +814,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsDataType_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsDataType" Type="SitebracoModel.Store.cmsDataType" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsDataType" Type="Self.cmsDataType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1077,8 +826,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsDocument_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsDocument" Type="SitebracoModel.Store.cmsDocument" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsDocument" Type="Self.cmsDocument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1089,8 +838,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsDocumentType_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsDocumentType" Type="SitebracoModel.Store.cmsDocumentType" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsDocumentType" Type="Self.cmsDocumentType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1101,8 +850,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsMacroProperty_cmsMacro_id">
-          <End Role="cmsMacro" Type="SitebracoModel.Store.cmsMacro" Multiplicity="1" />
-          <End Role="cmsMacroProperty" Type="SitebracoModel.Store.cmsMacroProperty" Multiplicity="*" />
+          <End Role="cmsMacro" Type="Self.cmsMacro" Multiplicity="1" />
+          <End Role="cmsMacroProperty" Type="Self.cmsMacroProperty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cmsMacro">
               <PropertyRef Name="id" />
@@ -1113,8 +862,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsMember_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsMember" Type="SitebracoModel.Store.cmsMember" Multiplicity="0..1" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsMember" Type="Self.cmsMember" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1125,8 +874,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsMember2MemberGroup_cmsMember_nodeId">
-          <End Role="cmsMember" Type="SitebracoModel.Store.cmsMember" Multiplicity="1" />
-          <End Role="cmsMember2MemberGroup" Type="SitebracoModel.Store.cmsMember2MemberGroup" Multiplicity="*" />
+          <End Role="cmsMember" Type="Self.cmsMember" Multiplicity="1" />
+          <End Role="cmsMember2MemberGroup" Type="Self.cmsMember2MemberGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cmsMember">
               <PropertyRef Name="nodeId" />
@@ -1137,8 +886,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsMember2MemberGroup_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsMember2MemberGroup" Type="SitebracoModel.Store.cmsMember2MemberGroup" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsMember2MemberGroup" Type="Self.cmsMember2MemberGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1149,8 +898,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsMemberType_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsMemberType" Type="SitebracoModel.Store.cmsMemberType" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsMemberType" Type="Self.cmsMemberType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1161,8 +910,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsPropertyData_cmsPropertyType_id">
-          <End Role="cmsPropertyType" Type="SitebracoModel.Store.cmsPropertyType" Multiplicity="1" />
-          <End Role="cmsPropertyData" Type="SitebracoModel.Store.cmsPropertyData" Multiplicity="*" />
+          <End Role="cmsPropertyType" Type="Self.cmsPropertyType" Multiplicity="1" />
+          <End Role="cmsPropertyData" Type="Self.cmsPropertyData" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cmsPropertyType">
               <PropertyRef Name="id" />
@@ -1173,8 +922,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsPropertyData_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsPropertyData" Type="SitebracoModel.Store.cmsPropertyData" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsPropertyData" Type="Self.cmsPropertyData" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1185,8 +934,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsPropertyType_cmsPropertyTypeGroup_id">
-          <End Role="cmsPropertyTypeGroup" Type="SitebracoModel.Store.cmsPropertyTypeGroup" Multiplicity="0..1" />
-          <End Role="cmsPropertyType" Type="SitebracoModel.Store.cmsPropertyType" Multiplicity="*" />
+          <End Role="cmsPropertyTypeGroup" Type="Self.cmsPropertyTypeGroup" Multiplicity="0..1" />
+          <End Role="cmsPropertyType" Type="Self.cmsPropertyType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cmsPropertyTypeGroup">
               <PropertyRef Name="id" />
@@ -1197,8 +946,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsPropertyTypeGroup_cmsPropertyTypeGroup_id">
-          <End Role="cmsPropertyTypeGroup" Type="SitebracoModel.Store.cmsPropertyTypeGroup" Multiplicity="0..1" />
-          <End Role="cmsPropertyTypeGroup1" Type="SitebracoModel.Store.cmsPropertyTypeGroup" Multiplicity="*" />
+          <End Role="cmsPropertyTypeGroup" Type="Self.cmsPropertyTypeGroup" Multiplicity="0..1" />
+          <End Role="cmsPropertyTypeGroup1" Type="Self.cmsPropertyTypeGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cmsPropertyTypeGroup">
               <PropertyRef Name="id" />
@@ -1209,8 +958,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsStylesheet_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsStylesheet" Type="SitebracoModel.Store.cmsStylesheet" Multiplicity="0..1" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsStylesheet" Type="Self.cmsStylesheet" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1221,8 +970,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsTagRelationship_cmsPropertyType">
-          <End Role="cmsPropertyType" Type="SitebracoModel.Store.cmsPropertyType" Multiplicity="1" />
-          <End Role="cmsTagRelationship" Type="SitebracoModel.Store.cmsTagRelationship" Multiplicity="*" />
+          <End Role="cmsPropertyType" Type="Self.cmsPropertyType" Multiplicity="1" />
+          <End Role="cmsTagRelationship" Type="Self.cmsTagRelationship" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cmsPropertyType">
               <PropertyRef Name="id" />
@@ -1233,8 +982,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsTagRelationship_cmsTags_id">
-          <End Role="cmsTags" Type="SitebracoModel.Store.cmsTags" Multiplicity="1" />
-          <End Role="cmsTagRelationship" Type="SitebracoModel.Store.cmsTagRelationship" Multiplicity="*" />
+          <End Role="cmsTags" Type="Self.cmsTags" Multiplicity="1" />
+          <End Role="cmsTagRelationship" Type="Self.cmsTagRelationship" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cmsTags">
               <PropertyRef Name="id" />
@@ -1245,8 +994,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsTags_cmsTags">
-          <End Role="cmsTags" Type="SitebracoModel.Store.cmsTags" Multiplicity="0..1" />
-          <End Role="cmsTags1" Type="SitebracoModel.Store.cmsTags" Multiplicity="*" />
+          <End Role="cmsTags" Type="Self.cmsTags" Multiplicity="0..1" />
+          <End Role="cmsTags1" Type="Self.cmsTags" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cmsTags">
               <PropertyRef Name="id" />
@@ -1257,8 +1006,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsTask_cmsTaskType_id">
-          <End Role="cmsTaskType" Type="SitebracoModel.Store.cmsTaskType" Multiplicity="1" />
-          <End Role="cmsTask" Type="SitebracoModel.Store.cmsTask" Multiplicity="*" />
+          <End Role="cmsTaskType" Type="Self.cmsTaskType" Multiplicity="1" />
+          <End Role="cmsTask" Type="Self.cmsTask" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cmsTaskType">
               <PropertyRef Name="id" />
@@ -1269,8 +1018,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsTask_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsTask" Type="SitebracoModel.Store.cmsTask" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsTask" Type="Self.cmsTask" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1281,8 +1030,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsTask_umbracoUser">
-          <End Role="umbracoUser" Type="SitebracoModel.Store.umbracoUser" Multiplicity="1" />
-          <End Role="cmsTask" Type="SitebracoModel.Store.cmsTask" Multiplicity="*" />
+          <End Role="umbracoUser" Type="Self.umbracoUser" Multiplicity="1" />
+          <End Role="cmsTask" Type="Self.cmsTask" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoUser">
               <PropertyRef Name="id" />
@@ -1293,8 +1042,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsTask_umbracoUser1">
-          <End Role="umbracoUser" Type="SitebracoModel.Store.umbracoUser" Multiplicity="1" />
-          <End Role="cmsTask" Type="SitebracoModel.Store.cmsTask" Multiplicity="*" />
+          <End Role="umbracoUser" Type="Self.umbracoUser" Multiplicity="1" />
+          <End Role="cmsTask" Type="Self.cmsTask" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoUser">
               <PropertyRef Name="id" />
@@ -1305,8 +1054,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsTemplate_cmsTemplate">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="0..1" />
-          <End Role="cmsTemplate" Type="SitebracoModel.Store.cmsTemplate" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="0..1" />
+          <End Role="cmsTemplate" Type="Self.cmsTemplate" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1317,8 +1066,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cmsTemplate_umbracoNode">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="cmsTemplate" Type="SitebracoModel.Store.cmsTemplate" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="cmsTemplate" Type="Self.cmsTemplate" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1329,10 +1078,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_new_MetaClassPrimaryLookup_Components">
-          <End Role="Components" Type="SitebracoModel.Store.Components" Multiplicity="1">
+          <End Role="Components" Type="Self.Components" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="new_MetaClassPrimaryLookup" Type="SitebracoModel.Store.new_MetaClassPrimaryLookup" Multiplicity="*" />
+          <End Role="new_MetaClassPrimaryLookup" Type="Self.new_MetaClassPrimaryLookup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Components">
               <PropertyRef Name="Id" />
@@ -1343,10 +1092,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_new_OfficeTemplateVersion_new_OfficeTemplate">
-          <End Role="new_OfficeTemplate" Type="SitebracoModel.Store.new_OfficeTemplate" Multiplicity="0..1">
+          <End Role="new_OfficeTemplate" Type="Self.new_OfficeTemplate" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="new_OfficeTemplateVersion" Type="SitebracoModel.Store.new_OfficeTemplateVersion" Multiplicity="*" />
+          <End Role="new_OfficeTemplateVersion" Type="Self.new_OfficeTemplateVersion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="new_OfficeTemplate">
               <PropertyRef Name="Id" />
@@ -1357,8 +1106,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProfilingAttributeComponent">
-          <End Role="ProfilingAttributes" Type="SitebracoModel.Store.ProfilingAttributes" Multiplicity="1" />
-          <End Role="Components" Type="SitebracoModel.Store.Components" Multiplicity="*" />
+          <End Role="ProfilingAttributes" Type="Self.ProfilingAttributes" Multiplicity="1" />
+          <End Role="Components" Type="Self.Components" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProfilingAttributes">
               <PropertyRef Name="Id" />
@@ -1369,8 +1118,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TriggerRuleTriggerRuleType">
-          <End Role="TriggerRuleTypes" Type="SitebracoModel.Store.TriggerRuleTypes" Multiplicity="1" />
-          <End Role="TriggerRules" Type="SitebracoModel.Store.TriggerRules" Multiplicity="*" />
+          <End Role="TriggerRuleTypes" Type="Self.TriggerRuleTypes" Multiplicity="1" />
+          <End Role="TriggerRules" Type="Self.TriggerRules" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TriggerRuleTypes">
               <PropertyRef Name="Id" />
@@ -1381,8 +1130,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TriggerTriggerAction">
-          <End Role="Triggers" Type="SitebracoModel.Store.Triggers" Multiplicity="1" />
-          <End Role="TriggerActions" Type="SitebracoModel.Store.TriggerActions" Multiplicity="*" />
+          <End Role="Triggers" Type="Self.Triggers" Multiplicity="1" />
+          <End Role="TriggerActions" Type="Self.TriggerActions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Triggers">
               <PropertyRef Name="Id" />
@@ -1393,8 +1142,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TriggerTriggerRule">
-          <End Role="Triggers" Type="SitebracoModel.Store.Triggers" Multiplicity="1" />
-          <End Role="TriggerRules" Type="SitebracoModel.Store.TriggerRules" Multiplicity="*" />
+          <End Role="Triggers" Type="Self.Triggers" Multiplicity="1" />
+          <End Role="TriggerRules" Type="Self.TriggerRules" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Triggers">
               <PropertyRef Name="Id" />
@@ -1405,8 +1154,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoDomains_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="0..1" />
-          <End Role="umbracoDomains" Type="SitebracoModel.Store.umbracoDomains" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="0..1" />
+          <End Role="umbracoDomains" Type="Self.umbracoDomains" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1417,8 +1166,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoNode_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="umbracoNode1" Type="SitebracoModel.Store.umbracoNode" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="umbracoNode1" Type="Self.umbracoNode" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1429,8 +1178,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoRelation_umbracoNode">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="umbracoRelation" Type="SitebracoModel.Store.umbracoRelation" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="umbracoRelation" Type="Self.umbracoRelation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1441,8 +1190,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoRelation_umbracoNode1">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="umbracoRelation" Type="SitebracoModel.Store.umbracoRelation" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="umbracoRelation" Type="Self.umbracoRelation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1453,8 +1202,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoRelation_umbracoRelationType_id">
-          <End Role="umbracoRelationType" Type="SitebracoModel.Store.umbracoRelationType" Multiplicity="1" />
-          <End Role="umbracoRelation" Type="SitebracoModel.Store.umbracoRelation" Multiplicity="*" />
+          <End Role="umbracoRelationType" Type="Self.umbracoRelationType" Multiplicity="1" />
+          <End Role="umbracoRelation" Type="Self.umbracoRelation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoRelationType">
               <PropertyRef Name="id" />
@@ -1465,8 +1214,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoUser_umbracoUserType_id">
-          <End Role="umbracoUserType" Type="SitebracoModel.Store.umbracoUserType" Multiplicity="1" />
-          <End Role="umbracoUser" Type="SitebracoModel.Store.umbracoUser" Multiplicity="*" />
+          <End Role="umbracoUserType" Type="Self.umbracoUserType" Multiplicity="1" />
+          <End Role="umbracoUser" Type="Self.umbracoUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoUserType">
               <PropertyRef Name="id" />
@@ -1477,8 +1226,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoUser2app_umbracoUser_id">
-          <End Role="umbracoUser" Type="SitebracoModel.Store.umbracoUser" Multiplicity="1" />
-          <End Role="umbracoUser2app" Type="SitebracoModel.Store.umbracoUser2app" Multiplicity="*" />
+          <End Role="umbracoUser" Type="Self.umbracoUser" Multiplicity="1" />
+          <End Role="umbracoUser2app" Type="Self.umbracoUser2app" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoUser">
               <PropertyRef Name="id" />
@@ -1489,8 +1238,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoUser2NodeNotify_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="umbracoUser2NodeNotify" Type="SitebracoModel.Store.umbracoUser2NodeNotify" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="umbracoUser2NodeNotify" Type="Self.umbracoUser2NodeNotify" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1501,8 +1250,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoUser2NodeNotify_umbracoUser_id">
-          <End Role="umbracoUser" Type="SitebracoModel.Store.umbracoUser" Multiplicity="1" />
-          <End Role="umbracoUser2NodeNotify" Type="SitebracoModel.Store.umbracoUser2NodeNotify" Multiplicity="*" />
+          <End Role="umbracoUser" Type="Self.umbracoUser" Multiplicity="1" />
+          <End Role="umbracoUser2NodeNotify" Type="Self.umbracoUser2NodeNotify" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoUser">
               <PropertyRef Name="id" />
@@ -1513,8 +1262,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoUser2NodePermission_umbracoNode_id">
-          <End Role="umbracoNode" Type="SitebracoModel.Store.umbracoNode" Multiplicity="1" />
-          <End Role="umbracoUser2NodePermission" Type="SitebracoModel.Store.umbracoUser2NodePermission" Multiplicity="*" />
+          <End Role="umbracoNode" Type="Self.umbracoNode" Multiplicity="1" />
+          <End Role="umbracoUser2NodePermission" Type="Self.umbracoUser2NodePermission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoNode">
               <PropertyRef Name="id" />
@@ -1525,8 +1274,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_umbracoUser2NodePermission_umbracoUser_id">
-          <End Role="umbracoUser" Type="SitebracoModel.Store.umbracoUser" Multiplicity="1" />
-          <End Role="umbracoUser2NodePermission" Type="SitebracoModel.Store.umbracoUser2NodePermission" Multiplicity="*" />
+          <End Role="umbracoUser" Type="Self.umbracoUser" Multiplicity="1" />
+          <End Role="umbracoUser2NodePermission" Type="Self.umbracoUser2NodePermission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="umbracoUser">
               <PropertyRef Name="id" />
@@ -1537,8 +1286,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VisitorComponentComponent">
-          <End Role="Components" Type="SitebracoModel.Store.Components" Multiplicity="1" />
-          <End Role="VisitorComponents" Type="SitebracoModel.Store.VisitorComponents" Multiplicity="*" />
+          <End Role="Components" Type="Self.Components" Multiplicity="1" />
+          <End Role="VisitorComponents" Type="Self.VisitorComponents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Components">
               <PropertyRef Name="Id" />
@@ -1549,8 +1298,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VisitorSegmentSegment">
-          <End Role="Segments" Type="SitebracoModel.Store.Segments" Multiplicity="1" />
-          <End Role="VisitorSegments" Type="SitebracoModel.Store.VisitorSegments" Multiplicity="*" />
+          <End Role="Segments" Type="Self.Segments" Multiplicity="1" />
+          <End Role="VisitorSegments" Type="Self.VisitorSegments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Segments">
               <PropertyRef Name="Id" />
@@ -1561,8 +1310,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VisitorTriggerRuleTriggerRule">
-          <End Role="TriggerRules" Type="SitebracoModel.Store.TriggerRules" Multiplicity="1" />
-          <End Role="VisitorTriggerRules" Type="SitebracoModel.Store.VisitorTriggerRules" Multiplicity="*" />
+          <End Role="TriggerRules" Type="Self.TriggerRules" Multiplicity="1" />
+          <End Role="VisitorTriggerRules" Type="Self.VisitorTriggerRules" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TriggerRules">
               <PropertyRef Name="Id" />
@@ -1573,8 +1322,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VisitorVisitorComponent">
-          <End Role="Visitors" Type="SitebracoModel.Store.Visitors" Multiplicity="1" />
-          <End Role="VisitorComponents" Type="SitebracoModel.Store.VisitorComponents" Multiplicity="*" />
+          <End Role="Visitors" Type="Self.Visitors" Multiplicity="1" />
+          <End Role="VisitorComponents" Type="Self.VisitorComponents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Visitors">
               <PropertyRef Name="Id" />
@@ -1585,8 +1334,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VisitorVisitorSegment">
-          <End Role="Visitors" Type="SitebracoModel.Store.Visitors" Multiplicity="1" />
-          <End Role="VisitorSegments" Type="SitebracoModel.Store.VisitorSegments" Multiplicity="*" />
+          <End Role="Visitors" Type="Self.Visitors" Multiplicity="1" />
+          <End Role="VisitorSegments" Type="Self.VisitorSegments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Visitors">
               <PropertyRef Name="Id" />
@@ -1597,8 +1346,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VisitorVisitorTriggerRule">
-          <End Role="Visitors" Type="SitebracoModel.Store.Visitors" Multiplicity="1" />
-          <End Role="VisitorTriggerRules" Type="SitebracoModel.Store.VisitorTriggerRules" Multiplicity="*" />
+          <End Role="Visitors" Type="Self.Visitors" Multiplicity="1" />
+          <End Role="VisitorTriggerRules" Type="Self.VisitorTriggerRules" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Visitors">
               <PropertyRef Name="Id" />
@@ -1608,7 +1357,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1639,8 +1388,297 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-      </Schema>
-    </edmx:StorageModels>
+        <EntityContainer Name="SitebracoModelStoreContainer">
+          <EntitySet Name="Actions" EntityType="Self.Actions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsContent" EntityType="Self.cmsContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsContentType" EntityType="Self.cmsContentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsContentType2ContentType" EntityType="Self.cmsContentType2ContentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsContentTypeAllowedContentType" EntityType="Self.cmsContentTypeAllowedContentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsContentVersion" EntityType="Self.cmsContentVersion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsContentXml" EntityType="Self.cmsContentXml" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsDataType" EntityType="Self.cmsDataType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsDataTypePreValues" EntityType="Self.cmsDataTypePreValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsDictionary" EntityType="Self.cmsDictionary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsDocument" EntityType="Self.cmsDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsDocumentType" EntityType="Self.cmsDocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMSImportCustomRelation" EntityType="Self.CMSImportCustomRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMSImportMediaRelation" EntityType="Self.CMSImportMediaRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMSImportRelation" EntityType="Self.CMSImportRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMSImportScheduledItems" EntityType="Self.CMSImportScheduledItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMSImportScheduledTask" EntityType="Self.CMSImportScheduledTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMSImportState" EntityType="Self.CMSImportState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsLanguageText" EntityType="Self.cmsLanguageText" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsMacro" EntityType="Self.cmsMacro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsMacroProperty" EntityType="Self.cmsMacroProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsMember" EntityType="Self.cmsMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsMember2MemberGroup" EntityType="Self.cmsMember2MemberGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsMemberType" EntityType="Self.cmsMemberType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsPreviewXml" EntityType="Self.cmsPreviewXml" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsPropertyData" EntityType="Self.cmsPropertyData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsPropertyType" EntityType="Self.cmsPropertyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsPropertyTypeGroup" EntityType="Self.cmsPropertyTypeGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsStylesheet" EntityType="Self.cmsStylesheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsStylesheetProperty" EntityType="Self.cmsStylesheetProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsTagRelationship" EntityType="Self.cmsTagRelationship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsTags" EntityType="Self.cmsTags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsTask" EntityType="Self.cmsTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsTaskType" EntityType="Self.cmsTaskType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmsTemplate" EntityType="Self.cmsTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Components" EntityType="Self.Components" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContentSelectors" EntityType="Self.ContentSelectors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataSnapshots" EntityType="Self.DataSnapshots" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Domains" EntityType="Self.Domains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENG_OS" EntityType="Self.ENG_OS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENG_Session" EntityType="Self.ENG_Session" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENG_TrackingList" EntityType="Self.ENG_TrackingList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENG_UserSetting" EntityType="Self.ENG_UserSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="new_MetaClassPrimaryLookup" EntityType="Self.new_MetaClassPrimaryLookup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="new_OfficeTemplate" EntityType="Self.new_OfficeTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="new_OfficeTemplateVersion" EntityType="Self.new_OfficeTemplateVersion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfilingAttributes" EntityType="Self.ProfilingAttributes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Segments" EntityType="Self.Segments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TriggerActions" EntityType="Self.TriggerActions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TriggerRules" EntityType="Self.TriggerRules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TriggerRuleTypes" EntityType="Self.TriggerRuleTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Triggers" EntityType="Self.Triggers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoDomains" EntityType="Self.umbracoDomains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoLanguage" EntityType="Self.umbracoLanguage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoLog" EntityType="Self.umbracoLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoNode" EntityType="Self.umbracoNode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoRelation" EntityType="Self.umbracoRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoRelationType" EntityType="Self.umbracoRelationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoServer" EntityType="Self.umbracoServer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoUser" EntityType="Self.umbracoUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoUser2app" EntityType="Self.umbracoUser2app" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoUser2NodeNotify" EntityType="Self.umbracoUser2NodeNotify" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoUser2NodePermission" EntityType="Self.umbracoUser2NodePermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoUserType" EntityType="Self.umbracoUserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitorComponents" EntityType="Self.VisitorComponents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visitors" EntityType="Self.Visitors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitorSegments" EntityType="Self.VisitorSegments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitorTriggerRules" EntityType="Self.VisitorTriggerRules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="umbracoUserLogins" EntityType="Self.umbracoUserLogins" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[umbracoUserLogins].[contextID] AS [contextID], 
+[umbracoUserLogins].[userID] AS [userID], 
+[umbracoUserLogins].[timeout] AS [timeout]
+FROM [dbo].[umbracoUserLogins] AS [umbracoUserLogins]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="new_MetaClassPrimaryView" EntityType="Self.new_MetaClassPrimaryView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[new_MetaClassPrimaryView].[ClassId] AS [ClassId], 
+[new_MetaClassPrimaryView].[ClassName] AS [ClassName], 
+[new_MetaClassPrimaryView].[ClassIsArchived] AS [ClassIsArchived], 
+[new_MetaClassPrimaryView].[PrimaryId] AS [PrimaryId], 
+[new_MetaClassPrimaryView].[PrimaryName] AS [PrimaryName], 
+[new_MetaClassPrimaryView].[PrimaryIsArchived] AS [PrimaryIsArchived]
+FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ActionTriggerAction" Association="Self.FK_ActionTriggerAction">
+            <End Role="Actions" EntitySet="Actions" />
+            <End Role="TriggerActions" EntitySet="TriggerActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsContent_umbracoNode_id" Association="Self.FK_cmsContent_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsContent" EntitySet="cmsContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsContentType_umbracoNode_id" Association="Self.FK_cmsContentType_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsContentType" EntitySet="cmsContentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsContentType2ContentType_umbracoNode_child" Association="Self.FK_cmsContentType2ContentType_umbracoNode_child">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsContentType2ContentType" EntitySet="cmsContentType2ContentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsContentType2ContentType_umbracoNode_parent" Association="Self.FK_cmsContentType2ContentType_umbracoNode_parent">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsContentType2ContentType" EntitySet="cmsContentType2ContentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsDataType_umbracoNode_id" Association="Self.FK_cmsDataType_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsDataType" EntitySet="cmsDataType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsDocument_umbracoNode_id" Association="Self.FK_cmsDocument_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsDocument" EntitySet="cmsDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsDocumentType_umbracoNode_id" Association="Self.FK_cmsDocumentType_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsDocumentType" EntitySet="cmsDocumentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsMacroProperty_cmsMacro_id" Association="Self.FK_cmsMacroProperty_cmsMacro_id">
+            <End Role="cmsMacro" EntitySet="cmsMacro" />
+            <End Role="cmsMacroProperty" EntitySet="cmsMacroProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsMember_umbracoNode_id" Association="Self.FK_cmsMember_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsMember" EntitySet="cmsMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsMember2MemberGroup_cmsMember_nodeId" Association="Self.FK_cmsMember2MemberGroup_cmsMember_nodeId">
+            <End Role="cmsMember" EntitySet="cmsMember" />
+            <End Role="cmsMember2MemberGroup" EntitySet="cmsMember2MemberGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsMember2MemberGroup_umbracoNode_id" Association="Self.FK_cmsMember2MemberGroup_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsMember2MemberGroup" EntitySet="cmsMember2MemberGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsMemberType_umbracoNode_id" Association="Self.FK_cmsMemberType_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsMemberType" EntitySet="cmsMemberType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsPropertyData_cmsPropertyType_id" Association="Self.FK_cmsPropertyData_cmsPropertyType_id">
+            <End Role="cmsPropertyType" EntitySet="cmsPropertyType" />
+            <End Role="cmsPropertyData" EntitySet="cmsPropertyData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsPropertyData_umbracoNode_id" Association="Self.FK_cmsPropertyData_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsPropertyData" EntitySet="cmsPropertyData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsPropertyType_cmsPropertyTypeGroup_id" Association="Self.FK_cmsPropertyType_cmsPropertyTypeGroup_id">
+            <End Role="cmsPropertyTypeGroup" EntitySet="cmsPropertyTypeGroup" />
+            <End Role="cmsPropertyType" EntitySet="cmsPropertyType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsPropertyTypeGroup_cmsPropertyTypeGroup_id" Association="Self.FK_cmsPropertyTypeGroup_cmsPropertyTypeGroup_id">
+            <End Role="cmsPropertyTypeGroup" EntitySet="cmsPropertyTypeGroup" />
+            <End Role="cmsPropertyTypeGroup1" EntitySet="cmsPropertyTypeGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsStylesheet_umbracoNode_id" Association="Self.FK_cmsStylesheet_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsStylesheet" EntitySet="cmsStylesheet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsTagRelationship_cmsPropertyType" Association="Self.FK_cmsTagRelationship_cmsPropertyType">
+            <End Role="cmsPropertyType" EntitySet="cmsPropertyType" />
+            <End Role="cmsTagRelationship" EntitySet="cmsTagRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsTagRelationship_cmsTags_id" Association="Self.FK_cmsTagRelationship_cmsTags_id">
+            <End Role="cmsTags" EntitySet="cmsTags" />
+            <End Role="cmsTagRelationship" EntitySet="cmsTagRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsTags_cmsTags" Association="Self.FK_cmsTags_cmsTags">
+            <End Role="cmsTags" EntitySet="cmsTags" />
+            <End Role="cmsTags1" EntitySet="cmsTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsTask_cmsTaskType_id" Association="Self.FK_cmsTask_cmsTaskType_id">
+            <End Role="cmsTaskType" EntitySet="cmsTaskType" />
+            <End Role="cmsTask" EntitySet="cmsTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsTask_umbracoNode_id" Association="Self.FK_cmsTask_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsTask" EntitySet="cmsTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsTask_umbracoUser" Association="Self.FK_cmsTask_umbracoUser">
+            <End Role="umbracoUser" EntitySet="umbracoUser" />
+            <End Role="cmsTask" EntitySet="cmsTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsTask_umbracoUser1" Association="Self.FK_cmsTask_umbracoUser1">
+            <End Role="umbracoUser" EntitySet="umbracoUser" />
+            <End Role="cmsTask" EntitySet="cmsTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsTemplate_cmsTemplate" Association="Self.FK_cmsTemplate_cmsTemplate">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsTemplate" EntitySet="cmsTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cmsTemplate_umbracoNode" Association="Self.FK_cmsTemplate_umbracoNode">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="cmsTemplate" EntitySet="cmsTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_new_MetaClassPrimaryLookup_Components" Association="Self.FK_new_MetaClassPrimaryLookup_Components">
+            <End Role="Components" EntitySet="Components" />
+            <End Role="new_MetaClassPrimaryLookup" EntitySet="new_MetaClassPrimaryLookup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_new_OfficeTemplateVersion_new_OfficeTemplate" Association="Self.FK_new_OfficeTemplateVersion_new_OfficeTemplate">
+            <End Role="new_OfficeTemplate" EntitySet="new_OfficeTemplate" />
+            <End Role="new_OfficeTemplateVersion" EntitySet="new_OfficeTemplateVersion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfilingAttributeComponent" Association="Self.FK_ProfilingAttributeComponent">
+            <End Role="ProfilingAttributes" EntitySet="ProfilingAttributes" />
+            <End Role="Components" EntitySet="Components" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TriggerRuleTriggerRuleType" Association="Self.FK_TriggerRuleTriggerRuleType">
+            <End Role="TriggerRuleTypes" EntitySet="TriggerRuleTypes" />
+            <End Role="TriggerRules" EntitySet="TriggerRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TriggerTriggerAction" Association="Self.FK_TriggerTriggerAction">
+            <End Role="Triggers" EntitySet="Triggers" />
+            <End Role="TriggerActions" EntitySet="TriggerActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TriggerTriggerRule" Association="Self.FK_TriggerTriggerRule">
+            <End Role="Triggers" EntitySet="Triggers" />
+            <End Role="TriggerRules" EntitySet="TriggerRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoDomains_umbracoNode_id" Association="Self.FK_umbracoDomains_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="umbracoDomains" EntitySet="umbracoDomains" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoNode_umbracoNode_id" Association="Self.FK_umbracoNode_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="umbracoNode1" EntitySet="umbracoNode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoRelation_umbracoNode" Association="Self.FK_umbracoRelation_umbracoNode">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="umbracoRelation" EntitySet="umbracoRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoRelation_umbracoNode1" Association="Self.FK_umbracoRelation_umbracoNode1">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="umbracoRelation" EntitySet="umbracoRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoRelation_umbracoRelationType_id" Association="Self.FK_umbracoRelation_umbracoRelationType_id">
+            <End Role="umbracoRelationType" EntitySet="umbracoRelationType" />
+            <End Role="umbracoRelation" EntitySet="umbracoRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoUser_umbracoUserType_id" Association="Self.FK_umbracoUser_umbracoUserType_id">
+            <End Role="umbracoUserType" EntitySet="umbracoUserType" />
+            <End Role="umbracoUser" EntitySet="umbracoUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoUser2app_umbracoUser_id" Association="Self.FK_umbracoUser2app_umbracoUser_id">
+            <End Role="umbracoUser" EntitySet="umbracoUser" />
+            <End Role="umbracoUser2app" EntitySet="umbracoUser2app" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoUser2NodeNotify_umbracoNode_id" Association="Self.FK_umbracoUser2NodeNotify_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="umbracoUser2NodeNotify" EntitySet="umbracoUser2NodeNotify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoUser2NodeNotify_umbracoUser_id" Association="Self.FK_umbracoUser2NodeNotify_umbracoUser_id">
+            <End Role="umbracoUser" EntitySet="umbracoUser" />
+            <End Role="umbracoUser2NodeNotify" EntitySet="umbracoUser2NodeNotify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoUser2NodePermission_umbracoNode_id" Association="Self.FK_umbracoUser2NodePermission_umbracoNode_id">
+            <End Role="umbracoNode" EntitySet="umbracoNode" />
+            <End Role="umbracoUser2NodePermission" EntitySet="umbracoUser2NodePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_umbracoUser2NodePermission_umbracoUser_id" Association="Self.FK_umbracoUser2NodePermission_umbracoUser_id">
+            <End Role="umbracoUser" EntitySet="umbracoUser" />
+            <End Role="umbracoUser2NodePermission" EntitySet="umbracoUser2NodePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitorComponentComponent" Association="Self.FK_VisitorComponentComponent">
+            <End Role="Components" EntitySet="Components" />
+            <End Role="VisitorComponents" EntitySet="VisitorComponents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitorSegmentSegment" Association="Self.FK_VisitorSegmentSegment">
+            <End Role="Segments" EntitySet="Segments" />
+            <End Role="VisitorSegments" EntitySet="VisitorSegments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitorTriggerRuleTriggerRule" Association="Self.FK_VisitorTriggerRuleTriggerRule">
+            <End Role="TriggerRules" EntitySet="TriggerRules" />
+            <End Role="VisitorTriggerRules" EntitySet="VisitorTriggerRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitorVisitorComponent" Association="Self.FK_VisitorVisitorComponent">
+            <End Role="Visitors" EntitySet="Visitors" />
+            <End Role="VisitorComponents" EntitySet="VisitorComponents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitorVisitorSegment" Association="Self.FK_VisitorVisitorSegment">
+            <End Role="Visitors" EntitySet="Visitors" />
+            <End Role="VisitorSegments" EntitySet="VisitorSegments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitorVisitorTriggerRule" Association="Self.FK_VisitorVisitorTriggerRule">
+            <End Role="Visitors" EntitySet="Visitors" />
+            <End Role="VisitorTriggerRules" EntitySet="VisitorTriggerRules" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SitebracoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1934,6 +1972,10 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="ENG_OS" EntityType="SitebracoModel.ENG_OS" />
+          <EntitySet Name="ENG_Session" EntityType="SitebracoModel.ENG_Session" />
+          <EntitySet Name="ENG_TrackingList" EntityType="SitebracoModel.ENG_TrackingList" />
+          <EntitySet Name="ENG_UserSetting" EntityType="SitebracoModel.ENG_UserSetting" />
         </EntityContainer>
         <EntityType Name="Action">
           <Key>
@@ -2010,7 +2052,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="datatypeNodeId" Type="Int32" Nullable="false" />
-          <Property Name="value" Type="String" MaxLength="2500" Unicode="true" FixedLength="false" />
+          <Property Name="value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="sortorder" Type="Int32" Nullable="false" />
           <Property Name="alias" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
         </EntityType>
@@ -2036,7 +2078,6 @@
           <Property Name="expireDate" Type="DateTime" Precision="3" />
           <Property Name="updateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="templateId" Type="Int32" />
-          <Property Name="alias" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="newest" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="umbracoNode" Relationship="SitebracoModel.FK_cmsDocument_umbracoNode_id" FromRole="cmsDocument" ToRole="umbracoNode" />
         </EntityType>
@@ -3297,6 +3338,44 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="ENG_OS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Alias" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ENG_Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CurrentAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ENG_TrackingList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ENG_UserSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MouseMoveTracking" Type="Int32" />
+          <Property Name="MouseClickTracking" Type="Int32" />
+          <Property Name="PageViewsCounter" Type="Int32" />
+          <Property Name="PageViewsRankingLow" Type="Int32" />
+          <Property Name="PageViewsRankingMedium" Type="Int32" />
+          <Property Name="PageViewsRankingHigh" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3407,7 +3486,6 @@
                 <ScalarProperty Name="expireDate" ColumnName="expireDate" />
                 <ScalarProperty Name="updateDate" ColumnName="updateDate" />
                 <ScalarProperty Name="templateId" ColumnName="templateId" />
-                <ScalarProperty Name="alias" ColumnName="alias" />
                 <ScalarProperty Name="newest" ColumnName="newest" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4079,6 +4157,48 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SitebracoModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SitebracoModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="ENG_OS">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_OS">
+              <MappingFragment StoreEntitySet="ENG_OS">
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENG_Session">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_Session">
+              <MappingFragment StoreEntitySet="ENG_Session">
+                <ScalarProperty Name="CurrentAction" ColumnName="CurrentAction" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="SessionKey" ColumnName="SessionKey" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENG_TrackingList">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_TrackingList">
+              <MappingFragment StoreEntitySet="ENG_TrackingList">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENG_UserSetting">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_UserSetting">
+              <MappingFragment StoreEntitySet="ENG_UserSetting">
+                <ScalarProperty Name="PageViewsRankingHigh" ColumnName="PageViewsRankingHigh" />
+                <ScalarProperty Name="PageViewsRankingMedium" ColumnName="PageViewsRankingMedium" />
+                <ScalarProperty Name="PageViewsRankingLow" ColumnName="PageViewsRankingLow" />
+                <ScalarProperty Name="PageViewsCounter" ColumnName="PageViewsCounter" />
+                <ScalarProperty Name="MouseClickTracking" ColumnName="MouseClickTracking" />
+                <ScalarProperty Name="MouseMoveTracking" ColumnName="MouseMoveTracking" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -4096,6 +4216,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
