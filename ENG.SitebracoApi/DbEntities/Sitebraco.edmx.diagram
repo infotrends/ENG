@@ -124,6 +124,7 @@
         <EntityTypeShape EntityType="SitebracoModel.ENG_Session" Width="1.5" PointX="20.75" PointY="15.75" />
         <EntityTypeShape EntityType="SitebracoModel.ENG_TrackingList" Width="1.5" PointX="11.75" PointY="0.75" />
         <EntityTypeShape EntityType="SitebracoModel.ENG_UserSetting" Width="1.5" PointX="20.75" PointY="18.75" />
+        <EntityTypeShape EntityType="SitebracoModel.ENG_WidgetLookupView" Width="1.5" PointX="22.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

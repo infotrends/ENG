@@ -415,7 +415,7 @@
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SessionKey" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IPAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+          <Property Name="CreateOn" Type="datetime" />
           <Property Name="CurrentAction" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ENG_TrackingList">
@@ -734,6 +734,19 @@ warning 6002: The table/view 'Sitebraco.dbo.umbracoUserLogins' does not have a p
           <Property Name="TriggerRuleId" Type="int" Nullable="false" />
           <Property Name="Hits" Type="int" Nullable="false" />
           <Property Name="VisitorId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Sitebraco.dbo.ENG_WidgetLookupView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ENG_WidgetLookupView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="WidgetTypeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Color" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Content" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1467,6 +1480,16 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
 [umbracoUserLogins].[timeout] AS [timeout]
 FROM [dbo].[umbracoUserLogins] AS [umbracoUserLogins]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ENG_WidgetLookupView" EntityType="Self.ENG_WidgetLookupView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ENG_WidgetLookupView].[WidgetTypeName] AS [WidgetTypeName], 
+[ENG_WidgetLookupView].[Name] AS [Name], 
+[ENG_WidgetLookupView].[Color] AS [Color], 
+[ENG_WidgetLookupView].[ID] AS [ID], 
+[ENG_WidgetLookupView].[Title] AS [Title], 
+[ENG_WidgetLookupView].[Content] AS [Content]
+FROM [dbo].[ENG_WidgetLookupView] AS [ENG_WidgetLookupView]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="new_MetaClassPrimaryView" EntityType="Self.new_MetaClassPrimaryView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [new_MetaClassPrimaryView].[ClassId] AS [ClassId], 
@@ -1976,6 +1999,7 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySet Name="ENG_Session" EntityType="SitebracoModel.ENG_Session" />
           <EntitySet Name="ENG_TrackingList" EntityType="SitebracoModel.ENG_TrackingList" />
           <EntitySet Name="ENG_UserSetting" EntityType="SitebracoModel.ENG_UserSetting" />
+          <EntitySet Name="ENG_WidgetLookupView" EntityType="SitebracoModel.ENG_WidgetLookupView" />
         </EntityContainer>
         <EntityType Name="Action">
           <Key>
@@ -3353,7 +3377,7 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SessionKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
           <Property Name="CurrentAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ENG_TrackingList">
@@ -3375,6 +3399,17 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="PageViewsRankingLow" Type="Int32" />
           <Property Name="PageViewsRankingMedium" Type="Int32" />
           <Property Name="PageViewsRankingHigh" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ENG_WidgetLookupView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="WidgetTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4196,6 +4231,18 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
                 <ScalarProperty Name="MouseMoveTracking" ColumnName="MouseMoveTracking" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENG_WidgetLookupView">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetLookupView">
+              <MappingFragment StoreEntitySet="ENG_WidgetLookupView">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="WidgetTypeName" ColumnName="WidgetTypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
