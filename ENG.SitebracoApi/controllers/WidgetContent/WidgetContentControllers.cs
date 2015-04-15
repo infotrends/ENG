@@ -10,6 +10,7 @@ using CorrugatedIron.Models;
 using MyUtils.Validations;
 using CorrugatedIron.Models.Search;
 using Newtonsoft.Json;
+using SitebracoApi.DbEntities;
 
 namespace SitebracoApi.Controllers.WidgetContent
 {
@@ -23,64 +24,15 @@ namespace SitebracoApi.Controllers.WidgetContent
         }
 
         [HttpGet]
-        public IEnumerable<object> GetWidget()
+        public List<WidgetContent> GetWidget(string ClientId)
         {
-            var data = new List<WidgetData>
+            using (var db = new SitebracoEntities())
             {
-                new WidgetData{
-                     Title =  "Aliquam erat volutpat", 
-                     Content ="Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui"
-                },
-                 new WidgetData{
-                  Title = "Mauris posuere", 
-                  Content =  "Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio"
-                 },
-                 new WidgetData
-                 {
-                  Title = "Donec tempor libero", 
-                  Content = "Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui"
-                 },
-            };
+                var widget = db.ENG_WidgetLookupView.Where(x => x.ClientID.Equals(ClientId)).ToList();
+                WidgetContent result = new WidgetContent();
 
-            var widget = new WidgetContent
-            {
-                WidgetId = "12345",
-                ContentId = "12345",
-                Name = "Blog Name",
-                Type = "Blog",
-                Color = "yellow",
-                Data = JsonConvert.SerializeObject(data)
-            };
-            return new List<WidgetContent> { widget };
-
-            //var cluster = RiakCluster.FromConfig("riakSolrConfig");
-            //var client = cluster.CreateClient();
-
-            ////var riakObjId = new RiakObjectId("InfoTrendsType", "Users", Guid.NewGuid().ToString());
-            ////var riakObj = new RiakObject(riakObjId, widget);
-            ////var result = client.Put(riakObj);
-            ////if (result.IsSuccess)
-            ////{
-
-            ////}
-            ////else
-            ////{
-            ////    throw new Encoder("Sorry error");
-            ////}
-
-
-            //var widget = new Widget
-            //{
-            //    ContentId_i = 10
-            //};
-
-
-            //var bucketName = ObjectUtil.GetClassName<Widget>();
-            //var fieldName = ObjectUtil.GetPropertyName<Widget, Int64>(x => x.Test_i);
-
-
-            //var returnList = new List<WidgetContent> { widget};
-            //return returnList;
+                return new List<WidgetContent> { result };
+            }
         }
 
 

@@ -740,6 +740,7 @@ warning 6002: The table/view 'Sitebraco.dbo.ENG_WidgetLookupView' does not have 
         <EntityType Name="ENG_WidgetLookupView">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="ClientID" />
           </Key>
           <Property Name="WidgetTypeName" Type="nvarchar" MaxLength="100" />
           <Property Name="Name" Type="nvarchar(max)" />
@@ -747,6 +748,7 @@ warning 6002: The table/view 'Sitebraco.dbo.ENG_WidgetLookupView' does not have 
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="ClientID" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1487,7 +1489,8 @@ FROM [dbo].[umbracoUserLogins] AS [umbracoUserLogins]</DefiningQuery>
 [ENG_WidgetLookupView].[Color] AS [Color], 
 [ENG_WidgetLookupView].[ID] AS [ID], 
 [ENG_WidgetLookupView].[Title] AS [Title], 
-[ENG_WidgetLookupView].[Content] AS [Content]
+[ENG_WidgetLookupView].[Content] AS [Content], 
+[ENG_WidgetLookupView].[ClientID] AS [ClientID]
 FROM [dbo].[ENG_WidgetLookupView] AS [ENG_WidgetLookupView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="new_MetaClassPrimaryView" EntityType="Self.new_MetaClassPrimaryView" store:Type="Views" store:Schema="dbo">
@@ -3403,6 +3406,7 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
         <EntityType Name="ENG_WidgetLookupView">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="ClientID" />
           </Key>
           <Property Name="WidgetTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -3410,6 +3414,7 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4237,6 +4242,7 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySetMapping Name="ENG_WidgetLookupView">
             <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetLookupView">
               <MappingFragment StoreEntitySet="ENG_WidgetLookupView">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

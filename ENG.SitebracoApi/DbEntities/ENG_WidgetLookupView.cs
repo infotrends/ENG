@@ -30,6 +30,8 @@ namespace SitebracoApi.DbEntities
 
         public string Content { get; set; }
 
+        public string ClientID { get; set; }
+
     }
 
 }
