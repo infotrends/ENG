@@ -125,6 +125,9 @@
         <EntityTypeShape EntityType="SitebracoModel.ENG_TrackingList" Width="1.5" PointX="11.75" PointY="0.75" />
         <EntityTypeShape EntityType="SitebracoModel.ENG_UserSetting" Width="1.5" PointX="20.75" PointY="18.75" />
         <EntityTypeShape EntityType="SitebracoModel.ENG_WidgetLookupView" Width="1.5" PointX="22.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SitebracoModel.ENG_WidgetContent" Width="1.5" PointX="24.625" PointY="5" />
+        <EntityTypeShape EntityType="SitebracoModel.ENG_WidgetData" Width="1.5" PointX="22.375" PointY="5.375" />
+        <AssociationConnector Association="SitebracoModel.FK__ENG_Widge__Widge__13BCEBC1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

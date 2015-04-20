@@ -57,17 +57,25 @@ namespace SitebracoApi.Models.Eng
 
     public class ClientIpInfo
     {
-        public string ip { get; set; }
-        public string country_code { get; set; }
-        public string country_name { get; set; }
-        public string region_code { get; set; }
-        public string region_name { get; set; }
-        public string city { get; set; }
-        public string zip_code { get; set; }
-        public string time_zone { get; set; }
-        public float latitude { get; set; }
-        public float longitude { get; set; }
-        public int metro_code { get; set; }
+        public string Country { get; set; }
+
+        public string StateProvince { get; set; }
+
+        public string City { get; set; }
+
+        public float Latitude { get; set; }
+
+        public float Longitude { get; set; }
+
+        public int Timezone_Offset { get; set; }
+
+        public string Timezone_Name { get; set; }
+
+        public string Isp_Name { get; set; }
+
+        public string Connection_Type { get; set; }
+
+        public string Organization_Name { get; set; }
     }
 
     public class OSModel

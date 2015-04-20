@@ -242,6 +242,12 @@
     <Compile Include="DbEntities\ENG_UserSetting.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbEntities\ENG_WidgetContent.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_WidgetData.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbEntities\ENG_WidgetLookupView.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
@@ -423,6 +429,7 @@
   <ItemGroup>
     <None Include="App.Config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <EntityDeploy Include="DbEntities\Sitebraco.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
