@@ -32,6 +32,12 @@ namespace SitebracoApi.DbEntities
 
         public string ClientID { get; set; }
 
+        public string URL { get; set; }
+
+        public Nullable<int> Width { get; set; }
+
+        public Nullable<int> Height { get; set; }
+
     }
 
 }

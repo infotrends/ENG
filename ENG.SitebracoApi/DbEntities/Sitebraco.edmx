@@ -446,9 +446,10 @@
           <Property Name="WidgetId" Type="int" />
           <Property Name="ClientID" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ContentId" Type="int" />
-          <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="Color" Type="nvarchar" MaxLength="100" />
+          <Property Name="URL" Type="nvarchar(max)" />
           <Property Name="WidgetDataId" Type="int" />
+          <Property Name="WidgetSettingID" Type="int" />
+          <Property Name="Position" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ENG_WidgetData">
           <Key>
@@ -759,12 +760,15 @@ warning 6002: The table/view 'Sitebraco.dbo.umbracoUserLogins' does not have a p
 warning 6002: The table/view 'Sitebraco.dbo.ENG_WidgetLookupView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ENG_WidgetLookupView">
           <Key>
-            <PropertyRef Name="ID" />
             <PropertyRef Name="ClientID" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="WidgetTypeName" Type="nvarchar" MaxLength="100" />
-          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar(max)" />
           <Property Name="Color" Type="nvarchar" MaxLength="100" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="Content" Type="nvarchar(max)" />
@@ -1519,8 +1523,11 @@ FROM [dbo].[umbracoUserLogins] AS [umbracoUserLogins]</DefiningQuery>
           <EntitySet Name="ENG_WidgetLookupView" EntityType="Self.ENG_WidgetLookupView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [ENG_WidgetLookupView].[WidgetTypeName] AS [WidgetTypeName], 
-[ENG_WidgetLookupView].[Name] AS [Name], 
+[ENG_WidgetLookupView].[URL] AS [URL], 
 [ENG_WidgetLookupView].[Color] AS [Color], 
+[ENG_WidgetLookupView].[Width] AS [Width], 
+[ENG_WidgetLookupView].[Height] AS [Height], 
+[ENG_WidgetLookupView].[Name] AS [Name], 
 [ENG_WidgetLookupView].[ID] AS [ID], 
 [ENG_WidgetLookupView].[Title] AS [Title], 
 [ENG_WidgetLookupView].[Content] AS [Content], 
@@ -3459,6 +3466,9 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClientID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
         </EntityType>
         <EntityType Name="ENG_WidgetContent">
           <Key>
@@ -3468,10 +3478,11 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="WidgetId" Type="Int32" />
           <Property Name="ClientID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ContentId" Type="Int32" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Color" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="WidgetDataId" Type="Int32" />
           <NavigationProperty Name="ENG_WidgetData" Relationship="SitebracoModel.FK__ENG_Widge__Widge__13BCEBC1" FromRole="ENG_WidgetContent" ToRole="ENG_WidgetData" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WidgetSettingID" Type="Int32" />
+          <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ENG_WidgetData">
           <Key>
@@ -4320,6 +4331,9 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySetMapping Name="ENG_WidgetLookupView">
             <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetLookupView">
               <MappingFragment StoreEntitySet="ENG_WidgetLookupView">
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -4333,9 +4347,10 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySetMapping Name="ENG_WidgetContent">
             <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetContent">
               <MappingFragment StoreEntitySet="ENG_WidgetContent">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="WidgetSettingID" ColumnName="WidgetSettingID" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="WidgetDataId" ColumnName="WidgetDataId" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ContentId" ColumnName="ContentId" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="WidgetId" ColumnName="WidgetId" />

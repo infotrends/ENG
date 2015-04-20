@@ -24,17 +24,17 @@ namespace SitebracoApi.Controllers.WidgetContent
         }
 
         [HttpGet]
-        public List<WidgetContent> GetWidget(string ClientId)
+        public List<ENG_WidgetLookupView> GetWidget(string ClientId)
         {
             using (var db = new SitebracoEntities())
             {
                 var widget = db.ENG_WidgetLookupView.Where(x => x.ClientID.Equals(ClientId)).ToList();
-                WidgetContent result = new WidgetContent();
 
-                return new List<WidgetContent> { result };
+                if (widget.Count > 0) return widget;
+
+                return null;
             }
         }
-
 
         public class WidgetContent
         {
