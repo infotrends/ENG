@@ -242,6 +242,9 @@
     <Compile Include="DbEntities\ENG_UserSetting.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbEntities\ENG_Widget.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbEntities\ENG_WidgetContent.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
@@ -249,6 +252,9 @@
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\ENG_WidgetLookupView.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_WidgetSetting.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\new_MetaClassPrimaryLookup.cs">

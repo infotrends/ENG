@@ -12,32 +12,32 @@
 namespace SitebracoApi.DbEntities
 {
 
-    using System;
+using System;
     using System.Collections.Generic;
+    
+public partial class ENG_WidgetLookupView
+{
 
-    public partial class ENG_WidgetLookupView
-    {
+    public string WidgetTypeName { get; set; }
 
-        public string WidgetTypeName { get; set; }
+    public string Name { get; set; }
 
-        public string Name { get; set; }
+    public string Color { get; set; }
 
-        public string Color { get; set; }
+    public int ID { get; set; }
 
-        public int ID { get; set; }
+    public string Title { get; set; }
 
-        public string Title { get; set; }
+    public string Content { get; set; }
 
-        public string Content { get; set; }
+    public string ClientID { get; set; }
 
-        public string ClientID { get; set; }
+    public string URL { get; set; }
 
-        public string URL { get; set; }
+    public Nullable<int> Width { get; set; }
 
-        public Nullable<int> Width { get; set; }
+    public Nullable<int> Height { get; set; }
 
-        public Nullable<int> Height { get; set; }
-
-    }
+}
 
 }

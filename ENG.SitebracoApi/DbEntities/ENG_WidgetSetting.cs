@@ -15,18 +15,30 @@ namespace SitebracoApi.DbEntities
 using System;
     using System.Collections.Generic;
     
-public partial class ENG_Session
+public partial class ENG_WidgetSetting
 {
 
-    public long ID { get; set; }
+    public ENG_WidgetSetting()
+    {
 
-    public string SessionKey { get; set; }
+        this.ENG_WidgetContent = new HashSet<ENG_WidgetContent>();
 
-    public string IPAddress { get; set; }
+    }
 
-    public Nullable<System.DateTime> CreateOn { get; set; }
 
-    public string CurrentAction { get; set; }
+    public int ID { get; set; }
+
+    public string Color { get; set; }
+
+    public Nullable<int> Width { get; set; }
+
+    public Nullable<int> Height { get; set; }
+
+    public string Name { get; set; }
+
+
+
+    public virtual ICollection<ENG_WidgetContent> ENG_WidgetContent { get; set; }
 
 }
 

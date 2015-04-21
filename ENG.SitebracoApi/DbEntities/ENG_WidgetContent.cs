@@ -38,6 +38,10 @@ public partial class ENG_WidgetContent
 
     public virtual ENG_WidgetData ENG_WidgetData { get; set; }
 
+    public virtual ENG_WidgetSetting ENG_WidgetSetting { get; set; }
+
+    public virtual ENG_Widget ENG_Widget { get; set; }
+
 }
 
 }
