@@ -12,36 +12,36 @@
 namespace SitebracoApi.DbEntities
 {
 
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class ENG_WidgetContent
-{
 
-    public int ID { get; set; }
+    public partial class ENG_WidgetContent
+    {
 
-    public Nullable<int> WidgetId { get; set; }
+        public int ID { get; set; }
 
-    public string ClientID { get; set; }
+        public Nullable<int> WidgetId { get; set; }
 
-    public Nullable<int> ContentId { get; set; }
+        public string ClientID { get; set; }
 
-    public Nullable<int> WidgetDataId { get; set; }
+        public Nullable<int> ContentId { get; set; }
 
-    public string URL { get; set; }
+        public Nullable<int> WidgetDataId { get; set; }
 
-    public Nullable<int> WidgetSettingID { get; set; }
+        public string URL { get; set; }
 
-    public string Position { get; set; }
+        public Nullable<int> WidgetSettingID { get; set; }
+
+        public string Position { get; set; }
 
 
 
-    public virtual ENG_WidgetData ENG_WidgetData { get; set; }
+        public virtual ENG_WidgetData ENG_WidgetData { get; set; }
 
-    public virtual ENG_WidgetSetting ENG_WidgetSetting { get; set; }
+        public virtual ENG_WidgetSetting ENG_WidgetSetting { get; set; }
 
-    public virtual ENG_Widget ENG_Widget { get; set; }
+        public virtual ENG_Widget ENG_Widget { get; set; }
 
-}
+    }
 
 }

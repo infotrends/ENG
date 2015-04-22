@@ -11,26 +11,42 @@ using MyUtils.Validations;
 using CorrugatedIron.Models.Search;
 using Newtonsoft.Json;
 using SitebracoApi.DbEntities;
+using System.Data.SqlClient;
 
 namespace SitebracoApi.Controllers.WidgetContent
 {
 
     public class WidgetContentController : BaseController
     {
-        [HttpPost]
-        public IEnumerable<string> GetAllContent(WidgetContent param)
-        {
-            return new[] { "Table", "Chair", "Desk", "Computer", "Beer fridge1", param.ContentId, param.WidgetId };
-        }
-
-
-
         [HttpGet]
-        public List<ENG_WidgetLookupView> GetWidget(string ClientId)
+        public List<ENG_WidgetData> GetAllContent()
         {
             using (var db = new SitebracoEntities())
             {
-                var widget = db.ENG_WidgetLookupView.Where(x => x.ClientID.Equals(ClientId)).ToList();
+                return db.ENG_WidgetData.ToList();
+            }
+        }
+
+        [HttpGet]
+        public List<WidgetData> GetWidget(string ClientId)
+        {
+            using (var db = new SitebracoEntities())
+            {
+                var widget = db.Database.SqlQuery<WidgetData>("GetWidgetList @ClientId", new SqlParameter("@ClientId", ClientId)).ToList();
+
+                if (widget.Count > 0) return widget;
+
+                return null;
+            }
+        }
+
+        [HttpGet]
+        public List<ENG_WidgetLookupView> GetAllWidget(string ClientId)
+        {
+            using (var db = new SitebracoEntities())
+            {
+                var widget = db.ENG_WidgetLookupView.Where(x => x.ClientID.Equals(ClientId)).
+                            Where(x => x.Position != null).ToList();
 
                 if (widget.Count > 0) return widget;
 
@@ -45,8 +61,12 @@ namespace SitebracoApi.Controllers.WidgetContent
             {
                 ENG_WidgetSetting setting = new ENG_WidgetSetting();
                 setting.Color = param.Color;
+
+                //if (param.Height != 0)
                 setting.Height = param.Height;
+
                 setting.Name = param.Name;
+                //if (param.Width != 0)
                 setting.Width = param.Width;
 
                 setting = db.ENG_WidgetSetting.Add(setting);
@@ -63,6 +83,7 @@ namespace SitebracoApi.Controllers.WidgetContent
                 widgetContent.URL = param.URL;
                 widgetContent.WidgetId = widget.ID;
                 widgetContent.ClientID = param.ClientID;
+                widgetContent.WidgetDataId = param.WidgetDataId;
 
                 db.ENG_WidgetContent.Add(widgetContent);
                 db.SaveChanges();
@@ -71,6 +92,55 @@ namespace SitebracoApi.Controllers.WidgetContent
                 {
                     success = true
                 };
+            }
+        }
+
+        [HttpPost]
+        public object UpdateWidget(WidgetParam param)
+        {
+            using (var db = new SitebracoEntities())
+            {
+                var widget = db.ENG_WidgetContent.Where(x => x.ID == param.ID).FirstOrDefault();
+                if (widget != null)
+                {
+                    var setting = db.ENG_WidgetSetting.Where(x => x.ID == widget.WidgetSettingID).FirstOrDefault();
+
+                    if (!param.Name.Equals(""))
+                    {
+                        setting.Name = param.Name;
+                    }
+                    if (!param.Position.Equals(""))
+                    {
+                        widget.Position = param.Position;
+                    }
+                    if (!param.Color.Equals(""))
+                    {
+                        setting.Color = param.Color;
+                    }
+                    if (param.Height != 0)
+                    {
+                        setting.Height = param.Height;
+                    }
+                    if (param.Width != 0)
+                    {
+                        setting.Width = param.Width;
+                    }
+                    db.SaveChanges();
+
+                    return new
+                    {
+                        success = true,
+                        message = "Update Successfully"
+                    };
+                }
+                else
+                {
+                    return new
+                    {
+                        success = false,
+                        message = "Invalid Widget"
+                    };
+                }
             }
         }
 
@@ -103,5 +173,22 @@ namespace SitebracoApi.Controllers.WidgetContent
         public string Name { get; set; }
 
         public string ClientID { get; set; }
+
+        public int ID { get; set; }
+
+        public int WidgetDataId { get; set; }
+    }
+
+    public class WidgetData
+    {
+        public string WidgetTypeName { get; set; }
+
+        public string Color { get; set; }
+
+        public int Width { get; set; }
+
+        public int Height { get; set; }
+
+        public string Name { get; set; }
     }
 }

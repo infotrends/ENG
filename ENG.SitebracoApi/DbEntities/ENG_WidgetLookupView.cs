@@ -38,6 +38,8 @@ public partial class ENG_WidgetLookupView
 
     public Nullable<int> Height { get; set; }
 
+    public string Position { get; set; }
+
 }
 
 }

@@ -18,23 +18,11 @@ using System;
 public partial class ENG_WidgetData
 {
 
-    public ENG_WidgetData()
-    {
-
-        this.ENG_WidgetContent = new HashSet<ENG_WidgetContent>();
-
-    }
-
-
     public int ID { get; set; }
 
     public string Title { get; set; }
 
     public string Content { get; set; }
-
-
-
-    public virtual ICollection<ENG_WidgetContent> ENG_WidgetContent { get; set; }
 
 }
 

@@ -791,6 +791,7 @@ warning 6002: The table/view 'Sitebraco.dbo.ENG_WidgetLookupView' does not have 
           <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="ClientID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Position" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1575,7 +1576,8 @@ FROM [dbo].[umbracoUserLogins] AS [umbracoUserLogins]</DefiningQuery>
 [ENG_WidgetLookupView].[ID] AS [ID], 
 [ENG_WidgetLookupView].[Title] AS [Title], 
 [ENG_WidgetLookupView].[Content] AS [Content], 
-[ENG_WidgetLookupView].[ClientID] AS [ClientID]
+[ENG_WidgetLookupView].[ClientID] AS [ClientID], 
+[ENG_WidgetLookupView].[Position] AS [Position]
 FROM [dbo].[ENG_WidgetLookupView] AS [ENG_WidgetLookupView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="new_MetaClassPrimaryView" EntityType="Self.new_MetaClassPrimaryView" store:Type="Views" store:Schema="dbo">
@@ -3531,6 +3533,7 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Width" Type="Int32" />
           <Property Name="Height" Type="Int32" />
+          <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ENG_WidgetContent">
           <Key>
@@ -3555,7 +3558,6 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ENG_WidgetContent" Relationship="SitebracoModel.FK__ENG_Widge__Widge__13BCEBC1" FromRole="ENG_WidgetData" ToRole="ENG_WidgetContent" />
         </EntityType>
         <Association Name="FK__ENG_Widge__Widge__13BCEBC1">
           <End Type="SitebracoModel.ENG_WidgetData" Role="ENG_WidgetData" Multiplicity="0..1" />
@@ -4439,6 +4441,7 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySetMapping Name="ENG_WidgetLookupView">
             <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetLookupView">
               <MappingFragment StoreEntitySet="ENG_WidgetLookupView">
+                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="Width" ColumnName="Width" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
