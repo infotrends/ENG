@@ -47,7 +47,9 @@ namespace SitebracoApi.Controllers.Eng
                 Longitude_f = userLocation == null ? 0 : userLocation.Longitude,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
-                UrlReferrer_tsd = param.referer
+                UrlReferrer_tsd = param.referer,
+                ViewerID_s = param.ViewerID_s,
+                SessionID_s = param.SessionID_s
             };
             return new { success = data.Save() };
         }

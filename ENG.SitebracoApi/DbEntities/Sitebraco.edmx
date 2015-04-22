@@ -455,9 +455,11 @@
           <Property Name="ClientID" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ContentId" Type="int" />
           <Property Name="URL" Type="nvarchar(max)" />
-          <Property Name="WidgetDataId" Type="int" />
           <Property Name="WidgetSettingID" Type="int" />
           <Property Name="Position" Type="nvarchar(max)" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="ModifyOn" Type="datetime" />
+          <Property Name="WidgetDataTypeID" Type="int" />
         </EntityType>
         <EntityType Name="ENG_WidgetData">
           <Key>
@@ -466,6 +468,18 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="ModifyOn" Type="datetime" />
+          <Property Name="WidgetDataTypeID" Type="int" />
+        </EntityType>
+        <EntityType Name="ENG_WidgetDataType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="ModifyOn" Type="datetime" />
         </EntityType>
         <EntityType Name="ENG_WidgetSetting">
           <Key>
@@ -476,6 +490,8 @@
           <Property Name="Width" Type="int" />
           <Property Name="Height" Type="int" />
           <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="ModifyOn" Type="datetime" />
         </EntityType>
         <EntityType Name="new_MetaClassPrimaryLookup">
           <Key>
@@ -823,18 +839,6 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ENG_Widge__Widge__13BCEBC1">
-          <End Role="ENG_WidgetData" Type="Self.ENG_WidgetData" Multiplicity="0..1" />
-          <End Role="ENG_WidgetContent" Type="Self.ENG_WidgetContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ENG_WidgetData">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ENG_WidgetContent">
-              <PropertyRef Name="WidgetDataId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__ENG_Widge__Widge__1881A0DE">
           <End Role="ENG_WidgetSetting" Type="Self.ENG_WidgetSetting" Multiplicity="0..1" />
           <End Role="ENG_WidgetContent" Type="Self.ENG_WidgetContent" Multiplicity="*" />
@@ -844,6 +848,30 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
             </Principal>
             <Dependent Role="ENG_WidgetContent">
               <PropertyRef Name="WidgetSettingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENG_Widge__Widge__351DDF8C">
+          <End Role="ENG_WidgetDataType" Type="Self.ENG_WidgetDataType" Multiplicity="0..1" />
+          <End Role="ENG_WidgetContent" Type="Self.ENG_WidgetContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENG_WidgetDataType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENG_WidgetContent">
+              <PropertyRef Name="WidgetDataTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENG_Widge__Widge__361203C5">
+          <End Role="ENG_WidgetDataType" Type="Self.ENG_WidgetDataType" Multiplicity="0..1" />
+          <End Role="ENG_WidgetData" Type="Self.ENG_WidgetData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENG_WidgetDataType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENG_WidgetData">
+              <PropertyRef Name="WidgetDataTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1529,6 +1557,7 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
           <EntitySet Name="ENG_Widget" EntityType="Self.ENG_Widget" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_WidgetContent" EntityType="Self.ENG_WidgetContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_WidgetData" EntityType="Self.ENG_WidgetData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENG_WidgetDataType" EntityType="Self.ENG_WidgetDataType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_WidgetSetting" EntityType="Self.ENG_WidgetSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="new_MetaClassPrimaryLookup" EntityType="Self.new_MetaClassPrimaryLookup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="new_OfficeTemplate" EntityType="Self.new_OfficeTemplate" Schema="dbo" store:Type="Tables" />
@@ -1594,13 +1623,17 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
             <End Role="ENG_Widget" EntitySet="ENG_Widget" />
             <End Role="ENG_WidgetContent" EntitySet="ENG_WidgetContent" />
           </AssociationSet>
-          <AssociationSet Name="FK__ENG_Widge__Widge__13BCEBC1" Association="Self.FK__ENG_Widge__Widge__13BCEBC1">
-            <End Role="ENG_WidgetData" EntitySet="ENG_WidgetData" />
-            <End Role="ENG_WidgetContent" EntitySet="ENG_WidgetContent" />
-          </AssociationSet>
           <AssociationSet Name="FK__ENG_Widge__Widge__1881A0DE" Association="Self.FK__ENG_Widge__Widge__1881A0DE">
             <End Role="ENG_WidgetSetting" EntitySet="ENG_WidgetSetting" />
             <End Role="ENG_WidgetContent" EntitySet="ENG_WidgetContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENG_Widge__Widge__351DDF8C" Association="Self.FK__ENG_Widge__Widge__351DDF8C">
+            <End Role="ENG_WidgetDataType" EntitySet="ENG_WidgetDataType" />
+            <End Role="ENG_WidgetContent" EntitySet="ENG_WidgetContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENG_Widge__Widge__361203C5" Association="Self.FK__ENG_Widge__Widge__361203C5">
+            <End Role="ENG_WidgetDataType" EntitySet="ENG_WidgetDataType" />
+            <End Role="ENG_WidgetData" EntitySet="ENG_WidgetData" />
           </AssociationSet>
           <AssociationSet Name="FK_ActionTriggerAction" Association="Self.FK_ActionTriggerAction">
             <End Role="Actions" EntitySet="Actions" />
@@ -2104,10 +2137,6 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySet Name="ENG_WidgetLookupView" EntityType="SitebracoModel.ENG_WidgetLookupView" />
           <EntitySet Name="ENG_WidgetContent" EntityType="SitebracoModel.ENG_WidgetContent" />
           <EntitySet Name="ENG_WidgetData" EntityType="SitebracoModel.ENG_WidgetData" />
-          <AssociationSet Name="FK__ENG_Widge__Widge__13BCEBC1" Association="SitebracoModel.FK__ENG_Widge__Widge__13BCEBC1">
-            <End Role="ENG_WidgetData" EntitySet="ENG_WidgetData" />
-            <End Role="ENG_WidgetContent" EntitySet="ENG_WidgetContent" />
-          </AssociationSet>
           <EntitySet Name="ENG_WidgetSetting" EntityType="SitebracoModel.ENG_WidgetSetting" />
           <AssociationSet Name="FK__ENG_Widge__Widge__1881A0DE" Association="SitebracoModel.FK__ENG_Widge__Widge__1881A0DE">
             <End Role="ENG_WidgetSetting" EntitySet="ENG_WidgetSetting" />
@@ -2117,6 +2146,15 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <AssociationSet Name="FK__ENG_Widge__Widge__12C8C788" Association="SitebracoModel.FK__ENG_Widge__Widge__12C8C788">
             <End Role="ENG_Widget" EntitySet="ENG_Widget" />
             <End Role="ENG_WidgetContent" EntitySet="ENG_WidgetContent" />
+          </AssociationSet>
+          <EntitySet Name="ENG_WidgetDataType" EntityType="SitebracoModel.ENG_WidgetDataType" />
+          <AssociationSet Name="FK__ENG_Widge__Widge__351DDF8C" Association="SitebracoModel.FK__ENG_Widge__Widge__351DDF8C">
+            <End Role="ENG_WidgetDataType" EntitySet="ENG_WidgetDataType" />
+            <End Role="ENG_WidgetContent" EntitySet="ENG_WidgetContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ENG_Widge__Widge__361203C5" Association="SitebracoModel.FK__ENG_Widge__Widge__361203C5">
+            <End Role="ENG_WidgetDataType" EntitySet="ENG_WidgetDataType" />
+            <End Role="ENG_WidgetData" EntitySet="ENG_WidgetData" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Action">
@@ -3543,13 +3581,15 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="WidgetId" Type="Int32" />
           <Property Name="ClientID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ContentId" Type="Int32" />
-          <Property Name="WidgetDataId" Type="Int32" />
-          <NavigationProperty Name="ENG_WidgetData" Relationship="SitebracoModel.FK__ENG_Widge__Widge__13BCEBC1" FromRole="ENG_WidgetContent" ToRole="ENG_WidgetData" />
           <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="WidgetSettingID" Type="Int32" />
           <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ENG_WidgetSetting" Relationship="SitebracoModel.FK__ENG_Widge__Widge__1881A0DE" FromRole="ENG_WidgetContent" ToRole="ENG_WidgetSetting" />
           <NavigationProperty Name="ENG_Widget" Relationship="SitebracoModel.FK__ENG_Widge__Widge__12C8C788" FromRole="ENG_WidgetContent" ToRole="ENG_Widget" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+          <Property Name="WidgetDataTypeID" Type="Int32" />
+          <NavigationProperty Name="ENG_WidgetDataType" Relationship="SitebracoModel.FK__ENG_Widge__Widge__351DDF8C" FromRole="ENG_WidgetContent" ToRole="ENG_WidgetDataType" />
         </EntityType>
         <EntityType Name="ENG_WidgetData">
           <Key>
@@ -3558,19 +3598,10 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+          <Property Name="WidgetDataTypeID" Type="Int32" />
         </EntityType>
-        <Association Name="FK__ENG_Widge__Widge__13BCEBC1">
-          <End Type="SitebracoModel.ENG_WidgetData" Role="ENG_WidgetData" Multiplicity="0..1" />
-          <End Type="SitebracoModel.ENG_WidgetContent" Role="ENG_WidgetContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ENG_WidgetData">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ENG_WidgetContent">
-              <PropertyRef Name="WidgetDataId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="ENG_WidgetSetting">
           <Key>
             <PropertyRef Name="ID" />
@@ -3581,6 +3612,8 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="Height" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ENG_WidgetContent" Relationship="SitebracoModel.FK__ENG_Widge__Widge__1881A0DE" FromRole="ENG_WidgetSetting" ToRole="ENG_WidgetContent" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__ENG_Widge__Widge__1881A0DE">
           <End Type="SitebracoModel.ENG_WidgetSetting" Role="ENG_WidgetSetting" Multiplicity="0..1" />
@@ -3612,6 +3645,39 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
             </Principal>
             <Dependent Role="ENG_WidgetContent">
               <PropertyRef Name="WidgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ENG_WidgetDataType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK__ENG_Widge__Widge__351DDF8C">
+          <End Type="SitebracoModel.ENG_WidgetDataType" Role="ENG_WidgetDataType" Multiplicity="0..1" />
+          <End Type="SitebracoModel.ENG_WidgetContent" Role="ENG_WidgetContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENG_WidgetDataType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENG_WidgetContent">
+              <PropertyRef Name="WidgetDataTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ENG_Widge__Widge__361203C5">
+          <End Type="SitebracoModel.ENG_WidgetDataType" Role="ENG_WidgetDataType" Multiplicity="0..1" />
+          <End Type="SitebracoModel.ENG_WidgetData" Role="ENG_WidgetData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENG_WidgetDataType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENG_WidgetData">
+              <PropertyRef Name="WidgetDataTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4458,10 +4524,12 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySetMapping Name="ENG_WidgetContent">
             <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetContent">
               <MappingFragment StoreEntitySet="ENG_WidgetContent">
+                <ScalarProperty Name="WidgetDataTypeID" ColumnName="WidgetDataTypeID" />
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="WidgetSettingID" ColumnName="WidgetSettingID" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="WidgetDataId" ColumnName="WidgetDataId" />
                 <ScalarProperty Name="ContentId" ColumnName="ContentId" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="WidgetId" ColumnName="WidgetId" />
@@ -4472,6 +4540,9 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySetMapping Name="ENG_WidgetData">
             <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetData">
               <MappingFragment StoreEntitySet="ENG_WidgetData">
+                <ScalarProperty Name="WidgetDataTypeID" ColumnName="WidgetDataTypeID" />
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -4481,6 +4552,8 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySetMapping Name="ENG_WidgetSetting">
             <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetSetting">
               <MappingFragment StoreEntitySet="ENG_WidgetSetting">
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="Width" ColumnName="Width" />
@@ -4494,6 +4567,16 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
               <MappingFragment StoreEntitySet="ENG_Widget">
                 <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
                 <ScalarProperty Name="WidgetTypeName" ColumnName="WidgetTypeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENG_WidgetDataType">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetDataType">
+              <MappingFragment StoreEntitySet="ENG_WidgetDataType">
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -19,11 +19,11 @@ namespace SitebracoApi.Controllers.WidgetContent
     public class WidgetContentController : BaseController
     {
         [HttpGet]
-        public List<ENG_WidgetData> GetAllContent()
+        public List<ENG_WidgetDataType> GetAllContentType()
         {
             using (var db = new SitebracoEntities())
             {
-                return db.ENG_WidgetData.ToList();
+                return db.ENG_WidgetDataType.ToList();
             }
         }
 
@@ -49,6 +49,36 @@ namespace SitebracoApi.Controllers.WidgetContent
                             Where(x => x.Position != null).ToList();
 
                 if (widget.Count > 0) return widget;
+
+                return null;
+            }
+        }
+
+        [HttpPost][HttpGet]
+        public List<ENG_WidgetData> GetAllContent(List<int> id)
+        {
+            using (var db = new SitebracoEntities())
+            {
+                List<ENG_WidgetData> content = null;
+
+                if (id == null || id.Count == 0)
+                {
+                    content = db.ENG_WidgetData.ToList();
+                }
+                else
+                {
+                    var sql = @"SELECT * FROM [dbo].[ENG_WidgetData]
+                            WHERE [WidgetDataTypeID] IN (";
+                    for (int i = 0; i < id.Count; i++)
+                    {
+                        sql += id[i];
+                        if (i != id.Count - 1) sql += ",";
+                        else sql += ")";
+                    }
+                    content = db.Database.SqlQuery<ENG_WidgetData>(sql).ToList();
+                }
+
+                if (content.Count > 0) return content;
 
                 return null;
             }
@@ -83,7 +113,7 @@ namespace SitebracoApi.Controllers.WidgetContent
                 widgetContent.URL = param.URL;
                 widgetContent.WidgetId = widget.ID;
                 widgetContent.ClientID = param.ClientID;
-                widgetContent.WidgetDataId = param.WidgetDataId;
+                widgetContent.WidgetDataTypeID = param.WidgetDataTypeId;
 
                 db.ENG_WidgetContent.Add(widgetContent);
                 db.SaveChanges();
@@ -144,6 +174,14 @@ namespace SitebracoApi.Controllers.WidgetContent
             }
         }
 
+        //[HttpPost, HttpGet]
+        //public object Subscribe(string email)
+        //{
+        //    using (var db = new SitebracoEntities)
+        //    {
+                
+        //    }
+        //}
     }
 
     public class WidgetContent
@@ -176,7 +214,7 @@ namespace SitebracoApi.Controllers.WidgetContent
 
         public int ID { get; set; }
 
-        public int WidgetDataId { get; set; }
+        public int WidgetDataTypeId { get; set; }
     }
 
     public class WidgetData

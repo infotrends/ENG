@@ -24,6 +24,12 @@ public partial class ENG_WidgetData
 
     public string Content { get; set; }
 
+    public Nullable<System.DateTime> CreateOn { get; set; }
+
+    public Nullable<System.DateTime> ModifyOn { get; set; }
+
+    public Nullable<int> WidgetDataTypeID { get; set; }
+
 }
 
 }

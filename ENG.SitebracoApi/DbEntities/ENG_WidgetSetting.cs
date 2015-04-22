@@ -36,6 +36,10 @@ public partial class ENG_WidgetSetting
 
     public string Name { get; set; }
 
+    public Nullable<System.DateTime> CreateOn { get; set; }
+
+    public Nullable<System.DateTime> ModifyOn { get; set; }
+
 
 
     public virtual ICollection<ENG_WidgetContent> ENG_WidgetContent { get; set; }

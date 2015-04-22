@@ -251,6 +251,9 @@
     <Compile Include="DbEntities\ENG_WidgetData.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbEntities\ENG_WidgetDataType.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbEntities\ENG_WidgetLookupView.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>

@@ -53,6 +53,10 @@ namespace SitebracoApi.Models.Eng
         public string Device_s { get; set; }
 
         public string DeviceBrand_s { get; set; }
+
+        public string ViewerID_s { get; set; }
+
+        public string SessionID_s { get; set; }
     }
 
     public class ClientIpInfo
@@ -96,6 +100,10 @@ namespace SitebracoApi.Models.Eng
         public string pageUrl { get; set; }
 
         public string referer { get; set; }
+
+        public string ViewerID_s { get; set; }
+
+        public string SessionID_s { get; set; }
     }
 
 }
