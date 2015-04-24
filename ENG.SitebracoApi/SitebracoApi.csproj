@@ -85,7 +85,10 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -112,6 +115,7 @@
     <Compile Include="Controllers\ContentEditor\ContentController.cs" />
     <Compile Include="Controllers\ContentEditor\ContentMediaController.cs" />
     <Compile Include="Controllers\ContentEditor\ContentTemplateController.cs" />
+    <Compile Include="Controllers\DashboardSetting\DashboardSettingController.cs" />
     <Compile Include="Controllers\Eng\EngQueryController.cs" />
     <Compile Include="Controllers\Eng\EngTrackController.cs" />
     <Compile Include="Controllers\Eng\EngUserSettingController.cs" />
@@ -254,10 +258,10 @@
     <Compile Include="DbEntities\ENG_WidgetDataType.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
-    <Compile Include="DbEntities\ENG_WidgetLookupView.cs">
+    <Compile Include="DbEntities\ENG_WidgetSetting.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
-    <Compile Include="DbEntities\ENG_WidgetSetting.cs">
+    <Compile Include="DbEntities\ENG_WidgetSubscribe.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\new_MetaClassPrimaryLookup.cs">
@@ -385,9 +389,11 @@
     <Compile Include="Models\ContentEditor\TemplateModel.cs" />
     <Compile Include="Models\Eng\ClientInfoModel.cs" />
     <Compile Include="Models\Eng\EngBase.cs" />
+    <Compile Include="Models\Eng\ENG_WidgetLookupView.cs" />
     <Compile Include="Models\Eng\FeedbackModel.cs" />
     <Compile Include="Models\Eng\NotificationModel.cs" />
     <Compile Include="Models\Eng\PageView.cs" />
+    <Compile Include="Models\Eng\SessionModel.cs" />
     <Compile Include="Models\Eng\VisitorLogModel.cs" />
     <Compile Include="Models\Meta\ContentMetaModel.cs" />
     <Compile Include="Extlib.cs" />
@@ -444,6 +450,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Sitebraco.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DbEntities\Sitebraco.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Sitebraco.edmx</DependentUpon>

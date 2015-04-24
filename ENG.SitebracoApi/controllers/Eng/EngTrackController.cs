@@ -48,8 +48,6 @@ namespace SitebracoApi.Controllers.Eng
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
                 UrlReferrer_tsd = param.referer,
-                ViewerID_s = param.ViewerID_s,
-                SessionID_s = param.SessionID_s
             };
             return new { success = data.Save() };
         }
@@ -216,6 +214,16 @@ namespace SitebracoApi.Controllers.Eng
             return GetUserLocation(ipAddress);
         }
 
+        [HttpPost, HttpGet]
+        public object CollectSessionInfo(SessionModel data)
+        {
+            data.IPAddress_s = HttpContext.Current.Request.UserHostAddress;
+
+            return new
+            {
+                success = data.Save()
+            };
+        }
 
         private string GetOperatingSystem()
         {

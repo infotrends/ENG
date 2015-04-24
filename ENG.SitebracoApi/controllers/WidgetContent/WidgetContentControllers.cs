@@ -12,6 +12,7 @@ using CorrugatedIron.Models.Search;
 using Newtonsoft.Json;
 using SitebracoApi.DbEntities;
 using System.Data.SqlClient;
+using SitebracoApi.Models.Eng;
 
 namespace SitebracoApi.Controllers.WidgetContent
 {
@@ -45,12 +46,24 @@ namespace SitebracoApi.Controllers.WidgetContent
         {
             using (var db = new SitebracoEntities())
             {
-                var widget = db.ENG_WidgetLookupView.Where(x => x.ClientID.Equals(ClientId)).
-                            Where(x => x.Position != null).ToList();
+                var sql = string.Format( @"SELECT 
+	                            W.WidgetTypeName, 
+                                WC.URL, WS.Color, WS.Width, WS.Height, WS.Name,
+	                            WC.ID, WD.Title, WD.Content, WC.ClientID, WC.Position, WDT.ID AS WidgetDataTypeID, WD.ID AS WidgetDataID
 
-                if (widget.Count > 0) return widget;
+    	                    FROM ENG_WidgetContent WC
+	                        INNER JOIN [dbo].[ENG_WidgetSetting] WS
+		                        ON WC.[WidgetSettingID] = WS.ID
+	                        LEFT JOIN ENG_WidgetDataType WDT
+		                        ON WC.WidgetDataTypeId = WDT.ID
+	                        LEFT JOIN ENG_WidgetData WD
+		                        ON WDT.ID = WD.[WidgetDataTypeID]
+	                        INNER JOIN ENG_Widget W
+		                        ON WC.WidgetId = W.ID
+                            WHERE WC.ClientID = {0}", ClientId);
+                List<ENG_WidgetLookupView> result = db.Database.SqlQuery<ENG_WidgetLookupView>(sql).ToList();
 
-                return null;
+                return result;
             }
         }
 
@@ -88,7 +101,7 @@ namespace SitebracoApi.Controllers.WidgetContent
         public object AddWidget(WidgetParam param)
         {
             using (var db = new SitebracoEntities())
-            {
+            {                
                 ENG_WidgetSetting setting = new ENG_WidgetSetting();
                 setting.Color = param.Color;
 
@@ -100,6 +113,8 @@ namespace SitebracoApi.Controllers.WidgetContent
                 setting.Width = param.Width;
 
                 setting = db.ENG_WidgetSetting.Add(setting);
+
+                // Call SaveChanges to get setting's ID
                 db.SaveChanges();
 
                 //Find widget
@@ -113,9 +128,24 @@ namespace SitebracoApi.Controllers.WidgetContent
                 widgetContent.URL = param.URL;
                 widgetContent.WidgetId = widget.ID;
                 widgetContent.ClientID = param.ClientID;
-                widgetContent.WidgetDataTypeID = param.WidgetDataTypeId;
 
-                db.ENG_WidgetContent.Add(widgetContent);
+                // If it's another widget: subscribe, search...
+                
+                if (param.WidgetDataTypeId == null || param.WidgetDataTypeId.Count <= 0)
+                {
+                    db.ENG_WidgetContent.Add(widgetContent);
+                }
+                // If it's Content Widget
+                else
+                {                     
+                    foreach (var item in param.WidgetDataTypeId)
+                    {
+                        widgetContent.WidgetDataTypeID = item;
+                        db.ENG_WidgetContent.Add(widgetContent);
+                    }
+                }
+                    
+                //Perform Unit Of Work
                 db.SaveChanges();
 
                 return new
@@ -174,14 +204,22 @@ namespace SitebracoApi.Controllers.WidgetContent
             }
         }
 
-        //[HttpPost, HttpGet]
-        //public object Subscribe(string email)
-        //{
-        //    using (var db = new SitebracoEntities)
-        //    {
-                
-        //    }
-        //}
+        [HttpPost, HttpGet]
+        public object Subscribe(SubcribeParam param)
+        {
+            using (var db = new SitebracoEntities())
+            {
+                var subscribe = new ENG_WidgetSubscribe();
+                subscribe.Email = param.Email;
+                subscribe.ClientId = param.ClientId;
+                db.ENG_WidgetSubscribe.Add(subscribe);
+
+                db.SaveChanges();
+                return new {
+                    success = true,
+                };
+            }
+        }
     }
 
     public class WidgetContent
@@ -214,7 +252,8 @@ namespace SitebracoApi.Controllers.WidgetContent
 
         public int ID { get; set; }
 
-        public int WidgetDataTypeId { get; set; }
+        public List<int> WidgetDataTypeId { get; set; }
+
     }
 
     public class WidgetData
@@ -228,5 +267,11 @@ namespace SitebracoApi.Controllers.WidgetContent
         public int Height { get; set; }
 
         public string Name { get; set; }
+    }
+
+    public class SubcribeParam{
+        public string ClientId { get; set; }
+
+        public string Email { get; set; }
     }
 }

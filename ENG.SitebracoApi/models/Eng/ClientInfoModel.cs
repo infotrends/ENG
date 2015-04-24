@@ -9,54 +9,109 @@ namespace SitebracoApi.Models.Eng
 {
     public class ClientInfoModel : EngBase
     {
+        /// <summary>
+        /// Client ID
+        /// </summary>
         [Required]
         public string ClientId_s { get; set; }
 
+        /// <summary>
+        /// Host Name
+        /// </summary>
         public string Host_tsd { get; set; }
 
+        /// <summary>
+        ///  Currently Page URL
+        /// </summary>
         public string PageUrl_tsd { get; set; }
 
+        /// <summary>
+        /// IP Address
+        /// </summary>
         [Required]
         public string IPAddress_s { get; set; }
 
+        /// <summary>
+        /// Platform Name (WinNT,...)
+        /// </summary>
         public string Platform_tsd { get; set; }
 
+        /// <summary>
+        /// User Agent String
+        /// </summary>
         public string UserAgent_tsd { get; set; }
 
+        /// <summary>
+        /// Browser Name
+        /// </summary>
         [Required]
         public string Browser_s { get; set; }
 
+
+        /// <summary>
+        /// Operating System Name
+        /// </summary>
         [Required]
         public string OperatingSystem_s { get; set; }
 
+        /// <summary>
+        /// Screen Resolution
+        /// </summary>
         [Required]
         public string ScreenResolution_tsd { get; set; }
 
+
+        /// <summary>
+        /// Currently Browser Version
+        /// </summary>
         public string BrowserVersion_s { get; set; }
 
         public int BrowserMajorVersion_i { get; set; }
 
         public double BrowserMinnorVersion_d { get; set; }
 
+
+        /// <summary>
+        /// URL of the page which refer to this page (from google.com, ...)
+        /// </summary>
         public string UrlReferrer_tsd { get; set; }
 
+
+        /// <summary>
+        /// Country Name
+        /// </summary>
         public string CountryName_s { get; set; }
 
+        /// <summary>
+        /// Country Code
+        /// </summary>
         public string CountryCode_s { get; set; }
 
+        /// <summary>
+        /// City Name
+        /// </summary>
         public string City_s { get; set; }
 
+        /// <summary>
+        /// Lattitude
+        /// </summary>
         public float Latitude_f { get; set; }
 
+        /// <summary>
+        /// Longitude
+        /// </summary>
         public float Longitude_f { get; set; }
 
+        /// <summary>
+        /// Device Name
+        /// </summary>
         public string Device_s { get; set; }
 
+        /// <summary>
+        /// Device Brand Name
+        /// </summary>
         public string DeviceBrand_s { get; set; }
 
-        public string ViewerID_s { get; set; }
-
-        public string SessionID_s { get; set; }
     }
 
     public class ClientIpInfo
@@ -100,10 +155,6 @@ namespace SitebracoApi.Models.Eng
         public string pageUrl { get; set; }
 
         public string referer { get; set; }
-
-        public string ViewerID_s { get; set; }
-
-        public string SessionID_s { get; set; }
     }
 
 }

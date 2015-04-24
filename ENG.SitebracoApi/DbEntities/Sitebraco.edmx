@@ -493,6 +493,16 @@
           <Property Name="CreateOn" Type="datetime" />
           <Property Name="ModifyOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="ENG_WidgetSubscribe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="ModifyOn" Type="datetime" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="new_MetaClassPrimaryLookup">
           <Key>
             <PropertyRef Name="ClassId" />
@@ -792,23 +802,6 @@ warning 6002: The table/view 'Sitebraco.dbo.umbracoUserLogins' does not have a p
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Sitebraco.dbo.ENG_WidgetLookupView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ENG_WidgetLookupView">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="ClientID" />
-          </Key>
-          <Property Name="WidgetTypeName" Type="nvarchar" MaxLength="100" />
-          <Property Name="URL" Type="nvarchar(max)" />
-          <Property Name="Color" Type="nvarchar" MaxLength="100" />
-          <Property Name="Width" Type="int" />
-          <Property Name="Height" Type="int" />
-          <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Title" Type="nvarchar(max)" />
-          <Property Name="Content" Type="nvarchar(max)" />
-          <Property Name="ClientID" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Position" Type="nvarchar(max)" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="new_MetaClassPrimaryView">
@@ -1559,6 +1552,7 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
           <EntitySet Name="ENG_WidgetData" EntityType="Self.ENG_WidgetData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_WidgetDataType" EntityType="Self.ENG_WidgetDataType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_WidgetSetting" EntityType="Self.ENG_WidgetSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENG_WidgetSubscribe" EntityType="Self.ENG_WidgetSubscribe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="new_MetaClassPrimaryLookup" EntityType="Self.new_MetaClassPrimaryLookup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="new_OfficeTemplate" EntityType="Self.new_OfficeTemplate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="new_OfficeTemplateVersion" EntityType="Self.new_OfficeTemplateVersion" Schema="dbo" store:Type="Tables" />
@@ -1593,21 +1587,6 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
 [umbracoUserLogins].[userID] AS [userID], 
 [umbracoUserLogins].[timeout] AS [timeout]
 FROM [dbo].[umbracoUserLogins] AS [umbracoUserLogins]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="ENG_WidgetLookupView" EntityType="Self.ENG_WidgetLookupView" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[ENG_WidgetLookupView].[WidgetTypeName] AS [WidgetTypeName], 
-[ENG_WidgetLookupView].[URL] AS [URL], 
-[ENG_WidgetLookupView].[Color] AS [Color], 
-[ENG_WidgetLookupView].[Width] AS [Width], 
-[ENG_WidgetLookupView].[Height] AS [Height], 
-[ENG_WidgetLookupView].[Name] AS [Name], 
-[ENG_WidgetLookupView].[ID] AS [ID], 
-[ENG_WidgetLookupView].[Title] AS [Title], 
-[ENG_WidgetLookupView].[Content] AS [Content], 
-[ENG_WidgetLookupView].[ClientID] AS [ClientID], 
-[ENG_WidgetLookupView].[Position] AS [Position]
-FROM [dbo].[ENG_WidgetLookupView] AS [ENG_WidgetLookupView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="new_MetaClassPrimaryView" EntityType="Self.new_MetaClassPrimaryView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2134,7 +2113,6 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySet Name="ENG_Session" EntityType="SitebracoModel.ENG_Session" />
           <EntitySet Name="ENG_TrackingList" EntityType="SitebracoModel.ENG_TrackingList" />
           <EntitySet Name="ENG_UserSetting" EntityType="SitebracoModel.ENG_UserSetting" />
-          <EntitySet Name="ENG_WidgetLookupView" EntityType="SitebracoModel.ENG_WidgetLookupView" />
           <EntitySet Name="ENG_WidgetContent" EntityType="SitebracoModel.ENG_WidgetContent" />
           <EntitySet Name="ENG_WidgetData" EntityType="SitebracoModel.ENG_WidgetData" />
           <EntitySet Name="ENG_WidgetSetting" EntityType="SitebracoModel.ENG_WidgetSetting" />
@@ -2156,6 +2134,7 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
             <End Role="ENG_WidgetDataType" EntitySet="ENG_WidgetDataType" />
             <End Role="ENG_WidgetData" EntitySet="ENG_WidgetData" />
           </AssociationSet>
+          <EntitySet Name="ENG_WidgetSubscribe" EntityType="SitebracoModel.ENG_WidgetSubscribe" />
         </EntityContainer>
         <EntityType Name="Action">
           <Key>
@@ -3556,23 +3535,6 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="PageViewsRankingMedium" Type="Int32" />
           <Property Name="PageViewsRankingHigh" Type="Int32" />
         </EntityType>
-        <EntityType Name="ENG_WidgetLookupView">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="ClientID" />
-          </Key>
-          <Property Name="WidgetTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Color" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Width" Type="Int32" />
-          <Property Name="Height" Type="Int32" />
-          <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="ENG_WidgetContent">
           <Key>
             <PropertyRef Name="ID" />
@@ -3681,6 +3643,16 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ENG_WidgetSubscribe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4504,23 +4476,6 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ENG_WidgetLookupView">
-            <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetLookupView">
-              <MappingFragment StoreEntitySet="ENG_WidgetLookupView">
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Width" ColumnName="Width" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="WidgetTypeName" ColumnName="WidgetTypeName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ENG_WidgetContent">
             <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetContent">
               <MappingFragment StoreEntitySet="ENG_WidgetContent">
@@ -4577,6 +4532,17 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
                 <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
                 <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENG_WidgetSubscribe">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_WidgetSubscribe">
+              <MappingFragment StoreEntitySet="ENG_WidgetSubscribe">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

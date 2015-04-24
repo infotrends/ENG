@@ -178,8 +178,6 @@ public partial class SitebracoEntities : DbContext
 
     public DbSet<ENG_UserSetting> ENG_UserSetting { get; set; }
 
-    public DbSet<ENG_WidgetLookupView> ENG_WidgetLookupView { get; set; }
-
     public DbSet<ENG_WidgetContent> ENG_WidgetContent { get; set; }
 
     public DbSet<ENG_WidgetData> ENG_WidgetData { get; set; }
@@ -189,6 +187,8 @@ public partial class SitebracoEntities : DbContext
     public DbSet<ENG_Widget> ENG_Widget { get; set; }
 
     public DbSet<ENG_WidgetDataType> ENG_WidgetDataType { get; set; }
+
+    public DbSet<ENG_WidgetSubscribe> ENG_WidgetSubscribe { get; set; }
 
 
     public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

@@ -15,30 +15,18 @@ namespace SitebracoApi.DbEntities
 using System;
     using System.Collections.Generic;
     
-public partial class ENG_WidgetLookupView
+public partial class ENG_WidgetSubscribe
 {
-
-    public string WidgetTypeName { get; set; }
-
-    public string Name { get; set; }
-
-    public string Color { get; set; }
 
     public int ID { get; set; }
 
-    public string Title { get; set; }
+    public string Email { get; set; }
 
-    public string Content { get; set; }
+    public Nullable<System.DateTime> CreateOn { get; set; }
 
-    public string ClientID { get; set; }
+    public Nullable<System.DateTime> ModifyOn { get; set; }
 
-    public string URL { get; set; }
-
-    public Nullable<int> Width { get; set; }
-
-    public Nullable<int> Height { get; set; }
-
-    public string Position { get; set; }
+    public string ClientId { get; set; }
 
 }
 
