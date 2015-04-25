@@ -15,20 +15,14 @@ namespace SitebracoApi.DbEntities
 using System;
     using System.Collections.Generic;
     
-public partial class ENG_WidgetDataType
+public partial class ENG_WidgetContent_WidgetDataType_Lookup
 {
-
-    public ENG_WidgetDataType()
-    {
-
-        this.ENG_WidgetContent_WidgetDataType_Lookup = new HashSet<ENG_WidgetContent_WidgetDataType_Lookup>();
-
-    }
-
 
     public int ID { get; set; }
 
-    public string Name { get; set; }
+    public Nullable<int> WidgetContentID { get; set; }
+
+    public Nullable<int> WidgetDataTypeID { get; set; }
 
     public Nullable<System.DateTime> CreateOn { get; set; }
 
@@ -36,7 +30,9 @@ public partial class ENG_WidgetDataType
 
 
 
-    public virtual ICollection<ENG_WidgetContent_WidgetDataType_Lookup> ENG_WidgetContent_WidgetDataType_Lookup { get; set; }
+    public virtual ENG_WidgetContent ENG_WidgetContent { get; set; }
+
+    public virtual ENG_WidgetDataType ENG_WidgetDataType { get; set; }
 
 }
 

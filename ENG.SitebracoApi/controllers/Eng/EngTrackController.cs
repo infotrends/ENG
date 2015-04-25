@@ -1,23 +1,13 @@
 ﻿using CorrugatedIron.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using RestSharp;
 using SitebracoApi.DbEntities;
 using SitebracoApi.Models;
 using SitebracoApi.Models.Eng;
-using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Globalization;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Xml;
 
 namespace SitebracoApi.Controllers.Eng
 {
@@ -80,8 +70,7 @@ namespace SitebracoApi.Controllers.Eng
             };
             return new
             {
-                success = true,
-                data = data,
+                success = true, data,
                 userlocation = userLocation
             };
         }
@@ -98,23 +87,26 @@ namespace SitebracoApi.Controllers.Eng
         public object CollectMouseActionInfoTest(MouseTrackModel data)
         {
             data.PageUrl_tsd = HttpContext.Current.Request.Url.AbsolutePath;
-            return new { success = true, data = data };
+            return new { success = true, data };
         }
 
         [HttpPost, HttpGet]
         public object CollectSetOfMouseActionInfo(IEnumerable<MouseTrackModel> data)
         {
-            if (data == null || data.Count() == 0)
+            var mouseTrackModels = data as MouseTrackModel[] ?? data.ToArray();
+            if (data == null || !mouseTrackModels.Any())
             {
                 //To Track if User is online
-                MouseTrackModel model = new MouseTrackModel();
-                model.ActionName_s = "Online";
-                model.IPAddress_s = HttpContext.Current.Request.UserHostAddress;
-                model.ClientId_s = "Infotrends";
-                model.PageUrl_tsd = "http://infotrends.com/public/home.html";
-                model.PageX_i = 0;
-                model.PageY_i = 0;
-                model.Point_i = 0;
+                var model = new MouseTrackModel
+                {
+                    ActionName_s = "Online",
+                    IPAddress_s = HttpContext.Current.Request.UserHostAddress,
+                    ClientId_s = "Infotrends",
+                    PageUrl_tsd = "http://infotrends.com/public/home.html",
+                    PageX_i = 0,
+                    PageY_i = 0,
+                    Point_i = 0
+                };
                 return new
                 {
                     success = model.Save()
@@ -124,7 +116,7 @@ namespace SitebracoApi.Controllers.Eng
             var bucketName = ObjectUtil.GetClassName<MouseTrackModel>();
             var bucketType = ObjectUtil.GetPropertyName<Constant.RiakSolr.BucketType>(x => x.InfoTrendsLog);
             var list = new List<RiakObject>();
-            foreach (var item in data)
+            foreach (var item in mouseTrackModels)
             {
                 item.IPAddress_s = HttpContext.Current.Request.UserHostAddress;
                 item.Position_s = string.Format("{0},{1}", item.PageX_i, item.PageY_i);
@@ -134,7 +126,7 @@ namespace SitebracoApi.Controllers.Eng
             }
 
             var client = MyRiak.RiakHelper.CreateClient(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
-            var results = client.Put(list);
+            client.Put(list);
 
             return new { success = true };
         }
@@ -142,16 +134,17 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object CollectSetOfMouseActionInfoTest(IEnumerable<MouseTrackModel> data)
         {
-            if (data == null || data.Count() == 0)
+            var mouseTrackModels = data as MouseTrackModel[] ?? data.ToArray();
+            if (data == null || !mouseTrackModels.Any())
                 return new { success = true };
 
-            foreach (var item in data)
+            foreach (var item in mouseTrackModels)
             {
                 item.PageUrl_tsd = HttpContext.Current.Request.Url.AbsolutePath;
                 item.Position_s = string.Format("{0},{1}", item.PageX_i, item.PageY_i);
             }
 
-            return new { success = true, data = data };
+            return new { success = true, data = mouseTrackModels };
         }
 
         [HttpPost, HttpGet]
@@ -163,7 +156,7 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object CollectFeedbackTest(FeedbackModel data)
         {
-            return new { success = true, data = data };
+            return new { success = true, data };
         }
 
         [HttpPost, HttpGet]
@@ -177,7 +170,7 @@ namespace SitebracoApi.Controllers.Eng
             data.Latitude_f = userLocation.Latitude;
             data.Longitude_f = userLocation.Longitude;
 
-            return new { success = true, data = data };
+            return new { success = true, data };
         }
 
         [HttpPost, HttpGet]
@@ -203,13 +196,13 @@ namespace SitebracoApi.Controllers.Eng
         [HttpPost, HttpGet]
         public object CollectNotificationTest(NotificationModel data)
         {
-            return new { success = true, data = data };
+            return new { success = true, data };
         }
 
         [HttpPost, HttpGet]
         public object TestIPAddress()
         {
-            var ipAddress = "50.201.58.71";
+            const string ipAddress = "50.201.58.71";
 
             return GetUserLocation(ipAddress);
         }
@@ -225,7 +218,7 @@ namespace SitebracoApi.Controllers.Eng
             };
         }
 
-        private string GetOperatingSystem()
+        private static string GetOperatingSystem()
         {
             var operatingSystem = "";
             var userAgent = HttpContext.Current.Request.UserAgent;
@@ -237,14 +230,10 @@ namespace SitebracoApi.Controllers.Eng
                 {
                     var aliasList = Regex.Split(os.Alias, @"\,");
                     var check = false;
-                    foreach (var item in aliasList)
+                    if (aliasList.Any(item => userAgent != null && userAgent.Contains(item)))
                     {
-                        if (userAgent.Contains(item))
-                        {
-                            operatingSystem = os.Name;
-                            check = true;
-                            break;
-                        }
+                        operatingSystem = os.Name;
+                        check = true;
                     }
                     if (check) break;
                 }
@@ -252,12 +241,11 @@ namespace SitebracoApi.Controllers.Eng
             return operatingSystem;
         }
 
-        private ClientIpInfo GetUserLocation(string ipAddress)
+        private static ClientIpInfo GetUserLocation(string ipAddress)
         {
             var restClient = new RestClient("http://engagementdev.infotrends.com:6789");
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/api/GetClientInfo?IPAddress={IPAddress}";
+            var request = new RestRequest(Method.GET) {Resource = "/api/GetClientInfo?IPAddress={IPAddress}"};
             request.AddParameter("IPAddress", ipAddress, RestSharp.ParameterType.UrlSegment);
             
             var response = restClient.Execute<ClientIpInfo>(request);
@@ -265,7 +253,7 @@ namespace SitebracoApi.Controllers.Eng
             return response.Data;
         }
 
-        private string GetDevice()
+        private static string GetDevice()
         {
             if (HttpContext.Current.Request.Browser.IsMobileDevice)
             {
@@ -274,32 +262,22 @@ namespace SitebracoApi.Controllers.Eng
             return "Desktop";
         }
 
-        private string GetBrowser()
+        private static string GetBrowser()
         {
-            if (HttpContext.Current.Request.Browser.IsMobileDevice)
-            {
-                var deviceModel = HttpContext.Current.Request.Browser.MobileDeviceModel;
-                var userAgent = HttpContext.Current.Request.UserAgent;
+            if (!HttpContext.Current.Request.Browser.IsMobileDevice) return HttpContext.Current.Request.Browser.Browser;
+            var deviceModel = HttpContext.Current.Request.Browser.MobileDeviceModel;
+            var userAgent = HttpContext.Current.Request.UserAgent;
 
-                if (deviceModel.ToLower().Equals("ipad")
-                    || deviceModel.ToLower().Equals("ipod")
-                    || deviceModel.ToLower().Equals("iphone"))
-                {
-                    if (userAgent.ToLower().Contains("chrome") || userAgent.ToLower().Contains("crios"))
-                        return "Chrome";
-
-                }
-            }
+            if (!deviceModel.ToLower().Equals("ipad") && !deviceModel.ToLower().Equals("ipod") &&
+                !deviceModel.ToLower().Equals("iphone")) return HttpContext.Current.Request.Browser.Browser;
+            if (userAgent != null && (userAgent.ToLower().Contains("chrome") || userAgent.ToLower().Contains("crios")))
+                return "Chrome";
             return HttpContext.Current.Request.Browser.Browser;
         }
 
-        private string GetDeviceBrand()
+        private static string GetDeviceBrand()
         {
-            if (HttpContext.Current.Request.Browser.IsMobileDevice)
-            {
-                return HttpContext.Current.Request.Browser.MobileDeviceManufacturer;
-            }
-            return "Desktop";
+            return HttpContext.Current.Request.Browser.IsMobileDevice ? HttpContext.Current.Request.Browser.MobileDeviceManufacturer : "Desktop";
         }
     }
 

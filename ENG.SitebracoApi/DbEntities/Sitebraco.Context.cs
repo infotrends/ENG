@@ -190,6 +190,14 @@ public partial class SitebracoEntities : DbContext
 
     public DbSet<ENG_WidgetSubscribe> ENG_WidgetSubscribe { get; set; }
 
+    public DbSet<ENG_DashboardSettingColumn> ENG_DashboardSettingColumn { get; set; }
+
+    public DbSet<ENG_DashboardSettingReport> ENG_DashboardSettingReport { get; set; }
+
+    public DbSet<ENG_WidgetContent_WidgetDataType_Lookup> ENG_WidgetContent_WidgetDataType_Lookup { get; set; }
+
+    public DbSet<ENG_DashboardSettingView> ENG_DashboardSettingView { get; set; }
+
 
     public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
     {

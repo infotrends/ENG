@@ -131,9 +131,15 @@
         <EntityTypeShape EntityType="SitebracoModel.ENG_Widget" Width="1.5" PointX="22.375" PointY="12.875" />
         <AssociationConnector Association="SitebracoModel.FK__ENG_Widge__Widge__12C8C788" />
         <EntityTypeShape EntityType="SitebracoModel.ENG_WidgetDataType" Width="1.5" PointX="19.75" PointY="0.75" />
-        <AssociationConnector Association="SitebracoModel.FK__ENG_Widge__Widge__351DDF8C" />
         <AssociationConnector Association="SitebracoModel.FK__ENG_Widge__Widge__361203C5" />
         <EntityTypeShape EntityType="SitebracoModel.ENG_WidgetSubscribe" Width="1.5" PointX="18.375" PointY="22.75" />
+        <EntityTypeShape EntityType="SitebracoModel.ENG_DashboardSettingColumn" Width="2.875" PointX="22.25" PointY="1" />
+        <EntityTypeShape EntityType="SitebracoModel.ENG_DashboardSettingReport" Width="2.375" PointX="26.5" PointY="1.125" />
+        <AssociationConnector Association="SitebracoModel.FK__ENG_Dashb__Dashb__4DE98D56" />
+        <EntityTypeShape EntityType="SitebracoModel.ENG_WidgetContent_WidgetDataType_Lookup" Width="1.5" PointX="27.625" PointY="4.5" />
+        <AssociationConnector Association="SitebracoModel.FK__ENG_Widge__Widge__52AE4273" />
+        <AssociationConnector Association="SitebracoModel.FK__ENG_Widge__Widge__53A266AC" />
+        <EntityTypeShape EntityType="SitebracoModel.ENG_DashboardSettingView" Width="1.5" PointX="20.375" PointY="22.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
