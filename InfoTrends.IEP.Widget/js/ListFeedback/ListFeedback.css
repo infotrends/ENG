@@ -1,0 +1,236 @@
+﻿body {
+}
+
+#eng_listFeedback {
+    margin-top: 8px;
+    transition: opacity 1s;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 4px;
+    width: 90%;
+    max-height: 80%;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    cursor: pointer;
+    position: fixed;
+    z-index: 9999;
+    padding-bottom: 2px;
+}
+
+    #eng_listFeedback h2 {
+        background: #348fe2;
+        padding: 20px 0;
+        font-size: 140%;
+        font-weight: 300;
+        text-align: center;
+        color: #fff;
+        margin-top: 0px;
+        border-radius: 4px;
+        display: block;
+        cursor: pointer;
+    }
+
+    #eng_listFeedback .eng-listFeedback-close {
+        text-decoration: none;
+        position: absolute;
+        top: 2px;
+        right: 3px;
+        padding: 1px 3px;  
+        cursor: pointer;
+        font-size: 13px;
+        color: #fff;
+        background: #ff5b57;
+        border-color: #ff5b57;
+        border-radius: 50%;
+    }
+
+
+    #eng_listFeedback .eng-listFeedback-Table {
+        padding : 20px;
+    }
+#eng_list_header {
+    text-align: left;
+}
+
+    #eng_list_header div {
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        text-align: center;
+        border: 1px solid #ccc;
+        background-color: #F2F2F2;
+    }
+
+    #eng_list_header .eng_name, #eng_list_header .eng_mail, #eng_list_content .eng_nameContent, #eng_list_content .eng_mailContent {
+        width: 21%;
+    }
+
+    #eng_list_header .eng_feedback, #eng_list_content .eng_feedbackContent {
+        width: 56.58%;
+    }
+
+#eng-listFeedback-loading {
+    display: none;
+    top: 43%;
+    left: 43%;
+    position: fixed;
+    z-index: 99999;
+    padding: 15px;
+}
+
+#eng_list_content {
+    text-align: left;
+}
+
+    #eng_list_content .eng_feedbackBody {
+        border-bottom: 1px solid #ccc;
+    }
+
+.eng_feedbackBody p {
+    display: inline-block;
+    padding-left: 5px;
+}
+#eng_listFeedback .eng-listFeedback-content {
+    height: 500px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+#eng_list_content .eng_mailContent {
+}
+
+#eng-listFeedbackBlur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #cecece;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(168, 160, 160, 0.38);
+    z-index: 999;
+    cursor: pointer;
+}
+
+#eng_listFeedback .eng-listFeedback-header tr td {
+    margin-bottom: 20px;
+    border: 1px solid #A5A5A5;
+    background-color: #ccc;
+    text-align: center;
+    font-size: 18px;
+    word-wrap: break-word;
+    border: none;
+}
+
+#btnShowFeedback {
+    background-color: #3361B7;
+    color: #fff;
+    border: 5px solid #3361B7;
+    border-color: #3361B7;
+    cursor: pointer;
+    float: right;
+    margin-right: 1%;
+    margin-top: 1%;
+}
+
+#eng_listFeedback td {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 17px;
+    word-break:break-all;
+}
+
+
+    #eng_listFeedback .eng-listFeedback-header tr td {
+
+}
+
+#eng_listFeedback table {
+    table-layout: fixed;
+    width: 100%;
+    margin-bottom: 0;
+
+}
+
+    #eng_listFeedback table tr td:first-child {
+        text-align: center;
+}
+
+@media only screen and (min-width: 800px) {
+    #eng_listFeedback tr td:first-child {
+        text-align: center;
+        width: 5%;
+    }
+
+    #eng_listFeedback tr td:nth-child(2) {
+        width: 15%;
+    }
+
+    #eng_listFeedback tr td:nth-child(3) {
+        width: 25%;
+    }
+
+    #eng_listFeedback tr td:nth-child(4) {
+        width: 12%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    #eng_listFeedback table tr td:first-child {
+        text-align: left;
+    }
+    /* Force table to not be like tables anymore */
+    #eng_listFeedback table,
+    #eng_listFeedback thead,
+    #eng_listFeedback tbody,
+    #eng_listFeedback th,
+    #eng_listFeedback td,
+    #eng_listFeedback tr {
+        display: block;
+    }
+    #eng_listFeedback .eng-listFeedback-header {
+        display : none;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        #eng_listFeedback thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    #eng_listFeedback tr {
+        border: 1px solid #348fe2;
+    }
+
+    #eng_listFeedback td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+        padding-top: 7px;
+    }
+
+        #eng_listFeedback td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        #eng_listFeedback td:before {
+            content: attr(data-title);
+        }
+}

@@ -1,0 +1,78 @@
+﻿<div class="eng-content">
+    <div class="eng-toolbar-logo">
+        <img src="<%= ENG.DOMAIN+  "/resources/img/elogo-sm.png"%>" />
+    </div>
+    <div class="eng-toolbar-function">
+        <ul>
+            <li class="eng-toolbar-item" data-value="Analytics" title="Analytics">
+                <a><i class="fa fa-laptop"></i><span>Analytics</span></a>
+            </li>
+            <li class="eng-toolbar-item" data-value="Lead Managerment" title="Lead Managerment">
+                <a><i class="fa fa-gift"></i><span>Lead Managerment</span></a>
+            </li>
+            <li class="eng-toolbar-item" data-value="Push Marketing" title="Push Marketing">
+                <a><i class="fa fa-star"></i><span>Push Marketing</span></a>
+            </li>
+            <li class="eng-toolbar-item" data-value="Widgets" title="Widgets">
+                <a><i class="fa fa-th"></i><span>Widgets</span></a>
+            </li>
+            <li class="eng-toolbar-item" data-value="Content Management" title="Content Management">
+                <a><i class="fa fa-file-o"></i><span>Content Management</span></a>
+            </li>
+            <li class="eng-toolbar-item" data-value="Recommendations" title="Recommendations">
+                <a><i class="fa fa-comments"></i><span>Recommendations</span></a>
+            </li>
+            <li class="eng-toolbar-item" data-value="Account" title="Account">
+                <a><i class="fa fa-user"></i><span>Account</span></a>
+                <ul>
+                    <li class="eng-subToolBar">
+                        <a data-value="Settings"><i data-value="Settings" class="fa fa-cog"></i><span data-value="Settings" class="eng-subToolBar-content">Settings</span></a>
+                        <a data-value="SignOut"><i data-value="SignOut" class="fa fa-sign-out"></i><span data-value="SignOut" class="eng-subToolBar-content">Sign Out</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="eng-toolbar-item" data-value="Feedback" title="Feedback">
+                <a >
+                    <i class="fa fa-thumbs-o-up"></i>
+                    <span>Feedback</span>
+                </a>
+                <ul>
+                    <li class="eng-subToolBar">
+                        <a id="AddFeedback" title="Add Feedback"><i class="fa fa-plus"></i><span class="eng-subToolBar-content">Add</span></a>
+                        <a id="ListFeedback" title="List Feedback"><i class="fa fa-list"></i><span class="eng-subToolBar-content">List</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="eng-toolbar-item" data-value="Notification" id="" title="Notification">
+                <a>
+                    <i class="fa fa-bell-o"></i>
+                    <span style="<% if(numberNotifications === 0){ %> display: none; <% } %>" class="eng-label-notification"><%= numberNotifications%></span>
+                </a>
+<!--                <ul class="eng-notification">-->
+<!--                    <li>-->
+<!--                        <div class="eng-media-header">-->
+<!--                            <span>Notifications(2)</span>-->
+<!--                        </div>-->
+<!--                        -->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a class="eng-media">-->
+<!--                            <div>-->
+<!--                                <h6 class="eng-title">Title 1</h6>-->
+<!--                                <span>Notification 1 hay aksdjflaksjd fkajsdflkjasd lfkjasldkfjalksdj flaksj df</span>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a class="eng-media">-->
+<!--                            <div>-->
+<!--                                <h6 class="eng-title">Title 1</h6>-->
+<!--                                <span>Notification 2</span>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+            </li>
+        </ul>
+    </div>
+</div>

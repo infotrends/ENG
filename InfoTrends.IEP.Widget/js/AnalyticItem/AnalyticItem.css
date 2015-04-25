@@ -1,0 +1,7 @@
+﻿.eng-analyticItem{
+    border-bottom: 2px solid white;
+}
+.analyticItem{
+    cursor: pointer;
+    margin: 5px 3%;
+}

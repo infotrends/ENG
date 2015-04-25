@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="jquery.js"></script>
+    <script type="text/javascript">
+        var Xdr = {
+            _init: function () {
+                var me = this;
+                me._on('message', me._onMessage, me);
+            },
+            _postMessage: function (eventName, data) {
+                var msg = { eventName: eventName, data: data };
+                msg = JSON.stringify(msg);
+                window.parent.postMessage(msg, "*");
+            },
+            _onMessage: function (e) {
+                var me = this;
+
+                var msg = JSON.parse(e.data);
+                var evt = msg.eventName;
+                var cfg = msg.data;
+
+                if (evt != 'xdr.send')
+                    return;
+
+                var callbackId = cfg.callbackId;
+
+                cfg.complete = function (xhr, status) {
+                    var success = (status != "error");
+                    var response = null;
+                    try { response = JSON.parse(xhr.responseText); }
+                    catch (errr) { }
+                    var data = { callbackId: callbackId, success: success, data:  response }
+                    me._postMessage('xdr.receive', data);
+                }
+
+                $.ajax(cfg);
+            },
+            _on: function (eventName, func, scope) {
+                var fnEvent = function () {
+                    func.apply(scope, arguments);
+                };
+                if (window.addEventListener) {
+                    var evt = eventName.toLowerCase();
+                    window.addEventListener(evt, fnEvent, false);
+                } else if (window.attachEvent) {
+                    var evt = 'on' + eventName.toLowerCase();
+                    window.attachEvent(evt, fnEvent);
+                }
+            },
+        }
+        Xdr._init();
+    </script>
+</head>
+<body>
+</body>
+</html>

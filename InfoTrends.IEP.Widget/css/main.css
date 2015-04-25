@@ -1,0 +1,1024 @@
+﻿body {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.eng-opa-05 {
+    opacity: 0.5;
+}
+
+#eng-mouseHeatMap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999999999999999999;
+}
+
+.eng-heatMapControl {
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    z-index: 99999999999999999999999999;
+    padding: 10px;
+    background: #fff;
+    cursor: move;
+}
+
+    .eng-heatMapControl > * {
+        display: inline-block !important;
+        vertical-align: middle;
+    }
+
+    .eng-heatMapControl > input {
+        width: 50% !important;
+    }
+
+    .eng-heatMapControl > label {
+        width: 60px !important;
+    }
+
+#eng-closeHeatMap {
+    background: #4d90fe !important;
+    border: 0;
+    padding: 10px;
+    color: #fff;
+    border-radius: 3px;
+}
+
+
+/*style table with responsive design*/
+.eng_ReportTable a:link {
+    color: #666;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.eng_ReportTable a:visited {
+    color: #999999;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.eng_ReportTable a:active,
+.eng_ReportTable a:hover {
+    color: #bd5a35;
+    text-decoration: none;
+}
+
+
+table.eng_ReportTable {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    /*text-shadow: 1px 1px 0px #fff;*/
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 2px #d1d1d1;
+    -webkit-box-shadow: 0 1px 2px #d1d1d1;
+    box-shadow: 0 1px 2px #d1d1d1;
+    width: 100%;
+    margin: 0;
+}
+
+    table.eng_ReportTable th {
+        padding: 21px 25px 22px 25px;
+        /*border-top: 1px solid #fafafa;
+        border-bottom: 1px solid #e0e0e0;
+        background: #ededed;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+        background: -moz-linear-gradient(top, #ededed, #ebebeb);*/
+        text-align: left;
+        color: rgb(51, 51, 51);
+        font-size: 13px;
+}
+
+        table.eng_ReportTable th:first-child {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+    table.eng_ReportTable tr:first-child th:first-child {
+        -moz-border-radius-topleft: 3px;
+        -webkit-border-top-left-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+    table.eng_ReportTable tr:first-child th:last-child {
+        -moz-border-radius-topright: 3px;
+        -webkit-border-top-right-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+
+    table.eng_ReportTable tr {
+        text-align: left;
+    }
+
+    table.eng_ReportTable td {
+        padding: 18px;
+        border-top: 1px solid #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+        color: rgb(94, 94, 94);
+}
+
+    table.eng_ReportTable tr.even td {
+    }
+
+.eng-rowOdd {
+    /*background: #f0feff !important;*/
+}
+
+table.eng_ReportTable tr:last-child td {
+    border-bottom: 0;
+}
+
+    table.eng_ReportTable tr:last-child td:first-child {
+        -moz-border-radius-bottomleft: 3px;
+        -webkit-border-bottom-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+
+    table.eng_ReportTable tr:last-child td:last-child {
+        -moz-border-radius-bottomright: 3px;
+        -webkit-border-bottom-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+table.eng_ReportTable tr:hover td {
+    background: #f2f2f2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+    background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+}
+
+
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: #4788f2;
+    position: fixed;
+    z-index: 9999999999999999999999999999999999999999999999999999999;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 2px;
+}
+
+a.eng-page, span.eng-page {
+    display: inline-block;
+    margin-right: 4px !important;
+    font-size: .875em !important;
+    text-decoration: none;
+    color: #717171;
+    padding: 10px !important;
+    border: none !important;    
+    background-color: #e2e2e2;    
+    color: #7e7e7e;
+    text-align: center;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}
+
+
+@media only screen and (min-width: 800px) {
+    /* .eng_ReportTable td:nth-child(1) {
+        width:40%;
+    }
+    .eng_ReportTable td:nth-child(2) {
+        width:10%%;
+    }
+    .eng_ReportTable td:nth-child(3) {
+        width:10%%;
+    }
+    .eng_ReportTable td:nth-child(4) {
+        width:20%%;
+    }
+    .eng_ReportTable td:nth-child(5) {
+        width:10%%;
+    }*/
+}
+
+@media only screen and (max-width: 800px) {
+
+    /* Force table to not be like tables anymore */
+    .eng-component .eng_ReportTable table,
+    .eng-component .eng_ReportTable thead,
+    .eng-component .eng_ReportTable tbody,
+    .eng-component .eng_ReportTable th,
+    .eng-component .eng_ReportTable td,
+    .eng-component .eng_ReportTable tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        .eng-component .eng_ReportTable thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    .eng-component .eng_ReportTable tr {
+        border: 1px solid #348fe2;
+    }
+
+    .eng-component .eng_ReportTable td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+        padding-top: 7px;
+    }
+
+        .eng-component .eng_ReportTable td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .eng-component .eng_ReportTable td:before {
+            content: attr(data-title);
+        }
+}
+
+
+/*padding right panel container*/
+.eng-rightPanel .eng-containter {
+}
+
+
+/*Panel style*/
+div.eng-panel {
+    width: 47% !important;
+    float: left;
+    margin: 1%;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.15);
+    box-shadow: 0 1px 1px rgba(0,0,0,.15);
+}
+
+div.eng-panel-table {
+    width: 98%;
+    float: left;
+    margin-left: 1%;
+    border: none;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.15);
+    box-shadow: 0 1px 1px rgba(0,0,0,.15);
+}
+
+div.eng_mapTooltip {
+    position: fixed;
+    background-color: black;
+    moz-opacity: 0.70;
+    opacity: 0.70;
+    filter: alpha(opacity=70);
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1000;
+    max-width: 200px;
+    display: none;
+    color: white;
+}
+
+    div.eng_mapTooltip span {
+        color: white;
+    }
+
+.eng-moveMouseOver {
+    /*-moz-box-shadow: 0 1px 2px #d1d1d1;
+    -webkit-box-shadow: 0 1px 2px #d1d1d1;
+    box-shadow: 0 1px 2px #d1d1d1;
+*/
+    border-color: #66afe9;
+    outline: 2px;
+    -moz-box-shadow: 0 1px 20px #d1d1d1;
+    -webkit-box-shadow: 0 1px 20px #d1d1d1;
+    box-shadow: 0 1px 20px #73B573;
+}
+
+div.eng-haft-screen {
+    float: left;
+    width: 50%;
+}
+
+@media only screen and (max-width: 768) {
+    div.eng-panel {
+        width: 99% !important;
+        float: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    div.eng-haft-screen {
+        float: left;
+        width: 100%;
+    }
+}
+/****************Date Picker****************/
+div.eng-datepicker-wrapper {
+    width: 98%;
+    float: left;
+    margin: 15px 0 10px 10px;
+    background: #fff;
+}
+
+.eng-select-style {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+    background: #fff url("http://www.scottgood.com/jsg/blog.nsf/images/arrowdown.gif") no-repeat 90% 50%;
+}
+
+    .eng-select-style select {
+        padding: 5px 8px;
+        width: 130%;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+        .eng-select-style select:focus {
+            outline: none;
+        }
+
+ul.eng-option {
+    height: 30px;
+    position: absolute;
+    z-index: 1000;
+}
+
+    ul.eng-option li {
+        padding: 7px 50px;
+        z-index: 1002;
+    }
+
+        ul.eng-option li:not(.eng-init) {
+            padding: 10px 5px;
+            display: none;
+            background: #fff;
+            width: 160px;
+            cursor: pointer;
+            position: relative;
+        }
+
+            ul.eng-option li:not(.eng-init):hover, ul li.eng-selected:not(.init) {
+                background: #09f;
+                color: white;
+            }
+
+.eng-init {
+    cursor: pointer;
+    padding-bottom: 15px;
+    z-index: 1001;
+}
+
+    .eng-init:focus {
+        background-color: #FFF;
+        border-color: #E8C291;
+        outline: none;
+        -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+        -webkit-box-shadow: 0 0 0 1px #E8C291 inset;
+        box-shadow: 0 0 0 1px #E8C291 inset;
+    }
+
+ul.eng-select {
+    height: 30px;
+    width: 150px;
+    border: 1px solid #cecece;
+    z-index: 1000;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.eng-seperate {
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+    box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+}
+
+.eng-table .eng-option {
+    z-index: 9999;
+}
+
+.eng-option li {
+    list-style-type: none;
+}
+
+.eng-select li {
+    padding: 8px 7px;
+    display: block;
+    cursor: pointer;
+}
+
+div.eng-table-select {
+    padding-left: 2% !important;
+    float: left;
+    position: relative;
+    margin: 10px 0;
+}
+
+    div.eng-table-select .eng-select {
+        width: 160px;
+    }
+
+    div.eng-table-select div.eng-datepicker-area {
+        position: absolute;
+        width: 450px;
+        background-color: #fff;
+        padding: 10px;
+        z-index: 1001;
+        margin-left: -25px;
+        margin-top: 5px;
+        height: auto;
+        display: none;
+        box-shadow: 0 10px 40px 0px;
+    }
+
+div.eng-datepicker-area .eng-datepicker-span-table-view:nth-child(2) {
+    padding-left: 18px;
+}
+
+.engTitleHeaderDate {
+    color: red;
+    text-align: center;
+}
+
+.eng-datepicker-close {
+    position: absolute;
+    right: 5px;
+    color: #868686;
+    cursor: pointer;
+}
+
+    .eng-datepicker-close:hover {
+        color: #626262;
+    }
+
+.eng-datepicker-area p {
+    text-align: center;
+}
+
+.eng-table-select .eng-datepicker-area .eng-datepicker-apply {
+    width: 100%;
+    font-size: 15px;
+    background: #5D93E1;
+    color: #fff;
+    cursor: pointer;
+    float: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+
+div.eng-datepicker-table-view {
+    width: 60%;
+    float: right;
+    margin-right: 3%;
+    background: #F1F1F1 url(./images/calendar-icon.png) no-repeat 4px 4px;
+    background-position: 5px 7px !important;
+    padding: 7px 10px 7px 30px;
+    border: 1px solid #CCC;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+    box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+}
+
+div.eng-table-select {
+    padding-left: 2% !important;
+    float: left;
+    position: relative;
+}
+
+div.eng-datepicker-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+div.engTitleHeaderDate {
+    color: red;
+    font-size: 17px;
+    text-align: center;
+}
+
+div.eng-datepicer-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    cursor: pointer;
+    display: none;
+}
+
+div.eng-datepicker-span-table-view {
+    width: 48%;
+    font-size: 11px;
+}
+
+.eng-btn:active {
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.1);
+}
+
+.eng-btn:focus {
+    outline: 0;
+}
+
+div.eng-haft-screen {
+    padding-bottom: 10px;
+}
+
+
+.eng-filterPicker {
+    display: inline-block !important;
+}
+
+.eng-filter-wrapper {
+    display: inline-block !important;
+}
+
+.eng-filterPicker select {
+    padding: 7px 10px 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+
+@media (max-width: 768px) {
+    div.eng-table-select div.eng-datepicker-area {
+        width: 225px;
+        margin-left: -10px;
+    }
+
+    div.eng-datepicker-area div.eng-datepicker-span-table-view:nth-child(2) {
+        padding-top: 10px;
+    }
+
+    div.eng-datepicker-span-table-view {
+        width: 100%;
+        padding-left: 5px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    div.eng-table-select {
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    div.eng-table-select .eng-select {
+        width: 160px;
+    }
+}
+
+/*tableView*/
+div.eng-tableTitle-bar {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    cursor: move;
+    float: left;
+    width: 100%;
+    padding: 10px 0;
+    /* background-color: #f8f8f8; */
+    /* border-bottom: 1px solid #EEE; */
+}
+
+h2.eng-tableTitle {
+    font-family: 'Open Sans', sans-serif;
+    padding-left: 10px;
+    margin: 0;
+    border: 0;
+    font-weight: 600 !important;
+    outline: 0;
+    font-size: 15px;
+    vertical-align: baseline;
+    color: #000;
+    cursor: move;
+}
+
+div.eng-choose-chart i {
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.eng_ReportTable {
+    width: 100%;
+    position: relative;
+}
+
+    .eng_ReportTable thead {
+        font-family: Verdana, sans-serif;
+        font-size: 12px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        -moz-box-shadow: 0 1px 2px #d1d1d1;
+        -webkit-box-shadow: 0 1px 2px #d1d1d1;
+        box-shadow: 0 1px 2px #d1d1d1;
+}
+
+    .eng_ReportTable th {
+        padding: 0;
+        padding-left: 3%;
+        font-size: 10px;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+
+div.eng-pie-chart, div.eng-vertical-bar, div.eng-interactive-chart, div.eng-map-chart, div.eng-quick-stats {
+    min-height: 300px;
+    display: none;
+    float: left;
+    width: 100%;
+}
+
+div.pie-chart-placeholder, div.vertical-bar-placeholder {
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+.eng-chooseReport:hover {
+    background-color: #4285F4;
+    color: #fff;
+}
+
+.eng-chooseReport {
+    color: black;
+}
+
+div.eng-search-area {
+    padding: 0 2%;
+    float: right;
+    padding: 10px;
+    position: relative;
+}
+
+@media(max-width:640px) {
+    div.eng-search-area {
+        float: left;
+    }
+}
+
+/*Paging*/
+
+div.eng-table-paging {
+    cursor: pointer;
+    padding: 10px;
+    float: right;
+}
+
+a.eng-page:hover {
+    color: #333;
+    background-color: #d7d7d7;
+    border-color: #fff;
+}
+
+a.eng-page.active {
+    border: none !important;
+    background-color: #00bcd4;
+    color: #f0f0f0;
+    text-shadow: 0px 0px 3px rgba(0,0,0, .5);
+    text-align: center;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}
+
+.eng-sort-header {
+    display: block;
+    padding: 10px 0 !important;
+    cursor: pointer;
+    text-decoration: none;
+    color: #707478;
+}
+
+    .eng-sort-header :hover {
+    }
+
+
+.eng-search-inputGroup.fa.fa-search {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 15px;
+    color: rgb(85, 85, 85);
+}
+
+input.eng-search {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    padding: 10px;
+    width: 200px;
+    padding-left: 30px;
+}
+
+.eng-search:focus {
+    background-color: #FFF;
+    border-color: #E8C291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #E8C291 inset;
+    box-shadow: 0 0 0 1px #E8C291 inset;
+}
+
+/*eng alert*/
+
+.eng-component .eng-alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.eng-component .eng-alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.eng-component .eng-alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.eng-component .eng-alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.eng-component .eng-alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.eng-component .eng-alert-dismissable,.eng-component  .eng-alert-dismissible {
+    padding-right: 35px;
+    position: relative;
+}
+
+
+    .eng-alert-dismissable .eng-close, .eng-alert-dismissible .eng-close {
+        position: absolute;
+        top: 4px;
+        right: 0px;
+        color: inherit;
+    }
+
+.eng-component .eng-ibox-content {
+    color: inherit;
+    border-color: #e7eaec;
+    border-image: none;
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.eng-component .eng-close:focus,.eng-close:hover {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+
+/*eng button*/
+.eng-component .eng-ibox-content .eng-btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+.eng-component .eng-ibox-content .eng-btn-xs{
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.eng-component .eng-btn-danger {
+  color: #fff;
+  background-color: #dd5826;
+  border-color: #ca4e20;
+}
+.eng-component .eng-pull-right {
+    float: right;
+}
+.eng-component .eng-btn-default {
+  color: #333;
+  background-color: #f8f8f8;
+  border-color: #ccc;
+}
+
+
+div.eng-panel-body {
+    float: left;
+    width: 100%;
+    }
+
+div.eng-panel-heading-btn {
+    float: right;
+    padding: 3px;
+    }
+
+/*quick stats */
+div.eng-quick-stats table {
+        width: 100%;
+}
+
+div.eng-quick-stats .badge.badge-danger, div.eng-quick-stats .label.label-danger {
+    background: #ff5b57;
+}
+
+div.eng-quick-stats .label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 100%;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+    div.eng-quick-stats .badge.badge-warning, div.eng-quick-stats .label.label-warning {
+        background: #f59c1a;
+    }
+
+    div.eng-quick-stats .badge.badge-success, div.eng-quick-stats .label.label-success {
+        background: #00acac;
+    }
+
+    div.eng-quick-stats .label.label-orange {
+        background: #c46e29;
+    }
+
+    div.eng-quick-stats .label.label-pink {
+        background: #FA0AF2;
+    }
+
+    div.eng-quick-stats .label.label-green {
+        background: #76B30B;
+    }
+
+div.eng-quick-stats .text-success {
+    color: #00acac !important;
+}
+
+div.eng-quick-stats .badge.badge-primary, div.eng-quick-stats .label.label-primary {
+    background: #348fe2;
+}
+
+div.eng-quick-stats .badge.badge-default, div.eng-quick-stats .label.label-default {
+    background: #b6c2c9;
+}
+
+div.eng-quick-stats .badge.badge-inverse, div.eng-quick-stats .label.label-inverse {
+    background: #2d353c;
+}
+
+
+div.eng-quick-stats table {
+    margin-bottom: 0px !important;
+}
+
+    div.eng-quick-stats table tr th {
+        text-align: left;
+        font-size: 11px;
+    }
+
+div.eng-quick-stats th, div.eng-quick-stats td {
+    vertical-align: middle !important;
+}
+
+div.eng-quick-stats table > thead > tr > th, div.eng-quick-stats table > tbody > tr > th, div.eng-quick-stats table > tfoot > tr > th, div.eng-quick-stats table > thead > tr > td, div.eng-quick-stats table > tbody > tr > td, div.eng-quick-stats table > tfoot > tr > td {
+    border-color: #e2e7eb;
+    padding: 8px 6px;
+}
+
+div.eng-quick-stats table > tbody > tr > td, div.eng-quick-stats table > tbody > tr > th, div.eng-quick-stats table > tfoot > tr > td, div.eng-quick-stats table > tfoot > tr > th {
+    border-top: 1px solid #ddd;
+    font-size: 11px;
+    }
+
+/*chart button*/
+.eng-btn.eng-btn-default {
+    color: #fff;
+    background: #b6c2c9;
+    border-color: #b6c2c9;
+}
+
+.eng-btn.eng-btn-success {
+    color: #fff;
+    background: #4285F4 !important;
+    border-color: #4285F4 !important;
+    }
+
+.eng-btn.eng-btn-warning {
+    color: #fff;
+    background: #ffc24a !important;
+    border-color: #ffc24a !important;
+    }
+
+.eng-btn.eng-btn-danger {
+    color: #fff;
+    background: #ff5b57;
+    border-color: #ff5b57;
+}
+
+.eng-btn.eng-btn-circle {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    }
+
+div.eng-panel-heading-btn a.eng-btn {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+    line-height: 16px;
+    display: inline-block;
+    padding: 0 !important;
+    border: none;
+    text-align: center;
+    margin-left: 8px;
+    margin-top: 3px;
+    }
+
+div.eng-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    /*height: 200px;*/
+    float: left;
+    width: 97%;
+}
+
+
+/****************End****************/

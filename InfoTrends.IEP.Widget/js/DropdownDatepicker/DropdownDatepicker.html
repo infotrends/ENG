@@ -1,0 +1,75 @@
+﻿
+<div class="eng-filter-wrapper">
+
+    <ul class="eng-select">
+        <li class="eng-init">Choose Date</li>
+        <ul class="eng-option">
+            <li data-value="current.0">Today</li>
+            <li data-value="current.1">Yesterday</li>
+            <li data-value="current.2">2 days ago</li>
+            <li data-value="7" class="eng-seperate">Last 7 days</li>
+            <li data-value="14">Last 14 days</li>
+            <li data-value="28">Last 28 days</li>
+            <li data-value="60">Last 60 days</li>
+            <li data-value="90">Last 90 days</li>
+            <%
+            var isFirst = true;
+            _.each(datepickerMonth, function(obj) {
+            if(isFirst){
+            isFirst = false;
+            %>
+            <li data-value="<%=obj.value%>" class="eng-seperate"><%=obj.dateString%></li>
+            <%
+            }else{
+            %>
+            <li data-value="<%=obj.value%>"><%=obj.dateString%></li>
+            <%
+            }
+            });
+            %>
+            <li data-value="-1" style="color:red" class="eng-seperate">Custom Date range...</li>
+        </ul>
+    </ul>
+    <div class="eng-datepicker-area">
+        <div class="eng-datepicker-span-table-view" style="float:left;">
+            <i class="fa fa-times eng-datepicker-close"></i>
+            <div class="engTitleHeaderDate">Start Date</div>
+            <div type="text" class="eng-datePicker-from" />
+        </div>
+        <div class="eng-datepicker-span-table-view" style="float:left">
+            <div class="engTitleHeaderDate">End Date</div>
+            <div type="text" class=" eng-datePicker-to" />
+        </div>
+        <p>
+            <a class="eng-datepicker-apply">Apply date range</a>
+        </p>
+    </div>
+    <div class="eng-datepicer-blur"></div>
+
+
+</div>
+
+<div class="eng-filter-wrapper">
+
+    <div class="eng-filterPicker">
+
+        <select>
+            <option value="volvo">Select Territory</option>
+            <option value="saab">Territory 1</option>
+            <option value="mercedes">Territory 2</option>
+            <option value="audi">Territory 3</option>
+        </select>
+
+    </div>
+
+    <div class="eng-filterPicker">
+
+        <select>
+            <option value="volvo">Select Quality Level</option>
+            <option value="saab">Quality Level 1</option>
+            <option value="mercedes">Quality Level 2</option>
+            <option value="audi">Quality Level 3</option>
+        </select>
+
+    </div>
+</div>

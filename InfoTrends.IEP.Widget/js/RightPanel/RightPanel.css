@@ -1,0 +1,27 @@
+﻿/* Style for new left menu */
+.eng-rightPanel {
+    z-index: 9999999;
+    position: fixed;
+    background: #eee;
+    font-size: 12px;
+    font-family: 'Open Sans', "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #707478;
+    float: right;
+    overflow: auto;
+}
+
+    .eng-rightPanel .eng-container {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+
+.eng-close {
+    right: 18px;
+    position: fixed;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    z-index: 1000;
+}

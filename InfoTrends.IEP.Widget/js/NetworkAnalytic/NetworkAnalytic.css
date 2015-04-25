@@ -1,0 +1,35 @@
+﻿div.eng-dashboard {
+    padding-top: 10px;
+}
+
+div.eng-col-8 {
+    width: 66%;
+}
+
+div.eng-col-6 {
+    width: 50%;
+}
+
+div.eng-col-4 {
+    width: 33%;
+}
+
+div.eng-col-3 {
+    width: 25%;
+}
+
+div.eng-col-12 {
+    width: 100%;
+}
+
+div.eng-col-8, div.eng-col-6, div.eng-col-4, div.eng-col-3, div.eng-col-12 {
+    float: left;
+    min-height: 300px;
+}
+
+@media only screen and (max-width: 768) {
+    div.eng-col-8, div.eng-col-6, div.eng-col-4, div.eng-col-3 {
+        float: left;
+        width: 100%;
+    }
+}

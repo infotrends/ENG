@@ -1,0 +1,26 @@
+﻿#eng-layout-select .ui-selected tr, #eng-layout-select .ui-selected td {
+    border-style: solid;
+    opacity: 1;
+}
+
+#eng-layout-select {
+    max-width: 330px;
+    position: relative;
+    margin: auto;
+}
+
+    #eng-layout-select div {
+        float: left;
+        padding: 5px;
+    }
+
+    #eng-layout-select table {
+        width: 100px;
+        height: 100px;
+    }
+
+    #eng-layout-select tr, #eng-layout-select td {
+        border: 1px dotted #555;
+        background-color: #ddd;
+        opacity: 0.6;
+    }

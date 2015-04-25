@@ -1,0 +1,33 @@
+﻿<div id="eng-listFeedbackBlur"></div>
+<div id="eng_listFeedback">
+        <p class ="eng-listFeedback-title"><h2> LIST FEEDBACK </h2></p>
+        <i class="fa fa-times eng-listFeedback-close"></i>
+        <div class="eng-listFeedback-Table">
+            <div class="eng-listFeedback-header">
+        <table>
+                <tr>
+                        <td>No</td>
+                        <td>Name</td>
+                        <td>Mail</td>
+                        <td>Category</td>
+                        <td>Feedback</td>
+                </tr>
+            </table>
+        </div>
+        <div class ="eng-listFeedback-content">
+            <table>
+                <% _.each(listFeedback, function(item) { %>  
+                <tr>
+                    <td data-title="No"><%=index%></td>
+                    <% index++;%>
+                    <td data-title="Name"><%= item.get('name_tsd')%></td>
+                    <td data-title="Mail"><%= item.get('email_tsd')%></td>
+                    <td data-title="Category"><%= item.get('category_tsd')%></td>
+                    <td data-title="Feedback"><%= item.get('feedback_tsd')%></td>
+                </tr>
+                <% }); %>
+        </table>
+</div>
+        </div>
+        
+</div>

@@ -1,0 +1,52 @@
+﻿.eng-contactUs-form .eng-form-group {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    padding: 5px 35px 5px 15px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+}
+
+    .eng-contactUs-form .eng-form-group input {
+        width: 100%;
+    }
+
+.eng-contactUs-form .eng-contactUs-item {
+    width: 100%;
+    position: relative;
+}
+
+#eng-sendMess {
+    float: left;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+
+#eng-cancelMess {
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#eng-contactMessage-content {
+    margin-bottom: 15px;
+    margin-left: 0;
+}
+
+#eng-contactUs button {
+    background-color: #348fe2;
+    color: #fff;
+    border: 5px solid #348fe2;
+    border-color: #348fe2;
+    cursor: pointer;
+}
+
+#eng-contact input {
+    background-color: #fff;
+    border: 1px solid grey;
+    width: 74%;
+    margin-bottom: 15px;
+    padding: 2px;
+    padding-left: 5px;
+}

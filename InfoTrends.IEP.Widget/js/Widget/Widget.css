@@ -1,0 +1,106 @@
+﻿.eng-box-widget .eng-top{
+    text-align: center;
+    line-height: 100px;
+    color: white;
+    font-size: 25px;
+    float:left;
+    width:100%;
+    /*background: #00acac;*/
+    position: relative;
+
+
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.eng-box-widget .eng-top span{
+    float:left;
+    padding-left: 30px;
+    color: white;
+    cursor: inherit;
+}
+.eng-box-widget .eng-top p i{
+    float: right;
+    font-size: 50px;
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+    padding-top: 25px;
+    color: white;
+    cursor: inherit;
+}
+.eng-box-widget .eng-top p{
+    padding-right: 40px;
+}
+.eng-box-widget .eng-top{
+    padding-right: 40px;
+    cursor: move;
+}
+.eng-box-widget .eng-under{
+    opacity: 0.8;
+    line-height: 50px;
+    float:left;
+    width: 100%;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background: rgba(0, 0, 0, .4);
+
+}
+.eng-box-widget .eng-under:active,.eng-box-widget .eng-under:hover {
+    opacity: 1;
+    color: white;
+}
+
+.eng-box-widget .eng-under ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.eng-box-widget .eng-under li {
+    float: right;
+    display: inline;
+}
+
+.eng-box-widget .eng-under li a span{
+    color: white;
+    cursor: pointer;
+}
+
+.eng-box-widget .eng-under a,.eng-box-widget .eng-under a:visited {
+    display: block;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 0 10px;
+    text-decoration: none;
+    vertical-align: middle;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+/*.eng-box-widget .eng-under a:hover,.eng-box-widget .eng-under a:active {
+    background-color: grey;
+    color: white;
+}*/
+.eng-box-widget .eng-under .toolbar-function ul li a span{
+    margin-left: 5px;
+    
+}
+.eng-component .eng-box-widget{
+    height: 150px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: 5px 3%;
+}
+.eng-box-widget li{
+    margin-bottom: 0px;
+}

@@ -1,0 +1,128 @@
+﻿<div class="eng-tableTitle-bar">
+    <h2 class="eng-tableTitle"><%= title%></h2>
+    <div class="eng-panel-heading-btn">
+
+    </div>
+</div>
+<div class="eng-panel-body">
+    <div class="eng-table-chart-area">
+        <%if(isShowTable){%>
+        <div class=" eng-table-chart eng-table-chart-tool">
+            <div class="eng-search-area">
+                <i class="eng-search-inputGroup fa fa-search"></i>
+                <input type="text" class="eng-search" placeholder="Type to Search..." />
+            </div>
+        </div>
+
+
+        <% var rowNum = 0; %>
+        <table class="eng-table-chart eng_ReportTable eng-table-chart-content eng-table-area">
+            <thead>
+                <tr>
+                    <% _.each(columnHeader, function(column) { %>
+
+                    <th style="<% if(!column.isShow){ %> display: none; <% } %>">
+                        <a class="eng-sort-header">
+                            <%= column.name%>
+                            <% if(filterData.sortColumn.trim() == column.name){
+                            if(filterData.order){%>
+                            <i class="fa fa-sort-asc"></i>
+                            <% }
+                            else{%>
+                            <i class="fa fa-sort-desc"></i>
+                            <%}
+                            } %>
+                        </a>
+                    </th>
+                    <% }); %>
+                </tr>
+            </thead>
+            <tbody>
+                <% _.each(data, function(row) { %>
+                <tr class='<%= rowNum%2==0 ? "eng-rowEven" : "eng-rowOdd"%>'>
+                    <% rowNum++; %>
+                    <td data-title="<%= row.keyTitle%>"><%=row.key%></td>
+                    <td data-title="<%= row.valueTitle%>"><%=row.value%></td>
+                    <% _.each(row.extraProperties, function(extra) { %>
+                    <td data-title="<%= extra.dataTitle%>"><%=extra.value%></td>
+                    <% }); %>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <div class="eng-table-chart eng-table-paging eng-table-chart-content eng-table-area">
+            <a class="eng-page eng-first"><i class="fa fa-fast-backward"></i></a>
+            <a class="eng-page eng-back"><i class="fa  fa-chevron-left"></i></a>
+            <span class="eng-table-page-number"></span>
+            <a class="eng-page eng-next"><i class="fa  fa-chevron-right"></i></a>
+            <a class="eng-page eng-last"><i class="fa fa-fast-forward"></i></a>
+        </div>
+        <%}%>
+    </div>
+
+    <div class="eng-pie-chart">
+    </div>
+    <div class="eng-vertical-bar">
+    </div>
+    <div class="eng-interactive-chart">
+    </div>
+    <div class="eng-map-chart">
+        <div class="map" style="background-color:#cddee0;">
+
+        </div>
+    </div>
+    <div class="eng-quick-stats">
+        <table class="table table-valign-middle m-b-0">
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label class="label label-orange">Users Online</label>
+                    </td>
+                    <td><span id="eng-user-online"></span><span class="text-success"></span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="label label-green">Most Visited</label>
+                    </td>
+                    <td><span id="eng-most-visited"></span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="label label-danger">Pageviews today</label>
+                    </td>
+                    <td><span id="eng-pageview-today"></span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="label label-warning">Pageviews yesterday</label>
+                    </td>
+                    <td><span id="eng-pageview-yesterday"></span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="label label-success">Pageviews last month</label>
+                    </td>
+                    <td><span id="eng-pageview-last-month"></span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="label label-primary">Pageviews all time history</label>
+                    </td>
+                    <td><span id="eng-pageview-all-time"></span></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="eng-choose-chart">
+        <!--<i title="Table" class="eng-chooseReport fa fa-table "></i>
+        <i title="Pie chart" class="eng-chooseReport fa fa-pie-chart"></i>
+        <i title="Vertical bar" class="eng-chooseReport fa fa-bar-chart"></i>-->
+    </div>
+</div>

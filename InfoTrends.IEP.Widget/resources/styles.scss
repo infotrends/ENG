@@ -1,0 +1,75 @@
+﻿
+.eng-toolbar {
+	height: 80px;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+	font-family: "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+	font-size: 14px;
+	box-shadow: 0 10px 40px 0px #514f4f;
+	z-index: 10000000000;
+
+	.eng-content {
+	}
+
+}
+
+
+
+
+
+.eng-toolbar .eng-content{
+	width: 96%;
+	padding:0 2%;
+}
+
+.eng-toolbar .eng-toolbar-logo{
+	float:left;
+}
+.eng-toolbar .eng-toolbar-logo{
+    max-height: 42px;
+    max-width: 50px;
+}
+
+
+.eng-toolbar-function{
+	float:right;
+	margin: 0 auto;
+}
+
+.eng-toolbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+.eng-toolbar li {
+    float: left;
+    display: inline;
+}
+
+.eng-toolbar a:link,.eng-toolbar a:visited {
+    display: block;
+    font-weight: bold;
+    color: #514f4f;
+    /*color: #FFFFFF;
+    background-color: #98bf21;*/
+    text-align: center;
+    padding: 0 10px;
+    text-decoration: none;
+    vertical-align: middle;
+    line-height: 80px;
+    min-width: 80px;
+}
+
+.eng-toolbar a:hover,.eng-toolbar a:active {
+    background-color: #02b680;
+    color: white;
+}
+.eng-toolbar .eng-toolbar-function ul li a span{
+	margin-left: 5px;
+
+}
