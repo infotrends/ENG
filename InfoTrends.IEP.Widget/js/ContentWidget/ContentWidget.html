@@ -1,0 +1,10 @@
+﻿<div class="content-widget-item-container">
+    <ul>
+        <%_.each(data, function(item){%>
+        <li>
+            <h4><%= item.Title%></h4>
+            <p><%= item.Content%></p>
+        </li>
+        <% })%>
+    </ul>
+</div>

@@ -1,0 +1,355 @@
+.eng-toolbar {
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+    font-family: "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 10px 40px 0px #514f4f;
+    z-index: 100000000;
+    background-color: white;
+}
+
+    .eng-toolbar .eng-content {
+        padding: 0 2%;
+        height: 100%;
+    }
+
+    .eng-toolbar .eng-toolbar-logo {
+        float: left;
+    }
+
+    .eng-toolbar .eng-toolbar-logo {
+        max-height: 42px;
+        max-width: 50px;
+    }
+
+.eng-toolbar-logo img {
+    padding-top: 20px;
+}
+
+div.eng-toolbar-function {
+    height: 100%;
+}
+
+    div.eng-toolbar-function > ul {
+        height: 100%;
+    }
+
+.eng-toolbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: right;
+}
+
+.eng-toolbar .eng-toolbar-item {
+    float: left;
+    display: inline-block;
+    position: relative;
+    z-index: 100;
+    height: 100%;
+}
+
+.eng-toolbar-item > a, .eng-toolbar-item > a:visited {
+    display: block;
+    font-weight: bold;
+    color: #514f4f;
+    /*color: #FFFFFF;
+    background-color: #98bf21;*/
+    text-align: center;
+    padding: 0 8px;
+    text-decoration: none;
+    vertical-align: middle;
+    line-height: 80px;
+    cursor: pointer;
+}
+
+    .eng-toolbar-item > a:hover, .eng-toolbar-item > a:active {
+        background-color: #4285F4;
+        color: white;
+    }
+    .eng-toolbar-item a:hover, .eng-toolbar-item > a:active, .eng-toolbar-item a:hover span, .eng-toolbar-item > a:active span{
+    color : #fff;
+    }
+
+.eng-toolbar-item i, .eng-toolbar-item.span {
+    cursor: pointer;
+}
+
+.eng-toolbar .eng-toolbar-function ul li a span {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.eng-toolbar-function .eng-toolbar-item a {
+    height: 100%;
+    float: left;
+    text-decoration: none;
+}
+
+.eng-subToolBar a {
+    line-height: 40px;
+    color: black;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+    .eng-subToolBar a:hover {
+        background: #4285F4;
+    }
+li.eng-subToolBar {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    width: 100%;
+    background: #999999;
+    z-index: 10;
+}
+
+.eng-subToolBar a {
+    border-bottom: 1px solid white;
+}
+
+.eng-ToolbarItem-Active {
+    background-color: #4285F4 !important;
+    color: white !important;
+}
+
+    .eng-ToolbarItem-Active span {
+        color: white !important;
+    }
+
+.choose-chart a:hover {
+    font-size: 20px;
+}
+
+.eng-notification {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    list-style: none;
+    display: none;
+    background: #fff;
+    max-width: 300px;
+    width: 250px;
+    -webkit-border-top-right-radius: 6px;
+    border-top-right-radius: 6px;
+    -moz-border-top-right-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+    border-top-left-radius: 6px;
+    -moz-border-top-left-radius: 6px;
+    box-shadow: 0 0px 6px 0px #514f4f;
+    color: black;
+}
+
+
+    .eng-notification li {
+        background: #FEFEFE;
+    }
+
+    .eng-notification .eng-media-header {
+        width: 100%;
+        height: 30px !important;
+        float: left;
+        border-bottom: 1px solid #eee;
+        background: #F9F9F9;
+        color: grey;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        padding-top: 10px;
+    }
+
+.eng-media-header span {
+    padding-left: 10px;
+}
+
+.eng-media {
+    width: 100%;
+    float: left;
+    border-top: 1px solid #eee;
+    cursor: pointer;
+}
+
+    .eng-media:hover {
+        background: #ECEFF4;
+    }
+
+    .eng-media span {
+        color: black;
+    }
+
+.eng-label-notification {
+    position: absolute;
+    top: 8px;
+    right: -10px;
+    display: block;
+    background: #ff5b57;
+    line-height: 12px !important;
+    font-weight: 300 !important;
+    padding: .3em .6em !important;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.eng-title {
+    font-weight: bold !important;
+}
+
+.eng-toolbar-item .eng-notification .eng-media {
+    padding: 0;
+}
+
+    .eng-toolbar-item .eng-notification .eng-media div {
+        padding-left: 10px;
+    }
+
+/**********Responsive***********/
+@media (max-width: 768px) {
+    .eng-component .eng-content .eng-toolbar-logo, eng-subToolBar-content {
+        display: none;
+    }
+
+    .eng-toolbar .eng-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    .eng-toolbar {
+        height: 30px;
+    }
+
+    .eng-toolbar-function {
+        float: none;
+    }
+
+        .eng-toolbar-function .eng-toolbar-item span {
+            display: none;
+        }
+
+        .eng-toolbar-function .eng-toolbar-item {
+            width: 11%;
+        }
+
+            .eng-toolbar-function .eng-toolbar-item a {
+                width: 100%;
+                line-height: 0px;
+                padding: 0 1%;
+            }
+
+            .eng-toolbar-function .eng-toolbar-item .fa {
+                margin-top: 10px;
+                font-size: 12px;
+            }
+
+    .eng-subToolBar {
+        bottom: 30px !important;
+    }
+
+    .eng-notification {
+        bottom: 30px !important;
+    }
+
+    .eng-toolbar-function .eng-toolbar-item .eng-subToolBar a {
+        line-height: 100%;
+    }
+
+    .eng-toolbar-item .eng-notification span {
+        display: block;
+        padding-top: 10px;
+    }
+
+    .eng-toolbar ul {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .eng-component .eng-content .eng-toolbar-logo, eng-subToolBar-content {
+        display: none;
+    }
+
+    .eng-toolbar .eng-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    .eng-toolbar {
+        height: 30px;
+    }
+
+    .eng-toolbar-function {
+        float: none;
+    }
+
+        .eng-toolbar-function .eng-toolbar-item span {
+            display: none;
+        }
+
+        .eng-toolbar-function .eng-toolbar-item {
+            width: 10%;
+        }
+
+            .eng-toolbar-function .eng-toolbar-item a {
+                width: 100%;
+                line-height: 0px;
+                padding: 0 1%;
+            }
+
+            .eng-toolbar-function .eng-toolbar-item .fa {
+                margin-top: 10px;
+                font-size: 12px;
+            }
+
+    .eng-subToolBar {
+        bottom: 30px !important;
+    }
+
+    .eng-notification {
+        bottom: 30px !important;
+    }
+
+    .eng-toolbar-function .eng-toolbar-item .eng-subToolBar a {
+        line-height: 100%;
+    }
+
+    .eng-toolbar-item .eng-notification span {
+        display: block;
+        padding-top: 10px;
+    }
+
+    .eng-toolbar ul {
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .eng-toolbar-function .eng-toolbar-item span {
+        font-size: 12px;
+    }
+
+    .eng-toolbar {
+        height: 75px;
+    }
+
+    .eng-subToolBar {
+        bottom: 74px !important;
+    }
+
+    /*.eng-toolbar ul {
+        width: 100%;
+    }
+    .eng-toolbar-function .eng-toolbar-item {
+            width: 11%;
+        }*/
+}
+

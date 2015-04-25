@@ -1,0 +1,36 @@
+﻿.eng-hidden-item .eng-btn .eng-btn-scroll-to-top {
+      background: #00acac;
+}
+.eng-hidden-item .eng-btn .eng-btn-success {
+  color: #fff;
+  background: #00acac;
+  border-color: #00acac;
+}
+.eng-hidden-item .eng-btn-circle,.eng-hidden-item  .eng-btn .eng-btn-circle {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.eng-hidden-item .eng-btn-icon,.eng-hidden-item  .eng-btn .eng-btn-icon {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  line-height: 28px;
+  text-align: center;
+  font-size: 14px;
+}
+.eng-hidden-item .eng-fade .eng-in {
+  opacity: 1;
+}
+
+.eng-hidden-item{
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  z-index: 1020;
+}
+.eng-hidden-item .eng-option-hidden {
+    
+}

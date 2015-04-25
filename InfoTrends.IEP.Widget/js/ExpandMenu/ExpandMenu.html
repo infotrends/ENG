@@ -1,0 +1,26 @@
+﻿<ul class="eng_ExpandMenu">
+    <li class="eng_menuItem">
+        <a class="eng-headerExpand" href="#">
+            <span>
+                <i class="<%= favicon %>"></i>
+
+                <span class="eng-sub-menu-item-text">
+                    <%= title %>
+                </span>
+            </span>
+            <i class="eng_menuItemIcon fa fa-caret-down"></i>
+        </a>
+        <ul class="eng_subMenu">
+
+            <% _.each(childs, function(child) { %>
+
+            <li class="eng_subMenuItem">
+                <span>
+                    <a href="#"><i class="<%= child.favicon %>">&nbsp;</i><span class="eng-sub-menu-item-text"><%= child.name %></span></a>
+                    <input value="<%= child.url%>" style="display: none" />
+                </span>
+            </li>
+            <% }); %>
+        </ul>
+    </li>
+</ul>

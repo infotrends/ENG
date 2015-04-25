@@ -1,0 +1,110 @@
+﻿.eng-subscriber-widget .eng-form-group {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    padding: 5px 35px 5px 15px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    border: 1px solid grey;
+}
+
+    .eng-subscriber-widget .eng-form-group input {
+        width: 100%;
+    }
+
+.eng-subscriber-widget .eng-search-widget-item {
+    width: 100%;
+    position: relative;
+}
+
+.eng-subscriber-widget .eng-form-group .eng-search-button {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 31px;
+    padding: 0 10px;
+    border: none;
+    background: 0 0;
+    -webkit-border-radius: 0 30px 30px 0;
+    -moz-border-radius: 0 30px 30px 0;
+    border-radius: 0 30px 30px 0;
+    background: #4285F4;
+}
+
+    .eng-subscriber-widget .eng-form-group .eng-search-button:hover {
+        background: #08B054;
+    }
+
+    .eng-subscriber-widget .eng-form-group .eng-search-button i {
+        padding-top: 8px;
+        color: white;
+    }
+
+.eng-subscriber-widget .eng-row {
+    width: 100%;
+    float: left;
+}
+
+.eng-subscriber-widget .eng-icon-subscriber {
+    font-size: 40px;
+    float: left;
+}
+
+    .eng-subscriber-widget .eng-icon-subscriber i {
+        color: #F68318;
+    }
+
+.eng-subscriber-widget .eng-describe {
+    float: left;
+    padding: 10px 0 0 10px;
+}
+
+.eng-subscriber-widget .eng-alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.eng-subscriber-widget .eng-alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.eng-subscriber-widget .eng-alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.eng-subscriber-widget .eng-alert-dismissable, .eng-alert-dismissible {
+    padding-right: 35px;
+    position: relative;
+}
+
+
+    .eng-subscriber-widget .eng-alert-dismissable .eng-close, .eng-alert-dismissible .eng-close {
+        position: absolute;
+        top: 4px;
+        right: 0px;
+        color: inherit;
+    }
+
+.eng-subscriber-widget .eng-ibox-content {
+    color: inherit;
+    border-color: #e7eaec;
+    border-image: none;
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.eng-subscriber-widget .eng-close:focus,.eng-subscriber-widget .eng-close:hover {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}

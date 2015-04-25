@@ -1,0 +1,114 @@
+﻿.eng-notifications {
+    position: fixed;
+    width: 35%;
+    right: 0;
+    top: 0;
+    bottom: 80px;
+    overflow: auto;
+    z-index: 10000000000;
+    font-size: 14px;
+    background: transparent;
+}
+
+.eng-notifications .eng-notification-title-bar {
+    width: 100%;
+    padding-left: 20px;
+    background: #fff;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+}
+/*.eng-notifications .eng-close-notification {
+    background: #ff5b57;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+}*/
+.eng-notifications .item-notification {
+    color: white;
+    height: 100%;
+    padding: 6px 10px;
+    box-shadow: 0 0 6px #73B573;
+    background: #73B573;
+    border-radius: 3px;
+    border-top: 1px solid #ccc;
+    cursor: pointer;
+}
+.eng-notifications .eng-title i{
+    float: right;
+    cursor: pointer;
+}
+.eng-notifications .eng-notification-content {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+.eng-notifications .eng-btn {
+    cursor: pointer;
+}
+.eng-notifications .datetime-notifcations {
+    font-style: italic;
+}
+.eng-notifications .eng-content h3 {
+    font-weight: bold;
+}
+.eng-notifications .eng-panel-title{
+    border: none;
+    color: #ffffff;
+}
+.eng-notifications .eng-panel-heading {
+    padding: 10px 15px;
+    border: none;
+    background: #4caf50;
+}
+
+.eng-notifications .eng-btn.eng-btn-default {
+    color: #fff;
+    background: #b6c2c9;
+    border-color: #b6c2c9;
+}
+
+.eng-notifications .eng-btn.eng-btn-success {
+    color: #fff;
+    background: #4285F4 !important;
+    border-color: #4285F4 !important;
+}
+
+.eng-notifications .eng-btn.eng-btn-warning {
+    color: #fff;
+    background: #ffc24a !important;
+    border-color: #ffc24a !important;
+}
+
+.eng-notifications .eng-btn.eng-btn-danger {
+    color: #fff;
+    background: #ff5b57;
+    border-color: #ff5b57;
+    
+}
+
+.eng-notifications .eng-btn.eng-btn-circle {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.eng-notifications .eng-panel-heading-btn {
+    float: right;
+    display: block !important;
+    margin-top: -6px;
+}
+
+.eng-notifications .eng-panel-heading-btn a {
+    width: 16px;
+    height: 16px;
+    font-size: 8px;
+    line-height: 16px;
+    display: inline-block;
+    padding: 0;
+    border: none;
+    text-align: center;
+    margin-left: 8px;
+    margin-top: 3px 
+}

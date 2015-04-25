@@ -1,0 +1,23 @@
+﻿    <div class="eng-panel-heading">
+        <div class="eng-panel-heading-btn">
+            <a class="eng-close-notification eng-btn eng-btn-circle eng-btn-danger"><i class="fa fa-times"></i></a>
+        </div>
+        <h4 class="eng-panel-title">Notifications</h4>
+    </div>
+    
+<div class="eng-notification-content">
+
+        <% _.each(notifications, function(notification) { %>
+        <div id="<%= notification.id%>" style="<% if(notification.get('seen'))
+                                                                                      { %>background: #F6F7F8; box-shadow: 0 0 6px #F6F7F8; color: black <%; }
+     else { %>background: #73B573; box-shadow: 0 0 6px #73B573; color: white <%; }%>" class="item-notification">
+            <div class="eng-content">
+                <h3><%= notification.get('title')%></h3>
+                <p>
+                    <%= notification.get('message')%>
+                </p>
+                <div class="datetime-notifcations"><%= notification.get('time')%></div>
+            </div>
+        </div>
+        <% }); %>
+    </div>

@@ -1,0 +1,31 @@
+﻿.eng-search-content .eng-form-group {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    padding: 5px 35px 5px 15px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    border: 1px solid grey; 
+}
+.eng-search-content .eng-form-group input{
+    width: 100%;
+}
+.eng-search-content .eng-search-widget-item {
+    width: 100%;
+    position: relative;
+}
+.eng-search-content .eng-form-group .eng-search-button{
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+    background: 0 0;
+    -webkit-border-radius: 0 30px 30px 0;
+    -moz-border-radius: 0 30px 30px 0;
+    border-radius: 0 30px 30px 0;
+}

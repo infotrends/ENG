@@ -1,0 +1,95 @@
+﻿/* Style for new left menu */
+.eng-leftPanel {
+    float: left;
+    width: 25%;
+    /*font-size: 14px;*/
+    margin: 0 auto;
+    font-family: 'Open Sans';
+    position: fixed;
+    box-shadow: 0 0px 20px -3px #514f4f;
+    background-color: #fff;
+    z-index: 10000000;
+}
+/* Style for Header*/
+div.eng-header {
+    display: inline-block;
+    line-height: 50px;
+    padding: 15px 0;
+    margin: 0;
+    /*margin: 0 1%;*/
+    width: 100%;
+    background-color: #f44336;
+    box-shadow: 0 1px 1px rgba(0,0,0,.15);
+}
+
+.eng-header a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.eng-header .eng-widget {
+    color: #fff;
+    font-size: 20px;
+    font-family: monospace;
+    float: left;
+    margin-left: 3%;
+}
+
+    .eng-header .eng-widget span {
+        color: #fff;
+    }
+
+.eng-header .eng-arrow-leftPanel {
+    margin-left: 3%;
+    color: #fff;
+    display: none;
+    float: left;
+}
+
+
+.eng-header .eng-addWidget, .eng-header .eng-arrow-rightPanel {
+    float: right;
+    margin-right: 3%;
+    color: #fff;
+}
+
+/* Style for content*/
+.eng-leftPanel .eng-menu {
+    margin: 0;
+    background: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    position: relative;
+}
+
+/*colapsse button*/
+div.eng-leftPanel .eng-collapse-btn {
+    background: #f44336;
+    width: 30px;
+    display: inline-block;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 30px;
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    /*position: absolute;
+    bottom: 90px;
+    right: 10px;*/
+}
+
+    div.eng-leftPanel .eng-collapse-btn i.fa {
+        margin-left: 10px;
+    }
+
+@media(max-width:768px) {
+    .eng-leftPanel {
+        width: 65px !important;
+    }
+
+    .eng-sub-menu-item-text {
+        display: none;
+    }
+}

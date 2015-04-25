@@ -1,0 +1,112 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "wwwdealer", "http://localhost:60263", "{03CF6B2C-5C59-45E9-80B4-0171A6EEF220}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60263"
+		Debug.AspNetCompiler.PhysicalPath = "wwwdealer\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60263\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60263"
+		Release.AspNetCompiler.PhysicalPath = "wwwdealer\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60263\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "wwwdealer\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "wwwengagement", "http://localhost:60273", "{338392BC-899B-4EE6-88A0-34BC864F9B93}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60273"
+		Debug.AspNetCompiler.PhysicalPath = "wwwengagement\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60273\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60273"
+		Release.AspNetCompiler.PhysicalPath = "wwwengagement\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60273\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "wwwengagement\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "InfoTrends.IEP.Widget", "http://localhost:48967", "{3B24BF88-0405-4191-BD02-449B832A3DCD}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/InfoTrends.IEP.Widget"
+		Debug.AspNetCompiler.PhysicalPath = "..\InfoTrends.IEP.Widget\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\InfoTrends.IEP.Widget\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/InfoTrends.IEP.Widget"
+		Release.AspNetCompiler.PhysicalPath = "..\InfoTrends.IEP.Widget\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\InfoTrends.IEP.Widget\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\InfoTrends.IEP.Widget\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://itfs.infotrends.com:8080/tfs/infotrends%20fpt
+		SccLocalPath0 = .
+		SccWebProject1 = true
+		SccProjectUniqueName1 = http://localhost:60263
+		SccLocalPath1 = wwwdealer
+		SccProjectFilePathRelativizedFromConnection1 = http://localhost:60263
+		SccWebProject2 = true
+		SccProjectUniqueName2 = http://localhost:60273
+		SccLocalPath2 = wwwengagement
+		SccProjectFilePathRelativizedFromConnection2 = http://localhost:60273
+		SccWebProject3 = true
+		SccProjectUniqueName3 = http://localhost:48967
+		SccLocalPath3 = .
+		SccProjectEnlistmentChoice3 = 2
+		SccWebProject4 = true
+		SccProjectUniqueName4 = http://localhost:60263
+		SccLocalPath4 = wwwdealer
+		SccProjectEnlistmentChoice4 = 2
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03CF6B2C-5C59-45E9-80B4-0171A6EEF220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03CF6B2C-5C59-45E9-80B4-0171A6EEF220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338392BC-899B-4EE6-88A0-34BC864F9B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338392BC-899B-4EE6-88A0-34BC864F9B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B24BF88-0405-4191-BD02-449B832A3DCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B24BF88-0405-4191-BD02-449B832A3DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,58 @@
+﻿<div id="eng-visitorLogs" class="eng-panel eng-table">
+    <div class="eng-tableTitle-bar eng-visitorLogTitle-bar">
+        <h2 class="eng-tableTitle eng-visitorLogTitle">Visitor Logs</h2>
+    </div>
+    <div class="eng-visitorLog-tool">
+        <span class="eng-logTotal">Total Record :<span class="eng-logTotalRecord"><%=totalRecord%></span></span>
+        <div class="eng-visitorLog-datePicker eng-table-select"></div>
+    </div>
+    
+        <table class="eng-visitorLog-content">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Date</th>
+                <th>Visitors</th>
+                <th>Referrer Url</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%
+            _.each(logCollection, function(item) { %>
+            <tr class='<%= index%2==0 ? "eng-rowEven" : "eng-rowOdd"%>'>
+                <% index++;%>
+                <td data-title="No"><%=index%></td>
+                <td data-title="Date">
+                    <span class="eng-visitorLog-date" title="<%= item.get('CreateOn_dt')%>"><%= item.get('CreateOn_dt')%></span>
+                    <br>
+                    <br>
+                    <span class="eng-visitorLog-ip" title="<%= item.get('IPAddress_s')%>">IP Address</span> : <%= item.get('IPAddress_s')%>
+                </td>
+                <td data-title="Visitors">
+                    <span class="eng-visitorLogIconWithDetails">
+                        <img src="<%= ENG.DOMAIN +" />js/VisitorLog/img/us.png"%>" />
+                    </span>
+                </td>
+                <td data-title="Referrer Url"><span><%= item.get('UrlReferrer_tsd')%></span></td>
+                <td data-title="Action">
+                    <div class="eng-visitor-log-page-list">
+                        <ol class="eng-visitorLog">
+                            <li class="action">
+                                <div>
+                                    <span class="truncated-text-line"><%= item.get('type_tsd')%> on <%= item.get('elementName_tsd')%> <%= item.get('parent_tsd')%></span>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    
+    <div class="eng-table-paging eng-visitorLog-paging">
+        <span class="eng-page eng-back eng-visitlog-previous" title="Click button to show previous page"><i class="fa fa-chevron-left eng-visitorLog-arrow"></i></span>
+        <span class="eng-page eng-next eng-visitlog-next" title="Click button to show next page"><i class="fa fa-chevron-right eng-visitorLog-arrow"></i></span>
+    </div>
+</div>

@@ -1,0 +1,261 @@
+﻿#eng_VisitorSettings {
+    font-family: Verdana, sans-serif;
+    padding-top: 2%;
+}
+
+    #eng_VisitorSettings .eng_VisitorSettings_Header {
+        padding-left: 3%;
+        margin: 0;
+        border: 0;
+        outline: 0;
+        font-size: 24px;
+        vertical-align: baseline;
+        background: transparent;
+        color: #0d0d0d;
+        padding-bottom: 2%;
+        font-weight: normal;
+        font-family: Verdana, sans-serif;
+    }
+
+    #eng_VisitorSettings .eng-visitorSettings-table a:link {
+        color: #666;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    #eng_VisitorSettings .eng-visitorSettings-table a:visited {
+        color: #999999;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    s #eng_VisitorSettings .eng-visitorSettings-table a:active,
+    #eng_VisitorSettings .eng-visitorSettings-table a:hover {
+        color: #bd5a35;
+        text-decoration: underline;
+    }
+
+    #eng_VisitorSettings .eng-visitorSettings-table {
+        font-family: Verdana, sans-serif;
+        font-size: 12px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        -moz-box-shadow: 0 1px 2px #d1d1d1;
+        -webkit-box-shadow: 0 1px 2px #d1d1d1;
+        box-shadow: 0 1px 2px #d1d1d1;
+    }
+
+#eng_visitorSettings_leftColumn {
+    width: 49%;
+    margin-right: 1%;
+    float: left;
+}
+
+#eng_VisitorSettings .eng-visitorSettings-table th {
+    padding: 21px 25px 22px 25px;
+    /*border-top: 1px solid #fafafa;
+                border-bottom: 1px solid #e0e0e0;
+                background: #ededed;
+                background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+                background: -moz-linear-gradient(top, #ededed, #ebebeb);*/
+}
+
+    #eng_VisitorSettings .eng-visitorSettings-table th:first-child {
+        text-align: left;
+        padding-left: 20px;
+    }
+
+#eng_VisitorSettings .eng-visitorSettings-table tr:first-child th:first-child {
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+#eng_VisitorSettings .eng-visitorSettings-table tr:first-child th:last-child {
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+#eng_VisitorSettings .eng-visitorSettings-table tr {
+    text-align: left;
+}
+
+#eng_VisitorSettings .eng-visitorSettings-table td {
+    padding: 18px;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    background: #fafafa;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+    background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+}
+
+#eng_VisitorSettings .eng-visitorSettings-table tr.even td {
+    background: #f6f6f6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+    background: -moz-linear-gradient(top, #f8f8f8, #f6f6f6);
+}
+
+#eng_VisitorSettings .eng-visitorSettings-table tr:last-child td {
+    border-bottom: 0;
+}
+
+    #eng_VisitorSettings .eng-visitorSettings-table tr:last-child td:first-child {
+        -moz-border-radius-bottomleft: 3px;
+        -webkit-border-bottom-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+
+    #eng_VisitorSettings .eng-visitorSettings-table tr:last-child td:last-child {
+        -moz-border-radius-bottomright: 3px;
+        -webkit-border-bottom-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+#eng_VisitorSettings .eng-visitorSettings-table tr:hover td {
+    background: #f2f2f2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+    background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+}
+
+#eng_VisitorSettings .eng-visitorSettings-table img {
+    margin-left: 0;
+    border: 0;
+    margin-right: 1em;
+}
+
+#eng_visitorSettings_rightColumn {
+    float: left;
+    width: 50%;
+}
+
+    #eng_visitorSettings_rightColumn .eng-firstRightColumn, #eng_visitorSettings_rightColumn .eng-secondRightColumn {
+        width: 85%;
+    }
+
+#eng_VisitorSettings .eng-visitorSettings-table thead tr th {
+    padding: 0;
+    padding-left: 3%;
+    font-size: 10px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+#eng_visitorSettings_rightColumn .eng-firstRightColumn {
+    margin-bottom: 10%;
+}
+#eng_VisitorSettings .eng-choose-chart {
+    padding-top: 2%;
+    padding-left: 0.5%;
+}
+.eng-choose-chart a {
+    cursor: pointer;
+}
+.eng-pie-chart, .eng-vertical-bar {
+    height: 300px;
+}
+.pie-chart-placeholder, .vertical-bar-placeholder {
+    width: 100%;
+    height: 100%;
+}
+
+.eng-vertical-bar{
+    display:none;
+}
+.eng-pie-chart{
+    display:none;
+}
+/*************Media Query*************/
+@media only screen and (min-width: 800px) {
+    #eng_VisitorSettings .eng-visitorSettings-table td:nth-child(1) {
+        width: 40%;
+    }
+
+    #eng_VisitorSettings .eng-visitorSettings-table td:nth-child(2) {
+        width: 10%;
+    }
+
+    #eng_VisitorSettings .eng-visitorSettings-table td:nth-child(3) {
+        width: 10%;
+    }
+
+    #eng_VisitorSettings .eng-visitorSettings-table td:nth-child(4) {
+        width: 20%;
+    }
+
+    #eng_VisitorSettings .eng-visitorSettings-table td:nth-child(5) {
+        width: 10%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    #eng_VisitorSettings .eng-visitorSettings-table {
+        width: 100%;
+    }
+
+    #eng_visitorSettings_rightColumn, #eng_visitorSettings_leftColumn {
+        padding-top: 5%;
+        padding-bottom: 1%;
+        width: 100%;
+    }
+
+        #eng_visitorSettings_rightColumn .eng-firstRightColumn {
+            margin-bottom: 10%;
+        }
+
+    #eng_VisitorSettings .eng_VisitorSettings_Header {
+        padding-bottom: 1%;
+    }
+
+    /* Force table to not be like tables anymore */
+    #eng_VisitorSettings .eng-visitorSettings-table table,
+    #eng_VisitorSettings .eng-visitorSettings-table thead,
+    #eng_VisitorSettings .eng-visitorSettings-table tbody,
+    #eng_VisitorSettings .eng-visitorSettings-table th,
+    #eng_VisitorSettings .eng-visitorSettings-table td,
+    #eng_VisitorSettings .eng-visitorSettings-table tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        #eng_VisitorSettings .eng-visitorSettings-table thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    #eng_VisitorSettings .eng-visitorSettings-table tr {
+        border: 1px solid #348fe2;
+    }
+
+    #eng_VisitorSettings .eng-visitorSettings-table td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+        padding-top: 7px;
+    }
+
+        #eng_VisitorSettings .eng-visitorSettings-table td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        #eng_VisitorSettings .eng-visitorSettings-table td:before {
+            content: attr(data-title);
+        }
+}
