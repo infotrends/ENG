@@ -234,6 +234,15 @@
     <Compile Include="DbEntities\Domain.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbEntities\ENG_DashboardSettingColumn.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_DashboardSettingReport.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_DashboardSettingView.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbEntities\ENG_OS.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
@@ -250,6 +259,9 @@
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\ENG_WidgetContent.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_WidgetContent_WidgetDataType_Lookup.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\ENG_WidgetData.cs">
@@ -388,6 +400,7 @@
     <Compile Include="Models\ContentEditor\KeywordRetModel.cs" />
     <Compile Include="Models\ContentEditor\TemplateModel.cs" />
     <Compile Include="Models\Eng\ClientInfoModel.cs" />
+    <Compile Include="Models\Eng\DashboardSettingModel.cs" />
     <Compile Include="Models\Eng\EngBase.cs" />
     <Compile Include="Models\Eng\ENG_WidgetLookupView.cs" />
     <Compile Include="Models\Eng\FeedbackModel.cs" />
@@ -398,6 +411,7 @@
     <Compile Include="Models\Meta\ContentMetaModel.cs" />
     <Compile Include="Extlib.cs" />
     <Compile Include="Models\PagingResult.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="RiakSolr\Models\ContentModel.cs" />
     <Compile Include="Models\Eng\MouseTrackModel.cs" />
     <Compile Include="RiakSolr\Models\RiakSolrBase.cs" />

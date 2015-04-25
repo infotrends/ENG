@@ -26,7 +26,7 @@ namespace SitebracoApi.Controllers.Auth
             {
                 var p = WebContext.ConvertParams<LoginParam>();
                 ValidateParams(p);
-                p.DoRemember = p.DoRemember == true ? true : false;
+                p.DoRemember = p.DoRemember == true;
                 return AuthenticateService.Current.Login(p.Username, p.Password, (bool)p.DoRemember);
             }
             catch (Exception e)
@@ -73,16 +73,14 @@ namespace SitebracoApi.Controllers.Auth
 
                 var userProfile = fakeService.Login(p.Username, p.Password);
 
-                if (userProfile == null)
-                {
-                    ValidateParams(p);
-                    p.DoRemember = p.DoRemember == true ? true : false;
-                    userProfile = AuthenticateService.Current.Login(p.Username, p.Password, (bool)p.DoRemember);
+                if (userProfile != null) return userProfile;
+                ValidateParams(p);
+                p.DoRemember = p.DoRemember == true;
+                userProfile = AuthenticateService.Current.Login(p.Username, p.Password, (bool)p.DoRemember);
 
-                    //Add to Sesion
-                    userProfile.SessionKey = Guid.NewGuid().ToString();
-                    fakeService.AddToSession(userProfile.SessionKey, "Logged In");
-                }
+                //Add to Sesion
+                userProfile.SessionKey = Guid.NewGuid().ToString();
+                fakeService.AddToSession(userProfile.SessionKey, "Logged In");
 
                 return userProfile;
             }

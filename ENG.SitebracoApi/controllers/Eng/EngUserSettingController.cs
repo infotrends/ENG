@@ -1,11 +1,5 @@
 ﻿using SitebracoApi.DbEntities;
-using SitebracoApi.Models.Eng;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace SitebracoApi.Controllers.Eng
@@ -24,13 +18,13 @@ namespace SitebracoApi.Controllers.Eng
         }
 
         [HttpPost, HttpGet]
-        public ENG_UserSetting Read(string ClientId)
+        public ENG_UserSetting Read(string clientId)
         {
             using (var db = new SitebracoEntities())
             {
                 
-                var tmp = db.ENG_UserSetting.Where(x => x.ClientId.Equals(ClientId)).ToList();
-                if (tmp != null && tmp.Count > 0)
+                var tmp = db.ENG_UserSetting.Where(x => x.ClientId.Equals(clientId)).ToList();
+                if (tmp.Count > 0)
                 {
                     return tmp.First();
                 }
@@ -43,31 +37,28 @@ namespace SitebracoApi.Controllers.Eng
         {
             using (var db = new SitebracoEntities())
             {
-                if (data.ClientId != null && data.ClientId != "")
-                {
-                    var tmp = db.ENG_UserSetting.Where(x => x.ClientId.Equals(data.ClientId)).FirstOrDefault();
-                    //update data
-                    if (data.MouseClickTracking != 0)
-                        tmp.MouseClickTracking = data.MouseClickTracking;
+                if (string.IsNullOrEmpty(data.ClientId)) return null;
+                var tmp = db.ENG_UserSetting.FirstOrDefault(x => x.ClientId.Equals(data.ClientId));
+                //update data
+                if (data.MouseClickTracking != 0)
+                    if (tmp != null) tmp.MouseClickTracking = data.MouseClickTracking;
 
-                    if (data.MouseMoveTracking != 0)
-                        tmp.MouseMoveTracking = data.MouseMoveTracking;
+                if (data.MouseMoveTracking != 0)
+                    if (tmp != null) tmp.MouseMoveTracking = data.MouseMoveTracking;
 
-                    if (data.PageViewsCounter != 0)
-                        tmp.PageViewsCounter = data.PageViewsCounter;
+                if (data.PageViewsCounter != 0)
+                    if (tmp != null) tmp.PageViewsCounter = data.PageViewsCounter;
 
-                    if (data.PageViewsRankingHigh != 0)
-                        tmp.PageViewsRankingHigh = data.PageViewsRankingHigh;
+                if (data.PageViewsRankingHigh != 0)
+                    if (tmp != null) tmp.PageViewsRankingHigh = data.PageViewsRankingHigh;
 
-                    if (data.PageViewsRankingLow != 0)
-                        tmp.PageViewsRankingLow = data.PageViewsRankingLow;
+                if (data.PageViewsRankingLow != 0)
+                    if (tmp != null) tmp.PageViewsRankingLow = data.PageViewsRankingLow;
 
-                    if (data.PageViewsRankingMedium != 0)
-                        tmp.PageViewsRankingMedium = data.PageViewsRankingMedium;
+                if (data.PageViewsRankingMedium != 0)
+                    if (tmp != null) tmp.PageViewsRankingMedium = data.PageViewsRankingMedium;
 
-                    db.SaveChanges();
-                }
-
+                db.SaveChanges();
             }
             return null;
         }

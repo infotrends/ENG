@@ -15,18 +15,14 @@ namespace SitebracoApi.DbEntities
 using System;
     using System.Collections.Generic;
     
-public partial class ENG_WidgetDataType
+public partial class ENG_DashboardSettingReport
 {
 
-    public ENG_WidgetDataType()
-    {
+    public long ID { get; set; }
 
-        this.ENG_WidgetContent_WidgetDataType_Lookup = new HashSet<ENG_WidgetContent_WidgetDataType_Lookup>();
+    public Nullable<long> DashboardSettingColumnID { get; set; }
 
-    }
-
-
-    public int ID { get; set; }
+    public int Order { get; set; }
 
     public string Name { get; set; }
 
@@ -34,9 +30,11 @@ public partial class ENG_WidgetDataType
 
     public Nullable<System.DateTime> ModifyOn { get; set; }
 
+    public Nullable<bool> Collapse { get; set; }
 
 
-    public virtual ICollection<ENG_WidgetContent_WidgetDataType_Lookup> ENG_WidgetContent_WidgetDataType_Lookup { get; set; }
+
+    public virtual ENG_DashboardSettingColumn ENG_DashboardSettingColumn { get; set; }
 
 }
 

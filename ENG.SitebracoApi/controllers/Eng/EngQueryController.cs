@@ -25,8 +25,7 @@ namespace SitebracoApi.Controllers.Eng
             var availabelUrl = GetAvailableUrl();
 
             var restClient = new RestClient(availabelUrl);
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
@@ -57,8 +56,7 @@ namespace SitebracoApi.Controllers.Eng
             return new
             {
                 success = true,
-                ClientId = clientId,
-                node = node,
+                ClientId = clientId, node,
                 data = new[] { 
                 new { Date = "03/24/2015", PageViews = 457, UniqueViews = 158 },
                 new { Date = "03/25/2015", PageViews = 557, UniqueViews = 258 },
@@ -283,8 +281,7 @@ namespace SitebracoApi.Controllers.Eng
             var availabelUrl = GetAvailableUrl();
 
             var restClient = new RestClient(availabelUrl);
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", ObjectUtil.GetClassName<FeedbackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", "*:*");
@@ -308,8 +305,7 @@ namespace SitebracoApi.Controllers.Eng
             var availabelUrl = GetAvailableUrl();
 
             var restClient = new RestClient(availabelUrl);
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", ObjectUtil.GetClassName<VisitorLogModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0} AND CreateOn_dt:[{1} TO {2}]", 
@@ -336,7 +332,7 @@ namespace SitebracoApi.Controllers.Eng
 
             var bucketType = ObjectUtil.GetPropertyName<Constant.RiakSolr.BucketType>(x => x.InfoTrendsLog);
 
-            List<string> id = new List<string>()
+            var id = new List<string>()
             {
                 "201504070222314cc35893f3844f62a019c3ea408e2cc5",
                  
@@ -374,8 +370,7 @@ namespace SitebracoApi.Controllers.Eng
             //Revise pageUrl
             pageUrl = ReviseUrl(pageUrl);
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q",
@@ -401,8 +396,7 @@ namespace SitebracoApi.Controllers.Eng
             //Revise PageUrl
             pageUrl = ReviseUrl(pageUrl);
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("PageX_i:[{0} TO {1}] AND PageY_i:[{2} TO {3}] AND ClientId_s:{4} AND ActionName_s:mouseclick AND (Position_s:*25,*25 OR Position_s:*25,*75 OR Position_s:*75,*25 OR Position_s:*75,*75) AND PageUrl_tsd:\"{5}\"", 
@@ -425,8 +419,7 @@ namespace SitebracoApi.Controllers.Eng
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", ObjectUtil.GetClassName<ClientInfoModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0} AND CreateOn_dt: [{1} TO {2}]",
@@ -449,8 +442,7 @@ namespace SitebracoApi.Controllers.Eng
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", ObjectUtil.GetClassName<MouseTrackModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("omitHeader", "true");
@@ -471,8 +463,7 @@ namespace SitebracoApi.Controllers.Eng
             var availabelUrl = GetAvailableUrl();
             var restClient = new RestClient(availabelUrl);
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", ObjectUtil.GetClassName<NotificationModel>(), RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("omitHeader", "true");
@@ -496,23 +487,24 @@ namespace SitebracoApi.Controllers.Eng
         {
             var retObj = GetPageviewByDate(clientId, new DateTime(2015, 01, 01), DateTime.UtcNow);
 
-            JObject obj = JObject.Parse(retObj.ToJsonString());
+            var obj = JObject.Parse(retObj.ToJsonString());
 
             var data = obj["data"]["facet_counts"]["facet_dates"]["CreateOn_dt"] as JObject;
             var maxDate = "";
             var maxViews = 0;
 
+            if (data == null)
+                return new
+                {
+                    success = false
+                };
             foreach (var item in data.Properties())
             {
                 int view;
-                if (int.TryParse(item.Value.ToString(), out view))
-                {
-                    if (view > maxViews)
-                    {
-                        maxDate = item.Name;
-                        maxViews = view;
-                    }
-                }
+                if (!int.TryParse(item.Value.ToString(), out view)) continue;
+                if (view <= maxViews) continue;
+                maxDate = item.Name;
+                maxViews = view;
             }
             return new 
             {
@@ -521,10 +513,9 @@ namespace SitebracoApi.Controllers.Eng
             };
         }
 
-        private RestRequest ConstructRequest(string bucketType, string clientId, string fieldName)
+        private static RestRequest ConstructRequest(string bucketType, string clientId, string fieldName)
         {
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", bucketType, RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0}", clientId));
@@ -539,10 +530,9 @@ namespace SitebracoApi.Controllers.Eng
             return request;
         }
 
-        private RestRequest ConstructRequestWithDate(string bucketType, string clientId, string fieldName, DateTime startDate, DateTime endDate)
+        private static RestRequest ConstructRequestWithDate(string bucketType, string clientId, string fieldName, DateTime startDate, DateTime endDate)
         {
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/search/query/{BucketType}";
+            var request = new RestRequest(Method.GET) {Resource = "/search/query/{BucketType}"};
             request.AddParameter("BucketType", bucketType, RestSharp.ParameterType.UrlSegment);
             request.AddParameter("wt", "json");
             request.AddParameter("q", string.Format("ClientId_s:{0} AND CreateOn_dt:[{1} TO {2}]",
@@ -559,18 +549,18 @@ namespace SitebracoApi.Controllers.Eng
             return request;
         }
 
-        private string GetAvailableUrl()
+        private static string GetAvailableUrl()
         {
             var cluster = (RiakCluster)RiakHelper.GetCluster(ObjectUtil.GetPropertyName<Constant.RiakSolr.ConfigSection>(x => x.riakSolrConfig));
 
             var node = (RiakNode)cluster.SelectNode();
-            var NodeUrlList = node.GetRestRootUrl();
-            var availabelUrl = NodeUrlList[0];
+            var nodeUrlList = node.GetRestRootUrl();
+            var availabelUrl = nodeUrlList[0];
 
             return availabelUrl;
         }
 
-        private string ReviseUrl(string pageUrl)
+        private static string ReviseUrl(string pageUrl)
         {
             var url = pageUrl;
 

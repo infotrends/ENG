@@ -112,6 +112,21 @@ namespace SitebracoApi.Models.Eng
         /// </summary>
         public string DeviceBrand_s { get; set; }
 
+        /// <summary>
+        /// ISP Name of the IP Address Provider
+        /// </summary>
+        public string IspName_s { get; set; }
+
+        /// <summary>
+        /// Viewer Session ID
+        /// </summary>
+        public string ViewerID_s { get; set; }
+
+        /// <summary>
+        /// Session ID
+        /// </summary>
+        public string SessionID_s { get; set; }
+
     }
 
     public class ClientIpInfo
@@ -146,15 +161,19 @@ namespace SitebracoApi.Models.Eng
 
     public class ClientInfoParams
     {
-        public string clientId { get; set; }
+        public string ClientId { get; set; }
 
-        public int width { get; set; }
+        public int Width { get; set; }
 
-        public int height { get; set; }
+        public int Height { get; set; }
 
-        public string pageUrl { get; set; }
+        public string PageUrl { get; set; }
 
-        public string referer { get; set; }
+        public string Referer { get; set; }
+
+        public string ViewerId { get; set; }
+
+        public string SessionId { get; set; }
     }
 
 }

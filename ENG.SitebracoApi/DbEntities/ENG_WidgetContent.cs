@@ -18,6 +18,14 @@ using System;
 public partial class ENG_WidgetContent
 {
 
+    public ENG_WidgetContent()
+    {
+
+        this.ENG_WidgetContent_WidgetDataType_Lookup = new HashSet<ENG_WidgetContent_WidgetDataType_Lookup>();
+
+    }
+
+
     public int ID { get; set; }
 
     public Nullable<int> WidgetId { get; set; }
@@ -36,15 +44,13 @@ public partial class ENG_WidgetContent
 
     public Nullable<System.DateTime> ModifyOn { get; set; }
 
-    public Nullable<int> WidgetDataTypeID { get; set; }
-
 
 
     public virtual ENG_WidgetSetting ENG_WidgetSetting { get; set; }
 
     public virtual ENG_Widget ENG_Widget { get; set; }
 
-    public virtual ENG_WidgetDataType ENG_WidgetDataType { get; set; }
+    public virtual ICollection<ENG_WidgetContent_WidgetDataType_Lookup> ENG_WidgetContent_WidgetDataType_Lookup { get; set; }
 
 }
 
