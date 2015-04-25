@@ -16,23 +16,23 @@ namespace SitebracoApi.Models.Eng
         /// <summary>
         /// Action Type: Click or Enter
         /// </summary>
-        public string type_tsd { get; set; }
+        public string Type_tsd { get; set; }
         /// <summary>
         /// Element 
         /// </summary>
-        public string element_tsd { get; set; }
+        public string Element_tsd { get; set; }
         /// <summary>
         /// Parent Name
         /// </summary>
-        public string parent_tsd { get; set; }
+        public string Parent_tsd { get; set; }
         /// <summary>
         /// Element Name
         /// </summary>
-        public string elementName_tsd { get; set; }
+        public string ElementName_tsd { get; set; }
         /// <summary>
         /// Element HTML
         /// </summary>
-        public string elementHtml_tsd { get; set; }
+        public string ElementHtml_tsd { get; set; }
         /// <summary>
         /// IP Address
         /// </summary>
@@ -62,5 +62,13 @@ namespace SitebracoApi.Models.Eng
         /// </summary>
         public string UrlReferrer_tsd { get; set; }
 
+        /// <summary>
+        /// Viewer Session ID
+        /// </summary>
+        public string ViewerID_s { get; set; }
+        /// <summary>
+        /// Session ID
+        /// </summary>
+        public string SessionID_s { get; set; }
     }
 }

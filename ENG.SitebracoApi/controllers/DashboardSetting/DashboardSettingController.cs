@@ -40,6 +40,8 @@ namespace SitebracoApi.Controllers.DashboardSetting
 
                     db.SaveChanges();
 
+                    if (!item.Reports.Any()) continue;
+
                     foreach (var newReport in item.Reports.Select(report => new ENG_DashboardSettingReport
                     {
                         DashboardSettingColumnID = column.ID,

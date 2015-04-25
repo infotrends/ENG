@@ -20,9 +20,9 @@ namespace SitebracoApi.Controllers.Eng
 
             var data = new ClientInfoModel
             {
-                ClientId_s = param.clientId,
+                ClientId_s = param.ClientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                PageUrl_tsd = param.pageUrl,
+                PageUrl_tsd = param.PageUrl,
                 Browser_s = HttpContext.Current.Request.Browser.Browser,
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
@@ -30,14 +30,17 @@ namespace SitebracoApi.Controllers.Eng
                 Platform_tsd = HttpContext.Current.Request.Browser.Platform,
                 UserAgent_tsd = HttpContext.Current.Request.UserAgent,
                 OperatingSystem_s = GetOperatingSystem(),
-                ScreenResolution_tsd = param.width + "x" + param.height,
+                ScreenResolution_tsd = param.Width + "x" + param.Height,
                 CountryCode_s = userLocation == null ? "Unknown" : userLocation.Country,
                 City_s = userLocation == null ? "Unknown" : userLocation.City,
                 Latitude_f = userLocation == null ? 0 : userLocation.Latitude,
                 Longitude_f = userLocation == null ? 0 : userLocation.Longitude,
+                IspName_s =  userLocation == null ? "" : userLocation.Isp_Name,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
-                UrlReferrer_tsd = param.referer,
+                UrlReferrer_tsd = param.Referer,
+                ViewerID_s = param.ViewerId,
+                SessionID_s = param.SessionId
             };
             return new { success = data.Save() };
         }
@@ -49,9 +52,9 @@ namespace SitebracoApi.Controllers.Eng
 
             var data = new ClientInfoModel
             {
-                ClientId_s = param.clientId,
+                ClientId_s = param.ClientId,
                 IPAddress_s = HttpContext.Current.Request.UserHostAddress,
-                PageUrl_tsd = param.pageUrl,
+                PageUrl_tsd = param.PageUrl,
                 Browser_s = GetBrowser(),
                 BrowserMajorVersion_i = HttpContext.Current.Request.Browser.MajorVersion,
                 BrowserMinnorVersion_d = HttpContext.Current.Request.Browser.MinorVersion,
@@ -59,14 +62,17 @@ namespace SitebracoApi.Controllers.Eng
                 Platform_tsd = HttpContext.Current.Request.Browser.Platform,
                 UserAgent_tsd = HttpContext.Current.Request.UserAgent,
                 OperatingSystem_s = GetOperatingSystem(),
-                ScreenResolution_tsd = param.width + "x" + param.height,
+                ScreenResolution_tsd = param.Width + "x" + param.Height,
                 CountryCode_s = userLocation == null ? "Unknown" : userLocation.Country,
                 City_s = userLocation == null ? "Unknown" : userLocation.City,
                 Latitude_f = userLocation == null ? 0 : userLocation.Latitude,
                 Longitude_f = userLocation == null ? 0 : userLocation.Longitude,
+                IspName_s = userLocation == null ? "" : userLocation.Isp_Name,
                 Device_s = GetDevice(),
                 DeviceBrand_s = GetDeviceBrand(),
-                UrlReferrer_tsd = param.referer,
+                UrlReferrer_tsd = param.Referer,
+                ViewerID_s =  param.ViewerId,
+                SessionID_s = param.SessionId
             };
             return new
             {
