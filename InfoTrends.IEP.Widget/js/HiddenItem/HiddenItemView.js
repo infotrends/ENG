@@ -6,6 +6,9 @@
     return Component.extend({
 
         events: {
+            "click .eng-open-hidden-item": "showMenuHidden",
+            "click .eng-close": "closePopup",
+            "click .eng-hidden-toggle" : "addItemHidden"
         },
         constructor: function (options) {
             var opts = ENG.$.extend(true, {
@@ -25,6 +28,24 @@
         },
         template: function () {
             return Template;
+        },
+        showMenuHidden: function (e) {
+            var currentTarget = ENG.$(e.currentTarget);
+            currentTarget.hide();
+            var options = this.$el.find(".eng-option-hidden");
+            options.show();
+        },
+        closePopup: function(e) {
+            this.$el.find(".eng-option-hidden").hide();
+            this.$el.find(".eng-open-hidden-item").show();
+        },
+        addItemHidden: function(e) {
+            var itemAdd = ENG.$(e.currentTarget);
+            if (itemAdd.hasClass("eng-active-hidden")) {
+                itemAdd.removeClass("eng-active-hidden");
+            } else {
+                itemAdd.addClass("eng-active-hidden");
+            }
         }
     });
 });

@@ -23,7 +23,8 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
         constructor: function (options) {
             var opts = ENG.$.extend(true, {
                 data: [],
-                defaultButtonType: null
+                defaultButtonType: null,
+                columnsData: null
             }, options);
 
             Component.prototype.constructor.call(this, opts);
@@ -40,17 +41,16 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             var html = compile();
             this.$el.append(html);
 
-
             this.loadDatepicker();
 
-            //load Manage Dashboard dropDown
-            this.loadManageDashboardDropDown();
+            this.getColumnsData(function () {
+                //load Manage Dashboard dropDown
+                me.loadManageDashboardDropDown();
 
-            //load table
-            this.opts.defaultButtonType = [ENG.enum.buttonType.collapse, ENG.enum.buttonType.close];
-            this.loadAllTable();
-
-            this.loadDragDrop();
+                //load table
+                me.opts.defaultButtonType = [ENG.enum.buttonType.collapse, ENG.enum.buttonType.close];
+                me.loadAllTable();
+            });
 
             return this;
 
@@ -59,8 +59,77 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             return Template;
         },
 
-        loadAllTable: function () {
-            var data = {
+        getColumnsData: function (callBack) {
+            //this.setDefaultDashboard();
+            //get data from api
+            var me = this;
+            var url = _.template("<%=domain%>/umbraco/api/DashboardSetting/GetDashboard?ClientId=<%=cliectId%>");
+
+            var apiUrl = url({
+                domain: ENG.ApiDomain,
+                cliectId: ENG.cid,
+            });
+
+            Xdr.ajax({
+                url: apiUrl
+            }, function (success, response) {
+                if (success && success.success) {
+                    if (ENG.Utils.checkObjExist(success, 'data.data')) {
+                        var data = {
+                            columns: [],
+                            columnsSize: ""
+                        }
+                        _.each(success.data.data, function (obj) {
+                            debugger;
+                            var index = me.getColumnIndex(obj.ColumnOrder, data.columns);
+                            if (index == -1) {
+                                //no column existed
+                                data.columns.push({
+                                    order: obj.ColumnOrder,
+                                    size: obj.ColumnSize,
+                                    reports: [{
+                                        order: obj.ReportOrder,
+                                        name: obj.ReportName,
+                                        collapse: obj.ReportCollapse,
+                                    }]
+                                });
+                            } else {
+                                data.columns[index].reports.push({
+                                    order: obj.ReportOrder,
+                                    name: obj.ReportName,
+                                    collapse: obj.ReportCollapse,
+                                });
+                            }
+                        });
+                        me.opts.columnsData = data;
+                    } else {
+                        me.setDefaultDashboard();
+                    }
+
+                    var size = "";
+                    _.each(me.opts.columnsData.columns, function (obj) {
+                        size += obj.size + "_";
+                    });
+                    me.opts.columnsData.columnsSize = size.substring(0, size.length - 1);
+
+                    callBack();
+                }
+            });
+
+
+        },
+        getColumnIndex: function (columnOrder, columns) {
+            var index = -1;
+            for (var i = 0; i < columns.length; i++) {
+                if (columns[i].order == columnOrder) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        },
+        setDefaultDashboard: function () {
+            this.opts.columnsData = {
                 columns: [{
                     order: 1,
                     size: 6,
@@ -85,29 +154,28 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                         name: ENG.enum.reportType.networkActivity,
                         collapse: false,
                     }]
-                }]
+                }],
+                columnsSize: ""
             };
-
+        },
+        loadAllTable: function () {
             //sort column by order
-            data.columns = _.sortBy(data.columns, "order");
+            this.opts.columnsData.columns = _.sortBy(this.opts.columnsData.columns, "order");
 
             //sort report by order
-            _.each(data.columns, function (obj) {
+            _.each(this.opts.columnsData.columns, function (obj) {
                 obj.reports = _.sortBy(obj.reports, "order");
             });
 
-            this.drawReport(data);
+            this.drawReport(this.opts.columnsData);
 
-
-            //this.loadInteractiveChart();
-            //this.loadDonutChart();
-            //this.loadQuickStats();
-            //this.loadMapChart();
+            this.loadDragDrop();
 
             this.opts.data["searchObject"].isNew = false;
         },
         drawReport: function (data) {
             var me = this;
+            me.$el.find(".eng-dashboard-content").html('');
             _.each(data.columns, function (column) {
                 //add column
                 var colId = "eng-col-id-" + column.order;
@@ -213,6 +281,8 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
         //dropdown
         loadManageDashboardDropDown: function () {
             var html = "<select id='eng-dashboard-config'>";
+            html += "   <option value='default'>Manage dashboard</option>";
+
             html += "   <optgroup label='Add report'>";
 
             _.each(ENG.enum.reportType, function (v, k) {
@@ -234,7 +304,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                 columns: []
             };
             for (var i = 0; i < this.$el.find(".eng-col").length; i++) {
-                var str = ENG.$(this.$el.find(".eng-col")[0]).attr("class").split(" ")[1];
+                var str = ENG.$(this.$el.find(".eng-col")[i]).attr("class").split(" ")[1];
 
                 var column = {
                     clientId: ENG.cid,
@@ -242,11 +312,11 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                     size: str[str.length - 1],
                     reports: []
                 };
-                for (var j = 0; j < this.$el.find("#eng-col-id-" + i).children().length; j++) {
-                    var name = this.$el.find("#eng-col-id-" + i).children()[0].id.replace("eng-report-", "").split("-").join(" ");
-                    var isCollapse = ENG.$(this.$el.find("#eng-col-id-" + j).children()[0]).find(".eng-panel-body").css("display") === "none";
+                for (var j = 0; j < this.$el.find("#eng-col-id-" + (i + 1)).children().length; j++) {
+                    var name = this.$el.find("#eng-col-id-" + (i + 1)).children()[j].id.replace("eng-report-", "").split("-").join(" ");
+                    var isCollapse = ENG.$(this.$el.find("#eng-col-id-" + j).children()[j]).find(".eng-panel-body").css("display") === "none";
                     column.reports.push({
-                        order: j,
+                        order: j + 1,
                         name: name,
                         collapse: isCollapse,
                     });
@@ -254,11 +324,25 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
 
                 data.columns.push(column);
             }
+
+            this.opts.columnsData = data;
+
+            //save
+            this.saveToDb();
+        },
+        saveToDb: function (data) {
+            //Xdr.ajax({
+            //    url: ENG.ApiDomain + '/umbraco/api/DashboardSetting/SaveDashboard',
+            //    data: { '': this.opts.columnsData.columns },
+            //    type: "POST"
+            //}, function (response) {
+            //});
         },
 
         dropDownChange: function (e) {
             var me = this;
             if (e.target.value === "change") {
+                //add message box
                 var selectLayoutBoxView = new SelectLayoutBoxView();
 
                 selectLayoutBoxView.opts.params = {
@@ -270,26 +354,73 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                 selectLayoutBoxView.opts.data = selectLayoutBoxView;
 
                 selectLayoutBoxView.showMessageBox();
+
+                //set selected layout
+                selectLayoutBoxView.$el.find("[data-value=" + this.opts.columnsData.columnsSize + "]").addClass("ui-selected");
+
+                //event
                 this.listenTo(selectLayoutBoxView, "cancel", function (data) {
                 });
                 this.listenTo(selectLayoutBoxView, "ok", function (data) {
-                    debugger;
                     var selected = data.$el.find("#eng-layout-select").children(".ui-selected");
                     if (selected.length > 0) {
-                        var arr = (data.$el.find("#eng-layout-select").children(".ui-selected").data("value") + "").split("_");
+                        var arr = (selected.data("value") + "").split("_");
+                        var oldColumnsCount = this.opts.columnsData.columns.length;
 
+                        if (oldColumnsCount < arr.length) {
+                            //increase column count -> add new column
+                            for (var i = oldColumnsCount; i < arr.length; i++) {
+                                this.opts.columnsData.columns.push({
+                                    order: i + 1,
+                                    size: 0,
+                                    reports: []
+                                });
+                            }
+
+
+                            for (var i = 0; i < arr.length; i++) {
+                                this.opts.columnsData.columns[i].size = arr[i];
+                            }
+                        } else if (oldColumnsCount > arr.length) {
+                            //decrease column count -> move report to first column
+                            for (var i = arr.length; i < oldColumnsCount; i++) {
+                                for (var j = 0; j < this.opts.columnsData.columns[i].reports.length; j++) {
+                                    var report = this.opts.columnsData.columns[i].reports[j];
+                                    this.opts.columnsData.columns[0].reports.push(report);
+                                }
+                            }
+                            //remove columns  
+                            this.opts.columnsData.columns.splice(arr.length, oldColumnsCount - arr.length);
+
+                        }
+
+                        //change column size
+                        for (var i = 0; i < arr.length; i++) {
+                            this.opts.columnsData.columns[i].size = arr[i];
+                        }
+                        this.opts.columnsData.columnsSize = selected.data("value") + "";
                     }
-
                     //save new layout
+                    me.saveToDb();
 
                     //reload table
-
+                    me.loadAllTable();
                 });
             } else if (e.target.value === "reset") {
-
+                me.loadAllTable();
+                me.saveToDb();
+                me.loadAllTable();
             } else {
-
+                me.opts.columnsData.columns[0].reports.push({
+                    order: this.opts.columnsData.columns[0].reports.length + 1,
+                    name: e.target.value,
+                    collapse: false,
+                });
+                me.saveToDb();
+                me.loadAllTable();
             }
+
+            e.target.value = "default";
         },
 
         //datepicker area
@@ -384,6 +515,8 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.chartType = [ENG.enum.chartType.donut];
             table.opts.isShowChartIcon = false;
+            table.opts.buttonType = this.opts.defaultButtonType;
+
             area.append(table.$el);
             table.render();
 
@@ -402,6 +535,8 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.chartType = [ENG.enum.chartType.quickStats];
             table.opts.isShowChartIcon = false;
+            table.opts.buttonType = this.opts.defaultButtonType;
+
             area.append(table.$el);
             table.render();
         },
@@ -429,6 +564,8 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.chartType = [ENG.enum.chartType.map];
             table.opts.isShowChartIcon = false;
+            table.opts.buttonType = this.opts.defaultButtonType;
+
             area.append(table.$el);
             table.render();
         },

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "wwwdealer", "http://localhost:60263", "{03CF6B2C-5C59-45E9-80B4-0171A6EEF220}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = "SAK"
@@ -92,6 +94,7 @@ Global
 		SccProjectEnlistmentChoice3 = 2
 		SccWebProject4 = true
 		SccProjectUniqueName4 = http://localhost:60263
+		SccProjectName4 = wwwdealer
 		SccLocalPath4 = wwwdealer
 		SccProjectEnlistmentChoice4 = 2
 	EndGlobalSection

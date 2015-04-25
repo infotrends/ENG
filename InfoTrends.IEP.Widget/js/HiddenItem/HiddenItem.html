@@ -1,11 +1,21 @@
-﻿<a title="Hidden block" class="eng-btn eng-btn-icon eng-btn-circle eng-btn-success eng-btn-scroll-to-top eng-fade eng-in">
+﻿<a title="Hidden block" id="hiddenItem" class="eng-open-hidden-item eng-btn-icon eng-btn-circle eng-btn-success eng-fade eng-in">
     <i class="fa fa-cube"></i>
 </a>
 <div class="eng-option-hidden">
-    <ul style="position: absolute; top: 0; right: 0">
-        <li>option1 </li>
-        <li>option1 </li>
-        <li>option1 </li>
-        <li>option1 </li>
-    </ul>
+    <a class="eng-close"><i class="fa fa-times"></i></a>
+    <div class="eng-options-body">
+        <div class="eng-hidden-header">
+            <p>Hidden</p>
+        </div>
+        <div class="eng-hidden-content">
+            <ul class="eng-menu-options">
+                <li>
+                    <input type="checkbox"/> Show element hidden
+                </li>
+            </ul>
+            <a title="Add hidden item" class="eng-btn-icon eng-btn-circle eng-btn-danger eng-hidden-toggle eng-fade eng-in">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
 </div>

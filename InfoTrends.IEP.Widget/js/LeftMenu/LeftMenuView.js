@@ -130,6 +130,8 @@ function (
                 ENG.rightPanel.showPosition(ENG.isRightLeftPanel);
                 me.setPosition(position);
                 me.showChangePositionArrow();
+
+                me.calculateCollapseMenu(true);
             });
             rightPanel.on("click", function () {
                 var position = {
@@ -140,6 +142,8 @@ function (
                 ENG.rightPanel.showPosition(ENG.isRightLeftPanel);
                 me.setPosition(position);
                 me.showChangePositionArrow();
+
+                me.calculateCollapseMenu(true);
             });
         },
         loadData: function (collection) {
@@ -149,8 +153,14 @@ function (
                 widgets.push(w);
             }, this);
             this.add(widgets);
-            var hiddenItem = new HiddenItemView();
-            ENG.$("body").append(hiddenItem.render().$el);
+            if (ENG.hiddenWidget) {
+                ENG.hiddenWidget.show();
+                    } else {
+                var hiddenItem = new HiddenItemView();
+                ENG.$("body").append(hiddenItem.render().$el);
+                ENG.hiddenWidget = hiddenItem;
+                    }
+
         },
         leftPaneladdWidget: function (obj) {
             var widgetModel = new WidgetModel();
@@ -385,25 +395,49 @@ function (
             }
         },
 
-        collapseLeftMenu: function () {
-            if (this.$el.find(".eng-collapse-btn").find(".fa-angle-double-left").length > 0) {
-                //collapse
-                //ENG.leftMenu.$el.
-                ENG.leftMenu.$el.css("width", "65px");
-                ENG.leftMenu.$el.find(".eng-sub-menu-item-text").hide();
-
-                this.$el.find(".eng-collapse-btn").find(".fa-angle-double-left").addClass("fa-angle-double-right");
-                this.$el.find(".eng-collapse-btn").find(".fa-angle-double-left").removeClass("fa-angle-double-left");
+        collapseLeftMenu: function (isChangePosition) {
+            this.calculateCollapseMenu(false);
+        },
+        calculateCollapseMenu: function (isChangePosition) {
+            if (ENG.isRightLeftPanel) {
+                this.$el.find(".eng-collapse-btn").css("float", "left");
             } else {
-                //expand
+                this.$el.find(".eng-collapse-btn").css("float", "right");
+            }
+            this.$el.find(".eng-collapse-btn").find("i").removeClass();
+            if (ENG.leftMenu.$el.width() === 65) {
+                if (isChangePosition) {
+                    if (ENG.isRightLeftPanel) {
+                        this.$el.find(".eng-collapse-btn").find("i").addClass("fa fa-angle-double-left");
+                    } else {
+                        this.$el.find(".eng-collapse-btn").find("i").addClass("fa fa-angle-double-right");
+                    }
+                } else {
+                    if (ENG.isRightLeftPanel) {
+                        this.$el.find(".eng-collapse-btn").find("i").addClass("fa fa-angle-double-right");
+            } else {
+                        this.$el.find(".eng-collapse-btn").find("i").addClass("fa fa-angle-double-left");
+                    }
                 ENG.leftMenu.$el.css("width", "25%");
                 ENG.leftMenu.$el.find(".eng-sub-menu-item-text").show();
-
-                this.$el.find(".eng-collapse-btn").find(".fa-angle-double-right").addClass("fa-angle-double-left");
-                this.$el.find(".eng-collapse-btn").find(".fa-angle-double-right").removeClass("fa-angle-double-right");
+                }
+            } else {
+                if (isChangePosition) {
+                    if (ENG.isRightLeftPanel) {
+                        this.$el.find(".eng-collapse-btn").find("i").addClass("fa fa-angle-double-right");
+                    } else {
+                        this.$el.find(".eng-collapse-btn").find("i").addClass("fa fa-angle-double-left");
+                    }
+                } else {
+                    if (ENG.isRightLeftPanel) {
+                        this.$el.find(".eng-collapse-btn").find("i").addClass("fa fa-angle-double-left");
+                    } else {
+                        this.$el.find(".eng-collapse-btn").find("i").addClass("fa fa-angle-double-right");
+                    }
+                    ENG.leftMenu.$el.css("width", "65px");
+                    ENG.leftMenu.$el.find(".eng-sub-menu-item-text").hide();
+                }
             }
-
-
         },
 
         showPosition: function (isRight) {

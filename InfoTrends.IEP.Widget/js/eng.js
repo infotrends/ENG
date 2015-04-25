@@ -527,8 +527,6 @@
             }
             if (ENG.leftMenu) {
                 ENG.leftMenu.showPosition(ENG.isRightLeftPanel);
-                /* ENG.leftMenu.destroyScroll();
-                 ENG.leftMenu.initScroll();*/
             };
 
             ENG.leftMenu.loadMenuStyle();
