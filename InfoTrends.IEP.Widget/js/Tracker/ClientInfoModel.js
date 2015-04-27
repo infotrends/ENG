@@ -7,13 +7,13 @@ function (myModel) {
             myModel.apply(this, arguments);
         },
         defaults: {
-            clientId: '123456789',
-            width: 0,
-            height: 0,
-            pageUrl: '',
-            referrer: '',
-            ViewerID_s: '',
-            SessionID_s: '',
+            ClientId: '123456789',
+            Width: 0,
+            Height: 0,
+            PageUrl: '',
+            Referrer: '',
+            ViewerId: '',
+            SessionId: '',
         },
         url: ENG.ApiDomain + '/umbraco/api/EngTrack/CollectClientInfo'
     });

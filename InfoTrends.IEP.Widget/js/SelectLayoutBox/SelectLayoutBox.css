@@ -1,5 +1,6 @@
 ﻿#eng-layout-select .ui-selected tr, #eng-layout-select .ui-selected td {
     border-style: solid;
+    -ms-opacity: 1;
     opacity: 1;
 }
 
@@ -22,5 +23,6 @@
     #eng-layout-select tr, #eng-layout-select td {
         border: 1px dotted #555;
         background-color: #ddd;
+        -ms-opacity: 0.6;
         opacity: 0.6;
     }

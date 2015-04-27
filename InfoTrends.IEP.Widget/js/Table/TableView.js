@@ -27,7 +27,8 @@
                 searchObject: null,
                 chartType: null,
                 buttonType: null,
-                isShowChartIcon: null
+                isShowChartIcon: null,
+                parentView: null,
             }, options);
 
             Component.prototype.constructor.call(this, opts);
@@ -47,41 +48,55 @@
                 //this.opts.chartType = [ENG.enum.chartType.interactive];
                 //this.opts.chartType = [ENG.enum.chartType.quickStats];
                 //this.opts.chartType = [ENG.enum.chartType.map];
+                //this.opts.chartType = [ENG.enum.chartType.dynamicColumnTable];
             }
 
             if (this.opts.buttonType === undefined || this.opts.buttonType === null) {
-                this.opts.buttonType = [ENG.enum.buttonType.add, ENG.enum.buttonType.collapse];
+                this.opts.buttonType = [ENG.enum.buttonType.collapse];
             }
 
             if (this.opts.isShowChartIcon == null) {
                 this.opts.isShowChartIcon = true;
             }
 
-            if (me.opts.chartType[0] == ENG.enum.chartType.interactive) {
-                me.reloadTable();
-                //me.drawInteractiveChart();
-                var interactiveChart = me.$el.find(".eng-interactive-chart");
-                interactiveChart.show();
-                me.drawInteractiveChart(interactiveChart);
 
-                me.drawChartIcon();
-                me.drawActionButton();
-
-                ENG.$(window).bind('resize.interactive_' + me.name, function (event) {
+            switch (me.opts.chartType[0]) {
+                case ENG.enum.chartType.interactive:
+                    me.reloadTable();
+                    //me.drawInteractiveChart();
+                    var interactiveChart = me.$el.find(".eng-interactive-chart");
+                    interactiveChart.show();
                     me.drawInteractiveChart(interactiveChart);
-                });
-            } else if (me.opts.chartType[0] == ENG.enum.chartType.quickStats) {
-                me.reloadTable();
 
-                var quickStats = me.$el.find(".eng-quick-stats");
-                quickStats.show();
+                    me.drawChartIcon();
+                    me.drawActionButton();
 
-                me.drawAnalyticDetail();
+                    ENG.$(window).bind('resize.interactive_' + me.name, function (event) {
+                        me.drawInteractiveChart(interactiveChart);
+                    });
+                    break;
 
-                me.drawChartIcon();
-                me.drawActionButton();
-            } else {
-                me.drawAllOtherChart();
+                case ENG.enum.chartType.quickStats:
+                    me.reloadTable();
+
+                    var quickStats = me.$el.find(".eng-quick-stats");
+                    quickStats.show();
+
+                    me.drawAnalyticDetail();
+
+                    me.drawChartIcon();
+                    me.drawActionButton();
+                    break;
+
+                case ENG.enum.chartType.dynamicColumnTable:
+                    me.isShowTable = true;
+                    me.initPageData();
+                    me.calculateData();
+
+                    break;
+                default:
+                    me.drawAllOtherChart();
+                    break;
             }
 
             return this;
@@ -100,8 +115,8 @@
                     me.initPageData();
                     me.calculateData();
 
-                    me.drawPageButton();
-                    me.$el.find(".eng-search").val(me.filterData.searchKey);
+                    //me.drawPageButton();
+                    //me.$el.find(".eng-search").val(me.filterData.searchKey);
                 } else {
                     me.isShowTable = false;
 
@@ -134,9 +149,10 @@
                             break;
                         default:
                     }
+                    me.drawChartIcon();
+                    me.drawActionButton();
                 }
-                me.drawChartIcon();
-                me.drawActionButton();
+
             });
         },
         showReport: function (e) {
@@ -152,9 +168,9 @@
                     me.initPageData();
                     me.calculateData();
 
-                    me.drawPageButton();
-                    me.drawChartIcon();
-                    me.drawActionButton();
+                    //me.drawPageButton();
+                    //me.drawChartIcon();
+                    //me.drawActionButton();
 
                     me.$el.find(".eng-search").val(this.filterData.searchKey);
                     break;
@@ -401,21 +417,25 @@
             });
         },
         calculateDate: function (pageViewsData) {
+
             var me = this;
 
             var ticks = [];
             var count = pageViewsData.length;
             var step = Math.ceil(pageViewsData.length / 10);
 
-            ticks.push([ENG.getDateValue(pageViewsData[0][0]), ENG.getDateString(ENG.getDateValue(pageViewsData[0][0]))]);
-            for (var i = 1; i < count - 1; i++) {
-                if (i % step == 0) {
-                    ticks.push([ENG.getDateValue(pageViewsData[i][0]), ENG.getDateString(ENG.getDateValue(pageViewsData[i][0]))]);
-                } else {
-                    ticks.push([ENG.getDateValue(pageViewsData[i][0]), ""]);
+            if (pageViewsData.length > 0) {
+
+                ticks.push([ENG.getDateValue(pageViewsData[0][0]), ENG.getDateString(ENG.getDateValue(pageViewsData[0][0]))]);
+                for (var i = 1; i < count - 1; i++) {
+                    if (i % step == 0) {
+                        ticks.push([ENG.getDateValue(pageViewsData[i][0]), ENG.getDateString(ENG.getDateValue(pageViewsData[i][0]))]);
+                    } else {
+                        ticks.push([ENG.getDateValue(pageViewsData[i][0]), ""]);
+                    }
                 }
+                ticks.push([ENG.getDateValue(pageViewsData[count - 1][0]), ENG.getDateString(ENG.getDateValue(pageViewsData[count - 1][0]))]);
             }
-            ticks.push([ENG.getDateValue(pageViewsData[count - 1][0]), ENG.getDateString(ENG.getDateValue(pageViewsData[count - 1][0]))]);
 
             return ticks;
         },
@@ -582,20 +602,51 @@
             }
         },
         headerBtnClick: function (e) {
-            var data = "";
+            var type = "";
+            var me = this;
             if (ENG.$(e.target).parents(".eng-btn").length === 0) {
-                data = ENG.$(e.target).data("click");
+                type = ENG.$(e.target).data("click");
             } else {
-                data = ENG.$(e.target).parents(".eng-btn").data("click");
+                type = ENG.$(e.target).parents(".eng-btn").data("click");
             }
-
-            switch (data) {
+            switch (type) {
                 case ENG.enum.buttonType.collapse:
-                    ENG.$(e.target).parents(".eng-tableTitle-bar").siblings(".eng-panel-body").toggle()
+                    ENG.$(e.target).parents(".eng-tableTitle-bar").siblings(".eng-panel-body").toggle();
+
+                    if (ENG.$(e.target).parents(".eng-dashboard-content").length) {
+                        //collapse in dashboard -> save data
+                        ENG.loadDashboard(function (data) {
+                            var reportName = me.$el.parent()[0].id.replace("eng-report-", "").split("-").join(" ");
+                            _.each(data.columns, function (column) {
+                                _.each(column.reports, function (report) {
+                                    if (report.name === reportName) {
+                                        report.collapse = !report.collapse;
+                                    }
+                                });
+                            });
+
+                            ENG.saveDashboard(data);
+                        });
+                    }
+
                     break;
                 case ENG.enum.buttonType.close:
-                    break;
-                case ENG.enum.buttonType.add:
+                    var reportName = me.$el.parent()[0].id.replace("eng-report-", "").split("-").join(" ");
+                    me.opts.parentView.trigger("removeTable", reportName);
+
+                    ENG.loadDashboard(function (data) {
+                        _.each(data.columns, function (column) {
+                            for (var i = 0; i < column.reports.length; i++) {
+                                if (column.reports[i].name === reportName) {
+                                    column.reports.splice(i, 1);
+                                }
+                            }
+                        });
+
+                        ENG.saveDashboard(data);
+                    });
+
+                    ENG.$(e.target).parents(".eng-panel-table").remove();
                     break;
                 default:
             }
@@ -620,14 +671,26 @@
                     if (data != null) {
                         data = me.rateData(data);
                         me.data[me.name] = {
-                            data: me.rateData(data),
+                            data: me.rateData(data)
+                        };
+
+                        switch (me.name) {
+                            case ENG.enum.reportType.country:
+                                me.handleCountryData(data);
+                                break;
+                            case ENG.enum.reportType.continent:
+                                me.handleContinentData(data);
+                                break;
+                            case ENG.enum.reportType.deviceBrand:
+                                me.handleDeviceBrandData(data);
+                                break;
+                            default:
                         }
                     } else {
                         me.data[me.name] = {
                             data: null,
                         }
                     }
-
                     handleData();
                 });
             } else {
@@ -688,6 +751,11 @@
             }
 
             this.reloadTable();
+
+            this.drawPageButton();
+            this.$el.find(".eng-search").val(me.filterData.searchKey);
+            this.drawChartIcon();
+            this.drawActionButton();
         },
         drawPageButton: function () {
             for (var i = 1; i <= this.filterData.pageCount; i++) {
@@ -796,6 +864,75 @@
             //    }
             //});
             return data;
+        },
+
+        //handle some special table data
+        handleCountryData: function (data) {
+            _.each(data, function (obj) {
+                obj.key = getCountryName(obj.key);
+            });
+            this.data[this.name].data = data;
+        },
+
+        handleContinentData: function (data) {
+            var me = this;
+            me.data[me.name].data = [];
+
+            _.each(data, function (obj) {
+                var continent = getContinent(obj.key);
+                if (!me.checkExistedContinent(continent, obj.value)) {
+                    me.data[me.name].data.push({
+                        keyTitle: "Continent",
+                        key: continent,
+                        valueTitle: "PageView",
+                        value: obj.value
+                    });
+                }
+            });
+        },
+        checkExistedContinent: function (continentName, value) {
+            var isExisted = false;
+            _.each(this.data[this.name].data, function (obj) {
+                if (obj.key === continentName) {
+                    obj.value += value;
+                    isExisted = true;
+                }
+            });
+            return isExisted;
+        },
+
+        handleDeviceBrandData: function (data) {
+            var me = this;
+            me.data[me.name].data = [];
+
+            _.each(data, function (obj) {
+                var brand = "";
+                var arr = obj.key.split('-');
+                if (arr.length > 1) {
+                    brand = arr[0].trim();
+                } else {
+                    brand = "Unknown";
+                }
+
+                if (!me.checkExistedBrand(brand, obj.value)) {
+                    me.data[me.name].data.push({
+                        keyTitle: "Brand",
+                        key: brand,
+                        valueTitle: "PageView",
+                        value: obj.value
+                    });
+                }
+            });
+        },
+        checkExistedBrand: function (brandName, value) {
+            var isExisted = false;
+            _.each(this.data[this.name].data, function (obj) {
+                if (obj.key === brandName) {
+                    obj.value += value;
+                    isExisted = true;
+                }
+            });
+            return isExisted;
         },
 
         //load html

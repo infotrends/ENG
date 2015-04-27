@@ -23,6 +23,7 @@
     .eng-toolbar .eng-toolbar-logo {
         max-height: 42px;
         max-width: 50px;
+        cursor: pointer !important;
     }
 
 .eng-toolbar-logo img {

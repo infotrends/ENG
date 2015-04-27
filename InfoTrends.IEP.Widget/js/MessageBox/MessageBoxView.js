@@ -1,10 +1,10 @@
 ﻿define([
     'text!js/MessageBox/MessageBox.css',
     'text!js/MessageBox/MessageBox.html',
-    'js/Container'
+    'js/Component'
 
-], function (Css, Template, Container) {
-    return Container.extend({
+], function (Css, Template, Component) {
+    return Component.extend({
 
         events: {
             "click .eng-message-box-btn-cancel": "cancelClick",
@@ -21,13 +21,13 @@
                 size: null
             }, options);
 
-            Container.prototype.constructor.call(this, opts);
+            Component.prototype.constructor.call(this, opts);
             this.$el.addClass('eng-message-box');
             var urlCss = ENG.DOMAIN + "/js/MessageBox/MessageBox.css";
             ENG.loadCss(urlCss);
         },
         render: function () {
-            Container.prototype.render.call(this);
+            Component.prototype.render.call(this);
             var compile = _.template(this.template());
             html = compile({
                 headerText: this.opts.params.headerText,
@@ -39,6 +39,7 @@
             //this.initDrag();
 
             this.setSize();
+            this.$el.find(".eng-message-box-custom").hide();
             return this;
         },
         template: function () {
@@ -57,7 +58,9 @@
             this.remove();
         },
         addCustomContent: function (contentCustom) {
-            this.$el.find(".eng-message-box-custom").html(contentCustom);
+            var content = this.$el.find(".eng-message-box-custom");
+            content.html(contentCustom);
+            content.show();
         },
         showMessageBox: function () {
             var body = ENG.$("body");

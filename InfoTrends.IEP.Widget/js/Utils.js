@@ -159,16 +159,13 @@
 
     trackMouse: function () {
         ENG.$(document).mousemove(function (event) {
-
-
-            ENG.currentItem = event.target;
+            ENG.mouseMoveItem = event.target;
 
             if (typeof ENG.oldDivMouseOver !== "undefined") {
                 ENG.oldDivMouseOver.removeClass("eng-moveMouseOver");
             }
-
             //drag and drop hover
-            if (typeof ENG.dragWidget !== "undefined" && ENG.dragWidget === true) {
+            if (typeof ENG.hightLightItem !== "undefined" && ENG.hightLightItem === true) {
                 var currentItem = ENG.$(event.target);
                 if (currentItem.parents(".eng-component").length > 0) {
                     return;
@@ -269,10 +266,17 @@
 
 
         ENG.$(document).click(function (event) {
-            
+            if (typeof ENG.hiddenMode !== "undefined" && ENG.hiddenMode) {
+                var currentItem = ENG.$(event.target);
+                if (currentItem.parents(".eng-component").length > 0)
+                    return;
+                ENG.clickItem = event.target;
+                ENG.hiddenWidget.addToolbarHidden();
+            }
             if (!ENG.Utils.isTrack(ENG.trackingSetting.MouseClickTracking)) {
                 return;
             }
+            
             var mouseClickArr = ENG.Utils.mouseClickArr;
 
             var mouseClickObj = new ENG.Model.MouseTrackModel();
@@ -321,7 +325,8 @@
         ENG.$("a").click(function (event) {
             // collect a click into VisitorLog Model
 
-            if (!ENG.Utils.isTrack()) {
+
+            if (!ENG.Utils.isTrack(ENG.trackingSetting.MouseClickTracking)) {
                 return;
             }
 
@@ -337,20 +342,24 @@
 
             if (parent && event.currentTarget.innerText) {
                 model.set("ClientId_s", ENG.cid);
-                model.set("type_tsd", event.type);
-                model.set("parent_tsd", parentName_convert);
-                model.set("elementID_tsd", event.currentTarget.id);
-                model.set("elementName_tsd", event.currentTarget.innerText);
-                model.set("elementHtml_tsd", event.currentTarget.innerHTML);
+                model.set("Type_tsd", event.type);
+                model.set("Parent_tsd", parentName_convert);
+                model.set("ElementID_tsd", event.currentTarget.id);
+                model.set("ElementName_tsd", event.currentTarget.innerText);
+                model.set("ElementHtml_tsd", event.currentTarget.innerHTML);
                 model.set("UrlReferrer_tsd", document.referrer);
                          
+                model.set({
+                    ViewerID_s: ENG.Utils.getCookie('ENGViewerCookie'),
+                    SessionID_s: ENG.Utils.getCookie('ENGSessionCookie')
+                });
+
                 model.engSave(this.engHandleData);
             }
 
         });
 
     },
-
     isMouseMove: function (x, y, prevX, prevY, gap) {
         if (Math.floor(x / gap) === Math.floor(prevX / gap) && Math.floor(y / gap) === Math.floor(prevY / gap))
             return false;
@@ -424,6 +433,10 @@
         require([ENG.DOMAIN + '/lib/pace.min.js'], function (pace) {
             pace.start();
         });  // eof
+
+
+ 
+
     },
 
     loadTextEditor: function () {
@@ -551,6 +564,30 @@
     htmlDecode: function (value) {
         return $('<div/>').html(value).text();
     },
+    getAddressElement: function (address, ele) {
+        var parentNode = ele.parent();
+        var tagName;
+        var index;
+        var seperate;
+        if (address) {
+            seperate = "-";
+        }
+        if (parentNode) {
+            index = parentNode.children().index(ele);
+            tagName = parentNode.prop("tagName");
+        }
+        var complie = _.template("<%= seperate%><%= tagName%>.<%= index%>");
+        address = address + complie({
+            tagName: tagName,
+            index: index,
+            seperate: seperate
+        });
+        if (tagName.toLowerCase() == "body") {
+            return address;
+        } else {
+            return this.getAddressElement(address, parentNode);
+        }
+    }
 },
 ENG.$.fn.appendToWithIndex = function (to, index) {
     if (!to instanceof jQuery) {

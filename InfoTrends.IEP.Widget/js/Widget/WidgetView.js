@@ -76,7 +76,7 @@
                 cursorAt: { left: -5, top: 0 },
                 appendTo: "body",
                 start: function (param) {
-                    ENG.dragWidget = true;
+                    ENG.hightLightItem = true;
                     ENG.typeWidget = ENG.enum.dragDropWidget.WIDGET;
                     ENG.dragInClient = me;
                     
@@ -87,7 +87,7 @@
                 },
                 stop: function () {
                     
-                    ENG.dragWidget = false;
+                    ENG.hightLightItem = false;
                     var leftMenu = ENG.$(".eng-leftPanel .eng-container");
                     leftMenu.css("overflow-x", "hidden");
                     leftMenu.css("overflow-y", "auto");

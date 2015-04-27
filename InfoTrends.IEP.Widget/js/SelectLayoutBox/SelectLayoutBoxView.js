@@ -25,7 +25,7 @@
         render: function () {
             MessageBoxView.prototype.render.call(this);
             var compile = _.template(this.template());
-            html = compile({
+            var html = compile({
                 headerText: this.opts.params.headerText,
                 messageText: this.opts.params.messageText
             });
@@ -33,7 +33,6 @@
 
             this.setSize();
             this.$el.find("#eng-layout-select").selectable();
-
 
             return this;
         },

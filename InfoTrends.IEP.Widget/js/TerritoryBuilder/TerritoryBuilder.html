@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Territory Builder</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+        /* Territory Builder*/
+        .eng-territoryBuilder {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /*Territory Layer*/
+        #eng-territory-layer {
+            display: inline-block;
+            cursor: pointer;
+            position: absolute;
+            z-index: 999;
+            width: 195px;
+            padding: 10px 0 0 70px;
+        }
+
+            #eng-territory-layer ul {
+                list-style: none;
+            }
+
+                #eng-territory-layer ul:first-child {
+                    border: 1px solid #CACACA;
+                    background: #fff;
+                }
+
+            #eng-territory-layer li {
+                padding-top: 10px;
+            }
+
+            #eng-territory-layer ul, #eng-territory-layer li, #eng-territory-layer div {
+                float: left;
+            }
+
+            #eng-territory-layer ul, #eng-territory-layer li {
+                width: 100%;
+                padding: 5px;
+                margin: 0;
+            }
+
+        .eng-layer-expand, .eng-layer-collapse {
+            font-size: 12px;
+            padding-right: 5px;
+        }
+
+        .eng-layer-expand {
+            width: 15px;
+            height: 15px;
+        }
+
+        .eng-layer-collapse {
+            width: 15px;
+            height: 15px;
+            display: none;
+        }
+
+
+        /* Territory Left*/
+
+        .eng-territory-left {
+            width: 50%;
+            float: left;
+        }
+
+        .eng-territory-right .eng-territory-list-title {
+            padding: 0 10px;
+            vertical-align: top;
+            font-family: Verdana, sans-serif;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-right: 0;
+        }
+
+            .eng-territory-right .eng-territory-list-title span {
+                font-size: 16px;
+                font-weight: bold;
+                padding-right: 70px;
+            }
+
+            .eng-territory-right .eng-territory-list-title .fa {
+                padding-right: 5px;
+            }
+
+        #googleMap {
+            width: 100%;
+            height: 800px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .eng-create-newTerritory {
+            display: none;
+        }
+        /* Territory Right*/
+        .eng-territory-right {
+            width: 49%;
+            float: right;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            -webkit-border-radius: 3px;
+            -webkit-box-shadow: 0 1px 2px #d1d1d1;
+            height: 830px;
+            overflow-y: auto;
+        }
+
+        #eng-territorry-list {
+            width: 100%;
+        }
+        #eng-territorry-list tbody td i {
+            padding-left: 7px;
+        }
+        .eng-territory-right th:first-child {
+            text-align: left;
+            padding-left: 20px;
+            width: 5%;
+        }
+
+        .eng-territory-right th:nth-child(2) {
+            width: 50%;
+        }
+
+        .eng-territory-right th:nth-child(3) {
+            width: 35%;
+        }
+
+        .eng-territory-right tr:first-child th:first-child,
+        .eng-territory-right tr:first-child th:last-child,
+        .eng-territory-right tr:last-child td:first-child,
+        .eng-territory-right tr:last-child td:last-child {
+            -moz-border-radius-topleft: 3px;
+            -webkit-border-top-left-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+        .eng-territory-right tr {
+            text-align: left;
+        }
+
+        .eng-territoryLayer-checkbox {
+            float: left;
+        }
+
+        .eng-territory-right td {
+            padding: 10px 5px;
+            background: #fafafa;
+            background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+            background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+            border: 1px solid #e0e0e0;
+        }
+
+        .eng-territory-right button, #eng-addTerritory, #eng-cancelTerritory {
+            background-color: #348fe2;
+            color: #fff;
+            border: 2px solid #348fe2;
+            border-color: #348fe2;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+
+        .eng-saveTerritory-title {
+            background: #348fe2;
+            padding: 5px 0;
+            font-size: 140%;
+            text-align: center;
+            color: #fff;
+            margin-top: 0px;
+            display: block;
+            cursor: move;
+        }
+
+        .eng-saveTerritory-content {
+            padding: 10px;
+        }
+
+            .eng-saveTerritory-content p {
+                margin-top: 0;
+                margin-bottom: 5px;
+            }
+
+            .eng-saveTerritory-content input {
+                margin-bottom: 10px;
+            }
+
+        .eng-territory-right tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .eng-territory-right tr:hover td {
+            background: #f2f2f2;
+            background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+            background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+        }
+
+        .eng-create-newTerritory {
+            width: 220px;
+            transition: opacity 1s;
+            -webkit-transition: opacity 1s;
+            z-index: 9999999999999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            font: inherit;
+            font-size: 13px;
+            position: fixed;
+        }
+
+        .eng-territory-blur {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #cecece;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 9999999999999;
+        }
+
+        .eng-newTerritory-close {
+            text-decoration: none;
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            padding: 1px 3px;
+            cursor: pointer;
+            font-size: 10px;
+            color: #fff;
+            background: #ff5b57;
+            border-color: #ff5b57;
+            border-radius: 50%;
+        }
+
+
+
+
+
+        @media only screen and (min-width: 800px) {
+            #eng-territory-right td:nth-child(1) {
+                width: 10%;
+            }
+
+            #eng-territory-right td:nth-child(2) {
+                width: 40%;
+            }
+
+            #eng-territory-right td:nth-child(3) {
+                width: 30%;
+            }
+
+            #eng-territory-right td:nth-child(4) {
+                width: 15%;
+            }
+        }
+
+        @media only screen and (max-width: 800px) {
+
+            /* Force table to not be like tables anymore */
+            .eng-territory-right table,
+            .eng-territory-right thead,
+            .eng-territory-right tbody,
+            .eng-territory-right th,
+            .eng-territory-right td,
+            .eng-territory-right tr {
+                display: block;
+            }
+
+                /* Hide table headers (but not display: none;, for accessibility) */
+                .eng-territory-right thead tr {
+                    position: absolute;
+                    top: -9999px;
+                    left: -9999px;
+                }
+
+            .eng-territory-right tr {
+                border: 1px solid #348fe2;
+            }
+
+            .eng-territory-right td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+                white-space: normal;
+                text-align: left;
+                padding-top: 7px;
+            }
+
+                .eng-territory-right td:before {
+                    /* Now like a table header */
+                    position: absolute;
+                    /* Top/left values mimic padding */
+                    top: 6px;
+                    left: 6px;
+                    width: 45%;
+                    padding-right: 10px;
+                    white-space: nowrap;
+                    text-align: left;
+                    font-weight: bold;
+                }
+
+                .eng-territory-right td:before {
+                    content: attr(data-title);
+                }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="eng-territory-blur"></div>
+    <div class="eng-territoryBuilder">
+        <div id="eng-territory-layer">
+            <ul>
+                <li>
+                    <div>
+                        <i class="fa fa-caret-down eng-layer-expand"></i>
+                        <i class="fa fa-caret-right eng-layer-collapse"></i>
+                    </div>
+                    <div>Territory Layer</div>
+                    <ul>
+                        <!-- US Layer -->
+                        <li>
+                            <div>
+                                <i class="fa fa-caret-down eng-layer-expand"></i>
+                                <i class="fa fa-caret-right eng-layer-collapse"></i>
+                            </div>
+                            <div>US Layer</div>
+                            <ul>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="CBSA">CBSA</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="Country">Country</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="City">City</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="State">State</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="Zip Code">Zip Code</div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- NUTS Layer -->
+                        <li>
+                            <div>
+                                <i class="fa fa-caret-down eng-layer-expand"></i>
+                                <i class="fa fa-caret-right eng-layer-collapse"></i>
+                            </div>
+                            <div>NUTS Layers</div>
+                            <ul>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="NUTS_0">NUTS_0</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="NUTS_1">NUTS_1</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="NUTS_2">NUTS_2</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="NUTS_3">NUTS_3</div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- CAN Layers -->
+                        <li>
+                            <div>
+                                <i class="fa fa-caret-down eng-layer-expand"></i>
+                                <i class="fa fa-caret-right eng-layer-collapse"></i>
+                            </div>
+                            <div>CAN Layers</div>
+                            <ul>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="CAN_FSA">CAN_FSA</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="CAN_PR">CAN_PR</div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- VMO -->
+                        <li>
+                            <div>
+                                <i class="fa fa-caret-down eng-layer-expand"></i>
+                                <i class="fa fa-caret-right eng-layer-collapse"></i>
+                            </div>
+                            <div>VMO</div>
+                            <ul>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="State_SegmentPVs">State_SegmentPVs</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="State_PrintVolume">State_PrintVolume</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="State_InstalledBase">State_InstalledBase</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="CBSA_PrintVolume">CBSA_PrintVolume</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="CBSA_SegmentPVs">CBSA_SegmentPVs</div>
+                                </li>
+                                <li class="eng-territory-layer">
+                                    <input class="eng-territoryLayer-checkbox" type="checkbox" />
+                                    <div class="eng-layerName" data-value="CBSA_InstalledBase">CBSA_InstalledBase</div>
+                                </li>
+                            </ul>
+                        </li>
+
+
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="eng-territory-left">
+            <div id="googleMap"></div>
+        </div>
+        <div class="eng-territory-right">
+            <table id="eng-territorry-list">
+                <div class="eng-territory-list-title">
+                    <span>Territory List</span>
+                    <button id="eng-newTerritory" value="New Territory" title="New Territory"><i class="fa fa-plus"></i>New Territory</button>
+                    <button id="eng-clearTerritory" value="Clear Territory" title="Clear Territory"><i class="fa fa-eraser"></i>Clear Territory</button>
+
+                </div>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Territory Name</th>
+                        <th>Created On</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="eng-create-newTerritory">
+            <div class="eng-saveTerritory-title">Create new territory</div>
+            <i class="fa fa-times eng-newTerritory-close"></i>
+            <div class="eng-saveTerritory-content">
+                <p class="">Please enter territory name : </p>
+                <input id="eng-newTerritoryName" class="input" name="name" type="text" value="" size="20" /></br>
+	    	    <button id="eng-addTerritory" value="Create Territory" title="Create Territory">Save</button>
+                <button id="eng-cancelTerritory" value="Cancel" title="Cancel">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $('.eng-territory-blur').hide();
+        $('#eng-newTerritory').attr('disabled', 'disabled');
+        $('#eng-newTerritory').css('background', 'grey')
+        $('#eng-newTerritory').css('border', '2px solid grey');
+        var gMapObj;
+        var layerType;
+        var latLng;
+        var data;
+        var myCenter = new google.maps.LatLng(39.904769, -102.021315);
+        //var myCenter=new google.maps.LatLng(21.0277644,105.8341598);
+        function initialize() {
+            var mapProp = {
+                center: myCenter,
+                zoom: 4,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            gMapObj = map;
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        $('.eng-territory-layer').click(function (e) {
+            var opa = 0.7;
+            var verifyChecked = $(this).find('input').is(':checked');
+            if (verifyChecked === true) {
+                $(this).attr("checked", "checked");
+                var mapType = $(this).find('.eng-layerName').data("value");
+                layerType = mapType;
+                var apiUrl = 'http://webservices.infotrends.com/sms/maptile/territory.aspx?x=';
+                if (mapType) {
+                    var imageMapType = new google.maps.ImageMapType({
+                        getTileUrl: function (coord, zoom) {
+                            return [apiUrl, coord.x, '&y=', coord.y, '&z=', zoom, '&type=' + mapType].join('');
+                        },
+                        opacity: opa,
+                        tileSize: new google.maps.Size(256, 256)
+                    });
+                    gMapObj.overlayMapTypes.setAt(0, imageMapType);
+                } else {
+                    return;
+                }
+            } else {
+                $(this).removeAttr("checked");
+                initialize();
+            }
+
+            //$(".eng-layer-collapse").click();
+        });
+        $("#googleMap").click(function () {
+            //$('#eng-newTerritory').removeAttr('disabled', 'disabled');
+            //$('#eng-newTerritory').css('background', '#348fe2')
+            //$('#eng-newTerritory').css('border', '2px solid #348fe2');
+            google.maps.event.addListener(gMapObj, 'click', function (event) {
+                debugger;
+                latLng = event.latLng;
+                showHighLight(event.latLng, layerType);
+            });
+        });
+
+        function showHighLight(latLng, layerType) {
+            debugger;
+            var DOMAIN = "http://localhost:57800";
+            var tmpArr = [];
+            if (layerType.toLowerCase().indexOf('nuts_') !== -1) {
+                data = {
+                    lat: latLng.lat(),
+                    lng: latLng.lng()
+                };
+                url = '/api/territory/getMultiPolygonDataNuts?data=';
+                url += JSON.stringify(data) + "&territoryType=" + layerType;
+
+            } else if (layerType.toLowerCase().indexOf('can_') !== -1) {
+                data = {
+                    lat: latLng.lat(),
+                    lng: latLng.lng()
+                };
+                url = '/api/territory/getMultiPolygonDataCan?data=';
+                url += JSON.stringify(data) + "&territoryType=" + layerType;
+            }
+            else {
+                data = {
+                    lat: latLng.lat(),
+                    lng: latLng.lng()
+                };
+                url = '/api/territory/getMultiPolygonData?lat=';
+                url += latLng.lat() + "&lng=" + latLng.lng() + "&territoryType=" + layerType;
+            }
+            //$.ajax({
+            //    type: 'GET',
+            //    url: DOMAIN + url,
+            //    success: function (response) {
+            //        var data = $.util.JSON.decode(response.responseText);
+            //        alert('zzzz');
+            //    }
+            //}, this);
+
+        };
+
+        $('#eng-addTerritory').click(function () {
+            debugger;
+            console.log(latLng.lat());
+            console.log(latLng.lng());
+        });
+        $("#eng-newTerritory").click(function () {
+            $('.eng-create-newTerritory').show();
+            $('.eng-territory-blur').show();
+        });
+
+        $('.eng-newTerritory-close').click(function () {
+            $('.eng-create-newTerritory').hide();
+            $('.eng-territory-blur').hide();
+        });
+        $('#eng-cancelTerritory').click(function () {
+            $('.eng-create-newTerritory').hide();
+            $('.eng-territory-blur').hide();
+        });
+        $('.eng-territory-blur').click(function () {
+            $('.eng-create-newTerritory').hide();
+            $('.eng-territory-blur').hide();
+        });
+        $(".eng-layer-expand").click(function () {
+            $(this).toggle();
+            $(this).next().toggle();
+            $(this).parent().parent().children().last().toggle();
+        });
+        $(".eng-layer-collapse").click(function () {
+            $(this).toggle();
+            $(this).prev().toggle();
+            $(this).parent().parent().children().last().toggle();
+        });
+
+        $(".eng-layer-collapse").click();
+        var src = "//localhost:48967";
+        debugger;
+        $.ajax({
+            url: src + "/lib/sampleData.js",
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                var trHTML = '';
+                var index = 1;
+                $.each(response.data, function (i, items) {
+                    trHTML += '<tr><td>' + index++ + '</td><td>' + items.name + '</td><td>' + items.dateCreated.replace("T", " ").substr(0, 19) + '</td><td>' + '<i title="Edit" class="fa fa-pencil-square-o"></i> <i title="Delete" class="fa fa-trash-o"></i>' + '</td></tr>';
+                });
+                $('#eng-territorry-list').append(trHTML);
+            }
+        });
+    });
+</script>
+</html>

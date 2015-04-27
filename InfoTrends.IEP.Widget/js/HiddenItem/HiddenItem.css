@@ -91,9 +91,6 @@
             color: white;
             opacity: 0.8;
         }
-        .eng-hidden-item .eng-btn-danger:hover {
-            opacity: 1;
-        }
 
     .eng-hidden-item .eng-close {
         position: absolute;
@@ -106,14 +103,15 @@
         border-bottom: 1px solid #e5e5e5;
         z-index: 1020;
         font-weight: bold;
-        padding: 10px 5px;
+        padding: 15px;
+        box-sizing: border-box;
     }
 
     .eng-hidden-item .eng-options-body {
         width: 300px;
     }
     .eng-hidden-item .eng-hidden-content {
-        padding: 10px 5px;
+        padding: 15px;
     }
     .eng-hidden-item .eng-hidden-toggle {
         position: absolute;
@@ -124,5 +122,12 @@
         display: block;
     }
     .eng-hidden-item .eng-active-hidden {
-        
+        opacity: 1;
+    }
+    .eng-hidden-item .eng-toogle-showAll{
+        font-size: 16px;
+        color: #0295FF;
+    }
+    .eng-row {
+        width: 100%;
     }

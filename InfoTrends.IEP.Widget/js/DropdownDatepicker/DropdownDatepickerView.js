@@ -48,7 +48,6 @@
             if (this.storeObject != null && this.storeObject != undefined) {
                 this.$el.find(".eng-init").html(this.getSelectedTextByValue(this.storeObject.selectedValue));
                 this.$el.find("[data-value='" + this.storeObject.selectedValue + "']").addClass('eng-selected');
-                slideDown = false;
             }
         },
         initDatepicker: function () {
@@ -201,17 +200,17 @@
 
         //function for parent component
         initStoreObject: function (searchObject) {
-            if (searchObject == null || searchObject == undefined) {
+            if (searchObject === undefined) {
                 searchObject = {
                     data: null,
                     startDate: null,
                     endDate: null,
-                    isNew: true,
+                    isNew: false,
                     selectedValue: null,
                     selectedText: null,
                 };
 
-                this.initDateValue(searchObject)
+                this.initDateValue(searchObject);
             }
             return searchObject;
         },

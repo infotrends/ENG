@@ -13,6 +13,7 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
         constructor: function (options) {
             var opts = ENG.$.extend(true, {
                 data: [],
+                parentView: null,
             }, options);
 
 
@@ -30,8 +31,8 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
             var html = compile();
             this.$el.append(html);
 
-            if (this.opts.parent === undefined) {
-                this.opts.parent = this.$el;
+            if (this.opts.parentView === undefined || this.opts.parentView === null) {
+                this.opts.parentView = this;
             }
 
             this.loadDatepicker();
@@ -48,7 +49,7 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
         loadAllTable: function () {
             this.loadVisitorMap("eng-map");
             this.loadCountry("eng-location-country");
-            this.loadLocationRegion("eng-location-regions");
+            //this.loadLocationRegion("eng-location-regions");
             this.loadContinent("eng-location-continent");
             this.loadCity("eng-location-city");
             this.loadbrowserLanguage("eng-location-browser-language");
@@ -58,7 +59,7 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
         },
 
         loadVisitorMap: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var me = this;
@@ -86,7 +87,7 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
             table.render();
         },
         loadCountry: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var me = this;
@@ -94,7 +95,7 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
             table.setVisibility(true);
 
             table.title = "Country";
-            table.name = "Country";
+            table.name = ENG.enum.reportType.country;
             table.columnHeader = [{
                 name: "Country",
                 isShow: true
@@ -107,12 +108,13 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadLocationRegion: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var pluginData = ENG.loadJSON('{"data":[{"Region": "Unknow", "Unique Visitors": "143"},{"Region": "United States", "Unique Visitors": "27"},{"Region": "India", "Unique Visitors": "17"}]}');
@@ -121,37 +123,45 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
             table.setVisibility(true);
             table.data = pluginData.data;
             table.title = "Region";
-            table.name = "Region";
+            table.name = ENG.enum.reportType.region;
             table.columnHeader = pluginData.columnHeader;
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadContinent: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
-            var pluginData = ENG.loadJSON('{"data":[{"Continent": "Europe", "Unique Visitors": "337"},{"Continent": "Asia", "Unique Visitors": "178"},{"Continent": "North America", "Unique Visitors": "48"}]}');
-
+            var me = this;
             var table = new TableView();
             table.setVisibility(true);
-            table.data = pluginData.data;
-            table.title = "Continent";
-            table.name = "Continent";
-            table.columnHeader = pluginData.columnHeader;
 
+            table.title = ENG.enum.reportType.continent;
+            table.name = ENG.enum.reportType.continent;
+            table.columnHeader = [{
+                name: "Continent",
+                isShow: true
+            }, {
+                name: "PageView",
+                isShow: true
+            }];
+
+            table.baseApiUrl = "/umbraco/api/EngQuery/GetPageviewByCountry";
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadCity: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var me = this;
@@ -159,7 +169,7 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
             table.setVisibility(true);
 
             table.title = "City";
-            table.name = "City";
+            table.name = ENG.enum.reportType.city;
             table.columnHeader = [{
                 name: "City",
                 isShow: true
@@ -168,9 +178,9 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
                 isShow: true
             }];
 
-
             table.baseApiUrl = "/umbraco/api/EngQuery/GetPageviewByCity";
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             table.opts.searchObject = this.opts.data["searchObject"];
 
@@ -178,7 +188,7 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
             table.render();
         },
         loadbrowserLanguage: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var pluginData = ENG.loadJSON('{"data":[{"Language": "English", "Unique Visitors": "143"},{"Language": "German", "Unique Visitors": "11"},{"Language": "French", "Unique Visitors": "8"}]}');
@@ -187,18 +197,19 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
             table.setVisibility(true);
             table.data = pluginData.data;
             table.title = "Browser Language";
-            table.name = "Browser Language";
+            table.name = ENG.enum.reportType.browserLanguage;
             table.columnHeader = pluginData.columnHeader;
 
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadProvider: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var pluginData = ENG.loadJSON('{"data":[{"Provider": "Deutsche Telecom AG", "Unique Visitors": "421"},{"Provider": "Comcat cable", "Unique Visitors": "124"},{"Provider": "Free SAS", "Unique Visitors": "54"}]}');
@@ -207,12 +218,13 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
             table.setVisibility(true);
             table.data = pluginData.data;
             table.title = "Provider";
-            table.name = "Provider";
+            table.name = ENG.enum.reportType.provider;
             table.columnHeader = pluginData.columnHeader;
 
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
@@ -234,7 +246,7 @@ function (Template, Component, TableView, LoadingView, DropdownDatepickerView) {
                 me.opts.data["searchObject"].selectedText = obj.selectedText;
 
                 me.opts.data["searchObject"].isNew = true;
-                if (obj.selectedValue == -1) {
+                if (obj.selectedValue === -1) {
                     me.opts.data["searchObject"].selectedText = ENG.getDateStringMMDDYYYY(obj.startDate) + " - " + ENG.getDateStringMMDDYYYY(obj.endDate);
                 }
 

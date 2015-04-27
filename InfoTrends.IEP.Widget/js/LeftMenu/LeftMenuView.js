@@ -153,6 +153,7 @@ function (
                 widgets.push(w);
             }, this);
             this.add(widgets);
+            debugger;
             if (ENG.hiddenWidget) {
                 ENG.hiddenWidget.show();
                     } else {
@@ -217,7 +218,7 @@ function (
 
             var childs = [];
             var OverviewMenu = {
-                name: "Overview",
+                name: "Dashboard",
                 url: ENG.enum.subMenu.overView,
                 favicon: "fa fa-area-chart"
             };
@@ -312,9 +313,16 @@ function (
                 favicon: "fa fa-cogs"
             };
 
+            var territoryBuilder = {
+                name: "Territory Builder",
+                url: ENG.enum.subMenu.territoryBuilder,
+                favicon: "fa fa fa-list"
+            };
+
 
             childs.push(trackingSetting);
             childs.push(systemSetting);
+            childs.push(territoryBuilder);
             networkMenu.set("childs", childs);
             collection.push(networkMenu);
             collection.forEach(function (item) {
@@ -351,30 +359,7 @@ function (
             //            }, this);
             //            this.add(analytics);
         },
-        getAddressElement: function (address, ele) {
-            var parentNode = ele.parent();
-            var tagName;
-            var index;
-            var seperate;
-            if (address) {
-                seperate = "-";
-            }
-            if (parentNode) {
-                index = parentNode.children().index(ele);
-                tagName = parentNode.prop("tagName");
-            }
-            var complie = _.template("<%= seperate%><%= tagName%>.<%= index%>");
-            address = address + complie({
-                tagName: tagName,
-                index: index,
-                seperate: seperate
-            });
-            if (tagName.toLowerCase() == "body") {
-                return address;
-            } else {
-                return this.getAddressElement(address, parentNode);
-            }
-        },
+        
         showChangePositionArrow: function () {
             var leftButton = this.$el.find(".eng-arrow-leftPanel");
             var rightButton = this.$el.find(".eng-arrow-rightPanel");
@@ -438,6 +423,8 @@ function (
                     ENG.leftMenu.$el.find(".eng-sub-menu-item-text").hide();
                 }
             }
+
+            ENG.$(window).trigger("resize");
         },
 
         showPosition: function (isRight) {
@@ -490,9 +477,9 @@ function (
             ENG.$("body").droppable({
                 drop: function (event, ui) {
                     var address = "";
-                    var currentItem = ENG.$(ENG.currentItem);
+                    var currentItem = ENG.$(ENG.mouseMoveItem);
                     //Check drag drop in tool, not in the content of client page.
-                    if (currentItem.parents(".eng-component").length > 0 || ENG.$(ENG.currentItem).prop("tagName") === "HTML") {
+                    if (currentItem.parents(".eng-component").length > 0 || ENG.$(ENG.mouseMoveItem).prop("tagName") === "HTML") {
                         return;
                     }
 
@@ -501,7 +488,7 @@ function (
                     if (currentItem.is("div")) {
                         divParent = currentItem;
                     } else {
-                        divParent = ENG.$(ENG.currentItem).parent().closest('div');
+                        divParent = ENG.$(ENG.mouseMoveItem).parent().closest('div');
                     }
 
                     /*
@@ -512,7 +499,6 @@ function (
                                 can drag and drop to change position
                     */
                     if (ENG.typeWidget === ENG.enum.dragDropWidget.WIDGET) {
-
                         var widgetName = ENG.dragInClient.model.get("WidgetTypeName");
                         var widgetContent = new WidgetContentView();
                         widgetContent.opts.model = ENG.dragInClient.model;
@@ -525,20 +511,16 @@ function (
                                         var contentItem = new ContentWidget({
                                             data: response.data
                                         });
-
                                         widgetContent.opts.itemChilds = contentItem;
                                         widgetContent.opts.model = ENG.dragInClient.model;
                                         widgetContent.opts.model.set("Data", response.data);
                                         divParent.append(widgetContent.render().$el);
 
                                         var itemHasInserted = divParent.find(".eng-widget-content");
-                                        var position = me.getAddressElement(address, itemHasInserted);
+                                        var position = ENG.Utils.getAddressElement(address, itemHasInserted);
                                         widgetContent.opts.position = position;
-
-
                                     }
                                 });
-
                                 break;
                             case ENG.enum.typeWidget.SEARCH:
                                 var searchWidget = new SearchWidgetView();
@@ -555,7 +537,7 @@ function (
                                 divParent.append(widgetContent.render().$el);
 
                                 var itemHasInserted = divParent.find(".eng-widget-content");
-                                var position = me.getAddressElement(address, itemHasInserted);
+                                var position = ENG.Utils.getAddressElement(address, itemHasInserted);
                                 widgetContent.opts.position = position;
                                 break;
                             case ENG.enum.typeWidget.CONTACTUS:
@@ -565,7 +547,7 @@ function (
                                 divParent.append(widgetContent.render().$el);
 
                                 var itemHasInserted = divParent.find(".eng-widget-content");
-                                var position = me.getAddressElement(address, itemHasInserted);
+                                var position = ENG.Utils.getAddressElement(address, itemHasInserted);
                                 widgetContent.opts.position = position;
                                 break;
                         }

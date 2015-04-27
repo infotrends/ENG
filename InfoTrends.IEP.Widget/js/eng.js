@@ -14,7 +14,7 @@
 
     init: function (customerId) {
         // Set for global
-        this.setVersion(0); //18
+        this.setVersion(0); //set version for local and production
         this.CUSTOMERID = customerId;
         this.listCss = [];
         ENG.isRightLeftPanel = false;
@@ -157,7 +157,7 @@
                                     if (typeof freewall !== "undefined") {
                                         ENG.$ = jQuery.noConflict(true); // Set for self-use
                                         ENG.loadScripts(arr, 0, cb, scope);
-                                    }else {
+                                    } else {
                                         ENG.loadScript(domain + '/lib/freewall.js', function () {
 
                                             ENG.$ = jQuery.noConflict(true); // Set for self-use
@@ -325,11 +325,11 @@
     },
 
     loadPageViewJson: function (url, columnHeader, handleData) {
-        console.log(url);
 
         Xdr.ajax({
             url: url
         },
+
         function (success, response) {
             var retData = null;
             if (success && success.success) {
@@ -368,8 +368,6 @@
             endDate: ENG.getDateStringYYYYMMDD(endDate),
         });
 
-        console.log(apiUrl);
-
         Xdr.ajax({
             url: apiUrl
         },
@@ -383,10 +381,9 @@
 
                     var tempData = success.data.data.facet_counts.facet_dates.CreateOn_dt;
 
-                    var pageViewsData = [];
                     ENG.$.each(tempData, function (date, pageView) {
                         var dateValue = ENG.getDateValue(date);
-                        if (dateValue != "Invalid Date") {
+                        if (dateValue !== "Invalid Date") {
                             pageViewsData.push([dateValue, pageView]);
                         }
                     });
@@ -422,7 +419,7 @@
             };
 
 
-            if (contentType == 'json') {
+            if (contentType === 'json') {
                 cfg.data = JSON.stringify(params);
                 cfg.headers["Content-Type"] = "application/json";
             }
@@ -431,7 +428,7 @@
             // Send
             Xdr.ajax(cfg, function (result) {
 
-                
+
                 console.log("result is: " + result);
                 console.log("is callback: " + ENG.$.isFunction(callback));
 
@@ -496,7 +493,6 @@
             domain: ENG.ApiDomain,
             cliectId: ENG.cid,
         });
-
         Xdr.ajax({
             url: apiUrl
         }, function (success, response) {
@@ -533,7 +529,82 @@
             //ENG.leftMenu.setColapseButton();
         });
     },
+    saveDashboard: function (data) {
+        Xdr.ajax({
+            url: ENG.ApiDomain + '/umbraco/api/DashboardSetting/SaveDashboard',
+            data: { '': data.columns },
+            type: "POST"
+        }, function (response) {
+        });
+    },
+    loadDashboard: function (callBack) {
+        var url = _.template("<%=domain%>/umbraco/api/DashboardSetting/GetDashboard?ClientId=<%=cliectId%>");
 
+        var apiUrl = url({
+            domain: ENG.ApiDomain,
+            cliectId: ENG.cid,
+        });
+
+        Xdr.ajax({
+            url: apiUrl
+        }, function (success, response) {
+            if (success && success.success) {
+                var data = {
+                    columns: [],
+                    columnsSize: ""
+                }
+                if (ENG.Utils.checkObjExist(success, 'data.data')) {
+                    if (success.data.data.length > 0) {
+
+                        _.each(success.data.data, function (obj) {
+                            var index = ENG.getColumnIndex(obj.ColumnOrder, data.columns);
+                            if (index === -1) {
+                                //no column existed
+                                data.columns.push({
+                                    clientId: obj.ClientID,
+                                    order: obj.ColumnOrder,
+                                    size: obj.ColumnSize,
+                                    reports: [
+                                        {
+                                            order: obj.ReportOrder,
+                                            name: obj.ReportName,
+                                            collapse: obj.ReportCollapse,
+                                        }
+                                    ]
+                                });
+                            } else {
+                                data.columns[index].reports.push({
+                                    clientId: obj.ClientID,
+                                    order: obj.ReportOrder,
+                                    name: obj.ReportName,
+                                    collapse: obj.ReportCollapse,
+                                });
+                            }
+                        });
+                        var size = "";
+                        _.each(data.columns, function (obj) {
+                            size += obj.size + "_";
+                        });
+
+                        data.columnsSize = size.substring(0, size.length - 1);
+
+                    }
+                }
+
+                callBack(data);
+            }
+        });
+    },
+    getColumnIndex: function (columnOrder, columns) {
+        var index = -1;
+        for (var i = 0; i < columns.length; i++) {
+            if (columns[i].order === columnOrder) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    },
 };
 
 // Start

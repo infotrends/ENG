@@ -124,8 +124,8 @@ table.eng_ReportTable {
     table.eng_ReportTable tr.even td {
     }
 
-.eng-rowOdd {
-    /*background: #f0feff !important;*/
+.eng-row {
+    width: 100%;    
 }
 
 table.eng_ReportTable tr:last-child td {

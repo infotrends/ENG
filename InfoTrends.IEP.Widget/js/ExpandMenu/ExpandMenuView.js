@@ -128,6 +128,9 @@
 
             if (url === ENG.enum.subMenu.systemSetting) {
             }
+            if (url === ENG.enum.subMenu.territoryBuilder) {
+                this.showTerritoryBuilder();
+            }
 
             ENG.$(".eng-close").css("opacity", "1");
             ENG.rightPanel.setVisibility(true);
@@ -138,6 +141,21 @@
             ENG.rightPanel.setVisibility(true);
             var trackingSettingsView = new TrackingSettings();
             ENG.rightPanel.add(trackingSettingsView);
+        },
+
+        showTerritoryBuilder: function () {
+            ENG.rightPanel.clear();
+            ENG.rightPanel.setVisibility(true);
+
+            var url = _.template("<%=domain%>/js/TerritoryBuilder/TerritoryBuilder.html");
+            var apiUrl = url({
+                domain: ENG.DOMAIN,
+            });
+            var frame = _.template("<iframe style='width:100%; height:100%' id='eng-territoryBuilder' src='<%=apiUrl%>'></iframe>");
+            var src = frame({
+                apiUrl: apiUrl,
+            });
+            ENG.rightPanel.$el.find(".eng-container").append(src)
         },
 
 
@@ -161,13 +179,18 @@
                 pageUrl: document.URL,
             });
 
-            ENG.$.ajax({
+            Xdr.ajax({
                 url: apiUrl,
-                success: function (returnData) {
-
-                    me.drawMouseHeatMap(returnData.data, action);
+            },
+            function (success, response) {
+                var retData = null;
+                if (success && success.success) {
+                    me.drawMouseHeatMap(success, action);
                 }
-            });
+
+            }, this);
+
+
 
         },
         drawMouseHeatMap: function (mouseMoveData, action) {
@@ -175,11 +198,11 @@
             ENG.$(".eng-component").hide();
 
             var canvas = document.getElementById("eng-mouseHeatMap");
-            if (ENG.Utils.checkObjExist(mouseMoveData, 'facet_counts.facet_fields.Position_s')) {
+            if (ENG.Utils.checkObjExist(mouseMoveData, 'data.data.facet_counts.facet_fields.Position_s')) {
 
 
 
-                var dataArr = mouseMoveData.facet_counts.facet_fields.Position_s;
+                var dataArr = mouseMoveData.data.data.facet_counts.facet_fields.Position_s;
 
                 for (i = 0; i < dataArr.length; i++) {
 
@@ -270,7 +293,7 @@
 
         },
         showLogs: function () {
-            ENG.rightPanel.clear()
+            ENG.rightPanel.clear();
             ENG.rightPanel.setVisibility(true);
             var logView = new VisitorLogView();
             var logModel = new VisitorLogModel();

@@ -64,12 +64,12 @@
 
     ENG.cid = cid;
 
-    
+
 
     ENG.Model = {};
     ENG.Collection = {};
     ENG.Model.MouseTrackModel = MouseTrackModel;
-    ENG.Model.NotificationModelVisitorLogModel = VisitorLogModel;
+    ENG.Model.VisitorLogModel = VisitorLogModel;
     ENG.Model.ClientInfoModel = ClientInfoModel;
     ENG.Model.SessionModel = SessionModel;
 
@@ -85,7 +85,8 @@
             settings: "SETTINGS",
             devices: "DEVICES",
             trackSetting: "TRACKSETTING",
-            systemSetting: "SYSSETTING"
+            systemSetting: "SYSSETTING",
+            territoryBuilder: "TERRITORYBUILDER"
         },
         trackingSetting: {
             Enable: 1,
@@ -107,7 +108,8 @@
             vertical: "vertical",
             map: "map",
             interactive: "interactive",
-            quickStats: "quickstats"
+            quickStats: "quickstats",
+            dynamicColumnTable: "dynamicColumnTable"
         },
         buttonType: {
             collapse: "collapse",
@@ -121,8 +123,8 @@
             networkActivity: "Network Activity",
             country: "Country",
             city: "City",
-            region: "Region",
-            browserLanguag: "Browser Language",
+            //region: "Region",
+            browserLanguage: "Browser Language",
             continent: "Continent",
             provider: "Provider",
             plugin: "Plugin",
@@ -148,17 +150,12 @@
         },
 
 
-        initLoginButton: function() {
+        initLoginButton: function () {
 
             //login form
             this.cmp.loginView = new SignInButton();
             ENG.signInButton = this.cmp.loginView;
             $body.append(this.cmp.loginView.render().$el);
-            //ENG.loadCss(this.cmp.loginView.opts.cssLink);
-            // toolbar
-            //this.cmp.toolbarView = new ToolbarView();
-            //$body.append(this.cmp.toolbarView.render().$el);
-            //ENG.loadCss(this.cmp.toolbarView.opts.cssLink);
 
         },
 
@@ -169,7 +166,7 @@
 
 
 
-            
+
 
 
         },
@@ -183,24 +180,24 @@
                 me.initLoginButton();
                 ENG.ddata = data;
                 me.loadData();
-
+                
                 ENG.loadtrackingSetting(function () {
                     if (ENG.Utils.isTrack(ENG.trackingSetting.PageViewsCounter)) {
                         var clientInfo = new ClientInfoModel();
 
                         clientInfo.set({
-                            clientId: ENG.cid,
-                            width: screen.width,
-                            height: screen.height,
-                            pageUrl: window.location.href,
-                            referrer: document.referrer,
+                            ClientId: ENG.cid,
+                            Width: screen.width,
+                            Height: screen.height,
+                            PageUrl: window.location.href,
+                            Referrer: document.referrer,
+                            ViewerId: ENG.Utils.getCookie('ENGViewerCookie'),
+                            SessionId: ENG.Utils.getCookie('ENGSessionCookie')
 
                         });
                         clientInfo.engSave();
                     }
-
                     ENG.Utils.trackMouse();
-
                 });
 
 
@@ -213,13 +210,13 @@
             singinButton.engHandleData(success, data);
 
             // set for later use
-            ENG.SESSION = data;            
+            ENG.SESSION = data;
             // hide
             this.cmp.loginView.$el.hide();
 
         },
 
-        initUnauthState: function () {            
+        initUnauthState: function () {
             // clear session
             ENG.SESSION = null;
             // show
@@ -230,6 +227,7 @@
         loadData: function (callback, scope) {
 
             ENG.setRightMenuPosition();
+            ENG.lstHiddenItem = [];
 
             ENG.listFeedback = new ListFeedbackCollection();
             ENG.logCollection = new VisitorLogCollection();
@@ -335,24 +333,63 @@
             Xdr.ajax({
                 url: ENG.ApiDomain + '/umbraco/api/WidgetContent/GetAllWidget?ClientId=' + ENG.cid
             }, function (response) {
-            if (response.success) {
-                var widgetIsLoaded = _.filter(response.data, function (item) {
-                    return item.URL === window.location.href;
-                });
-                
-                var widgetContentModel = _.filter(widgetIsLoaded, function (item) {
-                    return item.WidgetTypeName === ENG.enum.typeWidget.CONTENT;
-                });
-                widgetContentModel = _.groupBy(widgetContentModel, function (item) {
-                    return item.ID;
-                });
-                if (widgetContentModel) {
-                    
-                    for (x in widgetContentModel) {
-                        var widgetContent = new WidgetContent();
-                        var item = widgetContentModel[x][0];
-                        var position = item.Position;
-                        var itemArray = position.split("-");
+                if (response.success) {
+                    var widgetIsLoaded = _.filter(response.data, function (item) {
+                        return item.URL === window.location.href;
+                    });
+
+                    var widgetContentModel = _.filter(widgetIsLoaded, function (item) {
+                        return item.WidgetTypeName === ENG.enum.typeWidget.CONTENT;
+                    });
+                    widgetContentModel = _.groupBy(widgetContentModel, function (item) {
+                        return item.ID;
+                    });
+                    if (widgetContentModel) {
+
+                        for (x in widgetContentModel) {
+                            var widgetContent = new WidgetContent();
+                            var item = widgetContentModel[x][0];
+                            var position = item.Position;
+                            var itemArray = position.split("-");
+                            var parentWidget;
+                            var positionToInsert;
+                            for (var i = itemArray.length; i--; i > 0) {
+                                var node = itemArray[i].split(".");
+                                var tagName = node[0];
+                                var index = node[1];
+                                if (i === 0) {
+                                    positionToInsert = index;
+
+                                    widgetContent.opts.data = widgetContentModel[x];
+                                    var widgetModel = new WidgetModel();
+                                    widgetModel.set("ID", item.ID);
+                                    widgetModel.set("Color", item.Color);
+                                    widgetModel.set("Name", item.Name);
+                                    widgetModel.set("URL", item.URL);
+                                    widgetModel.set("WidgetTypeName", item.WidgetTypeName);
+                                    widgetModel.set("Data", item);
+                                    var content = new ContentWidget();
+                                    widgetContent.opts.model = widgetModel;
+                                    widgetContent.opts.itemChilds = content;
+
+                                    content.opts.data = widgetContentModel[x];
+
+                                    positionToInsert = _.isNumber(positionToInsert) ? positionToInsert : parseInt(positionToInsert);
+                                    parentWidget.appendToWithIndex(widgetContent.render().$el, positionToInsert);
+                                }
+                                if (parentWidget) {
+                                    parentWidget = ENG.$(parentWidget.children()[index]);
+                                } else {
+                                    parentWidget = ENG.$(ENG.$(tagName).children()[index]);
+                                }
+                            }
+                        }
+                    }
+
+
+                    _.each(widgetIsLoaded, function (item) {
+                        var postionWidget = item.Position;
+                        var itemArray = postionWidget.split("-");
                         var parentWidget;
                         var positionToInsert;
                         for (var i = itemArray.length; i--; i > 0) {
@@ -361,23 +398,31 @@
                             var index = node[1];
                             if (i === 0) {
                                 positionToInsert = index;
-                                
-                                widgetContent.opts.data = widgetContentModel[x];
+                                var widgetContent = new WidgetContent();
                                 var widgetModel = new WidgetModel();
                                 widgetModel.set("ID", item.ID);
                                 widgetModel.set("Color", item.Color);
                                 widgetModel.set("Name", item.Name);
-                                widgetModel.set("URL", item.URL);
+                                widgetModel.set("URL", item.Url);
                                 widgetModel.set("WidgetTypeName", item.WidgetTypeName);
-                                widgetModel.set("Data", item);                                
-                                var content = new ContentWidget();
-                                widgetContent.opts.model = widgetModel;
-                                widgetContent.opts.itemChilds = content;
-                                
-                                content.opts.data = widgetContentModel[x];
-
-                                positionToInsert = _.isNumber(positionToInsert) ? positionToInsert : parseInt(positionToInsert);
-                                parentWidget.appendToWithIndex(widgetContent.render().$el, positionToInsert);
+                                switch (item.WidgetTypeName) {
+                                    case ENG.enum.typeWidget.SEARCH:
+                                        var search = new SearchWidget();
+                                        widgetContent.opts.itemChilds = search;
+                                        widgetContent.opts.model = widgetModel;
+                                        widgetContent.opts.id = item.ID;
+                                        positionToInsert = _.isNumber(positionToInsert) ? positionToInsert : parseInt(positionToInsert);
+                                        parentWidget.appendToWithIndex(widgetContent.render().$el, positionToInsert);
+                                        break;
+                                    case ENG.enum.typeWidget.SUBSCRIBE:
+                                        var subscribe = new SubscriberWidget();
+                                        widgetContent.opts.itemChilds = subscribe;
+                                        widgetContent.opts.model = widgetModel;
+                                        widgetContent.opts.id = item.ID;
+                                        positionToInsert = _.isNumber(positionToInsert) ? positionToInsert : parseInt(positionToInsert);
+                                        parentWidget.appendToWithIndex(widgetContent.render().$el, positionToInsert);
+                                        break;
+                                }
                             }
                             if (parentWidget) {
                                 parentWidget = ENG.$(parentWidget.children()[index]);
@@ -385,56 +430,9 @@
                                 parentWidget = ENG.$(ENG.$(tagName).children()[index]);
                             }
                         }
-                    }
+                    });
                 }
-
-
-                _.each(widgetIsLoaded, function (item) {
-                    var postionWidget = item.Position;
-            var itemArray = postionWidget.split("-");
-            var parentWidget;
-            var positionToInsert;
-            for (var i = itemArray.length; i--; i > 0) {
-                var node = itemArray[i].split(".");
-                var tagName = node[0];
-                var index = node[1];
-                if (i === 0) {
-                    positionToInsert = index;
-                            var widgetContent = new WidgetContent();
-                            var widgetModel = new WidgetModel();
-                            widgetModel.set("ID", item.ID);
-                            widgetModel.set("Color", item.Color);
-                            widgetModel.set("Name", item.Name);
-                            widgetModel.set("URL", item.Url);
-                            widgetModel.set("WidgetTypeName", item.WidgetTypeName);
-                            switch (item.WidgetTypeName) {
-                                case ENG.enum.typeWidget.SEARCH:
-                                    var search = new SearchWidget();
-                                    widgetContent.opts.itemChilds = search;
-                                    widgetContent.opts.model = widgetModel;
-                                    widgetContent.opts.id = item.ID;
-                                    positionToInsert = _.isNumber(positionToInsert) ? positionToInsert : parseInt(positionToInsert);
-                                    parentWidget.appendToWithIndex(widgetContent.render().$el, positionToInsert);
-                                    break;
-                                case ENG.enum.typeWidget.SUBSCRIBE:
-                                    var subscribe = new SubscriberWidget();
-                                    widgetContent.opts.itemChilds = subscribe;
-                                    widgetContent.opts.model = widgetModel;
-                                    widgetContent.opts.id = item.ID;
-                                    positionToInsert = _.isNumber(positionToInsert) ? positionToInsert : parseInt(positionToInsert);
-                                    parentWidget.appendToWithIndex(widgetContent.render().$el, positionToInsert);
-                    break;
-                }
-                        }
-                if (parentWidget) {
-                    parentWidget = ENG.$(parentWidget.children()[index]);
-                } else {
-                    parentWidget = ENG.$(ENG.$(tagName).children()[index]);
-                }
-                    }
-                });
-            }
-        });
+            });
 
 
         }

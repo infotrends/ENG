@@ -15,6 +15,7 @@ function (Template, Component, TableView, DropdownDatepickerView) {
         constructor: function (options) {
             var opts = ENG.$.extend(true, {
                 data: [],
+                parentView: null,
             }, options);
 
 
@@ -35,8 +36,8 @@ function (Template, Component, TableView, DropdownDatepickerView) {
             var html = compile();
             this.$el.append(html);
 
-            if (this.opts.parent === undefined) {
-                this.opts.parent = this.$el;
+            if (this.opts.parentView === undefined || this.opts.parentView === null) {
+                this.opts.parentView = this;
             }
 
             this.loadDatepicker();
@@ -57,9 +58,8 @@ function (Template, Component, TableView, DropdownDatepickerView) {
             this.opts.data["searchObject"].isNew = false;
         },
         loadSettingsPlugin: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
-
             var pluginData = ENG.loadJSON('{"data":[{"PLUGIN": "Cookie", "% VISITS": "100%","VISITS": "1118"},{"PLUGIN": "Flash", "% VISITS": "89%","VISITS": "1000"},{"PLUGIN": "Java", "% VISITS": "85%","VISITS": "955"}]}');
             var table = new TableView();
             table.setVisibility(true);
@@ -70,12 +70,13 @@ function (Template, Component, TableView, DropdownDatepickerView) {
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadSettingsResolution: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var me = this;
@@ -91,18 +92,20 @@ function (Template, Component, TableView, DropdownDatepickerView) {
                 name: "PageView",
                 isShow: true
             }];
+
             table.isShowChooseArea = true;
 
             table.baseApiUrl = "/umbraco/api/EngQuery/GetPageviewByScreenResolution";
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadSettingsConfiguration: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var configurationData = ENG.loadJSON('{"data":[{"Configuration": "Windows Phone / IE Mobile / 480x800", "Unique Visitors": "289"},{"Configuration": "Windows / Vivaldi / 1680x1050", "Unique Visitors": "87"},{"Configuration": "Windows / Safari / 1680x1050", "Unique Visitors": "181"}]}');
@@ -115,6 +118,7 @@ function (Template, Component, TableView, DropdownDatepickerView) {
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();

@@ -43,12 +43,27 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
 
             this.loadDatepicker();
 
-            this.getColumnsData(function () {
-                //load Manage Dashboard dropDown
-                me.loadManageDashboardDropDown();
+
+            ENG.loadDashboard(function (data) {
+                if (data.columns.length === 0) {
+                    me.setDefaultDashboard();
+                } else {
+                    me.opts.columnsData = data;
+                }
 
                 //load table
                 me.opts.defaultButtonType = [ENG.enum.buttonType.collapse, ENG.enum.buttonType.close];
+                me.loadAllTable();
+            });
+
+            this.on("removeTable", function (reportName) {
+                _.each(me.opts.columnsData.columns, function (column) {
+                    for (var i = 0; i < column.reports.length; i++) {
+                        if (column.reports[i].name === reportName) {
+                            column.reports.splice(i, 1);
+                        }
+                    }
+                });
                 me.loadAllTable();
             });
 
@@ -75,33 +90,38 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             }, function (success, response) {
                 if (success && success.success) {
                     if (ENG.Utils.checkObjExist(success, 'data.data')) {
-                        var data = {
-                            columns: [],
-                            columnsSize: ""
-                        }
-                        _.each(success.data.data, function (obj) {
-                            debugger;
-                            var index = me.getColumnIndex(obj.ColumnOrder, data.columns);
-                            if (index == -1) {
-                                //no column existed
-                                data.columns.push({
-                                    order: obj.ColumnOrder,
-                                    size: obj.ColumnSize,
-                                    reports: [{
+                        if (success.data.data.length > 0) {
+                            var data = {
+                                columns: [],
+                                columnsSize: ""
+                            }
+                            _.each(success.data.data, function (obj) {
+                                var index = me.getColumnIndex(obj.ColumnOrder, data.columns);
+                                if (index == -1) {
+                                    //no column existed
+                                    data.columns.push({
+                                        order: obj.ColumnOrder,
+                                        size: obj.ColumnSize,
+                                        reports: [
+                                            {
+                                                order: obj.ReportOrder,
+                                                name: obj.ReportName,
+                                                collapse: obj.ReportCollapse,
+                                            }
+                                        ]
+                                    });
+                                } else {
+                                    data.columns[index].reports.push({
                                         order: obj.ReportOrder,
                                         name: obj.ReportName,
                                         collapse: obj.ReportCollapse,
-                                    }]
-                                });
-                            } else {
-                                data.columns[index].reports.push({
-                                    order: obj.ReportOrder,
-                                    name: obj.ReportName,
-                                    collapse: obj.ReportCollapse,
-                                });
-                            }
-                        });
-                        me.opts.columnsData = data;
+                                    });
+                                }
+                            });
+                            me.opts.columnsData = data;
+                        } else {
+                            me.setDefaultDashboard();
+                        }
                     } else {
                         me.setDefaultDashboard();
                     }
@@ -131,6 +151,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
         setDefaultDashboard: function () {
             this.opts.columnsData = {
                 columns: [{
+                    clientId: ENG.cid,
                     order: 1,
                     size: 6,
                     reports: [{
@@ -143,6 +164,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                         collapse: false,
                     }]
                 }, {
+                    clientId: ENG.cid,
                     order: 2,
                     size: 6,
                     reports: [{
@@ -157,6 +179,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                 }],
                 columnsSize: ""
             };
+
         },
         loadAllTable: function () {
             //sort column by order
@@ -172,6 +195,8 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             this.loadDragDrop();
 
             this.opts.data["searchObject"].isNew = false;
+
+            this.loadManageDashboardDropDown();
         },
         drawReport: function (data) {
             var me = this;
@@ -195,15 +220,15 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                     var networkDevices = new NetworkDevicesView();
 
                     visitorLocations.opts.data["searchObject"] = me.opts.data["searchObject"];
-                    visitorLocations.opts.parent = me.$el;
+                    visitorLocations.opts.parentView = me;
                     visitorLocations.opts.buttonType = me.opts.defaultButtonType;
 
                     visitorSettings.opts.data["searchObject"] = me.opts.data["searchObject"];
-                    visitorSettings.opts.parent = me.$el;
+                    visitorSettings.opts.parentView = me;
                     visitorSettings.opts.buttonType = me.opts.defaultButtonType;
 
                     networkDevices.opts.data["searchObject"] = me.opts.data["searchObject"];
-                    networkDevices.opts.parent = me.$el;
+                    networkDevices.opts.parentView = me;
                     networkDevices.opts.buttonType = me.opts.defaultButtonType;
 
                     switch (report.name) {
@@ -231,7 +256,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                         case ENG.enum.reportType.region:
                             visitorLocations.loadLocationRegion(rpId);
                             break;
-                        case ENG.enum.reportType.browserLanguag:
+                        case ENG.enum.reportType.browserLanguage:
                             visitorLocations.loadbrowserLanguage(rpId);
                             break;
                         case ENG.enum.reportType.continent:
@@ -280,13 +305,19 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
 
         //dropdown
         loadManageDashboardDropDown: function () {
+            var me = this;
+            this.$el.find(".eng-dashboard-dropdown-wrapper").html('');
             var html = "<select id='eng-dashboard-config'>";
             html += "   <option value='default'>Manage dashboard</option>";
 
             html += "   <optgroup label='Add report'>";
 
             _.each(ENG.enum.reportType, function (v, k) {
-                html += "       <option value='" + v + "'>" + v + "</option>";
+                if (me.isExistedReport(v, me.opts.columnsData)) {
+                    html += "       <option value='" + v + "' disabled class='eng-disable'>" + v + "</option>";
+                } else {
+                    html += "       <option value='" + v + "'>" + v + "</option>";
+                }
             });
 
             html += "   </optgroup>";
@@ -297,6 +328,17 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             html += "</select>";
 
             this.$el.find(".eng-dashboard-dropdown-wrapper").append(html);
+        },
+        isExistedReport: function (reportName, data) {
+            var isExisted = false;
+            for (var i = 0; i < data.columns.length; i++) {
+                for (var j = 0; j < data.columns[i].reports.length; j++) {
+                    if (data.columns[i].reports[j].name === reportName) {
+                        isExisted = true;
+                    }
+                }
+            }
+            return isExisted;
         },
 
         saveData: function () {
@@ -328,15 +370,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             this.opts.columnsData = data;
 
             //save
-            this.saveToDb();
-        },
-        saveToDb: function (data) {
-            //Xdr.ajax({
-            //    url: ENG.ApiDomain + '/umbraco/api/DashboardSetting/SaveDashboard',
-            //    data: { '': this.opts.columnsData.columns },
-            //    type: "POST"
-            //}, function (response) {
-            //});
+            ENG.saveDashboard(this.opts.columnsData);
         },
 
         dropDownChange: function (e) {
@@ -371,6 +405,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                             //increase column count -> add new column
                             for (var i = oldColumnsCount; i < arr.length; i++) {
                                 this.opts.columnsData.columns.push({
+                                    clientId: ENG.cid,
                                     order: i + 1,
                                     size: 0,
                                     reports: []
@@ -379,7 +414,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
 
 
                             for (var i = 0; i < arr.length; i++) {
-                                this.opts.columnsData.columns[i].size = arr[i];
+                                this.opts.columnsData.columns[i].size = parseInt(arr[i]);
                             }
                         } else if (oldColumnsCount > arr.length) {
                             //decrease column count -> move report to first column
@@ -400,15 +435,17 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                         }
                         this.opts.columnsData.columnsSize = selected.data("value") + "";
                     }
+
                     //save new layout
-                    me.saveToDb();
+                    ENG.saveDashboard(me.opts.columnsData);
 
                     //reload table
                     me.loadAllTable();
                 });
             } else if (e.target.value === "reset") {
-                me.loadAllTable();
-                me.saveToDb();
+                me.setDefaultDashboard();
+                ENG.saveDashboard(me.opts.columnsData);
+                me.loadManageDashboardDropDown();
                 me.loadAllTable();
             } else {
                 me.opts.columnsData.columns[0].reports.push({
@@ -416,7 +453,8 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                     name: e.target.value,
                     collapse: false,
                 });
-                me.saveToDb();
+                ENG.saveDashboard(me.opts.columnsData);
+                me.loadManageDashboardDropDown();
                 me.loadAllTable();
             }
 
@@ -438,7 +476,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                 me.opts.data["searchObject"].selectedText = obj.selectedText;
 
                 me.opts.data["searchObject"].isNew = true;
-                if (obj.selectedValue == -1) {
+                if (obj.selectedValue === -1) {
                     me.opts.data["searchObject"].selectedText = ENG.getDateStringMMDDYYYY(obj.startDate) + " - " + ENG.getDateStringMMDDYYYY(obj.endDate);
                 }
                 me.loadAllChart();
@@ -465,7 +503,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
                         ui.item.css("width", "98%");
                     }
                 },
-                stop: function (event, ui) {
+                stop: function () {
                     me.saveData();
                 }
             });
@@ -481,12 +519,13 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             table.setVisibility(true);
 
             table.title = "Website Activity";
-            table.name = "Interactive";
+            table.name = ENG.enum.reportType.websiteActivity;
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.chartType = [ENG.enum.chartType.interactive];
             table.opts.isShowChartIcon = false;
             table.opts.buttonType = this.opts.defaultButtonType;
+            table.opts.parentView = me;
 
             area.append(table.$el);
             table.render();
@@ -500,7 +539,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             table.setVisibility(true);
 
             table.title = "Visitor User Agent";
-            table.name = "DonutChart";
+            table.name = ENG.enum.reportType.visitorUserAgent;
             table.columnHeader = [{
                 name: "Browser",
                 isShow: true
@@ -516,6 +555,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             table.opts.chartType = [ENG.enum.chartType.donut];
             table.opts.isShowChartIcon = false;
             table.opts.buttonType = this.opts.defaultButtonType;
+            table.opts.parentView = me;
 
             area.append(table.$el);
             table.render();
@@ -530,12 +570,13 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             table.setVisibility(true);
 
             table.title = "Quick Stats";
-            table.name = "QuickStats";
+            table.name = ENG.enum.reportType.quickStats;
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.chartType = [ENG.enum.chartType.quickStats];
             table.opts.isShowChartIcon = false;
             table.opts.buttonType = this.opts.defaultButtonType;
+            table.opts.parentView = me;
 
             area.append(table.$el);
             table.render();
@@ -549,7 +590,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             table.setVisibility(true);
 
             table.title = "Network activity";
-            table.name = "MapChart";
+            table.name = ENG.enum.reportType.networkActivity;
 
             table.columnHeader = [{
                 name: "Country",
@@ -565,6 +606,7 @@ function (Template, Component, NetworkAnalyticModel, DropdownDatepickerView, Tab
             table.opts.chartType = [ENG.enum.chartType.map];
             table.opts.isShowChartIcon = false;
             table.opts.buttonType = this.opts.defaultButtonType;
+            table.opts.parentView = me;
 
             area.append(table.$el);
             table.render();

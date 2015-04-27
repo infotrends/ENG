@@ -15,6 +15,7 @@ function (Template, Container, TableView, DropdownDatepickerView) {
         constructor: function (options) {
             var opts = ENG.$.extend(true, {
                 data: [],
+                parentView: null,
             }, options);
 
             Container.prototype.constructor.call(this, opts);
@@ -34,8 +35,8 @@ function (Template, Container, TableView, DropdownDatepickerView) {
             var html = compile();
             this.$el.append(html);
 
-            if (this.opts.parent === undefined) {
-                this.opts.parent = this.$el;
+            if (this.opts.parentView === undefined || this.opts.parentView === null) {
+                this.opts.parentView = this;
             }
 
             this.loadDatepicker();
@@ -59,7 +60,7 @@ function (Template, Container, TableView, DropdownDatepickerView) {
             this.opts.data["searchObject"].isNew = false;
         },
         loadDeviceType: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var pluginData = ENG.loadJSON('{"data":[{"Type": "Desktop", "Unique Visitors": "1281"},{"Type": "Smartphone", "Unique Visitors": "36"},{"Type": "Tablet", "Unique Visitors": "21"}]}');
@@ -73,12 +74,13 @@ function (Template, Container, TableView, DropdownDatepickerView) {
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadDeviceModel: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var me = this;
@@ -100,30 +102,41 @@ function (Template, Container, TableView, DropdownDatepickerView) {
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadDevicebrand: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
-            var pluginData = ENG.loadJSON('{"data":[{"Brand": "English", "Unique Visitors": "143"},{"Brand": "German", "Unique Visitors": "11"},{"Brand": "French", "Unique Visitors": "8"}]}');
 
+            var me = this;
             var table = new TableView();
             table.setVisibility(true);
-            table.data = pluginData.data;
-            table.title = "Brand";
-            table.columnHeader = pluginData.columnHeader;
+
+            table.title = ENG.enum.reportType.deviceBrand;
+            table.name = ENG.enum.reportType.deviceBrand;
+            table.columnHeader = [{
+                name: "Brand",
+                isShow: true
+            }, {
+                name: "PageView",
+                isShow: true
+            }];
             table.isShowChooseArea = true;
+
+            table.baseApiUrl = "/umbraco/api/EngQuery/GetPageviewByDevice";
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadResolutions: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var me = this;
@@ -145,12 +158,13 @@ function (Template, Container, TableView, DropdownDatepickerView) {
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadOs: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var me = this;
@@ -172,12 +186,13 @@ function (Template, Container, TableView, DropdownDatepickerView) {
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();
         },
         loadBrowser: function (id) {
-            var area = this.opts.parent.find("#" + id);
+            var area = this.opts.parentView.$el.find("#" + id);
             area.html("");
 
             var me = this;
@@ -199,6 +214,7 @@ function (Template, Container, TableView, DropdownDatepickerView) {
 
             table.opts.searchObject = this.opts.data["searchObject"];
             table.opts.buttonType = this.opts.buttonType;
+            table.opts.parentView = this.opts.parentView;
 
             area.append(table.$el);
             table.render();

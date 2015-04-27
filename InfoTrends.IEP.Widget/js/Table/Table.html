@@ -21,7 +21,7 @@
                 <tr>
                     <% _.each(columnHeader, function(column) { %>
 
-                    <th style="<% if(!column.isShow){ %> display: none; <% } %>">
+                    <th>
                         <a class="eng-sort-header">
                             <%= column.name%>
                             <% if(filterData.sortColumn.trim() == column.name){

@@ -5,8 +5,10 @@
     'js/ListFeedback/ListFeedbackView',
     'js/Notifications/NotificationsView',
     'js/Notifications/NotificationCollection',
-    'js/Notifications/NotificationModel'
-], function (Template, Component, LeftMenuModel, ListFeedbackView, Notifications, NotificationCollections, NotificationModel) {
+    'js/Notifications/NotificationModel',
+    'js/HomePage/HomePage'
+
+], function (Template, Component, LeftMenuModel, ListFeedbackView, Notifications, NotificationCollections, NotificationModel, HomePage) {
 
     return Component.extend({
 
@@ -14,6 +16,9 @@
             'click .eng-toolbar-item': 'showLeftPanelContent',
             'click #AddFeedback': 'showFeedback',
             'click #ListFeedback': 'listFeedback',
+            'click .eng-toolbar-function': 'hideHomePage',
+            'click .eng-toolbar-logo': 'showHomePage'
+
         },
         constructor: function (options) {
 
@@ -44,6 +49,10 @@
                 var html = compile({ numberNotifications: data.length });
                 me.$el.append(html);
             });
+
+
+            this.showHomePage();
+
             return this;
         },
         template: function () {
@@ -189,6 +198,89 @@
             ENG.$("#eng-listFeedbackBlur").show();
             ENG.listFB.listFeedback();
         },
+
+
+        showHomePage: function () {
+
+            if (ENG.$(".eng-homePageWrapper").length > 0) {
+                ENG.$(".eng-homePageWrapper").show();
+
+                return;
+            }
+
+            ENG.loadScript(ENG.DOMAIN + "/lib/easyResponsiveTabs.js", function () {
+                initTab(ENG.$);
+                var homePageView = new HomePage();
+
+                ENG.$("body").append(homePageView.render().$el);
+
+                ENG.$('#eng-homePage-parentTab').easyResponsiveTabs({
+                    type: 'default', //Types: default, vertical, accordion
+                    width: 'auto', //auto or any width like 600px
+                    activetab_bg: '#f44336 ', // background color for active tabs in this group
+                    fit: true, // 100% fit in a container
+                    tabidentify: 'hor_1', // The tab groups identifier
+                    activate: function (event) { // Callback function if tab is switched
+                        var $tab = $(this);
+                        var $info = $('#nested-tabInfo');
+                        var $name = $('span', $info);
+                        $name.text($tab.text());
+                        $info.show();
+                    }
+                });
+
+
+                ENG.$('#eng-homePage-childVerticalTab_1').easyResponsiveTabs({
+                    type: 'vertical',
+                    width: 'auto',
+                    fit: true,
+                    tabidentify: 'ver_1', // The tab groups identifier
+                    activetab_bg: '#fff', // background color for active tabs in this group
+                    inactive_bg: '#F5F5F5', // background color for inactive tabs in this group
+                    active_border_color: '#c1c1c1', // border color for active tabs heads in this group
+                    active_content_border_color: '#5AB1D0' // border color for active tabs contect in this group so that it matches the tab head border
+                });
+
+
+                ENG.$('#eng-homePage-childVerticalTab_2').easyResponsiveTabs({
+                    type: 'vertical',
+                    width: 'auto',
+                    fit: true,
+                    tabidentify: 'ver_2', // The tab groups identifier
+                    activetab_bg: '#fff', // background color for active tabs in this group
+                    inactive_bg: '#F5F5F5', // background color for inactive tabs in this group
+                    active_border_color: '#c1c1c1', // border color for active tabs heads in this group
+                    active_content_border_color: '#5AB1D0' // border color for active tabs contect in this group so that it matches the tab head border
+                });
+
+                ENG.$('#eng-homePage-childVerticalTab_3').easyResponsiveTabs({
+                    type: 'vertical',
+                    width: 'auto',
+                    fit: true,
+                    tabidentify: 'ver_3', // The tab groups identifier
+                    activetab_bg: '#fff', // background color for active tabs in this group
+                    inactive_bg: '#F5F5F5', // background color for inactive tabs in this group
+                    active_border_color: '#c1c1c1', // border color for active tabs heads in this group
+                    active_content_border_color: '#5AB1D0' // border color for active tabs contect in this group so that it matches the tab head border
+                });
+
+            }, this); // eof
+
+            setTimeout(function () {
+                ENG.$(".resp-arrow").addClass("fa");
+                ENG.$(".resp-arrow").addClass("fa-chevron-down");
+            }, 1000);
+
+
+
+        },
+
+        hideHomePage: function () {
+
+            if(ENG.$(".eng-homePageWrapper").is(":visible"))
+                ENG.$(".eng-homePageWrapper").hide();
+        },
+
         handleData: function (callBack) {
             ENG.notifications = new NotificationCollections();
             this.getDataNotification(function () {
