@@ -49,6 +49,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Examine.dll</HintPath>
     </Reference>
+    <Reference Include="InfoTrendsCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\InfoTrendsCommon.dll</HintPath>
+    </Reference>
     <Reference Include="interfaces">
       <HintPath>bin\Debug\interfaces.dll</HintPath>
     </Reference>
@@ -110,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\TerritoryType.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Controllers\Auth\ProfileController.cs" />
     <Compile Include="Controllers\ContentEditor\ContentController.cs" />
@@ -120,11 +125,15 @@
     <Compile Include="Controllers\Eng\EngTrackController.cs" />
     <Compile Include="Controllers\Eng\EngUserSettingController.cs" />
     <Compile Include="Controllers\LeadManagement\LeadManagementController.cs" />
+    <Compile Include="Controllers\Territory\TerritoryController.cs" />
     <Compile Include="Controllers\WidgetContent\WidgetContentControllers.cs" />
     <Compile Include="Controllers\InternalCrm\ContentController.cs" />
     <Compile Include="Controllers\Meta\ContentMetaController.cs" />
     <Compile Include="Controllers\Sinh\Test.cs" />
     <Compile Include="DbEntities\Action.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\boundary.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\cmsContent.cs">
@@ -283,6 +292,12 @@
     <Compile Include="DbEntities\ENG_WidgetSubscribe.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbEntities\mt_ca_fsa_2014a_boundaries.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\mt_ca_province_2014a_boundaries.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbEntities\new_MetaClassPrimaryLookup.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
@@ -293,6 +308,12 @@
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\new_OfficeTemplateVersion.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\NUTSBoundary.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\NUTSPolygonData.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\ProfilingAttribute.cs">
@@ -400,6 +421,7 @@
     <Compile Include="Models\Auth\MemberProfileModel.cs" />
     <Compile Include="Models\Auth\SmsProductModel.cs" />
     <Compile Include="Models\Auth\UgProductModel.cs" />
+    <Compile Include="Models\ContentData.cs" />
     <Compile Include="Models\ContentEditor\ContentMediaRetModel.cs" />
     <Compile Include="Models\ContentEditor\ContentRetModel.cs" />
     <Compile Include="Models\ContentEditor\ContentSpinDoctor.cs" />
@@ -419,6 +441,9 @@
     <Compile Include="Extlib.cs" />
     <Compile Include="Models\PagingResult.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\Territory\BoundaryParams.cs" />
+    <Compile Include="Models\Territory\PolygonData.cs" />
+    <Compile Include="Models\Territory\TerritoryDetail.cs" />
     <Compile Include="RiakSolr\Models\ContentModel.cs" />
     <Compile Include="Models\Eng\MouseTrackModel.cs" />
     <Compile Include="RiakSolr\Models\RiakSolrBase.cs" />
@@ -427,6 +452,7 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\Meta\ContentMetaService.cs" />
     <Compile Include="Models\SimpleObjectModel.cs" />
+    <Compile Include="Services\Territory\TerritoryService.cs" />
     <Compile Include="Types\ContentEditorTemplateType.cs" />
     <Compile Include="Types\DownloadableFormatType.cs" />
     <Compile Include="Types\InfoTrendsExamineSearcherType.cs" />
@@ -490,7 +516,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\InfoTrends.SMS.InfoTrendsAPI\InfoTrendsAPI_v2.3.csproj">
+      <Project>{c6cead30-1943-406b-a6a2-e2f4d8fd7a4e}</Project>
+      <Name>InfoTrendsAPI_v2.3</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

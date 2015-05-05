@@ -12,30 +12,32 @@
 namespace SitebracoApi.DbEntities
 {
 
-    using System;
+using System;
     using System.Collections.Generic;
+    
+public partial class NUTSBoundary
+{
 
-    public partial class ENG_Lead
-    {
+    public int Id { get; set; }
 
-        public long ID { get; set; }
+    public string NUTS_ID { get; set; }
 
-        public string ClientID { get; set; }
+    public int PolygonId { get; set; }
 
-        public string IPAddress { get; set; }
+    public int SubPolygonId { get; set; }
 
-        public string MemberType { get; set; }
+    public string boundaryType { get; set; }
 
-        public Nullable<System.DateTime> CreateOn { get; set; }
+    public double SWLat { get; set; }
 
-        public Nullable<System.DateTime> ModifyOn { get; set; }
+    public double SWLon { get; set; }
 
-        public string ViewerID { get; set; }
+    public double NELat { get; set; }
 
-        public string Name { get; set; }
+    public double NELon { get; set; }
 
-        public string Note { get; set; }
+    public string Points { get; set; }
 
-    }
+}
 
 }

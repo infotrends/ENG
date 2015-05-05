@@ -202,6 +202,16 @@ public partial class SitebracoEntities : DbContext
 
     public DbSet<ENG_Contact> ENG_Contact { get; set; }
 
+    public DbSet<boundary> boundaries { get; set; }
+
+    public DbSet<NUTSBoundary> NUTSBoundaries { get; set; }
+
+    public DbSet<NUTSPolygonData> NUTSPolygonDatas { get; set; }
+
+    public DbSet<mt_ca_fsa_2014a_boundaries> mt_ca_fsa_2014a_boundaries { get; set; }
+
+    public DbSet<mt_ca_province_2014a_boundaries> mt_ca_province_2014a_boundaries { get; set; }
+
 
     public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
     {

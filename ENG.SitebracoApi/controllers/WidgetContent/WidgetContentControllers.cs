@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using SitebracoApi.DbEntities;
 using System.Data.SqlClient;
 using SitebracoApi.Models.Eng;
 using SitebracoApi.Models;
+using umbraco;
 
 namespace SitebracoApi.Controllers.WidgetContent
 {
@@ -85,6 +87,26 @@ namespace SitebracoApi.Controllers.WidgetContent
 
                 return content.Count > 0 ? content : null;
             }
+        }
+
+        [HttpGet]
+        public Response<List<ContentData>> GetContent()
+        {
+            var root = uQuery.GetNode(1080);
+            var yearNode = root.GetChildNodeByName(DateTime.Now.Year.ToString());
+            var monthNode = yearNode.GetChildNodeByName(DateTime.Now.Month.ToString());
+            var dayNode = monthNode.GetChildNodeByName(DateTime.Now.Day.ToString());
+
+            var result = dayNode.ChildrenAsList.Select(child => new ContentData
+            {
+                Abstract = child.GetProperty("content_abstract").Value, Price = child.GetProperty("content_price").Value, Title = child.GetProperty("content_title").Value, PubDate = child.GetProperty("content_pubDate").Value
+            }).ToList();
+
+            return new Response<List<ContentData>>
+            {
+                success = true,
+                data = result
+            };
         }
 
         [HttpPost]

@@ -14,6 +14,35 @@
           <Property Name="TypeCode" Type="int" Nullable="false" />
           <Property Name="PropertyBag" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Sitebraco.dbo.boundaries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="boundaries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="250" />
+          <Property Name="boundaryType" Type="nvarchar" MaxLength="250" />
+          <Property Name="state" Type="nvarchar" MaxLength="250" />
+          <Property Name="city" Type="nvarchar" MaxLength="250" />
+          <Property Name="cbsa" Type="nvarchar" MaxLength="250" />
+          <Property Name="cbsacode" Type="nvarchar" MaxLength="250" />
+          <Property Name="schoolDistrict" Type="nvarchar" MaxLength="250" />
+          <Property Name="county" Type="nvarchar" MaxLength="250" />
+          <Property Name="countySubdivision" Type="nvarchar" MaxLength="250" />
+          <Property Name="subdivisionType" Type="nvarchar" MaxLength="250" />
+          <Property Name="countyFips" Type="nvarchar" MaxLength="250" />
+          <Property Name="zipcode" Type="nvarchar" MaxLength="250" />
+          <Property Name="markerLat" Type="float" />
+          <Property Name="markerLon" Type="float" />
+          <Property Name="SWLat" Type="float" />
+          <Property Name="SWLon" Type="float" />
+          <Property Name="NELat" Type="float" />
+          <Property Name="NELon" Type="float" />
+          <Property Name="points" Type="nvarchar(max)" />
+          <Property Name="levels" Type="nvarchar(max)" />
+          <Property Name="decodedPoints" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="cmsContent">
           <Key>
             <PropertyRef Name="pk" />
@@ -562,6 +591,59 @@
           <Property Name="ModifyOn" Type="datetime" />
           <Property Name="ClientId" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Sitebraco.dbo.mt_ca_fsa_2014a_boundaries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="mt_ca_fsa_2014a_boundaries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="gid" Type="real" />
+          <Property Name="cfsauid" Type="nvarchar" MaxLength="256" />
+          <Property Name="pruid" Type="nvarchar" MaxLength="256" />
+          <Property Name="capabbr" Type="nvarchar" MaxLength="256" />
+          <Property Name="prename" Type="nvarchar" MaxLength="256" />
+          <Property Name="intptlat" Type="real" />
+          <Property Name="intptlon" Type="real" />
+          <Property Name="labellat" Type="real" />
+          <Property Name="labellon" Type="real" />
+          <Property Name="intptlatn" Type="real" />
+          <Property Name="intptlats" Type="real" />
+          <Property Name="intptlone" Type="real" />
+          <Property Name="intptlonw" Type="real" />
+          <Property Name="pop11" Type="real" />
+          <Property Name="hu11" Type="real" />
+          <Property Name="color" Type="real" />
+          <Property Name="the_geom" Type="geometry" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Sitebraco.dbo.mt_ca_province_2014a_boundaries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="mt_ca_province_2014a_boundaries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="gid" Type="real" />
+          <Property Name="pruid" Type="real" />
+          <Property Name="capabbr" Type="nvarchar" MaxLength="256" />
+          <Property Name="prname" Type="nvarchar" MaxLength="256" />
+          <Property Name="prename" Type="nvarchar" MaxLength="256" />
+          <Property Name="prfname" Type="nvarchar" MaxLength="256" />
+          <Property Name="preabbr" Type="nvarchar" MaxLength="256" />
+          <Property Name="prfabbr" Type="nvarchar" MaxLength="256" />
+          <Property Name="intptlat" Type="real" />
+          <Property Name="intptlon" Type="real" />
+          <Property Name="labellat" Type="real" />
+          <Property Name="labellon" Type="real" />
+          <Property Name="intptlatn" Type="real" />
+          <Property Name="intptlats" Type="real" />
+          <Property Name="intptlone" Type="real" />
+          <Property Name="intptlonw" Type="real" />
+          <Property Name="pop11" Type="real" />
+          <Property Name="hu11" Type="real" />
+          <Property Name="color" Type="nvarchar" MaxLength="256" />
+          <Property Name="the_geom" Type="geometry" />
+        </EntityType>
         <EntityType Name="new_MetaClassPrimaryLookup">
           <Key>
             <PropertyRef Name="ClassId" />
@@ -593,6 +675,51 @@
           <Property Name="Version" Type="uniqueidentifier" />
           <Property Name="CreateOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Sitebraco.dbo.NUTSBoundaries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NUTSBoundaries">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="NUTS_ID" />
+            <PropertyRef Name="PolygonId" />
+            <PropertyRef Name="SubPolygonId" />
+            <PropertyRef Name="boundaryType" />
+            <PropertyRef Name="SWLat" />
+            <PropertyRef Name="SWLon" />
+            <PropertyRef Name="NELat" />
+            <PropertyRef Name="NELon" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="NUTS_ID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="PolygonId" Type="int" Nullable="false" />
+          <Property Name="SubPolygonId" Type="int" Nullable="false" />
+          <Property Name="boundaryType" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="SWLat" Type="float" Nullable="false" />
+          <Property Name="SWLon" Type="float" Nullable="false" />
+          <Property Name="NELat" Type="float" Nullable="false" />
+          <Property Name="NELon" Type="float" Nullable="false" />
+          <Property Name="Points" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Sitebraco.dbo.NUTSPolygonData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NUTSPolygonData">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Latitude" />
+            <PropertyRef Name="Longitude" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" />
+          <Property Name="NUTS_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="PointID" Type="int" />
+          <Property Name="PolygonID" Type="int" />
+          <Property Name="SubPolygonID" Type="int" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="Number of Records" Type="int" />
+          <Property Name="SHAPE_AREA" Type="float" />
+          <Property Name="SHAPE_LEN" Type="float" />
         </EntityType>
         <EntityType Name="ProfilingAttributes">
           <Key>
@@ -1684,6 +1811,108 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
           <EntitySet Name="Visitors" EntityType="Self.Visitors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitorSegments" EntityType="Self.VisitorSegments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitorTriggerRules" EntityType="Self.VisitorTriggerRules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="boundaries" EntityType="Self.boundaries" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[boundaries].[id] AS [id], 
+[boundaries].[type] AS [type], 
+[boundaries].[boundaryType] AS [boundaryType], 
+[boundaries].[state] AS [state], 
+[boundaries].[city] AS [city], 
+[boundaries].[cbsa] AS [cbsa], 
+[boundaries].[cbsacode] AS [cbsacode], 
+[boundaries].[schoolDistrict] AS [schoolDistrict], 
+[boundaries].[county] AS [county], 
+[boundaries].[countySubdivision] AS [countySubdivision], 
+[boundaries].[subdivisionType] AS [subdivisionType], 
+[boundaries].[countyFips] AS [countyFips], 
+[boundaries].[zipcode] AS [zipcode], 
+[boundaries].[markerLat] AS [markerLat], 
+[boundaries].[markerLon] AS [markerLon], 
+[boundaries].[SWLat] AS [SWLat], 
+[boundaries].[SWLon] AS [SWLon], 
+[boundaries].[NELat] AS [NELat], 
+[boundaries].[NELon] AS [NELon], 
+[boundaries].[points] AS [points], 
+[boundaries].[levels] AS [levels], 
+[boundaries].[decodedPoints] AS [decodedPoints]
+FROM [dbo].[boundaries] AS [boundaries]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="mt_ca_fsa_2014a_boundaries" EntityType="Self.mt_ca_fsa_2014a_boundaries" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[mt_ca_fsa_2014a_boundaries].[Id] AS [Id], 
+[mt_ca_fsa_2014a_boundaries].[gid] AS [gid], 
+[mt_ca_fsa_2014a_boundaries].[cfsauid] AS [cfsauid], 
+[mt_ca_fsa_2014a_boundaries].[pruid] AS [pruid], 
+[mt_ca_fsa_2014a_boundaries].[capabbr] AS [capabbr], 
+[mt_ca_fsa_2014a_boundaries].[prename] AS [prename], 
+[mt_ca_fsa_2014a_boundaries].[intptlat] AS [intptlat], 
+[mt_ca_fsa_2014a_boundaries].[intptlon] AS [intptlon], 
+[mt_ca_fsa_2014a_boundaries].[labellat] AS [labellat], 
+[mt_ca_fsa_2014a_boundaries].[labellon] AS [labellon], 
+[mt_ca_fsa_2014a_boundaries].[intptlatn] AS [intptlatn], 
+[mt_ca_fsa_2014a_boundaries].[intptlats] AS [intptlats], 
+[mt_ca_fsa_2014a_boundaries].[intptlone] AS [intptlone], 
+[mt_ca_fsa_2014a_boundaries].[intptlonw] AS [intptlonw], 
+[mt_ca_fsa_2014a_boundaries].[pop11] AS [pop11], 
+[mt_ca_fsa_2014a_boundaries].[hu11] AS [hu11], 
+[mt_ca_fsa_2014a_boundaries].[color] AS [color], 
+[mt_ca_fsa_2014a_boundaries].[the_geom] AS [the_geom]
+FROM [dbo].[mt_ca_fsa_2014a_boundaries] AS [mt_ca_fsa_2014a_boundaries]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="mt_ca_province_2014a_boundaries" EntityType="Self.mt_ca_province_2014a_boundaries" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[mt_ca_province_2014a_boundaries].[Id] AS [Id], 
+[mt_ca_province_2014a_boundaries].[gid] AS [gid], 
+[mt_ca_province_2014a_boundaries].[pruid] AS [pruid], 
+[mt_ca_province_2014a_boundaries].[capabbr] AS [capabbr], 
+[mt_ca_province_2014a_boundaries].[prname] AS [prname], 
+[mt_ca_province_2014a_boundaries].[prename] AS [prename], 
+[mt_ca_province_2014a_boundaries].[prfname] AS [prfname], 
+[mt_ca_province_2014a_boundaries].[preabbr] AS [preabbr], 
+[mt_ca_province_2014a_boundaries].[prfabbr] AS [prfabbr], 
+[mt_ca_province_2014a_boundaries].[intptlat] AS [intptlat], 
+[mt_ca_province_2014a_boundaries].[intptlon] AS [intptlon], 
+[mt_ca_province_2014a_boundaries].[labellat] AS [labellat], 
+[mt_ca_province_2014a_boundaries].[labellon] AS [labellon], 
+[mt_ca_province_2014a_boundaries].[intptlatn] AS [intptlatn], 
+[mt_ca_province_2014a_boundaries].[intptlats] AS [intptlats], 
+[mt_ca_province_2014a_boundaries].[intptlone] AS [intptlone], 
+[mt_ca_province_2014a_boundaries].[intptlonw] AS [intptlonw], 
+[mt_ca_province_2014a_boundaries].[pop11] AS [pop11], 
+[mt_ca_province_2014a_boundaries].[hu11] AS [hu11], 
+[mt_ca_province_2014a_boundaries].[color] AS [color], 
+[mt_ca_province_2014a_boundaries].[the_geom] AS [the_geom]
+FROM [dbo].[mt_ca_province_2014a_boundaries] AS [mt_ca_province_2014a_boundaries]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NUTSBoundaries" EntityType="Self.NUTSBoundaries" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[NUTSBoundaries].[Id] AS [Id], 
+[NUTSBoundaries].[NUTS_ID] AS [NUTS_ID], 
+[NUTSBoundaries].[PolygonId] AS [PolygonId], 
+[NUTSBoundaries].[SubPolygonId] AS [SubPolygonId], 
+[NUTSBoundaries].[boundaryType] AS [boundaryType], 
+[NUTSBoundaries].[SWLat] AS [SWLat], 
+[NUTSBoundaries].[SWLon] AS [SWLon], 
+[NUTSBoundaries].[NELat] AS [NELat], 
+[NUTSBoundaries].[NELon] AS [NELon], 
+[NUTSBoundaries].[Points] AS [Points]
+FROM [dbo].[NUTSBoundaries] AS [NUTSBoundaries]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NUTSPolygonData" EntityType="Self.NUTSPolygonData" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[NUTSPolygonData].[Id] AS [Id], 
+[NUTSPolygonData].[Level] AS [Level], 
+[NUTSPolygonData].[NUTS_ID] AS [NUTS_ID], 
+[NUTSPolygonData].[PointID] AS [PointID], 
+[NUTSPolygonData].[PolygonID] AS [PolygonID], 
+[NUTSPolygonData].[SubPolygonID] AS [SubPolygonID], 
+[NUTSPolygonData].[Latitude] AS [Latitude], 
+[NUTSPolygonData].[Longitude] AS [Longitude], 
+[NUTSPolygonData].[Number of Records] AS [Number of Records], 
+[NUTSPolygonData].[SHAPE_AREA] AS [SHAPE_AREA], 
+[NUTSPolygonData].[SHAPE_LEN] AS [SHAPE_LEN]
+FROM [dbo].[NUTSPolygonData] AS [NUTSPolygonData]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="umbracoUserLogins" EntityType="Self.umbracoUserLogins" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [umbracoUserLogins].[contextID] AS [contextID], 
@@ -2271,6 +2500,11 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySet Name="ENG_DashboardSettingView" EntityType="SitebracoModel.ENG_DashboardSettingView" />
           <EntitySet Name="ENG_Lead" EntityType="SitebracoModel.ENG_Lead" />
           <EntitySet Name="ENG_Contact" EntityType="SitebracoModel.ENG_Contact" />
+          <EntitySet Name="boundaries" EntityType="SitebracoModel.boundary" />
+          <EntitySet Name="NUTSBoundaries" EntityType="SitebracoModel.NUTSBoundary" />
+          <EntitySet Name="NUTSPolygonDatas" EntityType="SitebracoModel.NUTSPolygonData" />
+          <EntitySet Name="mt_ca_fsa_2014a_boundaries" EntityType="SitebracoModel.mt_ca_fsa_2014a_boundaries" />
+          <EntitySet Name="mt_ca_province_2014a_boundaries" EntityType="SitebracoModel.mt_ca_province_2014a_boundaries" />
         </EntityContainer>
         <EntityType Name="Action">
           <Key>
@@ -3892,6 +4126,123 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="CreateOn" Type="DateTime" Precision="3" />
           <Property Name="ModifyOn" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="boundary">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="boundaryType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="cbsa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="cbsacode" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="schoolDistrict" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="county" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="countySubdivision" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="subdivisionType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="countyFips" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="zipcode" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="markerLat" Type="Double" />
+          <Property Name="markerLon" Type="Double" />
+          <Property Name="SWLat" Type="Double" />
+          <Property Name="SWLon" Type="Double" />
+          <Property Name="NELat" Type="Double" />
+          <Property Name="NELon" Type="Double" />
+          <Property Name="points" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="levels" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="decodedPoints" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NUTSBoundary">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="NUTS_ID" />
+            <PropertyRef Name="PolygonId" />
+            <PropertyRef Name="SubPolygonId" />
+            <PropertyRef Name="boundaryType" />
+            <PropertyRef Name="SWLat" />
+            <PropertyRef Name="SWLon" />
+            <PropertyRef Name="NELat" />
+            <PropertyRef Name="NELon" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="NUTS_ID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="PolygonId" Type="Int32" Nullable="false" />
+          <Property Name="SubPolygonId" Type="Int32" Nullable="false" />
+          <Property Name="boundaryType" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SWLat" Type="Double" Nullable="false" />
+          <Property Name="SWLon" Type="Double" Nullable="false" />
+          <Property Name="NELat" Type="Double" Nullable="false" />
+          <Property Name="NELon" Type="Double" Nullable="false" />
+          <Property Name="Points" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NUTSPolygonData">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Latitude" />
+            <PropertyRef Name="Longitude" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="NUTS_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PointID" Type="Int32" />
+          <Property Name="PolygonID" Type="Int32" />
+          <Property Name="SubPolygonID" Type="Int32" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="Number_of_Records" Type="Int32" />
+          <Property Name="SHAPE_AREA" Type="Double" />
+          <Property Name="SHAPE_LEN" Type="Double" />
+        </EntityType>
+        <EntityType Name="mt_ca_fsa_2014a_boundaries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="gid" Type="Single" />
+          <Property Name="cfsauid" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="pruid" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="capabbr" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="prename" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="intptlat" Type="Single" />
+          <Property Name="intptlon" Type="Single" />
+          <Property Name="labellat" Type="Single" />
+          <Property Name="labellon" Type="Single" />
+          <Property Name="intptlatn" Type="Single" />
+          <Property Name="intptlats" Type="Single" />
+          <Property Name="intptlone" Type="Single" />
+          <Property Name="intptlonw" Type="Single" />
+          <Property Name="pop11" Type="Single" />
+          <Property Name="hu11" Type="Single" />
+          <Property Name="color" Type="Single" />
+          <Property Name="the_geom" Type="Geometry" />
+        </EntityType>
+        <EntityType Name="mt_ca_province_2014a_boundaries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="gid" Type="Single" />
+          <Property Name="pruid" Type="Single" />
+          <Property Name="capabbr" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="prname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="prename" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="prfname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="preabbr" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="prfabbr" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="intptlat" Type="Single" />
+          <Property Name="intptlon" Type="Single" />
+          <Property Name="labellat" Type="Single" />
+          <Property Name="labellon" Type="Single" />
+          <Property Name="intptlatn" Type="Single" />
+          <Property Name="intptlats" Type="Single" />
+          <Property Name="intptlone" Type="Single" />
+          <Property Name="intptlonw" Type="Single" />
+          <Property Name="pop11" Type="Single" />
+          <Property Name="hu11" Type="Single" />
+          <Property Name="color" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="the_geom" Type="Geometry" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4860,6 +5211,118 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="boundaries">
+            <EntityTypeMapping TypeName="SitebracoModel.boundary">
+              <MappingFragment StoreEntitySet="boundaries">
+                <ScalarProperty Name="decodedPoints" ColumnName="decodedPoints" />
+                <ScalarProperty Name="levels" ColumnName="levels" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="NELon" ColumnName="NELon" />
+                <ScalarProperty Name="NELat" ColumnName="NELat" />
+                <ScalarProperty Name="SWLon" ColumnName="SWLon" />
+                <ScalarProperty Name="SWLat" ColumnName="SWLat" />
+                <ScalarProperty Name="markerLon" ColumnName="markerLon" />
+                <ScalarProperty Name="markerLat" ColumnName="markerLat" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="countyFips" ColumnName="countyFips" />
+                <ScalarProperty Name="subdivisionType" ColumnName="subdivisionType" />
+                <ScalarProperty Name="countySubdivision" ColumnName="countySubdivision" />
+                <ScalarProperty Name="county" ColumnName="county" />
+                <ScalarProperty Name="schoolDistrict" ColumnName="schoolDistrict" />
+                <ScalarProperty Name="cbsacode" ColumnName="cbsacode" />
+                <ScalarProperty Name="cbsa" ColumnName="cbsa" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="boundaryType" ColumnName="boundaryType" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NUTSBoundaries">
+            <EntityTypeMapping TypeName="SitebracoModel.NUTSBoundary">
+              <MappingFragment StoreEntitySet="NUTSBoundaries">
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="NELon" ColumnName="NELon" />
+                <ScalarProperty Name="NELat" ColumnName="NELat" />
+                <ScalarProperty Name="SWLon" ColumnName="SWLon" />
+                <ScalarProperty Name="SWLat" ColumnName="SWLat" />
+                <ScalarProperty Name="boundaryType" ColumnName="boundaryType" />
+                <ScalarProperty Name="SubPolygonId" ColumnName="SubPolygonId" />
+                <ScalarProperty Name="PolygonId" ColumnName="PolygonId" />
+                <ScalarProperty Name="NUTS_ID" ColumnName="NUTS_ID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NUTSPolygonDatas">
+            <EntityTypeMapping TypeName="SitebracoModel.NUTSPolygonData">
+              <MappingFragment StoreEntitySet="NUTSPolygonData">
+                <ScalarProperty Name="SHAPE_LEN" ColumnName="SHAPE_LEN" />
+                <ScalarProperty Name="SHAPE_AREA" ColumnName="SHAPE_AREA" />
+                <ScalarProperty Name="Number_of_Records" ColumnName="Number of Records" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="SubPolygonID" ColumnName="SubPolygonID" />
+                <ScalarProperty Name="PolygonID" ColumnName="PolygonID" />
+                <ScalarProperty Name="PointID" ColumnName="PointID" />
+                <ScalarProperty Name="NUTS_ID" ColumnName="NUTS_ID" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mt_ca_fsa_2014a_boundaries">
+            <EntityTypeMapping TypeName="SitebracoModel.mt_ca_fsa_2014a_boundaries">
+              <MappingFragment StoreEntitySet="mt_ca_fsa_2014a_boundaries">
+                <ScalarProperty Name="the_geom" ColumnName="the_geom" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="hu11" ColumnName="hu11" />
+                <ScalarProperty Name="pop11" ColumnName="pop11" />
+                <ScalarProperty Name="intptlonw" ColumnName="intptlonw" />
+                <ScalarProperty Name="intptlone" ColumnName="intptlone" />
+                <ScalarProperty Name="intptlats" ColumnName="intptlats" />
+                <ScalarProperty Name="intptlatn" ColumnName="intptlatn" />
+                <ScalarProperty Name="labellon" ColumnName="labellon" />
+                <ScalarProperty Name="labellat" ColumnName="labellat" />
+                <ScalarProperty Name="intptlon" ColumnName="intptlon" />
+                <ScalarProperty Name="intptlat" ColumnName="intptlat" />
+                <ScalarProperty Name="prename" ColumnName="prename" />
+                <ScalarProperty Name="capabbr" ColumnName="capabbr" />
+                <ScalarProperty Name="pruid" ColumnName="pruid" />
+                <ScalarProperty Name="cfsauid" ColumnName="cfsauid" />
+                <ScalarProperty Name="gid" ColumnName="gid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mt_ca_province_2014a_boundaries">
+            <EntityTypeMapping TypeName="SitebracoModel.mt_ca_province_2014a_boundaries">
+              <MappingFragment StoreEntitySet="mt_ca_province_2014a_boundaries">
+                <ScalarProperty Name="the_geom" ColumnName="the_geom" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="hu11" ColumnName="hu11" />
+                <ScalarProperty Name="pop11" ColumnName="pop11" />
+                <ScalarProperty Name="intptlonw" ColumnName="intptlonw" />
+                <ScalarProperty Name="intptlone" ColumnName="intptlone" />
+                <ScalarProperty Name="intptlats" ColumnName="intptlats" />
+                <ScalarProperty Name="intptlatn" ColumnName="intptlatn" />
+                <ScalarProperty Name="labellon" ColumnName="labellon" />
+                <ScalarProperty Name="labellat" ColumnName="labellat" />
+                <ScalarProperty Name="intptlon" ColumnName="intptlon" />
+                <ScalarProperty Name="intptlat" ColumnName="intptlat" />
+                <ScalarProperty Name="prfabbr" ColumnName="prfabbr" />
+                <ScalarProperty Name="preabbr" ColumnName="preabbr" />
+                <ScalarProperty Name="prfname" ColumnName="prfname" />
+                <ScalarProperty Name="prename" ColumnName="prename" />
+                <ScalarProperty Name="prname" ColumnName="prname" />
+                <ScalarProperty Name="capabbr" ColumnName="capabbr" />
+                <ScalarProperty Name="pruid" ColumnName="pruid" />
+                <ScalarProperty Name="gid" ColumnName="gid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

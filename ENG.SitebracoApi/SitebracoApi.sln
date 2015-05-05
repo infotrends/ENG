@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitebracoApi", "SitebracoApi.csproj", "{D6DAA0CC-02B6-42CE-B2FB-0DC6B524F052}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoTrendsAPI_v2.3", "..\InfoTrends.SMS.InfoTrendsAPI\InfoTrendsAPI_v2.3.csproj", "{C6CEAD30-1943-406B-A6A2-E2F4D8FD7A4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{D6DAA0CC-02B6-42CE-B2FB-0DC6B524F052}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6DAA0CC-02B6-42CE-B2FB-0DC6B524F052}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6DAA0CC-02B6-42CE-B2FB-0DC6B524F052}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6CEAD30-1943-406B-A6A2-E2F4D8FD7A4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6CEAD30-1943-406B-A6A2-E2F4D8FD7A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6CEAD30-1943-406B-A6A2-E2F4D8FD7A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6CEAD30-1943-406B-A6A2-E2F4D8FD7A4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

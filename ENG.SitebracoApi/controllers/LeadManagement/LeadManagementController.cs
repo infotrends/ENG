@@ -10,8 +10,10 @@ using Newtonsoft.Json.Linq;
 using SitebracoApi.DbEntities;
 using SitebracoApi.Models;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Dynamic;
+using umbraco;
 
 namespace SitebracoApi.Controllers.LeadManagement
 {
@@ -54,7 +56,7 @@ namespace SitebracoApi.Controllers.LeadManagement
             }
 
             var result = new List<ENG_Lead>();
-
+            
             using (var db = new SitebracoEntities())
             {
                 foreach (var item in data.Children<JObject>())
@@ -102,9 +104,9 @@ namespace SitebracoApi.Controllers.LeadManagement
             var model = new ENG_Lead()
             {
                 ClientID = param.ClientID,
-                IPAddress = param.IPAddress
+                IPAddress = param.IPAddress,
+                ViewerID = param.ViewerID
             };
-
             if (param.MemberType != null && !param.MemberType.Equals(""))
             {
                 model.MemberType = param.MemberType;
@@ -120,9 +122,11 @@ namespace SitebracoApi.Controllers.LeadManagement
                 model.Note = param.Note;
             }
 
+            if (param.ID != 0) model.ID = param.ID;
+
             using (var db = new SitebracoEntities())
             {
-                db.ENG_Lead.Add(model);
+                db.ENG_Lead.AddOrUpdate(model);
                 db.SaveChanges();
             }
             return new Response<ENG_Lead>()

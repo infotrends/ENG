@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C6CEAD30-1943-406B-A6A2-E2F4D8FD7A4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InfoTrendsAPI</RootNamespace>
+    <AssemblyName>InfoTrendsAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>api.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AuthorizeNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dlls\AuthorizeNet.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonLibrary">
+      <HintPath>..\_Dlls\CommonLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="DevDefined.OAuth">
+      <HintPath>..\_Dlls\DevDefined.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>.\_Dlls\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DropNet">
+      <HintPath>..\_Dlls\DropNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicsCRM, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dlls\DynamicsCRM.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.Pdf">
+      <HintPath>..\_Dlls\EO.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Eprise">
+      <HintPath>..\_Dlls\Eprise.dll</HintPath>
+    </Reference>
+    <Reference Include="InfoTrendsAPI">
+      <HintPath>..\_Dlls\InfoTrendsAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="InfoTrendsCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dlls\InfoTrendsCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="InfoTrendsModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dlls\InfoTrendsModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Jyc.Expr">
+      <HintPath>..\_Dlls\Jyc.Expr.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.crm.sdk.proxy">
+      <HintPath>..\_Dlls\microsoft.crm.sdk.proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dlls\Microsoft.IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.xrm.client, Version=5.0.9688.1154, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dlls\microsoft.xrm.client.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.xrm.sdk">
+      <HintPath>..\_Dlls\microsoft.xrm.sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="MyAuthorizeNet">
+      <HintPath>..\_Dlls\MyAuthorizeNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\_Dlls\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\_Dlls\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="Recaptcha">
+      <HintPath>..\_Dlls\Recaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\_Dlls\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SurveyGizmo">
+      <HintPath>..\_Dlls\SurveyGizmo.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="uRESTClient">
+      <HintPath>..\_Dlls\uRESTClient.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Error\RegError.cs" />
+    <Compile Include="Error\SmsError.cs" />
+    <Compile Include="Error\UgError.cs" />
+    <Compile Include="FullTextSearchService.cs" />
+    <Compile Include="HttpModules\BasicAuthentication.cs" />
+    <Compile Include="JsonEnumTypeConverter.cs" />
+    <Compile Include="Map\LatLng.cs" />
+    <Compile Include="Map\LatLngBounds.cs" />
+    <Compile Include="Map\MapIdentifier.cs" />
+    <Compile Include="Map\Pixel.cs" />
+    <Compile Include="Map\Polygon.cs" />
+    <Compile Include="Map\TileConverter.cs" />
+    <Compile Include="Map\TileReference.cs" />
+    <Compile Include="Methods\Sms\Folder.cs" />
+    <Compile Include="Methods\Sms\SavedSearch.cs" />
+    <Compile Include="Methods\Sms\Preference.cs" />
+    <Compile Include="Methods\Sms\SavedTerritory.cs" />
+    <Compile Include="Methods\Sms\SearchHistory.cs" />
+    <Compile Include="Methods\Sms\SavedLocation.cs" />
+    <Compile Include="Methods\Sms\SmsConstant.cs" />
+    <Compile Include="Methods\Sms\Territory.cs" />
+    <Compile Include="Methods\Sms\TerritoryType.cs" />
+    <Compile Include="Methods\MyFile.cs" />
+    <Compile Include="Methods\Sms\ApplicationHistory.cs" />
+    <Compile Include="Methods\Sms\Brand.cs" />
+    <Compile Include="Methods\Sms\Feedback.cs" />
+    <Compile Include="Methods\Sms\Location.cs" />
+    <Compile Include="Methods\Sms\UserInfo.cs" />
+    <Compile Include="Error\OAuthError.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Type\InfoTrendsSearchType.cs" />
+    <Compile Include="Type\QueryPacket.cs" />
+    <Compile Include="Type\Sms\FolderType.cs" />
+    <Compile Include="Type\Template.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="Web References\SearchQueryServiceProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="api.pfx" />
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SearchQueryServiceProxy\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SearchQueryServiceProxy\search.wsdl" />
+    <None Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://google.capv.com/_vti_bin/search.asmx%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SearchQueryServiceProxy\</RelPath>
+      <UpdateFromURL>http://google.capv.com/_vti_bin/search.asmx%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>InfoTrendsAPI_SearchQueryServiceProxy_QueryService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

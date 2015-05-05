@@ -142,6 +142,11 @@
         <EntityTypeShape EntityType="SitebracoModel.ENG_DashboardSettingView" Width="1.5" PointX="20.375" PointY="22.75" />
         <EntityTypeShape EntityType="SitebracoModel.ENG_Lead" Width="1.5" PointX="22.375" PointY="22.75" />
         <EntityTypeShape EntityType="SitebracoModel.ENG_Contact" Width="1.5" PointX="13.375" PointY="23.75" />
+        <EntityTypeShape EntityType="SitebracoModel.boundary" Width="1.5" PointX="23.375" PointY="15.75" />
+        <EntityTypeShape EntityType="SitebracoModel.NUTSBoundary" Width="1.5" PointX="15.375" PointY="23.75" />
+        <EntityTypeShape EntityType="SitebracoModel.NUTSPolygonData" Width="1.5" PointX="24.375" PointY="9.75" />
+        <EntityTypeShape EntityType="SitebracoModel.mt_ca_fsa_2014a_boundaries" Width="1.5" PointX="24.375" PointY="21.75" />
+        <EntityTypeShape EntityType="SitebracoModel.mt_ca_province_2014a_boundaries" Width="1.5" PointX="25.375" PointY="13.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
