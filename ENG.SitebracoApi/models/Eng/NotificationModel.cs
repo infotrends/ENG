@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SitebracoApi.Models.Eng
+﻿namespace SitebracoApi.Models.Eng
 {
     public class NotificationModel : EngBase
     {

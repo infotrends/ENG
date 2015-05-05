@@ -119,6 +119,7 @@
     <Compile Include="Controllers\Eng\EngQueryController.cs" />
     <Compile Include="Controllers\Eng\EngTrackController.cs" />
     <Compile Include="Controllers\Eng\EngUserSettingController.cs" />
+    <Compile Include="Controllers\LeadManagement\LeadManagementController.cs" />
     <Compile Include="Controllers\WidgetContent\WidgetContentControllers.cs" />
     <Compile Include="Controllers\InternalCrm\ContentController.cs" />
     <Compile Include="Controllers\Meta\ContentMetaController.cs" />
@@ -234,6 +235,9 @@
     <Compile Include="DbEntities\Domain.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbEntities\ENG_Contact.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbEntities\ENG_DashboardSettingColumn.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
@@ -241,6 +245,9 @@
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\ENG_DashboardSettingView.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_Lead.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\ENG_OS.cs">

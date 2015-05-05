@@ -198,6 +198,10 @@ public partial class SitebracoEntities : DbContext
 
     public DbSet<ENG_DashboardSettingView> ENG_DashboardSettingView { get; set; }
 
+    public DbSet<ENG_Lead> ENG_Lead { get; set; }
+
+    public DbSet<ENG_Contact> ENG_Contact { get; set; }
+
 
     public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
     {

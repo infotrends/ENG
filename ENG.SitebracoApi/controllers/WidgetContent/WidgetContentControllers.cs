@@ -228,6 +228,27 @@ namespace SitebracoApi.Controllers.WidgetContent
                 };
             }
         }
+
+        [HttpPost, HttpGet]
+        public object Contact(ENG_Contact param)
+        {
+            using (var db = new SitebracoEntities())
+            {
+                var contact = new ENG_Contact
+                {
+                    Name = param.Name,
+                    Content = param.Content,
+                    ClientID = param.ClientID,
+                    Email = param.Email,
+                };
+                db.ENG_Contact.Add(contact);
+
+                db.SaveChanges();
+                return new {
+                    success = true,
+                };
+            }
+        }
     }
 
     public class WidgetContent

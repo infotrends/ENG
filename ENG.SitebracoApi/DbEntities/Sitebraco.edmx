@@ -400,17 +400,29 @@
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="LicenseKey" Type="nvarchar" MaxLength="1024" Nullable="false" />
         </EntityType>
+        <EntityType Name="ENG_Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="ModifyOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="ENG_DashboardSettingColumn">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar(max)" />
           <Property Name="Order" Type="int" Nullable="false" />
           <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
           <Property Name="CreateOn" Type="datetime" />
           <Property Name="ModifyOn" Type="datetime" />
-          <Property Name="ClientID" Type="nvarchar(max)" />
-          <Property Name="Status" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ENG_DashboardSettingReport">
           <Key>
@@ -420,9 +432,23 @@
           <Property Name="DashboardSettingColumnID" Type="bigint" />
           <Property Name="Order" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Collapse" Type="bit" />
           <Property Name="CreateOn" Type="datetime" />
           <Property Name="ModifyOn" Type="datetime" />
-          <Property Name="Collapse" Type="bit" />
+        </EntityType>
+        <EntityType Name="ENG_Lead">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="50" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="20" />
+          <Property Name="MemberType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="ModifyOn" Type="datetime" />
+          <Property Name="ViewerID" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Note" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ENG_OS">
           <Key>
@@ -868,7 +894,7 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
           <Property Name="PrimaryName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="PrimaryIsArchived" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__ENG_Dashb__Dashb__4DE98D56">
+        <Association Name="FK__ENG_Dashb__Dashb__60083D91">
           <End Role="ENG_DashboardSettingColumn" Type="Self.ENG_DashboardSettingColumn" Multiplicity="0..1" />
           <End Role="ENG_DashboardSettingReport" Type="Self.ENG_DashboardSettingReport" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1615,8 +1641,10 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
           <EntitySet Name="ContentSelectors" EntityType="Self.ContentSelectors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataSnapshots" EntityType="Self.DataSnapshots" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Domains" EntityType="Self.Domains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENG_Contact" EntityType="Self.ENG_Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_DashboardSettingColumn" EntityType="Self.ENG_DashboardSettingColumn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_DashboardSettingReport" EntityType="Self.ENG_DashboardSettingReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENG_Lead" EntityType="Self.ENG_Lead" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_OS" EntityType="Self.ENG_OS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_Session" EntityType="Self.ENG_Session" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_TrackingList" EntityType="Self.ENG_TrackingList" Schema="dbo" store:Type="Tables" />
@@ -1684,7 +1712,7 @@ FROM [dbo].[ENG_DashboardSettingView] AS [ENG_DashboardSettingView]</DefiningQue
 [new_MetaClassPrimaryView].[PrimaryIsArchived] AS [PrimaryIsArchived]
 FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__ENG_Dashb__Dashb__4DE98D56" Association="Self.FK__ENG_Dashb__Dashb__4DE98D56">
+          <AssociationSet Name="FK__ENG_Dashb__Dashb__60083D91" Association="Self.FK__ENG_Dashb__Dashb__60083D91">
             <End Role="ENG_DashboardSettingColumn" EntitySet="ENG_DashboardSettingColumn" />
             <End Role="ENG_DashboardSettingReport" EntitySet="ENG_DashboardSettingReport" />
           </AssociationSet>
@@ -2241,6 +2269,8 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
             <End Role="ENG_WidgetContent_WidgetDataType_Lookup" EntitySet="ENG_WidgetContent_WidgetDataType_Lookup" />
           </AssociationSet>
           <EntitySet Name="ENG_DashboardSettingView" EntityType="SitebracoModel.ENG_DashboardSettingView" />
+          <EntitySet Name="ENG_Lead" EntityType="SitebracoModel.ENG_Lead" />
+          <EntitySet Name="ENG_Contact" EntityType="SitebracoModel.ENG_Contact" />
         </EntityContainer>
         <EntityType Name="Action">
           <Key>
@@ -3836,6 +3866,32 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="ClientID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="ENG_Lead">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IPAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MemberType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+          <Property Name="ViewerID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ENG_Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4776,6 +4832,34 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
                 <ScalarProperty Name="ReportCollapse" ColumnName="ReportCollapse" />
                 <ScalarProperty Name="ReportName" ColumnName="ReportName" />
                 <ScalarProperty Name="ReportOrder" ColumnName="ReportOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENG_Lead">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_Lead">
+              <MappingFragment StoreEntitySet="ENG_Lead">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ViewerID" ColumnName="ViewerID" />
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="MemberType" ColumnName="MemberType" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENG_Contact">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_Contact">
+              <MappingFragment StoreEntitySet="ENG_Contact">
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

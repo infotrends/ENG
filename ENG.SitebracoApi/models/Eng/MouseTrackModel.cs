@@ -1,10 +1,4 @@
 ﻿using MyUtils.Validations;
-using SitebracoApi.Models.Eng;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SitebracoApi.Models.Eng
 {
