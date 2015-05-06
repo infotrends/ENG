@@ -212,6 +212,8 @@ public partial class SitebracoEntities : DbContext
 
     public DbSet<mt_ca_province_2014a_boundaries> mt_ca_province_2014a_boundaries { get; set; }
 
+    public DbSet<ENG_Territory> ENG_Territory { get; set; }
+
 
     public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
     {

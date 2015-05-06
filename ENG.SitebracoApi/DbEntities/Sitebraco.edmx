@@ -497,6 +497,20 @@ warning 6002: The table/view 'Sitebraco.dbo.boundaries' does not have a primary 
           <Property Name="CreateOn" Type="datetime" />
           <Property Name="CurrentAction" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="ENG_Territory">
+          <Key>
+            <PropertyRef Name="territoryID" />
+          </Key>
+          <Property Name="territoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="250" />
+          <Property Name="boundaryType" Type="varchar" MaxLength="50" />
+          <Property Name="color" Type="varchar" MaxLength="50" />
+          <Property Name="note" Type="varchar(max)" />
+          <Property Name="mapInfo" Type="varchar(max)" />
+          <Property Name="dateCreated" Type="datetime" />
+          <Property Name="layers" Type="varchar(max)" />
+          <Property Name="clientId" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="ENG_TrackingList">
           <Key>
             <PropertyRef Name="ID" />
@@ -1774,6 +1788,7 @@ warning 6002: The table/view 'Sitebraco.dbo.new_MetaClassPrimaryView' does not h
           <EntitySet Name="ENG_Lead" EntityType="Self.ENG_Lead" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_OS" EntityType="Self.ENG_OS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_Session" EntityType="Self.ENG_Session" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENG_Territory" EntityType="Self.ENG_Territory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_TrackingList" EntityType="Self.ENG_TrackingList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_UserSetting" EntityType="Self.ENG_UserSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENG_Widget" EntityType="Self.ENG_Widget" Schema="dbo" store:Type="Tables" />
@@ -2505,6 +2520,11 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <EntitySet Name="NUTSPolygonDatas" EntityType="SitebracoModel.NUTSPolygonData" />
           <EntitySet Name="mt_ca_fsa_2014a_boundaries" EntityType="SitebracoModel.mt_ca_fsa_2014a_boundaries" />
           <EntitySet Name="mt_ca_province_2014a_boundaries" EntityType="SitebracoModel.mt_ca_province_2014a_boundaries" />
+          <EntitySet Name="ENG_Territory" EntityType="SitebracoModel.ENG_Territory" />
+          <AssociationSet Name="FK_Territory_Territory" Association="SitebracoModel.FK_Territory_Territory">
+            <End Role="ENG_Territory" EntitySet="ENG_Territory" />
+            <End Role="ENG_Territory1" EntitySet="ENG_Territory" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Action">
           <Key>
@@ -4243,6 +4263,37 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
           <Property Name="color" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="the_geom" Type="Geometry" />
         </EntityType>
+        <EntityType Name="ENG_Territory">
+          <Key>
+            <PropertyRef Name="territoryID" />
+          </Key>
+          <Property Name="territoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="epriseID" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="boundaryType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mapInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <Property Name="parentId" Type="Int32" />
+          <Property Name="leaf" Type="Boolean" />
+          <Property Name="layers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="contactID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="clientId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="children" Relationship="SitebracoModel.FK_Territory_Territory" FromRole="ENG_Territory" ToRole="ENG_Territory1" />
+        </EntityType>
+        <Association Name="FK_Territory_Territory">
+          <End Type="SitebracoModel.ENG_Territory" Role="ENG_Territory" Multiplicity="0..1" />
+          <End Type="SitebracoModel.ENG_Territory" Role="ENG_Territory1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENG_Territory">
+              <PropertyRef Name="territoryID" />
+            </Principal>
+            <Dependent Role="ENG_Territory1">
+              <PropertyRef Name="parentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5323,6 +5374,21 @@ FROM [dbo].[new_MetaClassPrimaryView] AS [new_MetaClassPrimaryView]</DefiningQue
                 <ScalarProperty Name="pruid" ColumnName="pruid" />
                 <ScalarProperty Name="gid" ColumnName="gid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENG_Territory">
+            <EntityTypeMapping TypeName="SitebracoModel.ENG_Territory">
+              <MappingFragment StoreEntitySet="ENG_Territory">
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="layers" ColumnName="layers" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="mapInfo" ColumnName="mapInfo" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="boundaryType" ColumnName="boundaryType" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="territoryID" ColumnName="territoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,30 +12,30 @@
 namespace SitebracoApi.DbEntities
 {
 
-    using System;
+using System;
     using System.Collections.Generic;
+    
+public partial class ENG_Lead
+{
 
-    public partial class ENG_Lead
-    {
+    public long ID { get; set; }
 
-        public long ID { get; set; }
+    public string ClientID { get; set; }
 
-        public string ClientID { get; set; }
+    public string IPAddress { get; set; }
 
-        public string IPAddress { get; set; }
+    public string MemberType { get; set; }
 
-        public string MemberType { get; set; }
+    public Nullable<System.DateTime> CreateOn { get; set; }
 
-        public Nullable<System.DateTime> CreateOn { get; set; }
+    public Nullable<System.DateTime> ModifyOn { get; set; }
 
-        public Nullable<System.DateTime> ModifyOn { get; set; }
+    public string ViewerID { get; set; }
 
-        public string ViewerID { get; set; }
+    public string Name { get; set; }
 
-        public string Name { get; set; }
+    public string Note { get; set; }
 
-        public string Note { get; set; }
-
-    }
+}
 
 }

@@ -122,12 +122,15 @@
     <Compile Include="Controllers\ContentEditor\ContentMediaController.cs" />
     <Compile Include="Controllers\ContentEditor\ContentTemplateController.cs" />
     <Compile Include="Controllers\DashboardSetting\DashboardSettingController.cs" />
+    <Compile Include="Controllers\Eng\EngInteractionController.cs" />
     <Compile Include="Controllers\Eng\EngQueryController.cs" />
     <Compile Include="Controllers\Eng\EngSitePathController.cs" />
     <Compile Include="Controllers\Eng\EngTrackController.cs" />
     <Compile Include="Controllers\Eng\EngUserSettingController.cs" />
     <Compile Include="Controllers\LeadManagement\LeadManagementController.cs" />
+    <Compile Include="Controllers\Territory\SaveTerritoryController.cs" />
     <Compile Include="Controllers\Territory\TerritoryController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\WidgetContent\WidgetContentControllers.cs" />
     <Compile Include="Controllers\InternalCrm\ContentController.cs" />
     <Compile Include="Controllers\Meta\ContentMetaController.cs" />
@@ -265,6 +268,9 @@
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\ENG_Session.cs">
+      <DependentUpon>Sitebraco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbEntities\ENG_Territory.cs">
       <DependentUpon>Sitebraco.tt</DependentUpon>
     </Compile>
     <Compile Include="DbEntities\ENG_TrackingList.cs">
@@ -439,6 +445,7 @@
     <Compile Include="Models\Eng\PageView.cs" />
     <Compile Include="Models\Eng\SessionModel.cs" />
     <Compile Include="Models\Eng\VisitorLogModel.cs" />
+    <Compile Include="Models\InteractionModel.cs" />
     <Compile Include="Models\Meta\ContentMetaModel.cs" />
     <Compile Include="Extlib.cs" />
     <Compile Include="Models\PagingResult.cs" />

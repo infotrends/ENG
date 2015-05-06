@@ -147,6 +147,8 @@
         <EntityTypeShape EntityType="SitebracoModel.NUTSPolygonData" Width="1.5" PointX="24.375" PointY="9.75" />
         <EntityTypeShape EntityType="SitebracoModel.mt_ca_fsa_2014a_boundaries" Width="1.5" PointX="24.375" PointY="21.75" />
         <EntityTypeShape EntityType="SitebracoModel.mt_ca_province_2014a_boundaries" Width="1.5" PointX="25.375" PointY="13.75" />
+        <EntityTypeShape EntityType="SitebracoModel.ENG_Territory" Width="1.5" PointX="17.375" PointY="25.75" />
+        <AssociationConnector Association="SitebracoModel.FK_Territory_Territory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
