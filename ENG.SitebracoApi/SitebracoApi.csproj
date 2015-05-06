@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ENGRiakCluster.cs" />
     <Compile Include="Common\TerritoryType.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Controllers\Auth\ProfileController.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Controllers\ContentEditor\ContentTemplateController.cs" />
     <Compile Include="Controllers\DashboardSetting\DashboardSettingController.cs" />
     <Compile Include="Controllers\Eng\EngQueryController.cs" />
+    <Compile Include="Controllers\Eng\EngSitePathController.cs" />
     <Compile Include="Controllers\Eng\EngTrackController.cs" />
     <Compile Include="Controllers\Eng\EngUserSettingController.cs" />
     <Compile Include="Controllers\LeadManagement\LeadManagementController.cs" />
@@ -441,6 +443,7 @@
     <Compile Include="Extlib.cs" />
     <Compile Include="Models\PagingResult.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\SitePathModel.cs" />
     <Compile Include="Models\Territory\BoundaryParams.cs" />
     <Compile Include="Models\Territory\PolygonData.cs" />
     <Compile Include="Models\Territory\TerritoryDetail.cs" />
